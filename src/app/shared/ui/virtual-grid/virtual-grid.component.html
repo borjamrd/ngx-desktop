@@ -1,0 +1,9 @@
+<div class="w-ful h-full flex gap-2 flex-wrap" cdkDropList (cdkDropListDropped)="drop($event)">
+    @for (item of items; track $index) {
+    <div cdkDrag
+        class="active:shadow-sm active:opacity-10 h-28 w-28 cursor-pointer border-2 border-slate-100 p-3 flex items-center justify-center">
+        {{ item }}
+
+    </div>
+    }
+</div>
