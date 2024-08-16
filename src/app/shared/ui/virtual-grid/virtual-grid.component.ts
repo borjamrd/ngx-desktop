@@ -8,6 +8,7 @@ import {
   ElementRef,
   inject,
   Inject,
+  Input,
   OnDestroy,
   OnInit,
   ViewChild
@@ -28,13 +29,8 @@ import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 import { ktdArrayRemoveItem, transitions } from 'app/shared/utils/utils';
 import { Subscription, debounceTime, filter, fromEvent, merge } from 'rxjs';
 import { CellContainerComponent } from './cell-container/cell-container.component';
+import { GridBreakpoint, LayoutService } from 'app/shared/services/layout.service';
 
-enum GridBreakpoint {
-  XSmall = 'XSmall',
-  Small = 'Small',
-  Medium = 'Medium',
-  Large = 'Large',
-}
 @Component({
   selector: 'bm-virtual-grid',
   standalone: true,
@@ -51,11 +47,6 @@ export class VirtualGridComponent implements OnInit, OnDestroy {
   BREAK_POINT_MEDIUM_COLS = 12;
   BREACK_POINT_LARGE_COLS = 16;
 
-  BREAK_POINT_X_SMALL_ITEMS = 12;
-  BREAK_POINT_SMALL_ITEMS = 24;
-  BREAK_POINT_MEDIUM_ITEMS = 72;
-  BREAK_POINT_LARGE_ITEMS = 112;
-
   BREAK_POINT_X_SMALL_ROW_HEIGHT = 120;
   BREAK_POINT_SMALL_ROW_HEIGHT = 100;
   BREAK_POINT_MEDIUM_ROW_HEIGHT = 120;
@@ -64,16 +55,7 @@ export class VirtualGridComponent implements OnInit, OnDestroy {
   cols = this.BREAK_POINT_MEDIUM_COLS;
   rowHeight = this.BREAK_POINT_MEDIUM_ROW_HEIGHT;
   compactType: 'vertical' | 'horizontal' | null = null;
-  layout: KtdGridLayout = [{
-    id: '0',
-    x: 0,
-    y: 0,
-    w: 1,
-    h: 1,
-  }]
-
-  private breackpointObserver: BreakpointObserver = inject(BreakpointObserver);
-  private destroyRef: DestroyRef = inject(DestroyRef);
+  @Input() layout: KtdGridLayout = []
 
   currentTransition: string = transitions[0].value;
 
@@ -89,36 +71,23 @@ export class VirtualGridComponent implements OnInit, OnDestroy {
   resizeSubscription!: Subscription;
 
 
-  gridBreakpoint: GridBreakpoint = GridBreakpoint.Medium;
+
   containerWidth: number = 0;
   containerHeight: number = 0;
 
   public elementRef: ElementRef = inject(ElementRef);
   public document: Document = inject(DOCUMENT);
+  layoutService = inject(LayoutService)
+  private destroyRef: DestroyRef = inject(DestroyRef);
 
-
-  adjustDefaultLayoutToBreakpoint() {
-    this.breackpointObserver.observe([
-      Breakpoints.XSmall,
-      Breakpoints.Small,
-      Breakpoints.Medium,
-    ]).pipe(takeUntilDestroyed(this.destroyRef))
-      .subscribe(state => {
-        if (state.breakpoints[Breakpoints.XSmall]) {
-          this.gridBreakpoint = GridBreakpoint.XSmall
-        } else if (state.breakpoints[Breakpoints.Small]) {
-          this.gridBreakpoint = GridBreakpoint.Small
-        }
-        else if (state.breakpoints[Breakpoints.Medium]) {
-          this.gridBreakpoint = GridBreakpoint.Medium
-        }
-        else if (state.breakpoints[Breakpoints.Large]) {
-          this.gridBreakpoint = GridBreakpoint.Large
-        }
-        this.setColumnsAndRowHeight();
-      });
-
+  constructor() {
+    this.layoutService.gridBreakpointValue()
+      .pipe(takeUntilDestroyed(this.destroyRef))
+      .subscribe((value) => {
+        this.setColumnsAndRowHeight(value);
+      })
   }
+
   ngOnInit() {
 
     this.resizeSubscription = merge(
@@ -133,7 +102,7 @@ export class VirtualGridComponent implements OnInit, OnDestroy {
         this.grid.resize();
       });
 
-    this.adjustDefaultLayoutToBreakpoint();
+
   }
 
   ngOnDestroy() {
@@ -237,16 +206,16 @@ export class VirtualGridComponent implements OnInit, OnDestroy {
   }
 
   setColumnsAndRowHeight(
-
+    gridBreakpoint: GridBreakpoint,
   ) {
-    if (this.gridBreakpoint === GridBreakpoint.XSmall) {
+    if (gridBreakpoint === GridBreakpoint.XSmall) {
       this.cols = this.BREAK_POINT_X_SMALL_COLS
       this.rowHeight = this.BREAK_POINT_X_SMALL_ROW_HEIGHT;
 
-    } else if (this.gridBreakpoint === GridBreakpoint.Small) {
+    } else if (gridBreakpoint === GridBreakpoint.Small) {
       this.cols = this.BREAK_POINT_SMALL_COLS
       this.rowHeight = this.BREAK_POINT_SMALL_ROW_HEIGHT;
-    } else if (this.gridBreakpoint === GridBreakpoint.Medium) {
+    } else if (gridBreakpoint === GridBreakpoint.Medium) {
       this.cols = this.BREAK_POINT_MEDIUM_COLS
       this.rowHeight = this.BREAK_POINT_MEDIUM_ROW_HEIGHT;
     }
@@ -263,14 +232,16 @@ export class VirtualGridComponent implements OnInit, OnDestroy {
   }
 
 
-  get wallPaperClass(): string {
+  // get wallPaperClass(): string {
 
-    if (
-      this.gridBreakpoint === GridBreakpoint.XSmall) {
-      return 'wallpaper-mobile';
-    }
-
-    return 'wallpaper-desktop';
-  }
+  //   if (
+  //     this.gridBreakpoint === GridBreakpoint.XSmall) {
+  //     return 'wallpaper-mobile';
+  //   }
+  //   if (!this.showWallpaper) {
+  //     return '';
+  //   }
+  //   return 'wallpaper-desktop';
+  // }
 
 }

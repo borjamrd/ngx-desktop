@@ -4,14 +4,10 @@
   cdkDragRootElement=".cdk-overlay-pane"
   cdkDragHandle
 >
-  lorem
+  hii
 </h1>
 <div mat-dialog-content>
-  <p>What's your favorite animal?</p>
-</div>
-<div mat-dialog-actions>
-  Lorem ipsum dolor sit amet consectetur adipisicing elit. Atque perferendis
-  laborum perspiciatis ipsum soluta mollitia odit adipisci reprehenderit neque
-  quas quod temporibus, ut in possimus magnam architecto exercitationem earum
-  vel.
+  <ng-container
+    *ngComponentOutlet="data.component | async; inputs: data.inputs"
+  ></ng-container>
 </div>
