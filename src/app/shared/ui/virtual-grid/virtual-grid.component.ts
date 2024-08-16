@@ -1,9 +1,12 @@
 import { coerceNumberProperty } from '@angular/cdk/coercion';
 import { DragDropModule } from '@angular/cdk/drag-drop';
 import { DOCUMENT, NgClass } from '@angular/common';
+import { BreakpointObserver, Breakpoints, LayoutModule } from '@angular/cdk/layout';
 import {
   Component,
+  DestroyRef,
   ElementRef,
+  inject,
   Inject,
   OnDestroy,
   OnInit,
@@ -21,9 +24,17 @@ import {
   KtdResizeStart,
   ktdTrackById,
 } from '@katoid/angular-grid-layout';
-import { ktdArrayRemoveItem } from 'app/shared/utils/utils';
+import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
+import { ktdArrayRemoveItem, transitions } from 'app/shared/utils/utils';
 import { Subscription, debounceTime, filter, fromEvent, merge } from 'rxjs';
 import { CellContainerComponent } from './cell-container/cell-container.component';
+
+enum GridBreakpoint {
+  XSmall = 'XSmall',
+  Small = 'Small',
+  Medium = 'Medium',
+  Large = 'Large',
+}
 @Component({
   selector: 'bm-virtual-grid',
   standalone: true,
@@ -35,42 +46,36 @@ export class VirtualGridComponent implements OnInit, OnDestroy {
   @ViewChild(KtdGridComponent, { static: true }) grid!: KtdGridComponent;
   trackById = ktdTrackById;
 
-  cols = 12;
-  rowHeight = 120;
-  compactType: 'vertical' | 'horizontal' | null = null;
-  layout: KtdGridLayout = this.generateGridLayout(72, this.cols);
+  BREAK_POINT_X_SMALL_COLS = 3;
+  BREAK_POINT_SMALL_COLS = 6;
+  BREAK_POINT_MEDIUM_COLS = 12;
+  BREACK_POINT_LARGE_COLS = 16;
 
-  transitions: { name: string; value: string }[] = [
-    {
-      name: 'ease',
-      value: 'transform 500ms ease, width 500ms ease, height 500ms ease',
-    },
-    {
-      name: 'ease-out',
-      value:
-        'transform 500ms ease-out, width 500ms ease-out, height 500ms ease-out',
-    },
-    {
-      name: 'linear',
-      value: 'transform 500ms linear, width 500ms linear, height 500ms linear',
-    },
-    {
-      name: 'overflowing',
-      value:
-        'transform 500ms cubic-bezier(.28,.49,.79,1.35), width 500ms cubic-bezier(.28,.49,.79,1.35), height 500ms cubic-bezier(.28,.49,.79,1.35)',
-    },
-    {
-      name: 'fast',
-      value: 'transform 200ms ease, width 200ms linear, height 200ms linear',
-    },
-    {
-      name: 'slow-motion',
-      value:
-        'transform 1000ms linear, width 1000ms linear, height 1000ms linear',
-    },
-    { name: 'transform-only', value: 'transform 500ms ease' },
-  ];
-  currentTransition: string = this.transitions[0].value;
+  BREAK_POINT_X_SMALL_ITEMS = 12;
+  BREAK_POINT_SMALL_ITEMS = 24;
+  BREAK_POINT_MEDIUM_ITEMS = 72;
+  BREAK_POINT_LARGE_ITEMS = 112;
+
+  BREAK_POINT_X_SMALL_ROW_HEIGHT = 120;
+  BREAK_POINT_SMALL_ROW_HEIGHT = 100;
+  BREAK_POINT_MEDIUM_ROW_HEIGHT = 120;
+  BREAK_POINT_LARGE_ROW_HEIGHT = 100;
+
+  cols = this.BREAK_POINT_MEDIUM_COLS;
+  rowHeight = this.BREAK_POINT_MEDIUM_ROW_HEIGHT;
+  compactType: 'vertical' | 'horizontal' | null = null;
+  layout: KtdGridLayout = [{
+    id: '0',
+    x: 0,
+    y: 0,
+    w: 1,
+    h: 1,
+  }]
+
+  private breackpointObserver: BreakpointObserver = inject(BreakpointObserver);
+  private destroyRef: DestroyRef = inject(DestroyRef);
+
+  currentTransition: string = transitions[0].value;
 
   dragStartThreshold = 0;
   autoScroll = true;
@@ -83,14 +88,39 @@ export class VirtualGridComponent implements OnInit, OnDestroy {
   isResizing = false;
   resizeSubscription!: Subscription;
 
-  constructor(
-    public elementRef: ElementRef,
-    @Inject(DOCUMENT) public document: Document,
-  ) {
-    // this.ngZone.onUnstable.subscribe(() => console.log('UnStable'));
-  }
 
+  gridBreakpoint: GridBreakpoint = GridBreakpoint.Medium;
+  containerWidth: number = 0;
+  containerHeight: number = 0;
+
+  public elementRef: ElementRef = inject(ElementRef);
+  public document: Document = inject(DOCUMENT);
+
+
+  adjustDefaultLayoutToBreakpoint() {
+    this.breackpointObserver.observe([
+      Breakpoints.XSmall,
+      Breakpoints.Small,
+      Breakpoints.Medium,
+    ]).pipe(takeUntilDestroyed(this.destroyRef))
+      .subscribe(state => {
+        if (state.breakpoints[Breakpoints.XSmall]) {
+          this.gridBreakpoint = GridBreakpoint.XSmall
+        } else if (state.breakpoints[Breakpoints.Small]) {
+          this.gridBreakpoint = GridBreakpoint.Small
+        }
+        else if (state.breakpoints[Breakpoints.Medium]) {
+          this.gridBreakpoint = GridBreakpoint.Medium
+        }
+        else if (state.breakpoints[Breakpoints.Large]) {
+          this.gridBreakpoint = GridBreakpoint.Large
+        }
+        this.setColumnsAndRowHeight();
+      });
+
+  }
   ngOnInit() {
+
     this.resizeSubscription = merge(
       fromEvent(window, 'resize'),
       fromEvent(window, 'orientationchange'),
@@ -102,6 +132,8 @@ export class VirtualGridComponent implements OnInit, OnDestroy {
       .subscribe(() => {
         this.grid.resize();
       });
+
+    this.adjustDefaultLayoutToBreakpoint();
   }
 
   ngOnDestroy() {
@@ -178,24 +210,6 @@ export class VirtualGridComponent implements OnInit, OnDestroy {
       (event.target as HTMLInputElement).value,
     );
   }
-
-  generateLayout() {
-    const layout: KtdGridLayout = [];
-    for (let i = 0; i < this.cols; i++) {
-      const y = Math.ceil(Math.random() * 4) + 1;
-      layout.push({
-        x: Math.round(Math.random() * Math.floor(this.cols / 2 - 1)) * 2,
-        y: Math.floor(i / 6) * y,
-        w: 2,
-        h: y,
-        id: i.toString(),
-        // static: Math.random() < 0.05
-      });
-    }
-    console.log('layout', layout);
-    this.layout = layout;
-  }
-
   /** Adds a grid item to the layout */
   addItemToLayout() {
     const maxId = this.layout.reduce(
@@ -222,41 +236,45 @@ export class VirtualGridComponent implements OnInit, OnDestroy {
     this.layout = ktdArrayRemoveItem(this.layout, (item) => item.id === id);
   }
 
-  generateGridLayout(
-    maxItems: number,
-    numColumns: number,
-  ): KtdGridLayoutItem[] {
-    let layout: KtdGridLayoutItem[] = [];
-    let x = 0;
-    let y = 0;
+  setColumnsAndRowHeight(
 
-    for (let i = 0; i < maxItems; i++) {
-      layout.push({
-        id: i.toString(),
-        x: x,
-        y: y,
-        w: 1,
-        h: 1,
-      });
+  ) {
+    if (this.gridBreakpoint === GridBreakpoint.XSmall) {
+      this.cols = this.BREAK_POINT_X_SMALL_COLS
+      this.rowHeight = this.BREAK_POINT_X_SMALL_ROW_HEIGHT;
 
-      x++;
-      if (x >= numColumns) {
-        x = 0;
-        y++;
-      }
+    } else if (this.gridBreakpoint === GridBreakpoint.Small) {
+      this.cols = this.BREAK_POINT_SMALL_COLS
+      this.rowHeight = this.BREAK_POINT_SMALL_ROW_HEIGHT;
+    } else if (this.gridBreakpoint === GridBreakpoint.Medium) {
+      this.cols = this.BREAK_POINT_MEDIUM_COLS
+      this.rowHeight = this.BREAK_POINT_MEDIUM_ROW_HEIGHT;
+    }
+    else {
+      this.cols = this.BREACK_POINT_LARGE_COLS
+      this.rowHeight = this.BREAK_POINT_LARGE_ROW_HEIGHT;
     }
 
-    return layout;
   }
 
   onRightClickGridContainer(event: MouseEvent): void {
-    event.preventDefault();
-    alert('alert');
+    // event.preventDefault();
+    // alert('alert');
   }
   onRightClickGridItem(event: MouseEvent): void {
     event.preventDefault();
     event.stopPropagation();
 
     alert('alert child');
+  }
+
+  get wallPaperClass(): string {
+
+    if (
+      this.gridBreakpoint === GridBreakpoint.XSmall) {
+      return 'wallpaper-mobile';
+    }
+
+    return 'wallpaper-desktop';
   }
 }
