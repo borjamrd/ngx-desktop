@@ -16,14 +16,7 @@
   >
     @for (item of layout; track $index) {
       <ktd-grid-item [id]="item.id">
-        <div class="flex items-center justify-center p-2 h-full w-full">
-          <div
-            (contextmenu)="onRightClickGridItem($event)"
-            class="active:backdrop-blur-md active:bg-slate-500/10 active:rounded-md aspect-square h-full m-2 cursor-pointer flex items-center justify-center"
-          >
-            {{ item.id }}
-          </div>
-        </div>
+        <bm-cell-container [item]="item" />
         <ng-template ktdGridItemPlaceholder> </ng-template>
       </ktd-grid-item>
     }

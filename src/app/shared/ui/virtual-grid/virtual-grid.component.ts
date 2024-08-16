@@ -261,12 +261,7 @@ export class VirtualGridComponent implements OnInit, OnDestroy {
     // event.preventDefault();
     // alert('alert');
   }
-  onRightClickGridItem(event: MouseEvent): void {
-    event.preventDefault();
-    event.stopPropagation();
 
-    alert('alert child');
-  }
 
   get wallPaperClass(): string {
 
@@ -277,4 +272,5 @@ export class VirtualGridComponent implements OnInit, OnDestroy {
 
     return 'wallpaper-desktop';
   }
+
 }
