@@ -7,10 +7,9 @@ import { ThemeService } from '../../../shared/services/theme.service';
   standalone: true,
   imports: [MatSlideToggleModule, MatIconModule],
   templateUrl: './tasksbar.component.html',
-  styleUrl: './tasksbar.component.scss'
+  styleUrl: './tasksbar.component.scss',
 })
 export class TasksbarComponent {
-
   themeService: ThemeService = inject(ThemeService);
 
   toggleTheme() {

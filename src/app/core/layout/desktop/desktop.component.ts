@@ -7,8 +7,6 @@ import { TasksbarComponent } from '../tasksbar/tasksbar.component';
   standalone: true,
   imports: [TasksbarComponent, VirtualGridComponent],
   templateUrl: './desktop.component.html',
-  styleUrl: './desktop.component.scss'
+  styleUrl: './desktop.component.scss',
 })
-export class DesktopComponent {
-
-}
+export class DesktopComponent {}

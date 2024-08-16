@@ -8,10 +8,9 @@ describe('CellContainerComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [CellContainerComponent]
-    })
-    .compileComponents();
-    
+      imports: [CellContainerComponent],
+    }).compileComponents();
+
     fixture = TestBed.createComponent(CellContainerComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();

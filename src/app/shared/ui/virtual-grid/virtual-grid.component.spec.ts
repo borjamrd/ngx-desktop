@@ -8,10 +8,9 @@ describe('VirtualGridComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [VirtualGridComponent]
-    })
-    .compileComponents();
-    
+      imports: [VirtualGridComponent],
+    }).compileComponents();
+
     fixture = TestBed.createComponent(VirtualGridComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();

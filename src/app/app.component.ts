@@ -9,10 +9,9 @@ import { TasksbarComponent } from './core/layout/tasksbar/tasksbar.component';
   standalone: true,
   imports: [RouterOutlet, NgClass],
   templateUrl: './app.component.html',
-  styleUrl: './app.component.scss'
+  styleUrl: './app.component.scss',
 })
 export class AppComponent {
   title = 'desktop-rocket';
   themeService: ThemeService = inject(ThemeService);
-
 }

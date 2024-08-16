@@ -5,8 +5,6 @@ import { Component } from '@angular/core';
   standalone: true,
   imports: [],
   templateUrl: './cell-container.component.html',
-  styleUrl: './cell-container.component.scss'
+  styleUrl: './cell-container.component.scss',
 })
-export class CellContainerComponent {
-
-}
+export class CellContainerComponent {}
