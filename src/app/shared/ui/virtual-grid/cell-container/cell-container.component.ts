@@ -28,7 +28,7 @@ export class CellContainerComponent {
 
   openFolder() {
     const dialogRef = this.dialog.open(WindowContainerComponent, {
-      width: '250px',
+      width: '650px',
       data: {
         name: 'Folder', component: this.lazzyLoadVirtualGridComponent$, inputs: {
           layout: [{
