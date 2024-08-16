@@ -14,9 +14,6 @@ import { map, Observable, tap } from 'rxjs';
 })
 export class DesktopComponent {
 
-
-  layoutService = inject(LayoutService);
-  wallPaperClass$!: Observable<string>
   layout: any = [{
     id: '0',
     x: 0,
@@ -24,19 +21,6 @@ export class DesktopComponent {
     w: 1,
     h: 1,
   }]
-
-  constructor() {
-    this.wallPaperClass$ = this.layoutService.gridBreakpointValue().pipe(
-      map((value) => {
-        if (
-          value === GridBreakpoint.XSmall) {
-          return 'wallpaper-mobile';
-        }
-        return 'wallpaper-desktop';
-      })
-    )
-  }
-
 
 
 }

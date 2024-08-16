@@ -1,12 +1,9 @@
-<h1
-  mat-dialog-title
-  cdkDrag
-  cdkDragRootElement=".cdk-overlay-pane"
-  cdkDragHandle
->
-  hii
-</h1>
-<div mat-dialog-content>
+<div>
+  header
+  <button matDialogClose>close</button>
+</div>
+<h1 cdkDrag cdkDragRootElement=".cdk-overlay-pane" cdkDragHandle>hii</h1>
+<div>
   <ng-container
     *ngComponentOutlet="data.component | async; inputs: data.inputs"
   ></ng-container>

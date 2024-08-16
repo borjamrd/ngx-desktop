@@ -1,7 +1,6 @@
 <div
-  class="font-bold text-2xl min-h-screen"
-  [ngClass]="wallPaperClass$ | async"
+  class="font-bold text-2xl min-h-screen bg-mobileImage md:bg-lightImage dark:md:bg-darkImage bg-cover"
 >
-  <bm-virtual-grid [layout]="layout" />
+  <bm-virtual-grid class="flex h-screen" [layout]="layout" />
   <bm-tasksbar />
 </div>
