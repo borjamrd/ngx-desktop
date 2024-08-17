@@ -7,13 +7,15 @@ import {
   MatDialogRef
 } from '@angular/material/dialog';
 import { CellContainerComponent } from '../virtual-grid/cell-container/cell-container.component';
+import { SystemElement } from 'app/shared/types/system-element.type';
+import { Observable } from 'rxjs';
 
-
-//TODO type
 export interface DialogData {
   name: string;
-  component: any;
-  inputs: any
+  component: Observable<any>;
+  inputs: {
+    layout: SystemElement[]
+  }
 }
 
 
@@ -29,7 +31,8 @@ export interface DialogData {
 export class WindowContainerComponent {
   constructor(
     public dialogRef: MatDialogRef<WindowContainerComponent>,
-    @Inject(MAT_DIALOG_DATA) public data: DialogData) { }
+    @Inject(MAT_DIALOG_DATA) public data: DialogData) {
+  }
 
   onNoClick(): void {
     this.dialogRef.close();

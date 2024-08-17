@@ -3,7 +3,7 @@
  * @param array source array to be returned without the element to remove
  * @param condition function that will return true for the item that we want to remove
  */
-export function ktdArrayRemoveItem<T>(
+export function ktdArrayRemoveElement<T>(
   array: T[],
   condition: (item: T) => boolean,
 ) {

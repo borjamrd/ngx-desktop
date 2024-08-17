@@ -1,4 +1,4 @@
-<div #gridC class="h-full w-full">
+<div #gridContainer class="h-full w-full">
   <ktd-grid
     class="h-full w-full"
     (contextmenu)="onRightClickGridContainer($event)"
@@ -13,11 +13,10 @@
     (resizeStarted)="onResizeStarted($event)"
     (dragEnded)="onDragEnded($event)"
     (resizeEnded)="onResizeEnded($event)"
-    (layoutUpdated)="onLayoutUpdated($event)"
   >
-    @for (item of layout; track $index) {
-      <ktd-grid-item [id]="item.id">
-        <bm-cell-container [item]="item" />
+    @for (element of layout; track $index) {
+      <ktd-grid-item [id]="element.id">
+        <bm-cell-container [element]="element" />
         <ng-template ktdGridItemPlaceholder> </ng-template>
       </ktd-grid-item>
     }

@@ -1,9 +1,8 @@
-import { VirtualGridComponent } from '@ui/virtual-grid/virtual-grid.component';
-import { Component, inject } from '@angular/core';
-import { TasksbarComponent } from '../tasksbar/tasksbar.component';
 import { AsyncPipe, NgClass } from '@angular/common';
-import { GridBreakpoint, LayoutService } from 'app/shared/services/layout.service';
-import { map, Observable, tap } from 'rxjs';
+import { Component } from '@angular/core';
+import { VirtualGridComponent } from '@ui/virtual-grid/virtual-grid.component';
+import { defaultLayout, SystemElement } from 'app/shared/types/system-element.type';
+import { TasksbarComponent } from '../tasksbar/tasksbar.component';
 
 @Component({
   selector: 'bm-desktop',
@@ -14,13 +13,7 @@ import { map, Observable, tap } from 'rxjs';
 })
 export class DesktopComponent {
 
-  layout: any = [{
-    id: '0',
-    x: 0,
-    y: 0,
-    w: 1,
-    h: 1,
-  }]
+  layout: SystemElement[] = defaultLayout
 
 
 }

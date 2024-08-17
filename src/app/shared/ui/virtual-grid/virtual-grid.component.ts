@@ -1,35 +1,38 @@
 import { coerceNumberProperty } from '@angular/cdk/coercion';
 import { DragDropModule } from '@angular/cdk/drag-drop';
 import { DOCUMENT, NgClass } from '@angular/common';
-import { BreakpointObserver, Breakpoints, LayoutModule } from '@angular/cdk/layout';
 import {
+  AfterContentChecked,
+  AfterViewInit,
+  ChangeDetectionStrategy,
+  ChangeDetectorRef,
   Component,
   DestroyRef,
   ElementRef,
   inject,
-  Inject,
   Input,
+  OnChanges,
   OnDestroy,
   OnInit,
+  SimpleChanges,
   ViewChild
 } from '@angular/core';
+import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 import { MatSelectChange } from '@angular/material/select';
 import {
   KtdDragEnd,
   KtdDragStart,
   KtdGridComponent,
-  KtdGridLayout,
-  KtdGridLayoutItem,
   KtdGridModule,
   KtdResizeEnd,
   KtdResizeStart,
-  ktdTrackById,
+  ktdTrackById
 } from '@katoid/angular-grid-layout';
-import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
-import { ktdArrayRemoveItem, transitions } from 'app/shared/utils/utils';
-import { Subscription, debounceTime, filter, fromEvent, merge } from 'rxjs';
-import { CellContainerComponent } from './cell-container/cell-container.component';
 import { GridBreakpoint, LayoutService } from 'app/shared/services/layout.service';
+import { SystemElement } from 'app/shared/types/system-element.type';
+import { ktdArrayRemoveElement, transitions } from 'app/shared/utils/utils';
+import { debounceTime, filter, fromEvent, merge, Subscription } from 'rxjs';
+import { CellContainerComponent } from './cell-container/cell-container.component';
 
 @Component({
   selector: 'bm-virtual-grid',
@@ -37,9 +40,13 @@ import { GridBreakpoint, LayoutService } from 'app/shared/services/layout.servic
   imports: [CellContainerComponent, DragDropModule, NgClass, KtdGridModule],
   templateUrl: './virtual-grid.component.html',
   styleUrl: './virtual-grid.component.scss',
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class VirtualGridComponent implements OnInit, OnDestroy {
+export class VirtualGridComponent implements OnInit, AfterContentChecked, OnDestroy {
+  @Input() layout: SystemElement[] = []
   @ViewChild(KtdGridComponent, { static: true }) grid!: KtdGridComponent;
+  @ViewChild('gridContainer', { static: true }) gridContainer!: ElementRef;
+
   trackById = ktdTrackById;
 
   BREAK_POINT_X_SMALL_COLS = 3;
@@ -55,7 +62,6 @@ export class VirtualGridComponent implements OnInit, OnDestroy {
   cols = this.BREAK_POINT_MEDIUM_COLS;
   rowHeight = this.BREAK_POINT_MEDIUM_ROW_HEIGHT;
   compactType: 'vertical' | 'horizontal' | null = null;
-  @Input() layout: KtdGridLayout = []
 
   currentTransition: string = transitions[0].value;
 
@@ -79,13 +85,12 @@ export class VirtualGridComponent implements OnInit, OnDestroy {
   public document: Document = inject(DOCUMENT);
   layoutService = inject(LayoutService)
   private destroyRef: DestroyRef = inject(DestroyRef);
-
+  private cdr = inject(ChangeDetectorRef);
   constructor() {
-    this.layoutService.gridBreakpointValue()
-      .pipe(takeUntilDestroyed(this.destroyRef))
-      .subscribe((value) => {
-        this.setColumnsAndRowHeight(value);
-      })
+    fromEvent(window, 'resize')
+      .pipe(takeUntilDestroyed(this.destroyRef), debounceTime(100)
+      )
+      .subscribe(() => this.setColumnsAndRowHeight());
   }
 
   ngOnInit() {
@@ -103,6 +108,11 @@ export class VirtualGridComponent implements OnInit, OnDestroy {
       });
 
 
+  }
+
+  ngAfterContentChecked(): void {
+    this.containerWidth = this.gridContainer.nativeElement.clientWidth;
+    this.containerHeight = this.gridContainer.nativeElement.clientHeight;
   }
 
   ngOnDestroy() {
@@ -123,11 +133,6 @@ export class VirtualGridComponent implements OnInit, OnDestroy {
 
   onResizeEnded(event: KtdResizeEnd) {
     this.isResizing = false;
-  }
-
-  onLayoutUpdated(layout: KtdGridLayout) {
-    console.log('on layout updated', layout);
-    this.layout = layout;
   }
 
   onCompactTypeChange(change: MatSelectChange) {
@@ -179,50 +184,54 @@ export class VirtualGridComponent implements OnInit, OnDestroy {
       (event.target as HTMLInputElement).value,
     );
   }
-  /** Adds a grid item to the layout */
-  addItemToLayout() {
+  /** Adds a grid element to the layout */
+  addElementToLayout() {
     const maxId = this.layout.reduce(
       (acc, cur) => Math.max(acc, parseInt(cur.id, 10)),
       -1,
     );
     const nextId = maxId + 1;
 
-    const newLayoutItem: KtdGridLayoutItem = {
-      id: nextId.toString(),
-      x: 0,
-      y: 0,
-      w: 2,
-      h: 2,
-    };
+    // const newLayoutElement: SystemElement = {
+    //   id: nextId.toString(),
+    //   x: 0,
+    //   y: 0,
+    //   w: 2,
+    //   h: 2,
+    //   icon: 'folder',
+    //   name: 'Folder',
+    // };
 
-    // Important: Don't mutate the array, create new instance. This way notifies the Grid component that the layout has changed.
-    this.layout = [newLayoutItem, ...this.layout];
+    // // Important: Don't mutate the array, create new instance. This way notifies the Grid component that the layout has changed.
+    // this.layout = [newLayoutElement, ...this.layout];
   }
 
-  /** Removes the item from the layout */
-  removeItem(id: string) {
+  /** Removes the element from the layout */
+  removeElement(id: string) {
     // Important: Don't mutate the array. Let Angular know that the layout has changed creating a new reference.
-    this.layout = ktdArrayRemoveItem(this.layout, (item) => item.id === id);
+    this.layout = ktdArrayRemoveElement(this.layout, (element) => element.id === id);
   }
 
-  setColumnsAndRowHeight(
-    gridBreakpoint: GridBreakpoint,
-  ) {
-    if (gridBreakpoint === GridBreakpoint.XSmall) {
-      this.cols = this.BREAK_POINT_X_SMALL_COLS
-      this.rowHeight = this.BREAK_POINT_X_SMALL_ROW_HEIGHT;
+  setColumnsAndRowHeight() {
 
-    } else if (gridBreakpoint === GridBreakpoint.Small) {
-      this.cols = this.BREAK_POINT_SMALL_COLS
-      this.rowHeight = this.BREAK_POINT_SMALL_ROW_HEIGHT;
-    } else if (gridBreakpoint === GridBreakpoint.Medium) {
-      this.cols = this.BREAK_POINT_MEDIUM_COLS
-      this.rowHeight = this.BREAK_POINT_MEDIUM_ROW_HEIGHT;
+
+    if (this.containerWidth < 600) {
+      this.cols = this.BREAK_POINT_X_SMALL_COLS;
+    }
+    else if (this.containerWidth < 960) {
+      this.cols = this.BREAK_POINT_SMALL_COLS;
+    }
+    else if (this.containerWidth < 1280) {
+      this.cols = this.BREAK_POINT_MEDIUM_COLS;
     }
     else {
-      this.cols = this.BREACK_POINT_LARGE_COLS
-      this.rowHeight = this.BREAK_POINT_LARGE_ROW_HEIGHT;
+      this.cols = this.BREACK_POINT_LARGE_COLS;
+
     }
+    const sizeItem = this.containerWidth / this.cols;
+    this.rowHeight = Math.floor(sizeItem);
+    this.cdr.detectChanges()
+
 
   }
 
