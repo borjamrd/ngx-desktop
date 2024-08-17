@@ -1,8 +1,8 @@
 <div class="flex px-2 py-1 items-baseline"></div>
 
-<div class="grid grid-cols-6">
+<div cdkDropList class="grid grid-cols-6" (cdkDropListDropped)="drop($event)">
   @for (element of layout; track $index) {
-    <div class="col-span-1">
+    <div cdkDrag class="col-span-1">
       <bm-cell-container [element]="element" />
     </div>
   }

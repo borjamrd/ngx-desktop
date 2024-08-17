@@ -8,6 +8,18 @@
       <div
         class="group-hover:flex hidden absolute top-0 scale-95 -right-2 w-full h-full bg-slate-100/40 dark:bg-slate-400/40 rounded-lg"
       ></div>
+      <div
+        class="hidden group-hover:flex h-fit w-40 absolute bottom-10 bg-slate-200 p-2 rounded-md dark:bg-slate-600"
+      >
+        <div class="flex flex-col gap-1">
+          @for (folder of activeFolders; track $index) {
+            <div (click)="handleOpenFolder(folder)" class="flex gap-2">
+              <mat-icon svgIcon="folder"></mat-icon>
+              <p class="text-base">{{ folder.name }}</p>
+            </div>
+          }
+        </div>
+      </div>
     </div>
   } @else if (activeFolders.length === 1) {
     <div

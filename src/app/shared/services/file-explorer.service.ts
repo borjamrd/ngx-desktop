@@ -26,6 +26,5 @@ export class FileExplorerService {
 
   closeFolder(id: FolderElement['id']) {
     this.folders.set(this.folders().filter(folder => folder.id !== id))
-    console.log(this.folders())
   }
 }

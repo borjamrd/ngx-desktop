@@ -10,11 +10,14 @@
       {{ data.name }}
     </div>
     <div class="flex gap-1">
-      <button (click)="handleHide()">
+      <button
+        class="flex items-center justify-center border-none dark:hover:text-slate-100 hover:bg-slate-400/50 rounded-sm p-0.5"
+        (click)="handleHide()"
+      >
         <mat-icon>minimize</mat-icon>
       </button>
       <button
-        class="rotate-90"
+        class="flex items-center justify-center border-none hover:bg-slate-400/50 rounded-sm p-0.5 rotate-90"
         (click)="maximize ? handleMinimize() : handleMaximize()"
       >
         <mat-icon>{{

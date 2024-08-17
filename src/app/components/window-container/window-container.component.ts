@@ -53,7 +53,6 @@ export class WindowContainerComponent {
   }
 
   handleMinimize(): void {
-    console.log(this.lastPosition)
     this.maximize = false
     this.dialogRef.updatePosition(this.lastPosition)
     this.dialogRef.updateSize('650px', '450px')

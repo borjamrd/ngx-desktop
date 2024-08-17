@@ -10,6 +10,8 @@ enum ElementType {
 
 export interface FolderElement {
     id: SystemElement['id'];
+    icon: SystemElement['icon'];
+    name: SystemElement['name'];
 }
 export interface SystemElement extends KtdGridLayoutItem {
     icon: string;
@@ -48,6 +50,18 @@ export const defaultLayout: SystemElement[] = [{
                     id: '3',
                     x: 0,
                     y: 0,
+                    w: 1,
+                    h: 1,
+                    hasChildren: false,
+                    children: []
+                },
+                {
+                    icon: 'folder',
+                    name: 'Folder3',
+                    type: ElementType.FOLDER,
+                    id: '4',
+                    x: 1,
+                    y: 1,
                     w: 1,
                     h: 1,
                     hasChildren: false,

@@ -59,7 +59,9 @@ export class CellContainerComponent {
       data: {
         id: element.id,
         icon: element.icon,
-        name: 'Folder', component: this.lazzyLoadFolderDatabase$, inputs: {
+        name: element.name,
+        component: this.lazzyLoadFolderDatabase$,
+        inputs: {
           layout: element.children
         }
       },
