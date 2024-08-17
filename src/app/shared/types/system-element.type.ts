@@ -68,7 +68,20 @@ export const defaultLayout: SystemElement[] = [{
                     children: []
                 }
             ]
-        }
+        },
+        {
+            icon: 'folder',
+            name: 'Folder4',
+            type: ElementType.FOLDER,
+            id: '5',
+            x: 1,
+            y: 1,
+            w: 1,
+            h: 1,
+            hasChildren: false,
+            children: []
+        },
+
     ]
 },
 ]
