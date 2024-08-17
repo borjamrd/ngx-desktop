@@ -1,8 +1,10 @@
+import { NgClass } from '@angular/common';
 import { Component, inject } from '@angular/core';
+import { MatIconRegistry } from '@angular/material/icon';
+import { DomSanitizer } from '@angular/platform-browser';
 import { RouterOutlet } from '@angular/router';
 import { ThemeService } from './shared/services/theme.service';
-import { NgClass } from '@angular/common';
-import { TasksbarComponent } from './core/layout/tasksbar/tasksbar.component';
+import { customIcons } from './shared/types/icon.type';
 
 @Component({
   selector: 'app-root',
@@ -14,4 +16,9 @@ import { TasksbarComponent } from './core/layout/tasksbar/tasksbar.component';
 export class AppComponent {
   title = 'desktop-rocket';
   themeService: ThemeService = inject(ThemeService);
+
+  constructor(private matIconRegistry: MatIconRegistry, private domSanitizer: DomSanitizer) {
+    customIcons.forEach(icon => this.matIconRegistry.addSvgIcon(icon.svg, this.domSanitizer.bypassSecurityTrustResourceUrl(icon.url)));
+
+  }
 }
