@@ -18,6 +18,7 @@ export class AppComponent {
   themeService: ThemeService = inject(ThemeService);
 
   constructor(private matIconRegistry: MatIconRegistry, private domSanitizer: DomSanitizer) {
+    this.themeService.setTheme('light')
     customIcons.forEach(icon => this.matIconRegistry.addSvgIcon(icon.svg, this.domSanitizer.bypassSecurityTrustResourceUrl(icon.url)));
 
   }

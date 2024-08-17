@@ -4,6 +4,7 @@ import { WindowContainerComponent } from '../../window-container/window-containe
 import { from } from 'rxjs';
 import { SystemElement } from 'app/shared/types/system-element.type';
 import { MatIconModule } from '@angular/material/icon';
+import { FileExplorerService } from 'app/shared/services/file-explorer.service';
 
 @Component({
   selector: 'bm-cell-container',
@@ -15,10 +16,12 @@ import { MatIconModule } from '@angular/material/icon';
 
 export class CellContainerComponent {
 
-  private lazzyLoadVirtualGridComponent$ = from(import('@ui/virtual-grid/virtual-grid.component').then(component => component.VirtualGridComponent));
+  private lazzyLoadFolderDatabase$ = from(import('@ui/folder-database/folder-database.component').then(component => component.FolderDatabaseComponent));
 
   @Input() element!: SystemElement;
   dialog: MatDialog = inject(MatDialog);
+
+  fileExplorer: FileExplorerService = inject(FileExplorerService);
 
   onRightClickGridItem(event: MouseEvent): void {
     event.preventDefault();
@@ -33,19 +36,22 @@ export class CellContainerComponent {
     const dialogRef = this.dialog.open(WindowContainerComponent, {
       width: '650px',
       height: '450px',
-      hasBackdrop: false,
       enterAnimationDuration: 150,
       exitAnimationDuration: 150,
+      panelClass: 'window-container',
+      hasBackdrop: false,
       data: {
-        name: 'Folder', component: this.lazzyLoadVirtualGridComponent$, inputs: {
+        icon: element.icon,
+        name: 'Folder', component: this.lazzyLoadFolderDatabase$, inputs: {
           layout: element.children
         }
       },
 
     });
 
+    this.fileExplorer.setActiveFiles(element);
     dialogRef.afterClosed().subscribe(result => {
-      console.log('The dialog was closed');
+      this.fileExplorer.closeFile(element)
     });
   }
 }

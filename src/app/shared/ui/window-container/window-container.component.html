@@ -1,10 +1,29 @@
-<div cdkDrag cdkDragRootElement=".cdk-overlay-pane" cdkDragHandle>
-  header
-  <button matDialogClose>close</button>
-</div>
-<h1>hii</h1>
-<div>
-  <ng-container
-    *ngComponentOutlet="data.component | async; inputs: data.inputs"
-  ></ng-container>
+<div class="w-full h-full p-1">
+  <div
+    class="flex px-2 pb-2 justify-between border-b-slate-400/60 border-b"
+    cdkDrag
+    cdkDragRootElement=".cdk-overlay-pane"
+    cdkDragHandle
+  >
+    <div class="flex gap-1 items-end">
+      <mat-icon [svgIcon]="data.icon"></mat-icon>
+      {{ data.name }}
+    </div>
+    <div class="flex gap-1">
+      <button>
+        <mat-icon>minimize</mat-icon>
+      </button>
+      <button
+        class="flex items-center justify-center border-none hover:text-white hover:bg-red-500/60 rounded-sm p-0.5"
+        matDialogClose
+      >
+        <mat-icon class="m-auto">close</mat-icon>
+      </button>
+    </div>
+  </div>
+  <div class="p-2 border-slate-600 dark:border-neutral-600">
+    <ng-container
+      *ngComponentOutlet="data.component | async; inputs: data.inputs"
+    ></ng-container>
+  </div>
 </div>

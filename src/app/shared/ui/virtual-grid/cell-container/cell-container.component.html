@@ -1,8 +1,10 @@
-<div
-  (contextmenu)="onRightClickGridItem($event)"
-  (dblclick)="openFolder(element)"
-  class="active:backdrop-blur-md active:bg-slate-500/10 active:rounded-md aspect-square h-full p-2 cursor-pointer flex flex-col gap-2 items-center"
->
-  <mat-icon svgIcon="folder"></mat-icon>
-  <p class="text-base">{{ element.name }}</p>
+<div class="w-full h-full flex items-center justify-center">
+  <div
+    (contextmenu)="onRightClickGridItem($event)"
+    (dblclick)="openFolder(element)"
+    class="active:backdrop-blur-md active:bg-slate-500/10 hover:backdrop-blur-md hover:bg-slate-500/10 rounded-md aspect-square h-full p-2 cursor-pointer flex flex-col gap-2 items-center"
+  >
+    <mat-icon svgIcon="folder"></mat-icon>
+    <p class="text-base">{{ element.name }}</p>
+  </div>
 </div>

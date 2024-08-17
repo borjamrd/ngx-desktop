@@ -113,6 +113,8 @@ export class VirtualGridComponent implements OnInit, AfterContentChecked, OnDest
   ngAfterContentChecked(): void {
     this.containerWidth = this.gridContainer.nativeElement.clientWidth;
     this.containerHeight = this.gridContainer.nativeElement.clientHeight;
+    console.log(this.containerHeight, this.containerWidth);
+
   }
 
   ngOnDestroy() {
@@ -214,6 +216,7 @@ export class VirtualGridComponent implements OnInit, AfterContentChecked, OnDest
 
   setColumnsAndRowHeight() {
 
+    console.log(this.containerHeight, this.containerWidth);
 
     if (this.containerWidth < 600) {
       this.cols = this.BREAK_POINT_X_SMALL_COLS;
