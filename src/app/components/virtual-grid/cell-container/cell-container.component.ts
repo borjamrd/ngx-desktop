@@ -16,7 +16,7 @@ import { FileExplorerService } from 'app/shared/services/file-explorer.service';
 
 export class CellContainerComponent {
 
-  private lazzyLoadFolderDatabase$ = from(import('@ui/folder-database/folder-database.component').then(component => component.FolderDatabaseComponent));
+  private lazzyLoadFolderDatabase$ = from(import('@components/folder-database/folder-database.component').then(component => component.FolderDatabaseComponent));
 
   @Input() element!: SystemElement;
   dialog: MatDialog = inject(MatDialog);
@@ -50,6 +50,8 @@ export class CellContainerComponent {
     const dialogRef = this.dialog.open(WindowContainerComponent, {
       width: '650px',
       height: '450px',
+      maxWidth: "100%",
+      maxHeight: "100%",
       enterAnimationDuration: 150,
       exitAnimationDuration: 150,
       panelClass: 'window-container',

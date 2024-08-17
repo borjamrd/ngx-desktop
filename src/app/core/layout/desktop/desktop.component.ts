@@ -1,6 +1,6 @@
 import { AsyncPipe, NgClass } from '@angular/common';
 import { Component } from '@angular/core';
-import { VirtualGridComponent } from '@ui/virtual-grid/virtual-grid.component';
+import { VirtualGridComponent } from '@components/virtual-grid/virtual-grid.component';
 import { defaultLayout, SystemElement } from 'app/shared/types/system-element.type';
 import { TasksbarComponent } from '../tasksbar/tasksbar.component';
 
