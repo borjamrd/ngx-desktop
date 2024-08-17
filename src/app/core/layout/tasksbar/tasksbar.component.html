@@ -1,19 +1,39 @@
 <div
   class="absolute min-h-12 backdrop-blur-lg bottom-0 w-full px-3 py-1 hidden sm:flex border-t-[1px] border-slate-200 shadow-teal-300 dark:border-t-gray-600 bg-slate-100/60 dark:bg-neutral-600/40 shadow-sm items-center"
 >
-  <div class="ms-auto flex gap-2 items-center">
-    <div>
-      @for (item of activeFiles$ | async; track $index) {
-        {{ item | json }}
+  <div class="flex gap-2 items-center justify-between w-full">
+    <div class="w-1/5">sun</div>
+    <div class="w-3/5 flex justify-center gap-2">
+      @if (activeFolders$ | async; as activeFolders) {
+        @if (activeFolders.length > 1) {
+          <div
+            class="group duration-150 flex flex-col items-center gap-1 relative hover:bg-slate-100 dark:hover:bg-slate-400 p-1 rounded-lg hover:rounded-lg"
+          >
+            <mat-icon svgIcon="folder"></mat-icon>
+            <div class="rounded bg-black w-2 h-0.5"></div>
+            <div
+              class="group-hover:flex hidden absolute top-0 scale-95 -right-2 w-full h-full bg-slate-100/40 dark:bg-slate-400/40 rounded-lg"
+            ></div>
+          </div>
+        } @else if (activeFolders.length === 1) {
+          <div
+            class="group duration-150 flex flex-col items-center gap-1 relative hover:bg-slate-100 dark:hover:bg-slate-400 p-1 rounded-lg hover:rounded-lg"
+          >
+            <mat-icon svgIcon="folder"></mat-icon>
+            <div class="rounded bg-black w-2 h-0.5"></div>
+          </div>
+        }
       }
     </div>
-    <mat-slide-toggle checked (click)="toggleTheme()"></mat-slide-toggle>
-    <button class="flex items-center justify-center" mat-icon-button>
-      @if (themeService.themeSignal() === "dark") {
-        <mat-icon>bedtime</mat-icon>
-      } @else {
-        <mat-icon>brightness_7</mat-icon>
-      }
-    </button>
+    <div class="flex w-1/5 justify-end gap-2">
+      <mat-slide-toggle checked (click)="toggleTheme()"></mat-slide-toggle>
+      <button class="flex items-center justify-center" mat-icon-button>
+        @if (themeService.themeSignal() === "dark") {
+          <mat-icon>bedtime</mat-icon>
+        } @else {
+          <mat-icon>brightness_7</mat-icon>
+        }
+      </button>
+    </div>
   </div>
 </div>

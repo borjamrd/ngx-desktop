@@ -113,8 +113,6 @@ export class VirtualGridComponent implements OnInit, AfterContentChecked, OnDest
   ngAfterContentChecked(): void {
     this.containerWidth = this.gridContainer.nativeElement.clientWidth;
     this.containerHeight = this.gridContainer.nativeElement.clientHeight;
-    console.log(this.containerHeight, this.containerWidth);
-
   }
 
   ngOnDestroy() {

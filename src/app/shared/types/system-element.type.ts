@@ -1,9 +1,20 @@
 import { KtdGridLayoutItem } from "@katoid/angular-grid-layout";
 
 
+enum ElementType {
+    FOLDER = 'folder',
+    FILE = 'file',
+    APPLICATION = 'application',
+    SYSTEM_WINDOW = 'system-window',
+}
+
+export interface FolderElement {
+    id: SystemElement['id'];
+}
 export interface SystemElement extends KtdGridLayoutItem {
     icon: string;
     name: string;
+    type: ElementType;
     hasChildren?: boolean;
     children: SystemElement[];
 }
@@ -11,6 +22,7 @@ export interface SystemElement extends KtdGridLayoutItem {
 export const defaultLayout: SystemElement[] = [{
     icon: 'folder',
     name: 'Folder',
+    type: ElementType.FOLDER,
     id: '1',
     x: 0,
     y: 0,
@@ -21,6 +33,7 @@ export const defaultLayout: SystemElement[] = [{
         {
             icon: 'folder',
             name: 'Folder1',
+            type: ElementType.FOLDER,
             id: '2',
             x: 0,
             y: 0,
@@ -31,6 +44,7 @@ export const defaultLayout: SystemElement[] = [{
                 {
                     icon: 'folder',
                     name: 'Folder2',
+                    type: ElementType.FOLDER,
                     id: '3',
                     x: 0,
                     y: 0,

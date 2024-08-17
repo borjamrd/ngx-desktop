@@ -33,6 +33,20 @@ export class CellContainerComponent {
 
   openFolder(element: SystemElement) {
 
+    switch (element.type) {
+      case 'folder':
+        this.openFolderDialog(element);
+        break;
+      case 'file':
+        this.openFile(element)
+        break;
+      default:
+        break;
+    }
+
+
+  }
+  openFolderDialog(element: SystemElement) {
     const dialogRef = this.dialog.open(WindowContainerComponent, {
       width: '650px',
       height: '450px',
@@ -41,6 +55,7 @@ export class CellContainerComponent {
       panelClass: 'window-container',
       hasBackdrop: false,
       data: {
+        id: element.id,
         icon: element.icon,
         name: 'Folder', component: this.lazzyLoadFolderDatabase$, inputs: {
           layout: element.children
@@ -49,9 +64,9 @@ export class CellContainerComponent {
 
     });
 
-    this.fileExplorer.setActiveFiles(element);
-    dialogRef.afterClosed().subscribe(result => {
-      this.fileExplorer.closeFile(element)
-    });
+    this.fileExplorer.setActiveFolders(element);
+  }
+  openFile(element: SystemElement) {
+    console.log('open file', element);
   }
 }

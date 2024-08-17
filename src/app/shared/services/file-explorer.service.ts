@@ -1,5 +1,5 @@
 import { Injectable, signal } from '@angular/core';
-import { SystemElement } from '../types/system-element.type';
+import { defaultLayout, FolderElement, SystemElement } from '../types/system-element.type';
 import { Observable } from 'rxjs';
 import { toObservable } from '@angular/core/rxjs-interop';
 
@@ -9,21 +9,23 @@ import { toObservable } from '@angular/core/rxjs-interop';
 export class FileExplorerService {
 
 
-  files = signal<SystemElement[]>([])
-  files$: Observable<SystemElement[]> = toObservable(this.files)
+  systemFiles = signal<SystemElement[]>(defaultLayout)
+  folders = signal<FolderElement[]>([])
+  folders$: Observable<FolderElement[]> = toObservable(this.folders)
   constructor() { }
 
 
-  setActiveFiles(file: SystemElement) {
-    this.files.set([...this.files(), file])
+  setActiveFolders(file: FolderElement) {
+    this.folders.set([...this.folders(), file])
   }
 
 
-  get activeFiles() {
-    return toObservable(this.files)
+  get activeFolders(): Observable<FolderElement[]> {
+    return toObservable(this.folders)
   }
 
-  closeFile(file: SystemElement) {
-    this.files.update((files) => files.filter((f: any) => f !== file))
+  closeFolder(id: FolderElement['id']) {
+    this.folders.set(this.folders().filter(folder => folder.id !== id))
+    console.log(this.folders())
   }
 }
