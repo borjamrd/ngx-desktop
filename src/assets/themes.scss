@@ -48,7 +48,3 @@ $dark-text-color: #333;
   @include mat.all-component-themes($light-theme);
 
 }
-
-.cdk-overlay-backdrop.cdk-overlay-backdrop-showing {
-  opacity: 0;
-}

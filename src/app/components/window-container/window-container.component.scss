@@ -15,9 +15,32 @@
     --mdc-dialog-container-color: rgba(255, 255, 255, 0.6);
 
     :active {
-
         .mdc-dialog__surface {
             box-shadow: 0 0 0 1px rgba(0, 0, 0, 0.1), 0 2px 4px rgba(0, 0, 0, 0.2);
         }
+    }
+}
+
+::ng-deep {
+    .cdk-global-overlay-wrapper {
+        justify-content: center !important;
+    }
+
+    .cdk-overlay-pane {
+        &.not-fullscreen {
+            margin-top: calc(50vh - 256px) !important
+        }
+
+        &.fullscreen {
+            transform: none !important;
+            margin: 0;
+        }
+    }
+
+}
+
+::ng-deep {
+    .cdk-overlay-container .window-container {
+        z-index: 5 !important;
     }
 }

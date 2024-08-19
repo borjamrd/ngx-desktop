@@ -1,6 +1,6 @@
 import { DragDropModule } from '@angular/cdk/drag-drop';
 import { AsyncPipe, CommonModule } from '@angular/common';
-import { Component, ElementRef, HostListener, inject, Inject } from '@angular/core';
+import { Component, ElementRef, HostListener, inject, Inject, ViewChild } from '@angular/core';
 import {
   DialogPosition,
   MAT_DIALOG_DATA,
@@ -35,43 +35,39 @@ export interface DialogData {
 
 export class WindowContainerComponent {
 
-
   fileExplorerService: FileExplorerService = inject(FileExplorerService);
-  maximize: boolean = false
-  lastPosition!: DialogPosition
+  isFullScreen: boolean = false
+
   constructor(
     public dialogRef: MatDialogRef<WindowContainerComponent>,
-    @Inject(MAT_DIALOG_DATA) public data: DialogData,
-    private _elementRef: ElementRef) {
-
+    @Inject(MAT_DIALOG_DATA) public data: DialogData) {
   }
-
-  static readonly positionLocalStorageKey = "MyDialogComponentDialogPosition";
 
   handleHide(): void {
     this.dialogRef.close();
   }
 
-  handleMinimize(): void {
-    this.maximize = false
-    this.dialogRef.updatePosition(this.lastPosition)
-    this.dialogRef.updateSize('650px', '450px')
+  onResizeButtonClicked() {
 
-  }
-  handleMaximize(): void {
-    this.maximize = true
-    let element: HTMLElement = this._elementRef.nativeElement;
-    let dialog = element.parentElement;
-    let dialogPosition = dialog?.getBoundingClientRect();
+    this.isFullScreen = !this.isFullScreen;
 
-    this.lastPosition = {
-      top: Math.floor(dialogPosition?.top || 20).toString() + 'px',
-      left: Math.floor(dialogPosition?.left || 20).toString() + 'px',
-      bottom: Math.floor(dialogPosition?.bottom || 20).toString() + 'px',
-      right: Math.floor(dialogPosition?.right || 20).toString() + 'px',
+    if (this.isFullScreen) {
+
+      this.dialogRef.removePanelClass('not-fullscreen');
+      this.dialogRef.addPanelClass('fullscreen');
+      this.dialogRef.updatePosition({ top: '0px', left: '0px' });
+      this.dialogRef.updateSize('100vw', '100vh');
+
+    } else {
+
+      this.dialogRef.removePanelClass('fullscreen');
+      this.dialogRef.addPanelClass('not-fullscreen');
+      this.dialogRef.updateSize('600px', '400px');
+
     }
-    this.dialogRef.updatePosition({ top: '0', left: '0' })
-    this.dialogRef.updateSize('100%', '95%')
+
+
+
   }
   handleClose() {
     this.dialogRef.close();

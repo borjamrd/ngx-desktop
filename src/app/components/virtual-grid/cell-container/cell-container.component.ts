@@ -1,10 +1,10 @@
 import { Component, inject, Input } from '@angular/core';
-import { MatDialog } from '@angular/material/dialog';
-import { WindowContainerComponent } from '../../window-container/window-container.component';
-import { from } from 'rxjs';
-import { SystemElement } from 'app/shared/types/system-element.type';
+import { MatDialog, MatDialogConfig } from '@angular/material/dialog';
 import { MatIconModule } from '@angular/material/icon';
 import { FileExplorerService } from 'app/shared/services/file-explorer.service';
+import { SystemElement } from 'app/shared/types/system-element.type';
+import { from } from 'rxjs';
+import { WindowContainerComponent } from '../../window-container/window-container.component';
 
 @Component({
   selector: 'bm-cell-container',
@@ -47,11 +47,13 @@ export class CellContainerComponent {
 
   }
   openFolderDialog(element: SystemElement) {
-    const dialogRef = this.dialog.open(WindowContainerComponent, {
-      width: '650px',
-      height: '450px',
-      maxWidth: "100%",
-      maxHeight: "100%",
+
+    const matDialogConfig: MatDialogConfig = {
+      maxWidth: '100vw',
+      maxHeight: 'calc(100vh - 3rem)', //tasksbar height
+      width: '600px',
+      height: '400px',
+
       enterAnimationDuration: 150,
       exitAnimationDuration: 150,
       panelClass: 'window-container',
@@ -66,7 +68,9 @@ export class CellContainerComponent {
         }
       },
 
-    });
+    }
+
+    const dialogRef = this.dialog.open(WindowContainerComponent, matDialogConfig);
 
     this.fileExplorer.setActiveFolders(element);
   }
