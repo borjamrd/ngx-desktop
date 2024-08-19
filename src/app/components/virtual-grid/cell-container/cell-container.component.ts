@@ -53,11 +53,10 @@ export class CellContainerComponent {
       maxHeight: 'calc(100vh - 3rem)', //tasksbar height
       width: '600px',
       height: '400px',
-
-      enterAnimationDuration: 150,
-      exitAnimationDuration: 150,
       panelClass: 'window-container',
       hasBackdrop: false,
+      autoFocus: true,
+      restoreFocus: false,
       data: {
         id: element.id,
         icon: element.icon,

@@ -46,3 +46,12 @@ export const transitions: { name: string; value: string }[] = [
   },
   { name: 'transform-only', value: 'transform 500ms ease' },
 ];
+
+
+export function maxZIndex(selectors: string = 'body *'): number {
+  return Array.from(document.querySelectorAll(selectors))
+    .map(a => parseFloat(window.getComputedStyle(a).zIndex))
+    .filter(a => !isNaN(a))
+    .sort((a, b) => a - b)
+    .pop() || 0;
+}

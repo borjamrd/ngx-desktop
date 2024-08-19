@@ -12,6 +12,7 @@ import { CellContainerComponent } from '../virtual-grid/cell-container/cell-cont
 import { MatIconModule } from '@angular/material/icon';
 import { SystemElement } from 'app/shared/types/system-element.type';
 import { FileExplorerService } from 'app/shared/services/file-explorer.service';
+import { maxZIndex } from 'app/shared/utils/utils';
 
 
 //TODO type
@@ -35,18 +36,42 @@ export interface DialogData {
 
 export class WindowContainerComponent {
 
+  private static maxZIndex = 1000;
+
   fileExplorerService: FileExplorerService = inject(FileExplorerService);
   isFullScreen: boolean = false
 
+
   constructor(
     public dialogRef: MatDialogRef<WindowContainerComponent>,
-    @Inject(MAT_DIALOG_DATA) public data: DialogData) {
+    @Inject(MAT_DIALOG_DATA) public data: DialogData,
+
+    private _elementRef: ElementRef) {
+    this.dialogRef.afterOpened().subscribe(() => {
+      this.updateZIndex();
+    });
+
   }
 
+  @HostListener('click')
+  onClick(): void {
+    this.updateZIndex();
+
+  }
   handleHide(): void {
     this.dialogRef.close();
   }
 
+  private updateZIndex(): void {
+    const dialogElement = this._elementRef.nativeElement.closest('.cdk-global-overlay-wrapper');
+    if (dialogElement) {
+      dialogElement.style.zIndex = `${WindowContainerComponent.maxZIndex++}`;
+    }
+  }
+
+  getMaxModalIndex(): number {
+    return maxZIndex('.mdc-dialog');
+  }
   onResizeButtonClicked() {
 
     this.isFullScreen = !this.isFullScreen;
