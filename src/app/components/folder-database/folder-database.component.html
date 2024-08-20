@@ -1,9 +1,14 @@
 <div class="flex px-2 py-1 items-baseline"></div>
-
-<div cdkDropList class="grid grid-cols-6" (cdkDropListDropped)="drop($event)">
-  @for (element of layout; track $index) {
-    <div cdkDrag class="col-span-1">
-      <bm-cell-container [element]="element" />
-    </div>
-  }
-</div>
+@if (layout.length) {
+  <div cdkDropList class="grid grid-cols-6" (cdkDropListDropped)="drop($event)">
+    @for (element of layout; track $index) {
+      <div cdkDrag class="col-span-1">
+        <bm-cell-container [element]="element" />
+      </div>
+    }
+  </div>
+} @else {
+  <div class="flex flex-col items-center justify-center w-full h-full">
+    <p class="text-2xl text-slate-500">Esta carpeta está vacía</p>
+  </div>
+}

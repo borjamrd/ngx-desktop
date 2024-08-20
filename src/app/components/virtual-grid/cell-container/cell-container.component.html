@@ -1,10 +1,70 @@
-<div class="w-full h-full flex items-center justify-center">
-  <div
-    (contextmenu)="onRightClickGridItem($event)"
-    (dblclick)="openFolder(element)"
-    class="active:backdrop-blur-md active:bg-slate-500/10 hover:backdrop-blur-md hover:bg-slate-500/10 rounded-md aspect-square h-full p-2 cursor-pointer flex flex-col gap-2 items-center"
+@switch (element.type) {
+  @case ("folder") {
+    <div class="w-full h-full flex items-center justify-center">
+      <div
+        (contextmenu)="onRightClickGridItem($event)"
+        (dblclick)="openFolder(element)"
+        class="active:backdrop-blur-md active:bg-slate-500/10 hover:backdrop-blur-md hover:bg-slate-500/10 rounded-md aspect-square h-full p-2 cursor-pointer flex flex-col gap-2 items-center"
+      >
+        <ng-container
+          *ngTemplateOutlet="elementContent; context: { $implicit: element }"
+        ></ng-container>
+      </div>
+    </div>
+  }
+  @case ("file") {
+    <div class="w-full h-full flex items-center justify-center">
+      <div
+        (contextmenu)="onRightClickGridItem($event)"
+        (dblclick)="openFolder(element)"
+        class="active:backdrop-blur-md active:bg-slate-500/10 hover:backdrop-blur-md hover:bg-slate-500/10 rounded-md aspect-square h-full p-2 cursor-pointer flex flex-col gap-2 items-center"
+      >
+        <ng-container
+          *ngTemplateOutlet="elementContent; context: { $implicit: element }"
+        ></ng-container>
+      </div>
+    </div>
+  }
+  @case ("desktop-widget") {
+    <div class="w-full h-full flex items-center justify-center">
+      <div
+        [ngClass]="element"
+        class="backdrop-blur-md rounded-xl hover:backdrop-blur-md hover:bg-slate-500/10 w-full h-full p-2 cursor-pointer flex flex-col gap-2 items-center"
+      >
+        <ng-container
+          *ngComponentOutlet="
+            element.component;
+            injector: customInjector(element)
+          "
+        ></ng-container>
+      </div>
+    </div>
+  }
+  @default {
+    <div class="w-full h-full flex items-center justify-center">
+      <div
+        (contextmenu)="onRightClickGridItem($event)"
+        (dblclick)="openFolder(element)"
+        class="active:backdrop-blur-md active:bg-slate-500/10 hover:backdrop-blur-md hover:bg-slate-500/10 rounded-md aspect-square h-full p-2 cursor-pointer flex flex-col gap-2 items-center"
+      >
+        <ng-container
+          *ngTemplateOutlet="elementContent; context: { $implicit: element }"
+        ></ng-container>
+      </div>
+    </div>
+  }
+}
+
+<ng-template #elementContent let-element>
+  <mat-icon [svgIcon]="element.icon"></mat-icon>
+  <p
+    [ngClass]="
+      parentIsDesktop
+        ? 'text-white text-shadow shadow-black'
+        : 'text-black dark:text-white'
+    "
+    class="text-base font-normal"
   >
-    <mat-icon svgIcon="folder"></mat-icon>
-    <p class="text-base">{{ element.name }}</p>
-  </div>
-</div>
+    {{ element.name }}
+  </p>
+</ng-template>

@@ -28,12 +28,14 @@
 
     .cdk-overlay-pane {
         &.not-fullscreen {
+            transition-duration: 0.10s !important;
             margin-top: calc(50vh - 256px) !important
         }
 
         &.fullscreen {
             transform: none !important;
             margin: 0;
+            transition-duration: 0.10s !important;
 
             .mdc-dialog__surface {
                 box-shadow: none !important;

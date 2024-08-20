@@ -15,24 +15,8 @@
     (resizeEnded)="onResizeEnded($event)"
   >
     @for (element of layout; track $index) {
-      <ktd-grid-item [id]="element.id">
-        @if (element.type === "folder") {
-          <bm-cell-container [element]="element" />
-        } @else if (element.type === "desktop-widget") {
-          <div class="w-full h-full flex items-center justify-center">
-            <div
-              [ngClass]="element"
-              class="backdrop-blur-md rounded-xl hover:backdrop-blur-md hover:bg-slate-500/10 w-full h-full p-2 cursor-pointer flex flex-col gap-2 items-center"
-            >
-              <ng-container
-                *ngComponentOutlet="
-                  element.component;
-                  injector: customInjector(element)
-                "
-              ></ng-container>
-            </div>
-          </div>
-        }
+      <ktd-grid-item [resizable]="element.resizable" [id]="element.id">
+        <bm-cell-container [parentIsDesktop]="true" [element]="element" />
         <ng-template ktdGridItemPlaceholder> </ng-template>
       </ktd-grid-item>
     }

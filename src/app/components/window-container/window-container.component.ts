@@ -28,7 +28,7 @@ export interface DialogData {
   standalone: true,
   imports: [MatDialogModule, CellContainerComponent, AsyncPipe, CommonModule, DragDropModule, MatIconModule],
   templateUrl: './window-container.component.html',
-  styleUrl: './window-container.component.scss'
+  styleUrl: './window-container.component.scss',
 })
 
 

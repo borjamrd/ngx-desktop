@@ -1,7 +1,6 @@
 import { KtdGridLayoutItem } from "@katoid/angular-grid-layout";
 import { SpotifyWidgetComponent } from "app/components/spotify-widget/spotify-widget.component";
 
-
 export enum ElementType {
     FOLDER = 'folder',
     FILE = 'file',
@@ -24,7 +23,8 @@ export interface SystemElement extends KtdGridLayoutItem {
     hasChildren?: boolean;
     customClass?: string;
     children?: SystemElement[];
-    component?: any;
+    component?: any; //I don't know what to put here
+    resizable?: boolean
 }
 
 
@@ -40,6 +40,7 @@ export const defaultLayout: SystemElement[] = [
         w: 1,
         h: 1,
         hasChildren: true,
+        resizable: false,
         children: [
             {
                 icon: 'folder',
@@ -97,12 +98,23 @@ export const defaultLayout: SystemElement[] = [
         name: 'Spotify',
         type: ElementType.DESKTOP_WIDGET,
         id: '6',
-        x: 8,
+        x: 12,
         y: 0,
         w: 4,
         h: 2,
         customClass: 'bg-slate-500/40',
         component: SpotifyWidgetComponent,
-
+        resizable: true
+    }, {
+        icon: 'notion',
+        name: 'Notion',
+        id: '7',
+        x: 1,
+        y: 0,
+        w: 1,
+        h: 1,
+        hasChildren: false,
+        type: ElementType.APPLICATION,
+        resizable: false
     }
 ]

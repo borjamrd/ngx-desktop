@@ -33,20 +33,20 @@ import { ktdArrayRemoveElement } from 'app/shared/utils/utils';
 import { debounceTime, filter, fromEvent, merge, Subscription } from 'rxjs';
 import { CellContainerComponent } from './cell-container/cell-container.component';
 import { DesktopWidgetComponent } from '../desktop-widget/desktop-widget.component';
+import { MatIconModule } from '@angular/material/icon';
 
 
 
 @Component({
   selector: 'bm-virtual-grid',
   standalone: true,
-  imports: [CellContainerComponent, DragDropModule, NgClass, KtdGridModule, CommonModule, NgComponentOutlet],
+  imports: [CellContainerComponent, DragDropModule, NgClass, KtdGridModule],
   templateUrl: './virtual-grid.component.html',
   styleUrl: './virtual-grid.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class VirtualGridComponent implements OnInit, AfterContentChecked, OnDestroy {
 
-  //TODO! classes must be changed properly
 
   @Input() layout: SystemElement[] = []
   @ViewChild(KtdGridComponent, { static: true }) grid!: KtdGridComponent;
@@ -92,7 +92,7 @@ export class VirtualGridComponent implements OnInit, AfterContentChecked, OnDest
   layoutService = inject(LayoutService)
   private destroyRef: DestroyRef = inject(DestroyRef);
   private cdr = inject(ChangeDetectorRef);
-  private injector: Injector = inject(Injector);
+
   constructor() {
     fromEvent(window, 'resize')
       .pipe(takeUntilDestroyed(this.destroyRef), debounceTime(100)
@@ -142,10 +142,6 @@ export class VirtualGridComponent implements OnInit, AfterContentChecked, OnDest
 
   onResizeEnded(event: KtdResizeEnd) {
     this.isResizing = false;
-  }
-
-  customInjector(element: SystemElement) {
-    return Injector.create({ providers: [{ provide: 'layout', useValue: [], }], parent: this.injector });
   }
 
   onCompactTypeChange(change: MatSelectChange) {

@@ -11,6 +11,10 @@ export const customIcons: CustomIcon[] = [
     {
         svg: 'spotify',
         url: 'assets/icons/spotify.svg',
+    },
+    {
+        svg: 'notion',
+        url: 'assets/icons/notion.svg',
     }
 
 ]
