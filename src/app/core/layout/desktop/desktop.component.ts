@@ -1,7 +1,8 @@
 import { AsyncPipe, NgClass } from '@angular/common';
-import { Component } from '@angular/core';
+import { Component, inject } from '@angular/core';
 import { VirtualGridComponent } from '@components/virtual-grid/virtual-grid.component';
-import { defaultLayout, SystemElement } from 'app/shared/types/system-element.type';
+import { FileExplorerService } from 'app/shared/services/file-explorer.service';
+import { SystemElement } from 'app/shared/types/system-element.type';
 import { TasksbarComponent } from '../tasksbar/tasksbar.component';
 
 @Component({
@@ -13,7 +14,9 @@ import { TasksbarComponent } from '../tasksbar/tasksbar.component';
 })
 export class DesktopComponent {
 
-  layout: SystemElement[] = defaultLayout
+  private folderService: FileExplorerService = inject(FileExplorerService);
+
+  layout: SystemElement[] = this.folderService.systemFiles()
 
 
 }

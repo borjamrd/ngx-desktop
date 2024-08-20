@@ -5,13 +5,16 @@ import { FolderElement } from 'app/shared/types/system-element.type';
 import { from, Observable } from 'rxjs';
 import { WindowContainerComponent } from '../window-container/window-container.component';
 import { FileExplorerService } from 'app/shared/services/file-explorer.service';
+import { slideInOut } from 'app/shared/utils/transitions';
 
 @Component({
   selector: 'bm-active-folders',
   standalone: true,
   imports: [MatIconModule],
   templateUrl: './active-folders.component.html',
-  styleUrl: './active-folders.component.scss'
+  styleUrl: './active-folders.component.scss',
+  animations: [slideInOut]
+
 })
 export class ActiveFoldersComponent {
   private lazzyLoadFolderDatabase$ = from(import('@components/folder-database/folder-database.component').then(component => component.FolderDatabaseComponent));
@@ -25,7 +28,7 @@ export class ActiveFoldersComponent {
     const element = this.fileExplorerService.systemFiles().find((element) => element.id === folder.id);
 
     if (!element) {
-      return;
+      throw new Error('Element not found')
     }
     this.dialog.open(WindowContainerComponent, {
       width: '650px',
@@ -46,6 +49,7 @@ export class ActiveFoldersComponent {
 
     });
 
+    this.fileExplorerService.setActiveFolders(folder)
   }
 
 }

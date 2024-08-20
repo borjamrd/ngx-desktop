@@ -9,14 +9,19 @@ import { toObservable } from '@angular/core/rxjs-interop';
 export class FileExplorerService {
 
 
+  defaultFolders = [defaultLayout[0]]
   systemFiles = signal<SystemElement[]>(defaultLayout)
-  folders = signal<FolderElement[]>([])
+  folders = signal<FolderElement[]>(this.defaultFolders)
   folders$: Observable<FolderElement[]> = toObservable(this.folders)
-  constructor() { }
+  constructor() {
+  }
 
 
   setActiveFolders(file: FolderElement) {
-    this.folders.set([...this.folders(), file])
+    if (!this.folders().includes(file)) {
+      this.folders.set([...this.folders(), file])
+    }
+
   }
 
 
@@ -25,6 +30,11 @@ export class FileExplorerService {
   }
 
   closeFolder(id: FolderElement['id']) {
+
     this.folders.set(this.folders().filter(folder => folder.id !== id))
+    if (this.folders().length <= 1) {
+      this.folders.set(this.defaultFolders)
+    }
+
   }
 }

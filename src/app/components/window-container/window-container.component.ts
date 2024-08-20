@@ -1,18 +1,16 @@
 import { DragDropModule } from '@angular/cdk/drag-drop';
 import { AsyncPipe, CommonModule } from '@angular/common';
-import { Component, ElementRef, HostListener, inject, Inject, ViewChild } from '@angular/core';
+import { Component, ElementRef, HostListener, inject, Inject } from '@angular/core';
 import {
-  DialogPosition,
   MAT_DIALOG_DATA,
-  MAT_DIALOG_DEFAULT_OPTIONS,
   MatDialogModule,
   MatDialogRef
 } from '@angular/material/dialog';
-import { CellContainerComponent } from '../virtual-grid/cell-container/cell-container.component';
 import { MatIconModule } from '@angular/material/icon';
-import { SystemElement } from 'app/shared/types/system-element.type';
 import { FileExplorerService } from 'app/shared/services/file-explorer.service';
+import { SystemElement } from 'app/shared/types/system-element.type';
 import { maxZIndex } from 'app/shared/utils/utils';
+import { CellContainerComponent } from '../virtual-grid/cell-container/cell-container.component';
 
 
 //TODO type

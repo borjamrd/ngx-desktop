@@ -1,20 +1,18 @@
 import { coerceNumberProperty } from '@angular/cdk/coercion';
 import { DragDropModule } from '@angular/cdk/drag-drop';
-import { DOCUMENT, NgClass } from '@angular/common';
+import { CommonModule, DOCUMENT, NgClass, NgComponentOutlet } from '@angular/common';
 import {
   AfterContentChecked,
-  AfterViewInit,
   ChangeDetectionStrategy,
   ChangeDetectorRef,
   Component,
   DestroyRef,
   ElementRef,
   inject,
+  Injector,
   Input,
-  OnChanges,
   OnDestroy,
   OnInit,
-  SimpleChanges,
   ViewChild
 } from '@angular/core';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
@@ -28,21 +26,28 @@ import {
   KtdResizeStart,
   ktdTrackById
 } from '@katoid/angular-grid-layout';
-import { GridBreakpoint, LayoutService } from 'app/shared/services/layout.service';
+import { LayoutService } from 'app/shared/services/layout.service';
 import { SystemElement } from 'app/shared/types/system-element.type';
-import { ktdArrayRemoveElement, transitions } from 'app/shared/utils/utils';
+import { transitions } from 'app/shared/utils/transitions';
+import { ktdArrayRemoveElement } from 'app/shared/utils/utils';
 import { debounceTime, filter, fromEvent, merge, Subscription } from 'rxjs';
 import { CellContainerComponent } from './cell-container/cell-container.component';
+import { DesktopWidgetComponent } from '../desktop-widget/desktop-widget.component';
+
+
 
 @Component({
   selector: 'bm-virtual-grid',
   standalone: true,
-  imports: [CellContainerComponent, DragDropModule, NgClass, KtdGridModule],
+  imports: [CellContainerComponent, DragDropModule, NgClass, KtdGridModule, CommonModule, NgComponentOutlet],
   templateUrl: './virtual-grid.component.html',
   styleUrl: './virtual-grid.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class VirtualGridComponent implements OnInit, AfterContentChecked, OnDestroy {
+
+  //TODO! classes must be changed properly
+
   @Input() layout: SystemElement[] = []
   @ViewChild(KtdGridComponent, { static: true }) grid!: KtdGridComponent;
   @ViewChild('gridContainer', { static: true }) gridContainer!: ElementRef;
@@ -53,6 +58,7 @@ export class VirtualGridComponent implements OnInit, AfterContentChecked, OnDest
   BREAK_POINT_SMALL_COLS = 6;
   BREAK_POINT_MEDIUM_COLS = 12;
   BREACK_POINT_LARGE_COLS = 16;
+  BREACK_POINT_EXTRA_LARGE_COLS = 16;
 
   BREAK_POINT_X_SMALL_ROW_HEIGHT = 120;
   BREAK_POINT_SMALL_ROW_HEIGHT = 100;
@@ -86,6 +92,7 @@ export class VirtualGridComponent implements OnInit, AfterContentChecked, OnDest
   layoutService = inject(LayoutService)
   private destroyRef: DestroyRef = inject(DestroyRef);
   private cdr = inject(ChangeDetectorRef);
+  private injector: Injector = inject(Injector);
   constructor() {
     fromEvent(window, 'resize')
       .pipe(takeUntilDestroyed(this.destroyRef), debounceTime(100)
@@ -95,6 +102,7 @@ export class VirtualGridComponent implements OnInit, AfterContentChecked, OnDest
 
   ngOnInit() {
 
+    console.log(this.layout)
     this.resizeSubscription = merge(
       fromEvent(window, 'resize'),
       fromEvent(window, 'orientationchange'),
@@ -113,6 +121,7 @@ export class VirtualGridComponent implements OnInit, AfterContentChecked, OnDest
   ngAfterContentChecked(): void {
     this.containerWidth = this.gridContainer.nativeElement.clientWidth;
     this.containerHeight = this.gridContainer.nativeElement.clientHeight;
+    this.setColumnsAndRowHeight()
   }
 
   ngOnDestroy() {
@@ -133,6 +142,10 @@ export class VirtualGridComponent implements OnInit, AfterContentChecked, OnDest
 
   onResizeEnded(event: KtdResizeEnd) {
     this.isResizing = false;
+  }
+
+  customInjector(element: SystemElement) {
+    return Injector.create({ providers: [{ provide: 'layout', useValue: [], }], parent: this.injector });
   }
 
   onCompactTypeChange(change: MatSelectChange) {
@@ -191,19 +204,6 @@ export class VirtualGridComponent implements OnInit, AfterContentChecked, OnDest
       -1,
     );
     const nextId = maxId + 1;
-
-    // const newLayoutElement: SystemElement = {
-    //   id: nextId.toString(),
-    //   x: 0,
-    //   y: 0,
-    //   w: 2,
-    //   h: 2,
-    //   icon: 'folder',
-    //   name: 'Folder',
-    // };
-
-    // // Important: Don't mutate the array, create new instance. This way notifies the Grid component that the layout has changed.
-    // this.layout = [newLayoutElement, ...this.layout];
   }
 
   /** Removes the element from the layout */
@@ -214,8 +214,6 @@ export class VirtualGridComponent implements OnInit, AfterContentChecked, OnDest
 
   setColumnsAndRowHeight() {
 
-    console.log(this.containerHeight, this.containerWidth);
-
     if (this.containerWidth < 600) {
       this.cols = this.BREAK_POINT_X_SMALL_COLS;
     }
@@ -225,9 +223,10 @@ export class VirtualGridComponent implements OnInit, AfterContentChecked, OnDest
     else if (this.containerWidth < 1280) {
       this.cols = this.BREAK_POINT_MEDIUM_COLS;
     }
-    else {
+    else if (this.containerWidth < 1920) {
       this.cols = this.BREACK_POINT_LARGE_COLS;
-
+    } else {
+      this.cols = this.BREACK_POINT_EXTRA_LARGE_COLS;
     }
     const sizeItem = this.containerWidth / this.cols;
     this.rowHeight = Math.floor(sizeItem);

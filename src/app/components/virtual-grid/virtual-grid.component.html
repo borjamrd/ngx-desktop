@@ -1,6 +1,6 @@
-<div #gridContainer class="h-full w-full">
+<div #gridContainer class="w-full w-full p-2 overflow-hidden">
   <ktd-grid
-    class="h-full w-full"
+    class="h-full w-full p-2"
     (contextmenu)="onRightClickGridContainer($event)"
     [cols]="cols"
     [rowHeight]="rowHeight"
@@ -16,7 +16,23 @@
   >
     @for (element of layout; track $index) {
       <ktd-grid-item [id]="element.id">
-        <bm-cell-container [element]="element" />
+        @if (element.type === "folder") {
+          <bm-cell-container [element]="element" />
+        } @else if (element.type === "desktop-widget") {
+          <div class="w-full h-full flex items-center justify-center">
+            <div
+              [ngClass]="element"
+              class="backdrop-blur-md rounded-xl hover:backdrop-blur-md hover:bg-slate-500/10 w-full h-full p-2 cursor-pointer flex flex-col gap-2 items-center"
+            >
+              <ng-container
+                *ngComponentOutlet="
+                  element.component;
+                  injector: customInjector(element)
+                "
+              ></ng-container>
+            </div>
+          </div>
+        }
         <ng-template ktdGridItemPlaceholder> </ng-template>
       </ktd-grid-item>
     }

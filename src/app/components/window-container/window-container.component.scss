@@ -34,6 +34,11 @@
         &.fullscreen {
             transform: none !important;
             margin: 0;
+
+            .mdc-dialog__surface {
+                box-shadow: none !important;
+                border-radius: 0 !important;
+            }
         }
     }
 
@@ -43,4 +48,9 @@
     .cdk-overlay-container .window-container {
         z-index: 5 !important;
     }
+}
+
+::ng-deep .mat-mdc-dialog-container .mdc-dialog__surface {
+    border-radius: 8px;
+    box-shadow: 0 0 0 1px rgba(0, 0, 0, 0.1), 0 2px 4px rgba(0, 0, 0, 0.2);
 }
