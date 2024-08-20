@@ -102,7 +102,6 @@ export class VirtualGridComponent implements OnInit, AfterContentChecked, OnDest
 
   ngOnInit() {
 
-    console.log(this.layout)
     this.resizeSubscription = merge(
       fromEvent(window, 'resize'),
       fromEvent(window, 'orientationchange'),
