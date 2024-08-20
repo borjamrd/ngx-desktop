@@ -1,19 +1,19 @@
-import { DragDropModule } from '@angular/cdk/drag-drop';
-import { NgComponentOutlet } from '@angular/common';
 import { Component, ElementRef, HostListener, Inject } from '@angular/core';
 import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
-import { MatIconModule } from '@angular/material/icon';
 import { maxZIndex } from 'app/shared/utils/utils';
 import { DialogData } from '../window-container/window-container.component';
-
+import { MatIconModule } from '@angular/material/icon';
+import { NgComponentOutlet } from '@angular/common';
+import { DragDropModule } from '@angular/cdk/drag-drop';
+import { MediumComponent } from '../medium/medium.component';
 @Component({
-  selector: 'bm-notion-container',
+  selector: 'bm-medium-container',
   standalone: true,
-  imports: [MatIconModule, DragDropModule, NgComponentOutlet],
-  templateUrl: './notion-container.component.html',
-  styleUrl: './notion-container.component.scss'
+  imports: [MatIconModule, DragDropModule, NgComponentOutlet, MediumComponent],
+  templateUrl: './medium-container.component.html',
+  styleUrl: './medium-container.component.scss'
 })
-export class NotionContainerComponent {
+export class MediumContainerComponent {
 
 
   private static maxZIndex = 1000;
@@ -22,7 +22,7 @@ export class NotionContainerComponent {
 
 
   constructor(
-    public dialogRef: MatDialogRef<NotionContainerComponent>,
+    public dialogRef: MatDialogRef<MediumContainerComponent>,
 
     //TODO! data must be implemented here
     @Inject(MAT_DIALOG_DATA) public data: DialogData,
@@ -46,7 +46,7 @@ export class NotionContainerComponent {
   private updateZIndex(): void {
     const dialogElement = this._elementRef.nativeElement.closest('.cdk-global-overlay-wrapper');
     if (dialogElement) {
-      dialogElement.style.zIndex = `${NotionContainerComponent.maxZIndex++}`;
+      dialogElement.style.zIndex = `${MediumContainerComponent.maxZIndex++}`;
     }
   }
 

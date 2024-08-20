@@ -15,6 +15,10 @@ export const customIcons: CustomIcon[] = [
     {
         svg: 'notion',
         url: 'assets/icons/notion.svg',
+    },
+    {
+        svg: 'medium',
+        url: 'assets/icons/medium.svg',
     }
 
 ]

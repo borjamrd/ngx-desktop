@@ -116,5 +116,18 @@ export const defaultLayout: SystemElement[] = [
         hasChildren: false,
         type: ElementType.APPLICATION,
         resizable: false
-    }
+    },
+    {
+        icon: 'medium',
+        name: 'Medium',
+        id: '8',
+        x: 2,
+        y: 0,
+        w: 1,
+        h: 1,
+        hasChildren: false,
+        type: ElementType.APPLICATION,
+        resizable: false
+    },
+
 ]

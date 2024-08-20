@@ -7,6 +7,7 @@ import { from } from 'rxjs';
 import { WindowContainerComponent } from '../../window-container/window-container.component';
 import { NgClass, NgComponentOutlet, NgTemplateOutlet } from '@angular/common';
 import { NotionContainerComponent } from 'app/components/notion-container/notion-container.component';
+import { MediumContainerComponent } from 'app/components/medium-container/medium-container.component';
 
 @Component({
   selector: 'bm-cell-container',
@@ -105,7 +106,13 @@ export class CellContainerComponent {
 
     }
 
-    const dialogRef = this.dialog.open(NotionContainerComponent, matDialogConfig);
+    if (element.name === 'Medium') {
+      const dialogRef = this.dialog.open(MediumContainerComponent, matDialogConfig);
+    } else {
+      const dialogRef = this.dialog.open(NotionContainerComponent, matDialogConfig);
+    }
+
+
 
 
   }
