@@ -6,6 +6,7 @@ import { SystemElement } from 'app/shared/types/system-element.type';
 import { from } from 'rxjs';
 import { WindowContainerComponent } from '../../window-container/window-container.component';
 import { NgClass, NgComponentOutlet, NgTemplateOutlet } from '@angular/common';
+import { NotionContainerComponent } from 'app/components/notion-container/notion-container.component';
 
 @Component({
   selector: 'bm-cell-container',
@@ -46,6 +47,9 @@ export class CellContainerComponent {
       case 'file':
         this.openFile(element)
         break;
+      case 'application':
+        this.openFile(element)
+        break;
       default:
         break;
     }
@@ -80,7 +84,30 @@ export class CellContainerComponent {
     this.fileExplorer.setActiveFolders(element);
   }
   openFile(element: SystemElement) {
-    console.log('open file', element);
+    const matDialogConfig: MatDialogConfig = {
+      maxWidth: '100vw',
+      maxHeight: 'calc(100vh - 3rem)', //tasksbar height
+      width: '600px',
+      height: '400px',
+      panelClass: 'window-container',
+      hasBackdrop: false,
+      autoFocus: true,
+      restoreFocus: false,
+      data: {
+        id: element.id,
+        icon: element.icon,
+        name: element.name,
+        component: this.lazzyLoadFolderDatabase$,
+        inputs: {
+          layout: element.children
+        }
+      },
+
+    }
+
+    const dialogRef = this.dialog.open(NotionContainerComponent, matDialogConfig);
+
+
   }
 
 
