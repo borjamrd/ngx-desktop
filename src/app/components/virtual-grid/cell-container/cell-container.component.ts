@@ -8,11 +8,12 @@ import { WindowContainerComponent } from '../../window-container/window-containe
 import { NgClass, NgComponentOutlet, NgTemplateOutlet } from '@angular/common';
 import { NotionContainerComponent } from 'app/components/notion-container/notion-container.component';
 import { MediumContainerComponent } from 'app/components/medium-container/medium-container.component';
+import { SystemElementIconComponent } from 'app/components/system-element-icon/system-element-icon.component';
 
 @Component({
   selector: 'bm-cell-container',
   standalone: true,
-  imports: [MatIconModule, NgClass, NgComponentOutlet, NgTemplateOutlet, MatIconModule],
+  imports: [NgClass, NgComponentOutlet, NgTemplateOutlet, SystemElementIconComponent],
   templateUrl: './cell-container.component.html',
   styleUrl: './cell-container.component.scss',
 })
