@@ -102,6 +102,54 @@ export const defaultLayout: SystemElement[] = [
                     hasChildren: false,
                     children: []
                 },
+                {
+                    icon: 'folder',
+                    name: 'Common',
+                    type: ElementType.FOLDER,
+                    id: '9',
+                    x: 1,
+                    y: 1,
+                    w: 1,
+                    h: 1,
+                    hasChildren: false,
+                    children: [
+                        {
+                            icon: 'javascript',
+                            name: 'Folder2',
+                            type: ElementType.FILE,
+                            id: '10',
+                            x: 0,
+                            y: 0,
+                            w: 1,
+                            h: 1,
+                            hasChildren: false,
+                            children: []
+                        },
+                        {
+                            icon: 'typescript',
+                            name: 'Typescript',
+                            type: ElementType.FILE,
+                            id: '11',
+                            x: 1,
+                            y: 1,
+                            w: 1,
+                            h: 1,
+
+                        },
+                        {
+                            icon: 'angular',
+                            name: 'angular',
+                            type: ElementType.FILE,
+                            id: '11',
+                            x: 1,
+                            y: 1,
+                            w: 1,
+                            h: 1,
+
+                        }
+                    ]
+                },
+
 
             ],
         },

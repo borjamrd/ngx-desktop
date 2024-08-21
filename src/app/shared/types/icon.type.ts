@@ -23,6 +23,17 @@ export const customIcons: CustomIcon[] = [
     {
         svg: 'new-window',
         url: 'assets/icons/new-window.svg',
+    }, {
+        svg: 'angular',
+        url: 'assets/icons/angular.svg',
+    },
+    {
+        svg: 'javascript',
+        url: 'assets/icons/javascript.svg',
+    },
+    {
+        svg: 'typescript',
+        url: 'assets/icons/typescript.svg',
     }
 
 ]
