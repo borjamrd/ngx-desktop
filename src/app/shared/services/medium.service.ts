@@ -1,6 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { inject, Injectable } from '@angular/core';
-import { map } from 'rxjs';
+import { delay, map } from 'rxjs';
 export interface Enclosure {
 }
 
@@ -18,7 +18,7 @@ interface MediumResponse {
   items: MediumPost[];
 }
 
-interface MediumPost {
+export interface MediumPost {
   title: string;
   pubDate: Date;
   link: string;
@@ -40,8 +40,10 @@ export class MediumService {
 
   getPosts(account: string) {
     return this.http.get<MediumResponse>(`https://api.rss2json.com/v1/api.json?rss_url=https://medium.com/feed/${account}`)
-      .pipe(map((data) => {
-        return data.items
-      }));
+      .pipe(
+        delay(500),
+        map((data) => {
+          return data.items
+        }));
   }
 }

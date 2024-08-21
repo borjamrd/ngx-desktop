@@ -35,17 +35,48 @@ $light-bg-color: #d2d2d2;
 $semi-light-bg-color: #c0c0c0;
 $dark-text-color: #333;
 
-
 // Dark mode
 .dark {
   @include mat.all-component-colors($dark-theme);
 
   background-color: $semi-dark-bg-color;
   color: $light-text-color;
+
+  .mat-mdc-text-field-wrapper {
+    border: 8px !important;
+    border-bottom: 1px solid #d1d5db;
+  }
+
 }
 
 // Light mode
 .light {
   @include mat.all-component-themes($light-theme);
 
+  .mat-mdc-text-field-wrapper {
+    border: 8px !important;
+    border-bottom: 1px solid #64748b;
+
+  }
+
+
+}
+
+
+
+.mat-mdc-form-field-infix {
+  min-height: 2rem !important;
+}
+
+.mdc-text-field--no-label .mat-mdc-form-field-infix {
+  padding-top: 0.3rem !important;
+  padding-bottom: 0.3rem !important;
+}
+
+.mat-mdc-icon-button.mat-mdc-button-base {
+  padding: 0.3rem !important
+}
+
+.mat-mdc-form-field-subscript-wrapper {
+  height: 10px !important;
 }

@@ -49,10 +49,12 @@
 ::ng-deep {
     .cdk-overlay-container .window-container {
         z-index: 5 !important;
+
+
     }
 }
 
-::ng-deep .mat-mdc-dialog-container .mdc-dialog__surface {
+::ng-deep .mat-mdc-dialog-container {
     border-radius: 1rem;
     box-shadow: 0 0 0 1px rgba(0, 0, 0, 0.1), 0 2px 4px rgba(0, 0, 0, 0.2);
 }
