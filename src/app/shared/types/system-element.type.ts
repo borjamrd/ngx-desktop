@@ -32,7 +32,7 @@ export const defaultLayout: SystemElement[] = [
 
     {
         icon: 'folder',
-        name: 'Folder',
+        name: 'My tech',
         type: ElementType.FOLDER,
         id: '1',
         x: 0,
@@ -44,7 +44,7 @@ export const defaultLayout: SystemElement[] = [
         children: [
             {
                 icon: 'folder',
-                name: 'Folder1',
+                name: 'Backend',
                 type: ElementType.FOLDER,
                 id: '2',
                 x: 0,
@@ -81,7 +81,7 @@ export const defaultLayout: SystemElement[] = [
             },
             {
                 icon: 'folder',
-                name: 'Folder4',
+                name: 'Frontend',
                 type: ElementType.FOLDER,
                 id: '5',
                 x: 1,
