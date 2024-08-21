@@ -1,3 +1,5 @@
+import { MatDialogConfig } from "@angular/material/dialog";
+
 /**
  * Removes and item from an array. Returns a new array instance (it doesn't mutate the source array).
  * @param array source array to be returned without the element to remove
@@ -23,4 +25,37 @@ export function maxZIndex(selectors: string = 'body *'): number {
     .filter(a => !isNaN(a))
     .sort((a, b) => a - b)
     .pop() || 0;
+}
+
+export const MEDIUM_DIALOG_CONFIG: MatDialogConfig = {
+  maxWidth: '100vw',
+  maxHeight: 'calc(100vh - 3rem)', //tasksbar height
+  width: '800px',
+  height: '600px',
+  panelClass: 'window-container',
+  hasBackdrop: false,
+  autoFocus: true,
+  restoreFocus: false,
+}
+
+export const FOLDER_DIALOG_CONFIG: MatDialogConfig = {
+  maxWidth: '100vw',
+  maxHeight: 'calc(100vh - 3rem)', //tasksbar height
+  width: '800px',
+  height: '600px',
+  panelClass: 'window-container',
+  hasBackdrop: false,
+  autoFocus: true,
+  restoreFocus: false
+}
+
+export const NOTION_DIALOG_CONFIG: MatDialogConfig = {
+  maxWidth: '100vw',
+  maxHeight: 'calc(100vh - 3rem)', //tasksbar height
+  width: '800px',
+  height: '600px',
+  panelClass: 'window-container',
+  hasBackdrop: false,
+  autoFocus: true,
+  restoreFocus: false
 }

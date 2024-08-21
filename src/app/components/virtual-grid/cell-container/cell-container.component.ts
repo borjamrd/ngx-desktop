@@ -9,6 +9,7 @@ import { NgClass, NgComponentOutlet, NgTemplateOutlet } from '@angular/common';
 import { NotionContainerComponent } from 'app/components/notion-container/notion-container.component';
 import { MediumContainerComponent } from 'app/components/medium-container/medium-container.component';
 import { SystemElementIconComponent } from 'app/components/system-element-icon/system-element-icon.component';
+import { DisplayElementWindowService } from 'app/shared/services/display-element-window.service';
 
 @Component({
   selector: 'bm-cell-container',
@@ -21,16 +22,13 @@ import { SystemElementIconComponent } from 'app/components/system-element-icon/s
 export class CellContainerComponent {
 
   private injector: Injector = inject(Injector);
-  private lazzyLoadFolderDatabase$ = from(import('@components/folder-database/folder-database.component').then(component => component.FolderDatabaseComponent));
 
   @Input() element!: SystemElement;
   @Input() parentIsDesktop: boolean = false;
   @Output() onRightClick = new EventEmitter<SystemElement['type']>();
   @Output() onDoubleClick = new EventEmitter<SystemElement['type']>();
 
-  dialog: MatDialog = inject(MatDialog);
-
-  fileExplorer: FileExplorerService = inject(FileExplorerService);
+  private readonly displayElementWindowService: DisplayElementWindowService = inject(DisplayElementWindowService);
 
   onRightClickGridItem(event: MouseEvent): void {
     event.preventDefault();
@@ -40,103 +38,8 @@ export class CellContainerComponent {
   }
 
 
-  openFolder(element: SystemElement) {
-
-    switch (element.type) {
-      case 'folder':
-        this.openFolderDialog(element);
-        break;
-      case 'file':
-        this.openFile(element)
-        break;
-      case 'application':
-        this.openFile(element)
-        break;
-      default:
-        break;
-    }
-
-
-  }
-  openFolderDialog(element: SystemElement) {
-
-    const matDialogConfig: MatDialogConfig = {
-      maxWidth: '100vw',
-      maxHeight: 'calc(100vh - 3rem)', //tasksbar height
-      width: '800px',
-      height: '600px',
-      panelClass: 'window-container',
-      hasBackdrop: false,
-      autoFocus: true,
-      restoreFocus: false,
-      data: {
-        id: element.id,
-        icon: element.icon,
-        name: element.name,
-        component: this.lazzyLoadFolderDatabase$,
-        inputs: {
-          layout: element.children
-        }
-      },
-
-    }
-
-    const dialogRef = this.dialog.open(WindowContainerComponent, matDialogConfig);
-
-    this.fileExplorer.setActiveFolders(element);
-  }
-  openFile(element: SystemElement) {
-
-
-    if (element.name === 'Medium') {
-      const matDialogConfig: MatDialogConfig = {
-        maxWidth: '100vw',
-        maxHeight: 'calc(100vh - 3rem)', //tasksbar height
-        width: '800px',
-        height: '600px',
-        panelClass: 'window-container',
-        hasBackdrop: false,
-        autoFocus: true,
-        restoreFocus: false,
-        data: {
-          id: element.id,
-          icon: element.icon,
-          name: element.name,
-          component: this.lazzyLoadFolderDatabase$,
-          inputs: {
-            layout: element.children
-          }
-        },
-
-      }
-      const dialogRef = this.dialog.open(MediumContainerComponent, matDialogConfig);
-    } else {
-      const matDialogConfig: MatDialogConfig = {
-        maxWidth: '100vw',
-        maxHeight: 'calc(100vh - 3rem)', //tasksbar height
-        width: '1200px',
-        height: '700px',
-        panelClass: 'window-container',
-        hasBackdrop: false,
-        autoFocus: true,
-        restoreFocus: false,
-        data: {
-          id: element.id,
-          icon: element.icon,
-          name: element.name,
-          component: this.lazzyLoadFolderDatabase$,
-          inputs: {
-            layout: element.children
-          }
-        },
-
-      }
-      const dialogRef = this.dialog.open(NotionContainerComponent, matDialogConfig);
-    }
-
-
-
-
+  open(element: SystemElement) {
+    this.displayElementWindowService.open(element)
   }
 
 

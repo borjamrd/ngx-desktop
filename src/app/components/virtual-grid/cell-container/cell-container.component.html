@@ -3,7 +3,7 @@
     @case ("folder") {
       <div
         (contextmenu)="onRightClickGridItem($event)"
-        (dblclick)="openFolder(element)"
+        (dblclick)="open(element)"
         class="active:backdrop-blur-md active:bg-slate-500/10 hover:backdrop-blur-md hover:bg-slate-500/10 rounded-md aspect-square h-full p-1 cursor-pointer flex flex-col gap-2 items-center"
       >
         <ng-container
@@ -14,7 +14,7 @@
     @case ("file") {
       <div
         (contextmenu)="onRightClickGridItem($event)"
-        (dblclick)="openFolder(element)"
+        (dblclick)="open(element)"
         class="active:backdrop-blur-md active:bg-slate-500/10 hover:backdrop-blur-md hover:bg-slate-500/10 rounded-md aspect-square h-full p-1 cursor-pointer flex flex-col gap-1 items-center"
       >
         <ng-container
@@ -38,7 +38,7 @@
     @default {
       <div
         (contextmenu)="onRightClickGridItem($event)"
-        (dblclick)="openFolder(element)"
+        (dblclick)="open(element)"
         class="active:backdrop-blur-md active:bg-slate-500/10 hover:backdrop-blur-md hover:bg-slate-500/10 rounded-md aspect-square h-full p-1 cursor-pointer flex flex-col gap-1 items-center"
       >
         <ng-container
