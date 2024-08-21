@@ -19,6 +19,10 @@ export const customIcons: CustomIcon[] = [
     {
         svg: 'medium',
         url: 'assets/icons/medium.svg',
+    },
+    {
+        svg: 'new-window',
+        url: 'assets/icons/new-window.svg',
     }
 
 ]

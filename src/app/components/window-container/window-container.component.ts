@@ -85,7 +85,7 @@ export class WindowContainerComponent {
 
       this.dialogRef.removePanelClass('fullscreen');
       this.dialogRef.addPanelClass('not-fullscreen');
-      this.dialogRef.updateSize('600px', '400px');
+      this.dialogRef.updateSize('800px', '600px');
 
     }
 

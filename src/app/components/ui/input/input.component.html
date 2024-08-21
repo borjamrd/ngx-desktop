@@ -3,7 +3,12 @@
     @if (showLabel) {
       <mat-label>Clearable input</mat-label>
     }
-    <input type="text" matInput formControlName="input" />
+    <input
+      [placeholder]="placeholder"
+      type="text"
+      matInput
+      formControlName="input"
+    />
     @if (value) {
       <button matSuffix aria-label="Clear" (click)="form.reset()">
         <mat-icon>close</mat-icon>

@@ -63,8 +63,8 @@ export class CellContainerComponent {
     const matDialogConfig: MatDialogConfig = {
       maxWidth: '100vw',
       maxHeight: 'calc(100vh - 3rem)', //tasksbar height
-      width: '600px',
-      height: '400px',
+      width: '800px',
+      height: '600px',
       panelClass: 'window-container',
       hasBackdrop: false,
       autoFocus: true,
@@ -89,8 +89,8 @@ export class CellContainerComponent {
     const matDialogConfig: MatDialogConfig = {
       maxWidth: '100vw',
       maxHeight: 'calc(100vh - 3rem)', //tasksbar height
-      width: '600px',
-      height: '400px',
+      width: '800px',
+      height: '600px',
       panelClass: 'window-container',
       hasBackdrop: false,
       autoFocus: true,
