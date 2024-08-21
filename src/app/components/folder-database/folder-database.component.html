@@ -2,9 +2,11 @@
 @if (layout.length) {
   <div cdkDropList class="grid grid-cols-6" (cdkDropListDropped)="drop($event)">
     @for (element of layout; track $index) {
-      <div cdkDrag class="col-span-1">
-        <bm-cell-container [element]="element" />
-      </div>
+      @if (element.type === "folder" || element.type === "file") {
+        <div cdkDrag class="col-span-1">
+          <bm-cell-container [element]="element" />
+        </div>
+      }
     }
   </div>
 } @else {

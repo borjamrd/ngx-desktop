@@ -5,11 +5,12 @@ import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
 import { MatIconModule } from '@angular/material/icon';
 import { maxZIndex } from 'app/shared/utils/utils';
 import { DialogData } from '../window-container/window-container.component';
+import { NotionComponent } from '../notion/notion.component';
 
 @Component({
   selector: 'bm-notion-container',
   standalone: true,
-  imports: [MatIconModule, DragDropModule, NgComponentOutlet],
+  imports: [MatIconModule, DragDropModule, NgComponentOutlet, NotionComponent],
   templateUrl: './notion-container.component.html',
   styleUrl: './notion-container.component.scss'
 })
@@ -68,7 +69,7 @@ export class NotionContainerComponent {
 
       this.dialogRef.removePanelClass('fullscreen');
       this.dialogRef.addPanelClass('not-fullscreen');
-      this.dialogRef.updateSize('800px', '600px');
+      this.dialogRef.updateSize('1200px', '600px');
 
     }
 

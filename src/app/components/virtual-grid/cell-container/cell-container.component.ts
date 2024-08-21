@@ -86,30 +86,51 @@ export class CellContainerComponent {
     this.fileExplorer.setActiveFolders(element);
   }
   openFile(element: SystemElement) {
-    const matDialogConfig: MatDialogConfig = {
-      maxWidth: '100vw',
-      maxHeight: 'calc(100vh - 3rem)', //tasksbar height
-      width: '800px',
-      height: '600px',
-      panelClass: 'window-container',
-      hasBackdrop: false,
-      autoFocus: true,
-      restoreFocus: false,
-      data: {
-        id: element.id,
-        icon: element.icon,
-        name: element.name,
-        component: this.lazzyLoadFolderDatabase$,
-        inputs: {
-          layout: element.children
-        }
-      },
 
-    }
 
     if (element.name === 'Medium') {
+      const matDialogConfig: MatDialogConfig = {
+        maxWidth: '100vw',
+        maxHeight: 'calc(100vh - 3rem)', //tasksbar height
+        width: '800px',
+        height: '600px',
+        panelClass: 'window-container',
+        hasBackdrop: false,
+        autoFocus: true,
+        restoreFocus: false,
+        data: {
+          id: element.id,
+          icon: element.icon,
+          name: element.name,
+          component: this.lazzyLoadFolderDatabase$,
+          inputs: {
+            layout: element.children
+          }
+        },
+
+      }
       const dialogRef = this.dialog.open(MediumContainerComponent, matDialogConfig);
     } else {
+      const matDialogConfig: MatDialogConfig = {
+        maxWidth: '100vw',
+        maxHeight: 'calc(100vh - 3rem)', //tasksbar height
+        width: '1200px',
+        height: '700px',
+        panelClass: 'window-container',
+        hasBackdrop: false,
+        autoFocus: true,
+        restoreFocus: false,
+        data: {
+          id: element.id,
+          icon: element.icon,
+          name: element.name,
+          component: this.lazzyLoadFolderDatabase$,
+          inputs: {
+            layout: element.children
+          }
+        },
+
+      }
       const dialogRef = this.dialog.open(NotionContainerComponent, matDialogConfig);
     }
 

@@ -16,7 +16,7 @@ export class DesktopComponent {
 
   private folderService: FileExplorerService = inject(FileExplorerService);
 
-  layout: SystemElement[] = this.folderService.systemFiles()
+  layout: SystemElement[] = this.folderService.systemFiles()[0].children || [];
 
 
 }

@@ -48,7 +48,6 @@ export class ActiveFoldersComponent {
       },
 
     });
-
     this.fileExplorerService.setActiveFolders(folder)
   }
 
