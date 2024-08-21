@@ -4,6 +4,7 @@
   <div class="flex gap-2 items-center justify-between w-full">
     <div class="w-1/5">sun</div>
     <div class="w-3/5 flex justify-center gap-2">
+      <bm-main-search-input />
       @if (activeFolders$ | async; as activeFolders) {
         <bm-active-folders [activeFolders]="activeFolders" />
       }
