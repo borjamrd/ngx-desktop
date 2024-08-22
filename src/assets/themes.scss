@@ -43,7 +43,6 @@ $dark-text-color: #333;
   color: $light-text-color;
 
   .mat-mdc-text-field-wrapper {
-    border: 8px !important;
     border-bottom: 1px solid #d1d5db;
   }
 
@@ -54,7 +53,7 @@ $dark-text-color: #333;
   @include mat.all-component-themes($light-theme);
 
   .mat-mdc-text-field-wrapper {
-    border: 8px !important;
+
     border-bottom: 1px solid #64748b;
 
   }

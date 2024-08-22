@@ -1,11 +1,12 @@
-<form [formGroup]="form">
-  <mat-form-field class="example-form-field">
+<div [formGroup]="form">
+  <mat-form-field class="example-form-field md-rounded">
     @if (showLabel) {
       <span>
         <mat-label>Clearable input</mat-label>
       </span>
     }
     <input
+      subscriptSizing="dynamic"
       [placeholder]="placeholder"
       type="text"
       matInput
@@ -22,4 +23,4 @@
       </button>
     }
   </mat-form-field>
-</form>
+</div>

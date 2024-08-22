@@ -2,7 +2,7 @@ import { Component, DestroyRef, forwardRef, inject, Input } from '@angular/core'
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 import { ControlValueAccessor, FormBuilder, FormGroup, FormsModule, NG_VALUE_ACCESSOR, ReactiveFormsModule } from '@angular/forms';
 import { MatButtonModule } from '@angular/material/button';
-import { MatFormFieldModule } from '@angular/material/form-field';
+import { MAT_FORM_FIELD_DEFAULT_OPTIONS, MatFormFieldModule, SubscriptSizing } from '@angular/material/form-field';
 import { MatIconModule } from '@angular/material/icon';
 import { MatInputModule } from '@angular/material/input';
 
@@ -16,7 +16,9 @@ import { MatInputModule } from '@angular/material/input';
       provide: NG_VALUE_ACCESSOR,
       useExisting: forwardRef(() => InputComponent),
       multi: true
-    }
+    },
+    { provide: MAT_FORM_FIELD_DEFAULT_OPTIONS, useValue: { appereance: 'outline' } },
+
   ],
   templateUrl: './input.component.html',
   styleUrl: './input.component.scss'
@@ -29,6 +31,7 @@ export class InputComponent implements ControlValueAccessor {
   @Input() label!: string;
   @Input() showLabel = false
   @Input() prefixIcon!: string;
+
   form!: FormGroup;
   private onChange = (value: string) => { };
   private onTouched = () => { };
