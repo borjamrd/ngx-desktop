@@ -1,6 +1,10 @@
 <div class="flex px-2 py-1 items-baseline"></div>
 @if (layout.length) {
-  <div cdkDropList class="grid grid-cols-6" (cdkDropListDropped)="drop($event)">
+  <div
+    cdkDropList
+    class="grid lg:grid-cols-6 grid-cols-3"
+    (cdkDropListDropped)="drop($event)"
+  >
     @for (element of layout; track $index) {
       @if (
         element.type === "folder" ||

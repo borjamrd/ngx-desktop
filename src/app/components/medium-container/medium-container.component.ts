@@ -20,7 +20,6 @@ export class MediumContainerComponent {
 
   isFullScreen: boolean = false
 
-
   constructor(
     public dialogRef: MatDialogRef<MediumContainerComponent>,
 

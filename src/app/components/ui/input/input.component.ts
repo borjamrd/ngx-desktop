@@ -28,6 +28,7 @@ export class InputComponent implements ControlValueAccessor {
   @Input() placeholder = 'Placeholder';
   @Input() label!: string;
   @Input() showLabel = false
+  @Input() prefixIcon!: string;
   form!: FormGroup;
   private onChange = (value: string) => { };
   private onTouched = () => { };

@@ -1,7 +1,9 @@
 <form [formGroup]="form">
   <mat-form-field class="example-form-field">
     @if (showLabel) {
-      <mat-label>Clearable input</mat-label>
+      <span>
+        <mat-label>Clearable input</mat-label>
+      </span>
     }
     <input
       [placeholder]="placeholder"
@@ -9,6 +11,11 @@
       matInput
       formControlName="input"
     />
+    @if (prefixIcon) {
+      <mat-icon matTextPrefix>
+        {{ prefixIcon }}
+      </mat-icon>
+    }
     @if (value) {
       <button matSuffix aria-label="Clear" (click)="form.reset()">
         <mat-icon>close</mat-icon>

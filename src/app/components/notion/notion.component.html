@@ -1,9 +1,15 @@
-@if (notionPageItems$ | async; as items) {
+<!-- @if (notionPageItems$ | async; as items) {
   @for (item of items; track $index) {
     <div class="notion-post">
       <bm-notion-database-item [item]="item" />
     </div>
   }
 } @else {
-  <p>loading</p>
-}
+} -->
+
+<div class="w-full h-full flex">
+  <mat-icon
+    class="animate-bounce duration-200 m-auto"
+    svgIcon="notion"
+  ></mat-icon>
+</div>
