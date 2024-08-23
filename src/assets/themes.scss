@@ -43,7 +43,8 @@ $dark-text-color: #333;
   color: $light-text-color;
 
   .mat-mdc-text-field-wrapper {
-    border-bottom: 1px solid #d1d5db;
+    border-bottom: 1px solid #6e6e71;
+    border-top: 2px solid #727073;
   }
 
 }

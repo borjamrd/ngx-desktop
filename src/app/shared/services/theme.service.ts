@@ -5,7 +5,9 @@ import { inject, Injectable, Renderer2, RendererFactory2, signal } from '@angula
   providedIn: 'root',
 })
 export class ThemeService {
-  themeSignal = signal<string>('light');
+
+  //must be initialized in app-component
+  themeSignal = signal<string>('dark');
 
   document: Document = inject(DOCUMENT)
   private _renderer2: Renderer2
@@ -14,6 +16,7 @@ export class ThemeService {
     rendererFactory: RendererFactory2,
   ) {
     this._renderer2 = rendererFactory.createRenderer(null, null)
+
   }
 
   setTheme(theme: string) {
@@ -24,7 +27,6 @@ export class ThemeService {
   updateTheme() {
     this._renderer2.removeClass(this.document.body, this.themeSignal() === 'dark' ? 'dark' : 'light');
     this._renderer2.addClass(this.document.body, this.themeSignal() === 'dark' ? 'light' : 'dark');
-
     this.themeSignal.update((value) => (value === 'dark' ? 'light' : 'dark'));
   }
 }

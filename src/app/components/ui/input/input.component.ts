@@ -17,7 +17,10 @@ import { MatInputModule } from '@angular/material/input';
       useExisting: forwardRef(() => InputComponent),
       multi: true
     },
-    { provide: MAT_FORM_FIELD_DEFAULT_OPTIONS, useValue: { appereance: 'outline' } },
+    {
+      provide: MAT_FORM_FIELD_DEFAULT_OPTIONS,
+      useValue: { appearance: 'fill' }
+    },
 
   ],
   templateUrl: './input.component.html',
@@ -31,6 +34,7 @@ export class InputComponent implements ControlValueAccessor {
   @Input() label!: string;
   @Input() showLabel = false
   @Input() prefixIcon!: string;
+  @Input() valueClearable = false;
 
   form!: FormGroup;
   private onChange = (value: string) => { };

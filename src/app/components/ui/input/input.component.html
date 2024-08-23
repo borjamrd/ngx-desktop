@@ -17,7 +17,7 @@
         {{ prefixIcon }}
       </mat-icon>
     }
-    @if (value) {
+    @if (value && valueClearable) {
       <button matSuffix aria-label="Clear" (click)="form.reset()">
         <mat-icon>close</mat-icon>
       </button>
