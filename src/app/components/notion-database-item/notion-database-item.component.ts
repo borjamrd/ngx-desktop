@@ -1,6 +1,6 @@
 import { NgClass } from '@angular/common';
 import { Component, EventEmitter, Input, Output } from '@angular/core';
-import { NotionDatabaseItem } from 'app/shared/services/notion-posts.service';
+import { NotionDatabaseItem } from 'app/shared/services/notion.service';
 
 @Component({
   selector: 'bm-notion-database-item',

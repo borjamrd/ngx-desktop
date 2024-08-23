@@ -17,7 +17,10 @@
       class="transition-all duration-150 ease-in p-2 relative"
       [ngClass]="selectedItem ? 'w-3/5' : 'hidden'"
     >
-      {{ selectedItem | json }}
+      @if (selectedItem) {
+        <bm-notion-page [item]="selectedItem" />
+      }
+
       <button
         class="rounded-full p-1 absolute -top-2 right-0"
         (click)="selectedItem = undefined"
