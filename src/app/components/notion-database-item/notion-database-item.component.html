@@ -1,5 +1,5 @@
 <div
-  class="hover:bg-neutral-600/50 px-2 py-1 rounded-sm flex justify-between cursor-pointer"
+  class="dark:hover:bg-neutral-600/50 hover:bg-neutral-100/50 px-2 py-1 rounded-sm flex justify-between cursor-pointer"
   (click)="itemSelected.emit(item)"
 >
   <div class="flex gap-2 items-baseline">
@@ -12,7 +12,10 @@
   </div>
   <div class="flex gap-2 flex-wrap items-baseline justify-end">
     @for (tag of item.tags; track $index) {
-      <span class="bg-slate-500/40 rounded-md px-1.5 py-0.5">{{ tag }}</span>
+      <span
+        class="bg-slate-500/40 rounded-md px-1.5 py-0.5 text-slate-800 dark:text-white"
+        >{{ tag }}</span
+      >
     }
   </div>
 </div>

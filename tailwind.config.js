@@ -9,7 +9,8 @@ module.exports = {
       backgroundImage: {
         darkImage: 'url("assets/images/wallpaper-dark.webp")',
         lightImage: 'url("assets/images/wallpaper.webp")',
-        mobileImage: 'url("assets/images/wallpaper-phone.webp")',
+        mobileImageDark: 'url("assets/images/wallpaper-phone-dark.webp")',
+        mobileImageLight: 'url("assets/images/wallpaper-phone-light.webp")',
       },
       keyframes: {
         wave: {

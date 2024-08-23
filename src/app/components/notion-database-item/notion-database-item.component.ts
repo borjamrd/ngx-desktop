@@ -18,11 +18,11 @@ export class NotionDatabaseItemComponent {
 
     switch (this.item.status) {
       case 'Finished':
-        return 'bg-green-500/30'
+        return 'bg-green-500/30 text-green-800 dark:text-white'
       case 'In progress':
-        return 'bg-blue-500/30'
+        return 'bg-blue-500/30 text-blue-800 dark:text-white'
       case 'To do':
-        return 'bg-red-500/30'
+        return 'bg-red-500/30 text-red-800 dark:text-white'
       default:
         return ''
     }

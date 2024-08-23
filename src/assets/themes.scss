@@ -66,6 +66,7 @@ $dark-text-color: #333;
 // Light mode
 .light {
   @include mat.all-component-themes($light-theme);
+  color: #231f1f;
 
   .mat-mdc-text-field-wrapper {
     border-bottom: 1px solid #64748b;
