@@ -15,7 +15,7 @@
     </div>
     <div
       class="transition-all duration-150 ease-in p-2 relative"
-      [ngClass]="selectedItem ? 'w-3/5' : 'hidden'"
+      [ngClass]="selectedItem ? 'w-3/5 h-full overflow-auto' : 'hidden'"
     >
       @if (selectedItem) {
         <bm-notion-page [item]="selectedItem" />
