@@ -18,7 +18,7 @@ export class NotionComponent {
   selectedItem: undefined | NotionDatabaseItem;
   private notionService: NotionService = inject(NotionService);
 
-  notionPageItems$: Observable<NotionDatabaseItem[]> = this.notionService.getTableItems().pipe(delay(2000));
+  notionPageItems$: Observable<NotionDatabaseItem[]> = this.notionService.getTableItems();
 
   setItemSelected(item: NotionDatabaseItem) {
     this.selectedItem = item;

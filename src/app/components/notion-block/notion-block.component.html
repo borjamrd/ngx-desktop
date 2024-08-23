@@ -1,0 +1,48 @@
+@switch (notionBlock.type) {
+  @case ("bulleted_list") {
+    <li>
+      {{ notionBlock.properties.title[0] }}
+    </li>
+  }
+  @case ("page") {}
+  @case ("collection_view_page") {}
+  @case ("header") {
+    <h1>{{ notionBlock.properties.title[0] }}</h1>
+  }
+  @case ("sub_header") {
+    <h2>{{ notionBlock.properties.title[0] }}</h2>
+  }
+  @case ("sub_sub_header") {
+    <h3>{{ notionBlock.properties.title[0] }}</h3>
+  }
+  @case ("quote") {
+    <div
+      class="h-7 px-4 flex items-center border-s-2 border-slate-800 dark:border-slate-200"
+    >
+      <blockquote>{{ notionBlock.properties.title[0] }}</blockquote>
+    </div>
+  }
+  @case ("text") {
+    @if (
+      notionBlock.properties.title[0].length > 1 &&
+      notionBlock.properties.title[0][1][0] == "b"
+    ) {
+      <p class="font-bold">{{ notionBlock.properties.title[0][0] }}</p>
+    } @else if (
+      notionBlock.properties.title[0].length > 1 &&
+      notionBlock.properties.title[0][1][0] == "i"
+    ) {
+      <p class="italic">{{ notionBlock.properties.title[0][0] }}</p>
+    } @else if (
+      notionBlock.properties.title[0].length > 1 &&
+      notionBlock.properties.title[0][1][0] == "_"
+    ) {
+      <p class="underline">{{ notionBlock.properties.title[0][0] }}</p>
+    } @else {
+      <p>{{ notionBlock.properties.title[0][0] }}</p>
+    }
+  }
+  @default {
+    <p>{{ notionBlock.type }}</p>
+  }
+}

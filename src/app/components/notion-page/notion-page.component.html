@@ -1,1 +1,30 @@
-<div>{{ itemContent | json }}</div>
+@if (loading) {
+  <div>loading</div>
+} @else {
+  <div class="flex flex-col gap-1">
+    @for (notionBlock of notionBlocks; track $index) {
+      @if (
+        notionBlock.type !== "page" &&
+        notionBlock.type !== "collection_view_page"
+      ) {
+        <ng-container
+          [ngTemplateOutlet]="treeBlock"
+          [ngTemplateOutletContext]="{ $implicit: notionBlock }"
+        ></ng-container>
+      }
+    }
+  </div>
+}
+<ng-template #treeBlock let-data>
+  <bm-notion-block [notionBlock]="data" />
+  @if (data?.content; as childBlocks) {
+    @for (child of childBlocks; track $index) {
+      <div class="ms-10">
+        <ng-container
+          [ngTemplateOutlet]="treeBlock"
+          [ngTemplateOutletContext]="{ $implicit: getchildContent(child) }"
+        ></ng-container>
+      </div>
+    }
+  }
+</ng-template>
