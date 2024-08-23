@@ -1,15 +1,36 @@
-<!-- @if (notionPageItems$ | async; as items) {
-  @for (item of items; track $index) {
-    <div class="notion-post">
-      <bm-notion-database-item [item]="item" />
+<div class="flex h-full w-full gap-2">
+  @if (notionPageItems$ | async; as items) {
+    <div
+      class="transition-all duration-150 ease-in"
+      [ngClass]="selectedItem ? 'w-2/5' : 'w-full'"
+    >
+      @for (item of items; track $index) {
+        <div class="notion-item">
+          <bm-notion-database-item
+            (itemSelected)="setItemSelected($event)"
+            [item]="item"
+          />
+        </div>
+      }
+    </div>
+    <div
+      class="transition-all duration-150 ease-in p-2 relative"
+      [ngClass]="selectedItem ? 'w-3/5' : 'hidden'"
+    >
+      {{ selectedItem | json }}
+      <button
+        class="rounded-full p-1 absolute -top-2 right-0"
+        (click)="selectedItem = undefined"
+      >
+        <mat-icon>close</mat-icon>
+      </button>
+    </div>
+  } @else {
+    <div class="w-full h-full flex">
+      <mat-icon
+        class="animate-bounce duration-200 m-auto"
+        svgIcon="notion"
+      ></mat-icon>
     </div>
   }
-} @else {
-} -->
-
-<div class="w-full h-full flex">
-  <mat-icon
-    class="animate-bounce duration-200 m-auto"
-    svgIcon="notion"
-  ></mat-icon>
 </div>

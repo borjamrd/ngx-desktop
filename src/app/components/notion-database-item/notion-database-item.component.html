@@ -1,4 +1,18 @@
-<h2>{{ item.name }}</h2>
-@for (tag of item.tags; track $index) {
-  <span>{{ tag }}</span>
-}
+<div
+  class="hover:bg-neutral-600/50 px-2 py-1 rounded-sm flex justify-between cursor-pointer"
+  (click)="itemSelected.emit(item)"
+>
+  <div class="flex gap-2 items-baseline">
+    <span class="font-semibold">{{ item.name }}</span>
+    <span
+      class="px-1.5 py-0.5 text-nowrap rounded-md"
+      [ngClass]="classByStatus"
+      >{{ item.status }}</span
+    >
+  </div>
+  <div class="flex gap-2 flex-wrap items-baseline justify-end">
+    @for (tag of item.tags; track $index) {
+      <span class="bg-slate-500/40 rounded-md px-1.5 py-0.5">{{ tag }}</span>
+    }
+  </div>
+</div>

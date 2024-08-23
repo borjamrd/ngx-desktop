@@ -9,6 +9,7 @@ export interface NotionDatabaseItem {
   tags: string[];
   date: string;
   description: string;
+  status: string;
 }
 @Injectable({
   providedIn: 'root'

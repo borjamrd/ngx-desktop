@@ -69,7 +69,7 @@ export class NotionContainerComponent {
 
       this.dialogRef.removePanelClass('fullscreen');
       this.dialogRef.addPanelClass('not-fullscreen');
-      this.dialogRef.updateSize('1200px', '600px');
+      this.dialogRef.updateSize('800px', '600px');
 
     }
 
