@@ -4,6 +4,13 @@
       {{ notionBlock.properties.title[0] }}
     </li>
   }
+  @case ("numbered_list") {
+    <ol>
+      <li class="list-item">
+        {{ notionBlock.properties.title[0] }}
+      </li>
+    </ol>
+  }
   @case ("page") {}
   @case ("collection_view_page") {}
   @case ("header") {
@@ -54,6 +61,16 @@
       notionBlock.properties.title[0][1][0] == "s"
     ) {
       <p class="line-through">{{ notionBlock.properties.title[0][0] }}</p>
+    } @else if (
+      notionBlock.properties.title[0].length > 1 &&
+      notionBlock.properties.title[0][1][0] == "c"
+    ) {
+      <code>
+        <span
+          class="text-wrap px-2 py-1 rounded-md bg-red-400/50 text-red-950"
+          >{{ notionBlock.properties.title[0][0] }}</span
+        >
+      </code>
     } @else {
       <p>{{ notionBlock.properties.title[0] }}</p>
     }
