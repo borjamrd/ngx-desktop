@@ -1,0 +1,8 @@
+<div [class]="'flex gap-2 flex-wrap justify-' + justify">
+  @for (tag of tags; track $index) {
+    <span
+      class="bg-slate-500/40 rounded-md px-1.5 py-0.5 text-slate-800 dark:text-white"
+      >{{ tag }}</span
+    >
+  }
+</div>

@@ -1,7 +1,8 @@
 ::ng-deep .dark .mat-mdc-dialog-container {
+    --mdc-dialog-container-color: rgb(38 38 38 / 0.6);
+    backdrop-filter: blur(20px);
 
     :active {
-
         .mdc-dialog__surface {
             box-shadow: 0 0 0 1px rgba(56, 56, 56, 0.1), 0 2px 4px rgba(56, 56, 56, 0.1);
         }
@@ -9,6 +10,8 @@
 }
 
 ::ng-deep .light .mat-mdc-dialog-container {
+    backdrop-filter: blur(20px);
+    --mdc-dialog-container-color: rgba(255, 255, 255, 0.6);
 
     :active {
         .mdc-dialog__surface {
@@ -43,7 +46,7 @@
 }
 
 ::ng-deep {
-    .cdk-overlay-container .window-container {
+    .cdk-overlay-container .notion-container {
         z-index: 5 !important;
     }
 }

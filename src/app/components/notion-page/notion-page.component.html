@@ -1,3 +1,33 @@
+<div class="border-b pb-6 mb-6 border-slate-400 dark:border-slate-300">
+  <h1 class="text-3xl font-bold mb-0">{{ item.name }}</h1>
+  <table class="table-auto w-full mt-5 border-separate border-spacing-y-3">
+    <tbody>
+      @for (itemKv of item | keyvalue; track $index) {
+        <tr class="text-left table-row">
+          @switch (itemKv.key) {
+            @case ("status") {
+              <td>{{ itemKv.key | titlecase }}</td>
+              <td>
+                <bm-notion-badge-status [status]="item.status" />
+              </td>
+            }
+            @case ("tags") {
+              <td>{{ itemKv.key }}</td>
+              <td>
+                <bm-notion-item-tags justify="start" [tags]="item.tags" />
+              </td>
+            }
+            @default {
+              <td>{{ itemKv.key }}</td>
+              <td>{{ itemKv.value }}</td>
+            }
+          }
+        </tr>
+      }
+    </tbody>
+  </table>
+</div>
+
 @if (loading) {
   <div>loading</div>
 } @else {

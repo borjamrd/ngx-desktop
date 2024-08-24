@@ -30,11 +30,11 @@ export class NotionService {
     return this.http.get<Map<string, any>>(`https://notion-api.splitbee.io/v1/page/${id}`)
       .pipe(
         map((data: Object) => {
-          console.log(data)
           let blocks: NotionBlock[] = [];
           Object.values(data).forEach((key: { value: NotionBlock, role: string }) => {
             blocks.push(key.value)
           });
+          console.log(blocks)
           return blocks;
         })
 

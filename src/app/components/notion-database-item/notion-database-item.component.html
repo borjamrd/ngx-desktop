@@ -4,18 +4,7 @@
 >
   <div class="flex gap-2 items-baseline">
     <span class="font-semibold">{{ item.name }}</span>
-    <span
-      class="px-1.5 py-0.5 text-nowrap rounded-md"
-      [ngClass]="classByStatus"
-      >{{ item.status }}</span
-    >
+    <bm-notion-badge-status [status]="item.status" />
   </div>
-  <div class="flex gap-2 flex-wrap items-baseline justify-end">
-    @for (tag of item.tags; track $index) {
-      <span
-        class="bg-slate-500/40 rounded-md px-1.5 py-0.5 text-slate-800 dark:text-white"
-        >{{ tag }}</span
-      >
-    }
-  </div>
+  <bm-notion-item-tags [tags]="item.tags" />
 </div>

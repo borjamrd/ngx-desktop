@@ -35,11 +35,27 @@
       <p class="italic">{{ notionBlock.properties.title[0][0] }}</p>
     } @else if (
       notionBlock.properties.title[0].length > 1 &&
+      notionBlock.properties.title[0][1][0][0] == "a"
+    ) {
+      <a
+        target="_blank"
+        [title]="notionBlock.properties.title[0][1][0][1]"
+        [href]="notionBlock.properties.title[0][1][0][1]"
+        class="underline text-slate-700 dark:text-slate-400"
+        >{{ notionBlock.properties.title[0][0] }}</a
+      >
+    } @else if (
+      notionBlock.properties.title[0].length > 1 &&
       notionBlock.properties.title[0][1][0] == "_"
     ) {
       <p class="underline">{{ notionBlock.properties.title[0][0] }}</p>
+    } @else if (
+      notionBlock.properties.title[0].length > 1 &&
+      notionBlock.properties.title[0][1][0] == "s"
+    ) {
+      <p class="line-through">{{ notionBlock.properties.title[0][0] }}</p>
     } @else {
-      <p>{{ notionBlock.properties.title[0][0] }}</p>
+      <p>{{ notionBlock.properties.title[0] }}</p>
     }
   }
   @default {

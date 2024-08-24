@@ -1,6 +1,6 @@
 ::ng-deep .dark .mat-mdc-dialog-container {
     --mdc-dialog-container-color: rgb(38 38 38 / 0.6);
-    backdrop-filter: blur(10px);
+    backdrop-filter: blur(20px);
 
     :active {
 
@@ -11,7 +11,7 @@
 }
 
 ::ng-deep .light .mat-mdc-dialog-container {
-    backdrop-filter: blur(10px);
+    backdrop-filter: blur(20px);
     --mdc-dialog-container-color: rgba(255, 255, 255, 0.6);
 
     :active {

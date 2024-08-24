@@ -32,7 +32,7 @@ export const MEDIUM_DIALOG_CONFIG: MatDialogConfig = {
   maxHeight: 'calc(100vh - 3rem)', //tasksbar height
   width: '800px',
   height: '600px',
-  panelClass: 'window-container',
+  panelClass: 'medium-container',
   hasBackdrop: false,
   autoFocus: true,
   restoreFocus: false,
@@ -52,9 +52,9 @@ export const FOLDER_DIALOG_CONFIG: MatDialogConfig = {
 export const NOTION_DIALOG_CONFIG: MatDialogConfig = {
   maxWidth: '100vw',
   maxHeight: 'calc(100vh - 3rem)', //tasksbar height
-  width: '800px',
+  width: '1000px',
   height: '600px',
-  panelClass: 'window-container',
+  panelClass: 'notion-container',
   hasBackdrop: false,
   autoFocus: true,
   restoreFocus: false
