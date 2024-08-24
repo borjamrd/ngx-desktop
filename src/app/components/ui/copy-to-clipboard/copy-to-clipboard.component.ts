@@ -12,7 +12,8 @@ import { MatIconModule } from '@angular/material/icon';
 export class CopyToClipboardComponent {
 
   copied = signal<boolean>(false)
-  @Input() text!: string;
+  @Input() displayText!: string;
+  @Input() value!: string
 
   async copyToClipboard() {
     this.copied.set(true)

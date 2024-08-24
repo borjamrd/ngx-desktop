@@ -1,12 +1,12 @@
 <div
   (click)="copyToClipboard()"
-  [cdkCopyToClipboard]="text"
-  class="flex gap-2 px-2 py-1 bg-green-100 dark:bg-green-100/20 dark:text-white text-green-800 items-center rounded-md cursor-pointer"
+  [cdkCopyToClipboard]="value"
+  class="flex gap-2 px-2 py-1 bg-green-100 dark:bg-green-100/20 dark:text-white text-green-800 items-center rounded-md cursor-pointer active:animate-button-pop"
 >
   @if (copied()) {
     <mat-icon>check</mat-icon>
   } @else {
     <mat-icon>content_copy</mat-icon>
   }
-  <span>{{ text }}</span>
+  <span>{{ displayText }}</span>
 </div>

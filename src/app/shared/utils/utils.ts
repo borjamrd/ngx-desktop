@@ -52,7 +52,7 @@ export const FOLDER_DIALOG_CONFIG: MatDialogConfig = {
 export const NOTION_DIALOG_CONFIG: MatDialogConfig = {
   maxWidth: '100vw',
   maxHeight: 'calc(100vh - 3rem)', //tasksbar height
-  width: '1000px',
+  width: '1250px',
   height: '600px',
   panelClass: 'notion-container',
   hasBackdrop: false,

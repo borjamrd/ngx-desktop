@@ -1,3 +1,10 @@
-// :host {
-//     display: flex;
+// .custom {
+//     counter-reset: number;
+// }
+
+// .custom li::before {
+//     counter-increment: number;
+//     content: counter(number) ". ";
+//     font-weight: bold;
+//     color: #ff0000;
 // }

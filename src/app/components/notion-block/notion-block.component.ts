@@ -1,16 +1,29 @@
-import { Component, Input } from '@angular/core';
+import { CommonModule } from '@angular/common';
+import { Component, Input, OnChanges, OnInit, SimpleChanges } from '@angular/core';
 import { NotionBlock } from '../notion-page/notion.interface';
-import { CommonModule, JsonPipe } from '@angular/common';
+import { NotionBlockCodeComponent } from "../notion-block-code/notion-block-code.component";
 
 @Component({
   selector: 'bm-notion-block',
   standalone: true,
-  imports: [CommonModule],
+  imports: [CommonModule, NotionBlockCodeComponent],
   templateUrl: './notion-block.component.html',
   styleUrl: './notion-block.component.scss'
 })
-export class NotionBlockComponent {
+export class NotionBlockComponent implements OnInit {
 
   @Input() notionBlock!: NotionBlock
+  @Input() previousBlockType!: NotionBlock['type']
+
+  numberedListPosition = 1
+
+  ngOnInit(): void {
+    if (this.notionBlock.type === 'numbered_list' && this.previousBlockType === 'numbered_list') {
+      this.numberedListPosition = this.numberedListPosition + 1
+    } else {
+      this.numberedListPosition = 1
+    }
+  }
+
 
 }

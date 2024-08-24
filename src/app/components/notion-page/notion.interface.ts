@@ -2,7 +2,7 @@ export interface NotionBlock {
     id: string;
     version: number;
     type: NotionBlockType;
-    properties: Properties;
+    properties?: Properties;
     content?: string[];
     created_time: number;
     last_edited_time: number;
@@ -14,6 +14,7 @@ export interface NotionBlock {
 
 export interface Properties {
     title: Array<string[]>;
+    language?: [string];
 }
 
 

@@ -1,4 +1,4 @@
-<div class="flex h-full w-full gap-2 relative">
+<div class="flex h-full w-full gap-2 relative p-2 lg:px-6 py-6">
   @if (notionPageItems$ | async; as items) {
     <div
       class="transition-all duration-150 ease-in"
@@ -14,21 +14,20 @@
       }
     </div>
     <div
-      class="transition-all duration-150 ease-in p-2 relative"
+      class="transition-all duration-150 ease-in relative"
       [ngClass]="
         selectedItem ? 'w-full md:w-3/5 h-full overflow-auto' : 'hidden'
       "
     >
       @if (selectedItem) {
+        <button
+          class="rounded-full p-1 sticky float-end top-0"
+          (click)="selectedItem = undefined"
+        >
+          <mat-icon>close</mat-icon>
+        </button>
         <bm-notion-page [item]="selectedItem" />
       }
-
-      <button
-        class="rounded-full p-1 sticky float-end"
-        (click)="selectedItem = undefined"
-      >
-        <mat-icon>close</mat-icon>
-      </button>
     </div>
   } @else {
     <div class="w-full h-full flex">

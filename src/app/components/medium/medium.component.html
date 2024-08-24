@@ -1,7 +1,10 @@
 <div class="flex h-full flex-col w-full">
   <div class="mx-auto p-4 flex flex-col gap-1 items-center">
     <bm-input placeholder="borjamrd1" [formControl]="account" />
-    <bm-copy-to-clipboard text="https://medium.com/&#64;{{ account.value }}" />
+    <bm-copy-to-clipboard
+      value="https://medium.com/&#64;{{ account.value }}"
+      displayText="https://medium.com/&#64;{{ account.value }}"
+    />
   </div>
 
   @if ({ posts: posts$ | async, error: postsError$ | async }; as data) {

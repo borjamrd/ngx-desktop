@@ -31,7 +31,7 @@
 @if (loading) {
   <div>loading</div>
 } @else {
-  <div class="flex flex-col gap-1">
+  <div class="flex flex-col gap-2">
     @for (notionBlock of notionBlocks; track $index) {
       @if (
         notionBlock.type !== "page" &&
@@ -39,20 +39,26 @@
       ) {
         <ng-container
           [ngTemplateOutlet]="treeBlock"
-          [ngTemplateOutletContext]="{ $implicit: notionBlock }"
+          [ngTemplateOutletContext]="{
+            $implicit: notionBlock,
+            prevBlockType: notionBlocks[$index - 1].type
+          }"
         ></ng-container>
       }
     }
   </div>
 }
-<ng-template #treeBlock let-data>
-  <bm-notion-block [notionBlock]="data" />
+<ng-template #treeBlock let-data let-prevBlockType="prevBlockType">
+  <bm-notion-block [previousBlockType]="prevBlockType" [notionBlock]="data" />
   @if (data?.content; as childBlocks) {
     @for (child of childBlocks; track $index) {
       <div class="ms-10">
         <ng-container
           [ngTemplateOutlet]="treeBlock"
-          [ngTemplateOutletContext]="{ $implicit: getchildContent(child) }"
+          [ngTemplateOutletContext]="{
+            $implicit: getchildContent(child),
+            prevBlockType: childBlocks[$index - 1]?.type
+          }"
         ></ng-container>
       </div>
     }

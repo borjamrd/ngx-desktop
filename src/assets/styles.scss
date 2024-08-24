@@ -1,6 +1,7 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+@import 'highlight.js/styles/monokai.css';
 
 html,
 body {
@@ -15,6 +16,6 @@ body {
 ol {
   list-style: decimal !important;
   margin-left: 0.5rem !important;
-  padding: 0 !important;
+  padding: 0.5rem !important;
 
 }
