@@ -1,66 +1,72 @@
-<div class="border-b pb-6 mb-6 border-slate-400 dark:border-slate-300">
-  <h1 class="text-3xl font-bold mb-0">{{ item.name }}</h1>
-  <table class="table-auto w-full mt-5 border-separate border-spacing-y-3">
-    <tbody>
-      @for (itemKv of item | keyvalue; track $index) {
-        <tr class="text-left table-row">
-          @switch (itemKv.key) {
-            @case ("status") {
-              <td>{{ itemKv.key | titlecase }}</td>
-              <td>
-                <bm-notion-badge-status [status]="item.status" />
-              </td>
+<div class="max-w-4xl">
+  <div class="border-b pb-6 mb-6 border-slate-400 dark:border-slate-300">
+    <h1 class="text-3xl font-bold mb-0">{{ item.name }}</h1>
+    <table class="table-auto w-full mt-5 border-separate border-spacing-y-3">
+      <tbody>
+        @for (itemKv of item | keyvalue; track $index) {
+          <tr class="text-left table-row">
+            @switch (itemKv.key) {
+              @case ("status") {
+                <td>{{ itemKv.key | titlecase }}</td>
+                <td>
+                  <bm-notion-badge-status [status]="item.status" />
+                </td>
+              }
+              @case ("tags") {
+                <td>{{ itemKv.key }}</td>
+                <td>
+                  <bm-notion-item-tags justify="start" [tags]="item.tags" />
+                </td>
+              }
+              @default {
+                <td>{{ itemKv.key }}</td>
+                <td>{{ itemKv.value }}</td>
+              }
             }
-            @case ("tags") {
-              <td>{{ itemKv.key }}</td>
-              <td>
-                <bm-notion-item-tags justify="start" [tags]="item.tags" />
-              </td>
-            }
-            @default {
-              <td>{{ itemKv.key }}</td>
-              <td>{{ itemKv.value }}</td>
-            }
-          }
-        </tr>
-      }
-    </tbody>
-  </table>
-</div>
-
-@if (loading) {
-  <div>loading</div>
-} @else {
-  <div class="flex flex-col gap-2">
-    @for (notionBlock of notionBlocks; track $index) {
-      @if (
-        notionBlock.type !== "page" &&
-        notionBlock.type !== "collection_view_page"
-      ) {
-        <ng-container
-          [ngTemplateOutlet]="treeBlock"
-          [ngTemplateOutletContext]="{
-            $implicit: notionBlock,
-            prevBlockType: notionBlocks[$index - 1].type
-          }"
-        ></ng-container>
-      }
-    }
+          </tr>
+        }
+      </tbody>
+    </table>
   </div>
-}
-<ng-template #treeBlock let-data let-prevBlockType="prevBlockType">
-  <bm-notion-block [previousBlockType]="prevBlockType" [notionBlock]="data" />
-  @if (data?.content; as childBlocks) {
-    @for (child of childBlocks; track $index) {
-      <div class="ms-10">
-        <ng-container
-          [ngTemplateOutlet]="treeBlock"
-          [ngTemplateOutletContext]="{
-            $implicit: getchildContent(child),
-            prevBlockType: childBlocks[$index - 1]?.type
-          }"
-        ></ng-container>
-      </div>
-    }
+
+  @if (loading) {
+    <div>loading</div>
+  } @else {
+    <div class="flex flex-col gap-2 px-2">
+      @for (notionBlock of notionBlocks; track $index) {
+        @defer (on viewport) {
+          @if (
+            notionBlock.type !== "page" &&
+            notionBlock.type !== "collection_view_page"
+          ) {
+            <ng-container
+              [ngTemplateOutlet]="treeBlock"
+              [ngTemplateOutletContext]="{
+                $implicit: notionBlock,
+                prevBlockType: notionBlocks[$index - 1].type
+              }"
+            ></ng-container>
+          }
+        } @placeholder {
+          <div>Loading</div>
+        }
+      }
+    </div>
   }
-</ng-template>
+  <ng-template #treeBlock let-data let-prevBlockType="prevBlockType">
+    <bm-notion-block [previousBlockType]="prevBlockType" [notionBlock]="data" />
+    @if (data?.content; as childBlocks) {
+      @for (child of childBlocks; track $index) {
+        <div class="ms-10">
+          <ng-container
+            [ngTemplateOutlet]="treeBlock"
+            [ngTemplateOutletContext]="{
+              $implicit: getchildContent(child),
+              prevBlockType: childBlocks[$index - 1]?.type
+            }"
+          ></ng-container>
+        </div>
+      }
+    }
+  </ng-template>
+</div>

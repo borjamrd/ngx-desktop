@@ -1,3 +1,4 @@
+
 export interface NotionBlock {
     id: string;
     version: number;
@@ -10,12 +11,46 @@ export interface NotionBlock {
     parent_table: string;
     alive: boolean;
     space_id: string;
+    format?: Format;
 }
+
+export interface Format {
+    page_icon: string;
+    block_color: string;
+    copied_from_pointer: CopiedFromPointer;
+}
+
+export interface CopiedFromPointer {
+    id: string;
+    table: string;
+    spaceId: string;
+}
+
 
 export interface Properties {
     title: Array<string[]>;
-    language?: [string];
+    language?: Array<string[]>;
+    checked?: 'Yes' | 'No'[];
+    size?: Array<string[]>;
+    source?: Array<string[]>;
 }
 
 
-export type NotionBlockType = 'page' | 'collection_view_page' | 'header' | 'sub_header' | 'sub_sub_header' | 'text' | 'bulleted_list' | 'numbered_list' | 'quote' | 'divider' | 'code' | 'to_do'
+export type NotionBlockType =
+    'page'
+    | 'collection_view_page'
+    | 'header'
+    | 'sub_header'
+    | 'sub_sub_header'
+    | 'text'
+    | 'bulleted_list'
+    | 'numbered_list'
+    | 'quote'
+    | 'divider'
+    | 'code'
+    | 'to_do'
+    | 'callout'
+    | 'image'
+
+
+export type MapImageUrl = (image: string, block?: NotionBlock['type']) => string;

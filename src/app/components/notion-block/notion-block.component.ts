@@ -2,11 +2,12 @@ import { CommonModule } from '@angular/common';
 import { Component, Input, OnChanges, OnInit, SimpleChanges } from '@angular/core';
 import { NotionBlock } from '../notion-page/notion.interface';
 import { NotionBlockCodeComponent } from "../notion-block-code/notion-block-code.component";
+import { NotionBlockImageComponent } from "../notion-block-image/notion-block-image.component";
 
 @Component({
   selector: 'bm-notion-block',
   standalone: true,
-  imports: [CommonModule, NotionBlockCodeComponent],
+  imports: [CommonModule, NotionBlockCodeComponent, NotionBlockImageComponent],
   templateUrl: './notion-block.component.html',
   styleUrl: './notion-block.component.scss'
 })

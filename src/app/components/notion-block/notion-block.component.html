@@ -71,11 +71,34 @@
           >
         </code>
       } @else {
-        <p>{{ notionBlock.type }}</p>
+        <p>{{ notionBlock.properties.title[0] }}</p>
       }
     }
     @case ("code") {
       <bm-notion-block-code [notionBlock]="notionBlock" />
+    }
+    @case ("to_do") {
+      <div class="flex items-center gap-2">
+        <input
+          class="h-4 w-4"
+          type="checkbox"
+          [checked]="notionBlock.properties.checked"
+        />
+        <p [ngClass]="notionBlock.properties.checked ? 'line-through' : ''">
+          {{ notionBlock.properties.title[0] }}
+        </p>
+      </div>
+    }
+    @case ("callout") {
+      <div
+        class="flex items-center gap-2 p-2 bg-yellow-100/25 dark:bg-yellow-100/20 dark:text-white text-yellow-800 rounded-md"
+      >
+        <span>{{ notionBlock.format?.page_icon }}</span>
+        <p>{{ notionBlock.properties.title[0] }}</p>
+      </div>
+    }
+    @case ("image") {
+      <bm-notion-block-image [notionBlock]="notionBlock" />
     }
     @default {
       <p>{{ notionBlock.type }}</p>
