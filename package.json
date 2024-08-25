@@ -1,5 +1,5 @@
 {
-  "name": "desktop-rocket",
+  "name": "ngx-desktop",
   "version": "0.0.0",
   "scripts": {
     "ng": "ng",
