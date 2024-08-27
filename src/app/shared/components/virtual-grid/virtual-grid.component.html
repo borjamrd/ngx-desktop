@@ -4,7 +4,7 @@
     (contextmenu)="onRightClickGridContainer($event)"
     [cols]="cols"
     [rowHeight]="rowHeight"
-    [layout]="layout"
+    [layout]="layout()"
     [compactType]="compactType"
     [preventCollision]="preventCollision"
     [scrollableParent]="autoScroll ? document : null"
@@ -14,7 +14,7 @@
     (dragEnded)="onDragEnded($event)"
     (resizeEnded)="onResizeEnded($event)"
   >
-    @for (element of layout; track $index) {
+    @for (element of layout(); track $index) {
       <ktd-grid-item [resizable]="element.resizable" [id]="element.id">
         <bm-cell-container [parentIsDesktop]="true" [element]="element" />
         <ng-template ktdGridItemPlaceholder> </ng-template>

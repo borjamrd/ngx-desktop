@@ -9,10 +9,10 @@ import {
   DestroyRef,
   ElementRef,
   inject,
-  Input,
+  model,
   OnDestroy,
   OnInit,
-  ViewChild
+  viewChild
 } from '@angular/core';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 import { MatSelectChange } from '@angular/material/select';
@@ -25,7 +25,6 @@ import {
   KtdResizeStart,
   ktdTrackById
 } from '@katoid/angular-grid-layout';
-import { LayoutService } from 'app/shared/services/layout.service';
 import { SystemElement } from 'app/shared/types/system-element.type';
 import { transitions } from 'app/shared/utils/transitions';
 import { ktdArrayRemoveElement } from 'app/shared/utils/utils';
@@ -44,12 +43,17 @@ import { CellContainerComponent } from '../cell-container/cell-container.compone
 })
 export class VirtualGridComponent implements OnInit, AfterContentChecked, OnDestroy {
 
-
-  @Input() layout: SystemElement[] = []
-  @ViewChild(KtdGridComponent, { static: true }) grid!: KtdGridComponent;
-  @ViewChild('gridContainer', { static: true }) gridContainer!: ElementRef;
-
   trackById = ktdTrackById;
+
+  private cdr = inject(ChangeDetectorRef);
+  private destroyRef: DestroyRef = inject(DestroyRef);
+
+  public document: Document = inject(DOCUMENT);
+  public elementRef: ElementRef = inject(ElementRef);
+  public grid = viewChild<KtdGridComponent>(KtdGridComponent)
+  public gridContainer = viewChild<ElementRef>('gridContainer')
+  public layout = model<SystemElement[]>([])
+
 
   BREAK_POINT_X_SMALL_COLS = 3;
   BREAK_POINT_SMALL_COLS = 6;
@@ -78,17 +82,9 @@ export class VirtualGridComponent implements OnInit, AfterContentChecked, OnDest
   isDragging = false;
   isResizing = false;
   resizeSubscription!: Subscription;
-
-
-
   containerWidth: number = 0;
   containerHeight: number = 0;
 
-  public elementRef: ElementRef = inject(ElementRef);
-  public document: Document = inject(DOCUMENT);
-  layoutService = inject(LayoutService)
-  private destroyRef: DestroyRef = inject(DestroyRef);
-  private cdr = inject(ChangeDetectorRef);
 
   constructor() {
     fromEvent(window, 'resize')
@@ -108,15 +104,15 @@ export class VirtualGridComponent implements OnInit, AfterContentChecked, OnDest
         filter(() => this.autoResize),
       )
       .subscribe(() => {
-        this.grid.resize();
+        this.grid()!.resize();
       });
 
 
   }
 
   ngAfterContentChecked(): void {
-    this.containerWidth = this.gridContainer.nativeElement.clientWidth;
-    this.containerHeight = this.gridContainer.nativeElement.clientHeight;
+    this.containerWidth = this.gridContainer()!.nativeElement.clientWidth;
+    this.containerHeight = this.gridContainer()!.nativeElement.clientHeight;
     this.setColumnsAndRowHeight()
   }
 
@@ -191,7 +187,7 @@ export class VirtualGridComponent implements OnInit, AfterContentChecked, OnDest
   }
   /** Adds a grid element to the layout */
   addElementToLayout() {
-    const maxId = this.layout.reduce(
+    const maxId = this.layout().reduce(
       (acc, cur) => Math.max(acc, parseInt(cur.id, 10)),
       -1,
     );
@@ -201,7 +197,9 @@ export class VirtualGridComponent implements OnInit, AfterContentChecked, OnDest
   /** Removes the element from the layout */
   removeElement(id: string) {
     // Important: Don't mutate the array. Let Angular know that the layout has changed creating a new reference.
-    this.layout = ktdArrayRemoveElement(this.layout, (element) => element.id === id);
+
+    const updatedLayout = ktdArrayRemoveElement(this.layout(), (element) => element.id === id);
+    this.layout.update(() => updatedLayout);
   }
 
   setColumnsAndRowHeight() {
