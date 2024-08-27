@@ -12,6 +12,9 @@ import { customIcons } from './shared/types/icon.type';
   imports: [RouterOutlet, NgClass],
   templateUrl: './app.component.html',
   styleUrl: './app.component.scss',
+  // host: {
+  //   class: 'h-screen w-screen'
+  // }
 })
 export class AppComponent {
   title = 'desktop-rocket';

@@ -20,6 +20,9 @@ import { MainSearchInputComponent } from '@components/main-search-input/main-sea
   ],
   templateUrl: './tasksbar.component.html',
   styleUrl: './tasksbar.component.scss',
+  host: {
+    class: 'z-[99999] absolute h-12 backdrop-blur-lg bottom-0 w-full px-3 py-1 hidden sm:flex border-t-[1px] border-slate-200 shadow-teal-300 dark:border-t-gray-600 bg-slate-100/60 dark:bg-neutral-600/40 shadow-sm items-center'
+  }
 })
 export class TasksbarComponent {
   themeService: ThemeService = inject(ThemeService);

@@ -1,23 +1,19 @@
-<div
-  class="z-[99999] absolute h-12 backdrop-blur-lg bottom-0 w-full px-3 py-1 hidden sm:flex border-t-[1px] border-slate-200 shadow-teal-300 dark:border-t-gray-600 bg-slate-100/60 dark:bg-neutral-600/40 shadow-sm items-center"
->
-  <div class="flex gap-2 items-center justify-between w-full">
-    <div class="w-1/5">sun</div>
-    <div class="w-3/5 flex justify-center gap-2">
-      <bm-main-search-input />
-      @if (activeFolders$ | async; as activeFolders) {
-        <bm-active-folders [activeFolders]="activeFolders" />
+<div class="flex gap-2 items-center justify-between w-full">
+  <div class="w-1/5">sun</div>
+  <div class="w-3/5 flex justify-center gap-2">
+    <bm-main-search-input />
+    @if (activeFolders$ | async; as activeFolders) {
+      <bm-active-folders [activeFolders]="activeFolders" />
+    }
+  </div>
+  <div class="flex w-1/5 justify-end gap-2">
+    <mat-slide-toggle checked (click)="toggleTheme()"></mat-slide-toggle>
+    <button class="flex items-center justify-center" mat-icon-button>
+      @if (themeService.themeSignal() === "dark") {
+        <mat-icon>bedtime</mat-icon>
+      } @else {
+        <mat-icon>brightness_7</mat-icon>
       }
-    </div>
-    <div class="flex w-1/5 justify-end gap-2">
-      <mat-slide-toggle checked (click)="toggleTheme()"></mat-slide-toggle>
-      <button class="flex items-center justify-center" mat-icon-button>
-        @if (themeService.themeSignal() === "dark") {
-          <mat-icon>bedtime</mat-icon>
-        } @else {
-          <mat-icon>brightness_7</mat-icon>
-        }
-      </button>
-    </div>
+    </button>
   </div>
 </div>
