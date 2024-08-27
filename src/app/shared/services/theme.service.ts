@@ -6,7 +6,6 @@ import { inject, Injectable, Renderer2, RendererFactory2, signal } from '@angula
 })
 export class ThemeService {
 
-  //must be initialized in app-component
   themeSignal = signal<string>('dark');
 
   document: Document = inject(DOCUMENT)

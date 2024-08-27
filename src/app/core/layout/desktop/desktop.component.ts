@@ -15,7 +15,6 @@ import { TasksbarComponent } from '../tasksbar/tasksbar.component';
 export class DesktopComponent {
 
   private folderService: FileExplorerService = inject(FileExplorerService);
-
   layout: SystemElement[] = this.folderService.systemFiles()[0].children || [];
 
 
