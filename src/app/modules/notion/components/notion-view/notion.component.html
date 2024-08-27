@@ -1,40 +1,36 @@
-<div class="flex h-full w-full gap-5 relative p-2 lg:px-6 py-6">
-  @if (notionPageItems$ | async; as items) {
-    <div
-      class="transition-all duration-150 ease-in"
-      [ngClass]="selectedItem ? 'hidden md:block md:w-2/5' : 'w-full'"
-    >
-      @for (item of items; track $index) {
-        <div class="notion-item">
-          <bm-notion-database-item
-            (itemSelected)="setItemSelected($event)"
-            [item]="item"
-          />
-        </div>
-      }
-    </div>
-    <div
-      class="transition-all duration-150 ease-in relative"
-      [ngClass]="
-        selectedItem ? 'w-full md:w-3/5 h-full overflow-auto' : 'hidden'
-      "
-    >
-      @if (selectedItem) {
-        <button
-          class="rounded-full p-1 sticky float-end top-0"
-          (click)="selectedItem = undefined"
-        >
-          <mat-icon>close</mat-icon>
-        </button>
-        <bm-notion-page [item]="selectedItem" />
-      }
-    </div>
-  } @else {
-    <div class="w-full h-full flex">
-      <mat-icon
-        class="animate-bounce duration-200 m-auto"
-        svgIcon="notion"
-      ></mat-icon>
-    </div>
-  }
-</div>
+@if (notionPageItems$ | async; as items) {
+  <div
+    class="transition-all duration-150 ease-in"
+    [ngClass]="selectedItem ? 'hidden md:block md:w-2/5' : 'w-full'"
+  >
+    @for (item of items; track $index) {
+      <div class="notion-item">
+        <bm-notion-database-item
+          (itemSelected)="setItemSelected($event)"
+          [item]="item"
+        />
+      </div>
+    }
+  </div>
+  <div
+    class="transition-all duration-150 ease-in relative"
+    [ngClass]="selectedItem ? 'w-full md:w-3/5 h-full overflow-auto' : 'hidden'"
+  >
+    @if (selectedItem) {
+      <button
+        class="rounded-full p-1 sticky float-end top-0"
+        (click)="selectedItem = undefined"
+      >
+        <mat-icon>close</mat-icon>
+      </button>
+      <bm-notion-page [item]="selectedItem" />
+    }
+  </div>
+} @else {
+  <div class="w-full h-full flex">
+    <mat-icon
+      class="animate-bounce duration-200 m-auto"
+      svgIcon="notion"
+    ></mat-icon>
+  </div>
+}

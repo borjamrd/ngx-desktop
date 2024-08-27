@@ -1,4 +1,4 @@
-import { Component, DestroyRef, forwardRef, inject, Input } from '@angular/core';
+import { ChangeDetectionStrategy, Component, DestroyRef, forwardRef, inject, input, Input } from '@angular/core';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 import { ControlValueAccessor, FormBuilder, FormGroup, FormsModule, NG_VALUE_ACCESSOR, ReactiveFormsModule } from '@angular/forms';
 import { MatButtonModule } from '@angular/material/button';
@@ -24,17 +24,19 @@ import { MatInputModule } from '@angular/material/input';
 
   ],
   templateUrl: './input.component.html',
-  styleUrl: './input.component.scss'
+  styleUrl: './input.component.scss',
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class InputComponent implements ControlValueAccessor {
 
   private destroyRef = inject(DestroyRef);
 
-  @Input() placeholder = 'Placeholder';
-  @Input() label!: string;
-  @Input() showLabel = false
-  @Input() prefixIcon!: string;
-  @Input() valueClearable = false;
+  public placeholder = 'Placeholder';
+  public label = input<string>();
+  public showLabel = input<false>(false)
+  public prefixIcon = input<string>();
+  public valueClearable = input<false>(false)
+
 
   form!: FormGroup;
   private onChange = (value: string) => { };

@@ -1,6 +1,6 @@
 <div [formGroup]="form">
   <mat-form-field class="example-form-field md-rounded">
-    @if (showLabel) {
+    @if (showLabel()) {
       <span>
         <mat-label>Clearable input</mat-label>
       </span>
@@ -12,12 +12,12 @@
       matInput
       formControlName="input"
     />
-    @if (prefixIcon) {
+    @if (prefixIcon()) {
       <mat-icon matTextPrefix>
-        {{ prefixIcon }}
+        {{ prefixIcon() }}
       </mat-icon>
     }
-    @if (value && valueClearable) {
+    @if (value && valueClearable()) {
       <button matSuffix aria-label="Clear" (click)="form.reset()">
         <mat-icon>close</mat-icon>
       </button>

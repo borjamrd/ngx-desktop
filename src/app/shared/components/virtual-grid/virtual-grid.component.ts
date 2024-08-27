@@ -100,6 +100,7 @@ export class VirtualGridComponent implements OnInit, AfterContentChecked, OnDest
       fromEvent(window, 'orientationchange'),
     )
       .pipe(
+        takeUntilDestroyed(this.destroyRef),
         debounceTime(50),
         filter(() => this.autoResize),
       )

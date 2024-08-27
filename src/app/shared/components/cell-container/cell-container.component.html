@@ -1,64 +1,62 @@
-<div class="w-full h-full flex items-baseline justify-center">
-  @switch (element.type) {
-    @case ("folder") {
-      <div
-        (contextmenu)="onRightClickGridItem($event)"
-        (dblclick)="open(element)"
-        class="active:backdrop-blur-md active:bg-slate-500/10 hover:backdrop-blur-md hover:bg-slate-500/10 rounded-md aspect-square h-full p-1 cursor-pointer flex flex-col gap-2 items-center"
-      >
-        <ng-container
-          *ngTemplateOutlet="elementContent; context: { $implicit: element }"
-        ></ng-container>
-      </div>
-    }
-    @case ("file") {
-      <div
-        (contextmenu)="onRightClickGridItem($event)"
-        (dblclick)="open(element)"
-        class="active:backdrop-blur-md active:bg-slate-500/10 hover:backdrop-blur-md hover:bg-slate-500/10 rounded-md aspect-square h-full p-1 cursor-pointer flex flex-col gap-1 items-center"
-      >
-        <ng-container
-          *ngTemplateOutlet="elementContent; context: { $implicit: element }"
-        ></ng-container>
-      </div>
-    }
-    @case ("desktop-widget") {
-      <div
-        [ngClass]="element"
-        class="backdrop-blur-md rounded-xl hover:backdrop-blur-md hover:bg-slate-500/10 w-full h-full p-1 cursor-pointer flex flex-col gap-1 items-center"
-      >
-        <ng-container
-          *ngComponentOutlet="
-            element.component;
-            injector: customInjector(element)
-          "
-        ></ng-container>
-      </div>
-    }
-    @default {
-      <div
-        (contextmenu)="onRightClickGridItem($event)"
-        (dblclick)="open(element)"
-        class="active:backdrop-blur-md active:bg-slate-500/10 hover:backdrop-blur-md hover:bg-slate-500/10 rounded-md aspect-square h-full p-1 cursor-pointer flex flex-col gap-1 items-center"
-      >
-        <ng-container
-          *ngTemplateOutlet="elementContent; context: { $implicit: element }"
-        ></ng-container>
-      </div>
-    }
+@switch (element().type) {
+  @case ("folder") {
+    <div
+      (contextmenu)="onRightClickGridItem($event)"
+      (dblclick)="open(element())"
+      class="active:backdrop-blur-md active:bg-slate-500/10 hover:backdrop-blur-md hover:bg-slate-500/10 rounded-md aspect-square h-full p-1 cursor-pointer flex flex-col gap-2 items-center"
+    >
+      <ng-container
+        *ngTemplateOutlet="elementContent; context: { $implicit: element }"
+      ></ng-container>
+    </div>
   }
-</div>
+  @case ("file") {
+    <div
+      (contextmenu)="onRightClickGridItem($event)"
+      (dblclick)="open(element())"
+      class="active:backdrop-blur-md active:bg-slate-500/10 hover:backdrop-blur-md hover:bg-slate-500/10 rounded-md aspect-square h-full p-1 cursor-pointer flex flex-col gap-1 items-center"
+    >
+      <ng-container
+        *ngTemplateOutlet="elementContent; context: { $implicit: element }"
+      ></ng-container>
+    </div>
+  }
+  @case ("desktop-widget") {
+    <div
+      [ngClass]="element"
+      class="backdrop-blur-md rounded-xl hover:backdrop-blur-md hover:bg-slate-500/10 w-full h-full p-1 cursor-pointer flex flex-col gap-1 items-center"
+    >
+      <ng-container
+        *ngComponentOutlet="
+          element().component;
+          injector: customInjector(element())
+        "
+      ></ng-container>
+    </div>
+  }
+  @default {
+    <div
+      (contextmenu)="onRightClickGridItem($event)"
+      (dblclick)="open(element())"
+      class="active:backdrop-blur-md active:bg-slate-500/10 hover:backdrop-blur-md hover:bg-slate-500/10 rounded-md aspect-square h-full p-1 cursor-pointer flex flex-col gap-1 items-center"
+    >
+      <ng-container
+        *ngTemplateOutlet="elementContent; context: { $implicit: element }"
+      ></ng-container>
+    </div>
+  }
+}
 
 <ng-template #elementContent let-element>
-  <bm-system-element-icon [icon]="element.icon" />
+  <bm-system-element-icon [icon]="element().icon" />
   <span
     [ngClass]="
-      parentIsDesktop
+      parentIsDesktop()
         ? 'text-white text-shadow shadow-black'
         : 'text-black dark:text-white'
     "
     class="text-base font-normal"
   >
-    {{ element.name }}
+    {{ element().name }}
   </span>
 </ng-template>

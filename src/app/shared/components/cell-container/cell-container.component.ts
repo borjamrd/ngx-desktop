@@ -1,8 +1,8 @@
 import { NgClass, NgComponentOutlet, NgTemplateOutlet } from '@angular/common';
-import { Component, EventEmitter, inject, Injector, Input, Output } from '@angular/core';
-import { SystemElementIconComponent } from '../system-element-icon/system-element-icon.component';
+import { Component, inject, Injector, input, output } from '@angular/core';
 import { DisplayElementWindowService } from 'app/shared/services/display-element-window.service';
 import { SystemElement } from 'app/shared/types/system-element.type';
+import { SystemElementIconComponent } from '../system-element-icon/system-element-icon.component';
 
 @Component({
   selector: 'bm-cell-container',
@@ -10,18 +10,20 @@ import { SystemElement } from 'app/shared/types/system-element.type';
   imports: [NgClass, NgComponentOutlet, NgTemplateOutlet, SystemElementIconComponent],
   templateUrl: './cell-container.component.html',
   styleUrl: './cell-container.component.scss',
+  host: {
+    class: 'w-full h-full flex items-baseline justify-center'
+  }
 })
 
 export class CellContainerComponent {
 
   private injector: Injector = inject(Injector);
-
-  @Input() element!: SystemElement;
-  @Input() parentIsDesktop: boolean = false;
-  @Output() onRightClick = new EventEmitter<SystemElement['type']>();
-  @Output() onDoubleClick = new EventEmitter<SystemElement['type']>();
-
   private readonly displayElementWindowService: DisplayElementWindowService = inject(DisplayElementWindowService);
+  public element = input.required<SystemElement>();
+
+  public onDoubleClick = output<SystemElement['type']>();
+  public onRightClick = output<SystemElement['type']>();
+  public parentIsDesktop = input<boolean>(false);
 
   onRightClickGridItem(event: MouseEvent): void {
     event.preventDefault();

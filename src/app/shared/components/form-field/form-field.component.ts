@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { ChangeDetectionStrategy, Component } from '@angular/core';
 import { MatFormFieldModule } from '@angular/material/form-field';
 
 @Component({
@@ -6,7 +6,8 @@ import { MatFormFieldModule } from '@angular/material/form-field';
   standalone: true,
   imports: [MatFormFieldModule],
   templateUrl: './form-field.component.html',
-  styleUrl: './form-field.component.scss'
+  styleUrl: './form-field.component.scss',
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class FormFieldComponent implements MatFormFieldModule {
 

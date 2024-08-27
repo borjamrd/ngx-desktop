@@ -1,6 +1,6 @@
 import { DragDropModule } from '@angular/cdk/drag-drop';
 import { AsyncPipe, CommonModule } from '@angular/common';
-import { Component, ElementRef, HostListener, inject, Inject } from '@angular/core';
+import { Component, DestroyRef, ElementRef, HostListener, inject, Inject } from '@angular/core';
 import {
   MAT_DIALOG_DATA,
   MatDialogModule,
@@ -11,6 +11,7 @@ import { FileExplorerService } from 'app/shared/services/file-explorer.service';
 import { SystemElement } from 'app/shared/types/system-element.type';
 import { maxZIndex } from 'app/shared/utils/utils';
 import { CellContainerComponent } from '../../shared/components/cell-container/cell-container.component';
+import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 
 
 //TODO type
@@ -29,6 +30,9 @@ export interface DialogData {
   imports: [MatDialogModule, CellContainerComponent, AsyncPipe, CommonModule, DragDropModule, MatIconModule],
   templateUrl: './window-container.component.html',
   styleUrl: './window-container.component.scss',
+  host: {
+    '(document:click)': 'updateZIndex()'
+  }
 })
 
 
@@ -36,6 +40,7 @@ export class WindowContainerComponent {
 
   private static maxZIndex = 1000;
 
+  private destroyRef = inject(DestroyRef);
   fileExplorerService: FileExplorerService = inject(FileExplorerService);
   isFullScreen: boolean = false
 
@@ -45,17 +50,14 @@ export class WindowContainerComponent {
     @Inject(MAT_DIALOG_DATA) public data: DialogData,
 
     private _elementRef: ElementRef) {
-    this.dialogRef.afterOpened().subscribe(() => {
-      this.updateZIndex();
-    });
+    this.dialogRef.afterOpened()
+      .pipe(takeUntilDestroyed(this.destroyRef))
+      .subscribe(() => {
+        this.updateZIndex();
+      });
 
   }
 
-  @HostListener('click')
-  onClick(): void {
-    this.updateZIndex();
-
-  }
   handleHide(): void {
     this.dialogRef.close();
   }
