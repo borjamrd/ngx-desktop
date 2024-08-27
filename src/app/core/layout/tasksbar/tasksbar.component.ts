@@ -2,10 +2,10 @@ import { AsyncPipe, NgFor, NgIf } from '@angular/common';
 import { Component, inject } from '@angular/core';
 import { MatIconModule } from '@angular/material/icon';
 import { MatSlideToggleModule } from '@angular/material/slide-toggle';
-import { ActiveFoldersComponent } from 'app/components/active-folders/active-folders.component';
-import { FileExplorerService } from 'app/shared/services/file-explorer.service';
-import { ThemeService } from '../../../shared/services/theme.service';
-import { MainSearchInputComponent } from 'app/components/main-search-input/main-search-input.component';
+import { ActiveFoldersComponent } from '@modules/folder/active-folders/active-folders.component';
+import { FileExplorerService } from '@services/file-explorer.service';
+import { ThemeService } from '@services/theme.service';
+import { MainSearchInputComponent } from '@components/main-search-input/main-search-input.component';
 @Component({
   selector: 'bm-tasksbar',
   standalone: true,

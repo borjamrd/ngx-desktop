@@ -1,5 +1,5 @@
 import { KtdGridLayoutItem } from "@katoid/angular-grid-layout";
-import { SpotifyWidgetComponent } from "app/components/spotify-widget/spotify-widget.component";
+import { SpotifyWidgetComponent } from "@modules/desktop/spotify-widget/spotify-widget.component";
 
 export enum ElementType {
     FOLDER = 'folder',

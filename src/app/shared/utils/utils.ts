@@ -1,5 +1,5 @@
 import { MatDialogConfig } from "@angular/material/dialog";
-import { NotionBlock } from "app/components/notion-page/notion.interface";
+import { NotionBlock } from "@modules/notion/types/notion.interface"
 
 /**
  * Removes and item from an array. Returns a new array instance (it doesn't mutate the source array).

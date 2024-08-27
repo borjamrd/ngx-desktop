@@ -1,11 +1,11 @@
 import { inject, Injectable } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
-import { NotionContainerComponent } from 'app/components/notion-container/notion-container.component';
+import { NotionContainerComponent } from '@modules/notion/components/notion-container/notion-container.component';
 import { from } from 'rxjs';
 import { SystemElement } from '../types/system-element.type';
 import { FileExplorerService } from './file-explorer.service';
-import { MediumContainerComponent } from 'app/components/medium-container/medium-container.component';
-import { WindowContainerComponent } from 'app/components/window-container/window-container.component';
+import { MediumContainerComponent } from '@modules/medium/components/medium-container/medium-container.component';
+import { WindowContainerComponent } from '@modules/window-container/window-container.component';
 import { FOLDER_DIALOG_CONFIG, MEDIUM_DIALOG_CONFIG, NOTION_DIALOG_CONFIG } from '../utils/utils';
 
 
@@ -19,7 +19,7 @@ export class DisplayElementWindowService implements IDisplayElementWindowService
 
 
   dialog: MatDialog = inject(MatDialog);
-  private lazzyLoadFolderDatabase$ = from(import('@components/folder-database/folder-database.component').then(component => component.FolderDatabaseComponent));
+  private lazzyLoadFolderDatabase$ = from(import('@modules/folder/folder-database/folder-database.component').then(component => component.FolderDatabaseComponent));
   fileExplorer: FileExplorerService = inject(FileExplorerService);
   public open(element: SystemElement): void {
 

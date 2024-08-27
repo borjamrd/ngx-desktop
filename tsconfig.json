@@ -34,7 +34,16 @@
         "app/core/*"
       ],
       "@components/*": [
-        "app/components/*"
+        "app/shared/components/*"
+      ],
+      "@directives/*": [
+        "app/shared/directives/*"
+      ],
+      "@services/*": [
+        "app/shared/services/*"
+      ],
+      "@modules/*": [
+        "app/modules/*"
       ],
     }
   },
