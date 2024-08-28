@@ -33,7 +33,7 @@ export const MEDIUM_DIALOG_CONFIG: MatDialogConfig = {
   maxHeight: 'calc(100vh - 3rem)', //tasksbar height
   width: '800px',
   height: '600px',
-  panelClass: 'medium-container',
+  panelClass: ['medium-container', 'resizable-mat-dialog-panel'],
   hasBackdrop: false,
   autoFocus: true,
   restoreFocus: false,
@@ -44,7 +44,7 @@ export const FOLDER_DIALOG_CONFIG: MatDialogConfig = {
   maxHeight: 'calc(100vh - 3rem)', //tasksbar height
   width: '800px',
   height: '600px',
-  panelClass: 'resizable-mat-dialog-panel',
+  panelClass: ['resizable-mat-dialog-panel', 'window-container'],
   hasBackdrop: false,
   autoFocus: true,
   restoreFocus: false

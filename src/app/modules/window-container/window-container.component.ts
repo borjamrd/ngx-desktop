@@ -31,7 +31,7 @@ export interface DialogData {
   templateUrl: './window-container.component.html',
   styleUrl: './window-container.component.scss',
   host: {
-    '(document:click)': 'updateZIndex()'
+    '(click)': 'updateZIndex()'
   }
 })
 
@@ -63,7 +63,7 @@ export class WindowContainerComponent {
   }
 
   private updateZIndex(): void {
-    console.log('works')
+    console.log('updateZIndex')
     const dialogElement = this._elementRef.nativeElement.closest('.cdk-global-overlay-wrapper');
     if (dialogElement) {
       dialogElement.style.zIndex = `${WindowContainerComponent.maxZIndex++}`;
