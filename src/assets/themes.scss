@@ -124,6 +124,13 @@ $dark-text-color: #333;
 
 //-------Modal dialog
 
+.resizable-mat-dialog-panel {
+  resize: both;
+  overflow: auto;
+  max-width: unset !important;
+  max-height: unset !important;
+  position: absolute !important;
+}
 
 
 .dark .mat-mdc-dialog-container {

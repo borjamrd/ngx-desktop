@@ -44,7 +44,7 @@ export const FOLDER_DIALOG_CONFIG: MatDialogConfig = {
   maxHeight: 'calc(100vh - 3rem)', //tasksbar height
   width: '800px',
   height: '600px',
-  panelClass: 'window-container',
+  panelClass: 'resizable-mat-dialog-panel',
   hasBackdrop: false,
   autoFocus: true,
   restoreFocus: false
@@ -55,7 +55,7 @@ export const NOTION_DIALOG_CONFIG: MatDialogConfig = {
   maxHeight: 'calc(100vh - 3rem)', //tasksbar height
   width: '1250px',
   height: '600px',
-  panelClass: 'notion-container',
+  panelClass: ['notion-container', 'resizable-mat-dialog-panel'],
   hasBackdrop: false,
   autoFocus: true,
   restoreFocus: false
