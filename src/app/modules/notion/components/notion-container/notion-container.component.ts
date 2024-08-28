@@ -1,6 +1,6 @@
 import { DragDropModule } from '@angular/cdk/drag-drop';
 import { NgComponentOutlet } from '@angular/common';
-import { Component, ElementRef, HostListener, Inject } from '@angular/core';
+import { ChangeDetectionStrategy, Component, ElementRef, HostListener, Inject } from '@angular/core';
 import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
 import { MatIconModule } from '@angular/material/icon';
 import { maxZIndex } from 'app/shared/utils/utils';
@@ -11,7 +11,11 @@ import { NotionComponent } from '../notion-view/notion.component';
   standalone: true,
   imports: [MatIconModule, DragDropModule, NgComponentOutlet, NotionComponent],
   templateUrl: './notion-container.component.html',
-  styleUrl: './notion-container.component.scss'
+  styleUrl: './notion-container.component.scss',
+  changeDetection: ChangeDetectionStrategy.OnPush,
+  host: {
+    '(click)': 'updateZIndex()'
+  }
 })
 export class NotionContainerComponent {
 

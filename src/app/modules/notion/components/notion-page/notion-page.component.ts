@@ -1,5 +1,5 @@
 import { CommonModule, NgTemplateOutlet } from '@angular/common';
-import { Component, DestroyRef, inject, Input, OnChanges, SimpleChanges } from '@angular/core';
+import { ChangeDetectionStrategy, ChangeDetectorRef, Component, DestroyRef, inject, input, Input, OnChanges, SimpleChanges } from '@angular/core';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 import { NotionDatabaseItem, NotionService } from '@modules/notion/services/notion.service';
 import { finalize } from 'rxjs';
@@ -13,19 +13,23 @@ import { NotionItemTagsComponent } from "../notion-item-tags/notion-item-tags.co
   standalone: true,
   imports: [CommonModule, NotionBlockComponent, NgTemplateOutlet, NotionBadgeStatusComponent, NotionItemTagsComponent],
   templateUrl: './notion-page.component.html',
-  styleUrl: './notion-page.component.scss'
+  styleUrl: './notion-page.component.scss',
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class NotionPageComponent implements OnChanges {
 
-  private notionService: NotionService = inject(NotionService);
-  @Input() item!: NotionDatabaseItem
-  private destroyRef = inject(DestroyRef);
-  notionBlocks: NotionBlock[] = [];
-  loading = true;
-  ngOnChanges(changes: SimpleChanges): void {
 
+  private destroyRef = inject(DestroyRef);
+  private notionService: NotionService = inject(NotionService);
+  private cdr = inject(ChangeDetectorRef);
+
+  public item = input.required<NotionDatabaseItem>();
+  public loading = true;
+  public notionBlocks: NotionBlock[] = [];
+
+
+  ngOnChanges(changes: SimpleChanges): void {
     if (changes['item']) {
-      console.log(this.item)
       this.loadPageElements();
     }
 
@@ -33,13 +37,16 @@ export class NotionPageComponent implements OnChanges {
   loadPageElements() {
 
     this.loading = true;
-    this.notionService.getPageElements(this.item.id)
+    this.notionService.getPageElements(this.item().id)
       .pipe(
         takeUntilDestroyed(this.destroyRef),
-        finalize(() => this.loading = false)
+        finalize(() => {
+          this.loading = false;
+        })
       )
       .subscribe((blocks) => {
         this.notionBlocks = blocks;
+        this.cdr.markForCheck();
       });
   }
 

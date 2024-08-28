@@ -1,4 +1,4 @@
-import { Component, ElementRef, HostListener, Inject } from '@angular/core';
+import { ChangeDetectionStrategy, Component, ElementRef, HostListener, Inject } from '@angular/core';
 import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
 import { maxZIndex } from 'app/shared/utils/utils';
 import { DialogData } from '@modules/window-container/window-container.component';
@@ -11,7 +11,11 @@ import { MediumComponent } from '../medium-view/medium.component';
   standalone: true,
   imports: [MatIconModule, DragDropModule, NgComponentOutlet, MediumComponent],
   templateUrl: './medium-container.component.html',
-  styleUrl: './medium-container.component.scss'
+  styleUrl: './medium-container.component.scss',
+  changeDetection: ChangeDetectionStrategy.OnPush,
+  host: {
+    '(click)': 'updateZIndex()'
+  }
 })
 export class MediumContainerComponent {
 

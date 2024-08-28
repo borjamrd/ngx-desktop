@@ -188,6 +188,19 @@ export const defaultLayout: SystemElement[] = [
             hasChildren: false,
             type: ElementType.APPLICATION,
             resizable: false
-        }]
+        },
+        {
+            icon: 'gmail',
+            name: 'Gmail',
+            id: '9',
+            x: 0,
+            y: 1,
+            w: 1,
+            h: 1,
+            hasChildren: false,
+            type: ElementType.APPLICATION,
+            resizable: false
+        },
+        ]
     }
 ]

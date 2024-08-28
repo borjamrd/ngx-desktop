@@ -34,6 +34,10 @@ export const customIcons: CustomIcon[] = [
     {
         svg: 'typescript',
         url: 'assets/icons/typescript.svg',
+    },
+    {
+        svg: 'gmail',
+        url: 'assets/icons/gmail.svg',
     }
 
 ]

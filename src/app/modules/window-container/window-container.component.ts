@@ -1,6 +1,6 @@
 import { DragDropModule } from '@angular/cdk/drag-drop';
 import { AsyncPipe, CommonModule } from '@angular/common';
-import { Component, DestroyRef, ElementRef, HostListener, inject, Inject } from '@angular/core';
+import { ChangeDetectionStrategy, Component, DestroyRef, ElementRef, HostListener, inject, Inject } from '@angular/core';
 import {
   MAT_DIALOG_DATA,
   MatDialogModule,
@@ -30,6 +30,7 @@ export interface DialogData {
   imports: [MatDialogModule, CellContainerComponent, AsyncPipe, CommonModule, DragDropModule, MatIconModule],
   templateUrl: './window-container.component.html',
   styleUrl: './window-container.component.scss',
+  changeDetection: ChangeDetectionStrategy.OnPush,
   host: {
     '(click)': 'updateZIndex()'
   }
