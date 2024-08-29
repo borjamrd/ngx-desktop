@@ -12,6 +12,7 @@
     (dragStarted)="onDragStarted($event)"
     (resizeStarted)="onResizeStarted($event)"
     (dragEnded)="onDragEnded($event)"
+    [gap]="20"
     (resizeEnded)="onResizeEnded($event)"
   >
     @for (element of layout(); track $index) {
