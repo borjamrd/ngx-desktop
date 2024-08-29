@@ -201,6 +201,30 @@ export const defaultLayout: SystemElement[] = [
             type: ElementType.APPLICATION,
             resizable: false
         },
+        {
+            icon: 'trash',
+            name: 'Papelera de reciclaje',
+            id: '10',
+            x: 0,
+            y: 2,
+            w: 1,
+            h: 1,
+            hasChildren: false,
+            type: ElementType.FOLDER,
+            resizable: false
+        },
+        {
+            icon: 'pdf',
+            name: 'CV_Borja.pdf',
+            id: '11',
+            x: 0,
+            y: 3,
+            w: 1,
+            h: 1,
+            hasChildren: false,
+            type: ElementType.APPLICATION,
+            resizable: false
+        },
         ]
     }
 ]

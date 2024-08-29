@@ -38,6 +38,14 @@ export const customIcons: CustomIcon[] = [
     {
         svg: 'gmail',
         url: 'assets/icons/gmail.svg',
+    },
+    {
+        svg: 'trash',
+        url: 'assets/icons/trash.svg',
+    },
+    {
+        svg: 'pdf',
+        url: 'assets/icons/pdf.svg',
     }
 
 ]
