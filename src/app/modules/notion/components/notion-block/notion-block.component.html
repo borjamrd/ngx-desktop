@@ -44,12 +44,11 @@
       <div class="flex items-center gap-2">
         <input
           class="h-4 w-4"
+          disabled
           type="checkbox"
           [checked]="notionBlock.properties.checked"
         />
-        <p [ngClass]="notionBlock.properties.checked ? 'line-through' : ''">
-          {{ notionBlock.properties.title[0] }}
-        </p>
+        <bm-notion-block-text [notionBlock]="notionBlock" />
       </div>
     }
     @case ("callout") {

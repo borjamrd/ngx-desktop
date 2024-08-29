@@ -22,12 +22,16 @@
       } @else if (property.length > 1 && property[1][0] == "c") {
         <code>
           <span
-            class="text-wrap px-2 py-1 rounded-md bg-red-950 bg-opacity-30 text-red-300"
+            [ngClass]="notionBlock.properties.checked ? 'line-through' : ''"
+            class="text-wrap px-2 py-1 rounded-md dark:bg-red-950 bg-red-400 bg-opacity-30 dark:text-red-300 text-red-600"
             >{{ property[0] }}</span
           >
         </code>
       } @else {
-        <span>{{ property }}</span>
+        <span
+          [ngClass]="notionBlock.properties.checked ? 'line-through' : ''"
+          >{{ property }}</span
+        >
       }
     }
   </p>

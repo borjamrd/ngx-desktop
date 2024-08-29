@@ -1,5 +1,5 @@
 import { CommonModule } from "@angular/common";
-import { ChangeDetectionStrategy, Component, Input, type OnInit } from '@angular/core';
+import { ChangeDetectionStrategy, Component, Input } from '@angular/core';
 import { NotionBlock } from "../../types/notion.interface";
 
 @Component({
@@ -12,9 +12,9 @@ import { NotionBlock } from "../../types/notion.interface";
   styleUrl: './notion-block-text.component.css',
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class NotionBlockTextComponent implements OnInit {
+export class NotionBlockTextComponent {
 
   @Input() notionBlock!: NotionBlock
-  ngOnInit(): void { }
+
 
 }
