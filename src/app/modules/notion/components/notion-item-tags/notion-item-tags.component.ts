@@ -1,11 +1,12 @@
 import { NgClass } from '@angular/common';
 import { Component, Input } from '@angular/core';
-import { NotionDatabaseItem } from '@modules/notion/services/notion.service';
+import { NotionDatabaseItem } from '@modules/notion/types/notion.interface';
+import { BadgeDirective } from 'app/shared/directives/badge.directive';
 
 @Component({
   selector: 'bm-notion-item-tags',
   standalone: true,
-  imports: [NgClass],
+  imports: [NgClass, BadgeDirective],
   templateUrl: './notion-item-tags.component.html',
   styleUrl: './notion-item-tags.component.scss'
 })

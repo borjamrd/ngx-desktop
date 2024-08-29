@@ -1,4 +1,14 @@
 
+export interface NotionDatabaseItem {
+    id: string;
+    name: string;
+    tags: string[];
+    date: string;
+    description: string;
+    status: string;
+    related: string[]
+}
+
 export interface NotionBlock {
     id: string;
     version: number;
@@ -18,6 +28,7 @@ export interface Format {
     page_icon: string;
     block_color: string;
     copied_from_pointer: CopiedFromPointer;
+    block_width?: number
 }
 
 export interface CopiedFromPointer {

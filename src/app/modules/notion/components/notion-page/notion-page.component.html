@@ -6,21 +6,30 @@
         @for (itemKv of item() | keyvalue; track $index) {
           <tr class="text-left table-row">
             @switch (itemKv.key) {
+              @case ("id") {}
+              @case ("related") {}
+              @case ("id") {}
               @case ("status") {
-                <td>{{ itemKv.key | titlecase }}</td>
-                <td>
+                <td class="align-top capitalize text-slate-300 font-medium">
+                  {{ itemKv.key }}
+                </td>
+                <td class="align-top pl-2.5">
                   <bm-notion-badge-status [status]="item().status" />
                 </td>
               }
               @case ("tags") {
-                <td>{{ itemKv.key }}</td>
-                <td>
+                <td class="align-top capitalize text-slate-300 font-medium">
+                  {{ itemKv.key }}
+                </td>
+                <td class="align-top pl-2.5">
                   <bm-notion-item-tags justify="start" [tags]="item().tags" />
                 </td>
               }
               @default {
-                <td>{{ itemKv.key }}</td>
-                <td>{{ itemKv.value }}</td>
+                <td class="align-top capitalize text-slate-300 font-medium">
+                  {{ itemKv.key }}
+                </td>
+                <td class="align-top pl-2.5">{{ itemKv.value }}</td>
               }
             }
           </tr>

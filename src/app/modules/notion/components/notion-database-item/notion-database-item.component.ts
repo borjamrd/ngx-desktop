@@ -1,6 +1,6 @@
 import { NgClass } from '@angular/common';
-import { Component, EventEmitter, input, Input, output, Output } from '@angular/core';
-import { NotionDatabaseItem } from "@modules/notion/services/notion.service";
+import { Component, input, output } from '@angular/core';
+import { NotionDatabaseItem } from "@modules/notion/types/notion.interface";
 import { NotionBadgeStatusComponent } from '../notion-badge-status/notion-badge-status.component';
 import { NotionItemTagsComponent } from '../notion-item-tags/notion-item-tags.component';
 

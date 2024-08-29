@@ -1,17 +1,8 @@
 import { HttpClient } from '@angular/common/http';
 import { inject, Injectable } from '@angular/core';
-import { NotionBlock } from '../types/notion.interface';
+import { NotionBlock, NotionDatabaseItem } from '../types/notion.interface';
 import { map, tap } from 'rxjs';
 
-
-export interface NotionDatabaseItem {
-  id: string;
-  name: string;
-  tags: string[];
-  date: string;
-  description: string;
-  status: string;
-}
 
 
 @Injectable({

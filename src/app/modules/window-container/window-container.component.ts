@@ -64,7 +64,6 @@ export class WindowContainerComponent {
   }
 
   private updateZIndex(): void {
-    console.log('updateZIndex')
     const dialogElement = this._elementRef.nativeElement.closest('.cdk-global-overlay-wrapper');
     if (dialogElement) {
       dialogElement.style.zIndex = `${WindowContainerComponent.maxZIndex++}`;

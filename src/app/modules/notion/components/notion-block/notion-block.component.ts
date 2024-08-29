@@ -1,15 +1,18 @@
 import { CommonModule } from '@angular/common';
-import { Component, Input, OnChanges, OnInit, SimpleChanges } from '@angular/core';
+import { ChangeDetectionStrategy, Component, Input, OnChanges, OnInit, SimpleChanges } from '@angular/core';
 import { NotionBlock } from '../../types/notion.interface';
 import { NotionBlockCodeComponent } from "../notion-block-code/notion-block-code.component";
 import { NotionBlockImageComponent } from "../notion-block-image/notion-block-image.component";
+import { NotionBlockTextComponent } from '../notion-block-text/notion-block-text.component';
+import { Nl2brPipe } from 'app/shared/pipes/nl2br.pipe';
 
 @Component({
   selector: 'bm-notion-block',
   standalone: true,
-  imports: [CommonModule, NotionBlockCodeComponent, NotionBlockImageComponent],
+  imports: [CommonModule, NotionBlockCodeComponent, NotionBlockImageComponent, NotionBlockTextComponent, Nl2brPipe],
   templateUrl: './notion-block.component.html',
-  styleUrl: './notion-block.component.scss'
+  styleUrl: './notion-block.component.scss',
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class NotionBlockComponent implements OnInit {
 

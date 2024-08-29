@@ -13,13 +13,19 @@
     @case ("page") {}
     @case ("collection_view_page") {}
     @case ("header") {
-      <h1 class="text-3xl font-bold">{{ notionBlock.properties.title[0] }}</h1>
+      <h1 class="text-3xl font-bold mb-5">
+        {{ notionBlock.properties.title[0] }}
+      </h1>
     }
     @case ("sub_header") {
-      <h2 class="text-2xl font-bold">{{ notionBlock.properties.title[0] }}</h2>
+      <h2 class="text-2xl font-bold mb-3">
+        {{ notionBlock.properties.title[0] }}
+      </h2>
     }
     @case ("sub_sub_header") {
-      <h3 class="text-xl font-bold">{{ notionBlock.properties.title[0] }}</h3>
+      <h3 class="text-xl font-bold mb-1">
+        {{ notionBlock.properties.title[0] }}
+      </h3>
     }
     @case ("quote") {
       <div
@@ -29,50 +35,7 @@
       </div>
     }
     @case ("text") {
-      @if (
-        notionBlock.properties.title[0].length > 1 &&
-        notionBlock.properties.title[0][1][0] == "b"
-      ) {
-        <p class="font-bold">{{ notionBlock.properties.title[0][0] }}</p>
-      } @else if (
-        notionBlock.properties.title[0].length > 1 &&
-        notionBlock.properties.title[0][1][0] == "i"
-      ) {
-        <p class="italic">{{ notionBlock.properties.title[0][0] }}</p>
-      } @else if (
-        notionBlock.properties.title[0].length > 1 &&
-        notionBlock.properties.title[0][1][0][0] == "a"
-      ) {
-        <a
-          target="_blank"
-          [title]="notionBlock.properties.title[0][1][0][1]"
-          [href]="notionBlock.properties.title[0][1][0][1]"
-          class="underline text-slate-700 dark:text-slate-400"
-          >{{ notionBlock.properties.title[0][0] }}</a
-        >
-      } @else if (
-        notionBlock.properties.title[0].length > 1 &&
-        notionBlock.properties.title[0][1][0] == "_"
-      ) {
-        <p class="underline">{{ notionBlock.properties.title[0][0] }}</p>
-      } @else if (
-        notionBlock.properties.title[0].length > 1 &&
-        notionBlock.properties.title[0][1][0] == "s"
-      ) {
-        <p class="line-through">{{ notionBlock.properties.title[0][0] }}</p>
-      } @else if (
-        notionBlock.properties.title[0].length > 1 &&
-        notionBlock.properties.title[0][1][0] == "c"
-      ) {
-        <code>
-          <span
-            class="text-wrap px-2 py-1 rounded-md bg-red-400/50 text-red-950"
-            >{{ notionBlock.properties.title[0][0] }}</span
-          >
-        </code>
-      } @else {
-        <p>{{ notionBlock.properties.title[0] }}</p>
-      }
+      <bm-notion-block-text [notionBlock]="notionBlock" />
     }
     @case ("code") {
       <bm-notion-block-code [notionBlock]="notionBlock" />
@@ -91,10 +54,10 @@
     }
     @case ("callout") {
       <div
-        class="flex items-center gap-2 p-2 bg-yellow-100/25 dark:bg-yellow-100/20 dark:text-white text-yellow-800 rounded-md"
+        class="flex gap-2 p-2 bg-yellow-100/25 dark:bg-yellow-100/20 dark:text-white text-yellow-800 rounded-md"
       >
         <span>{{ notionBlock.format?.page_icon }}</span>
-        <p>{{ notionBlock.properties.title[0] }}</p>
+        <p [innerHTML]="notionBlock.properties.title[0] | nl2br"></p>
       </div>
     }
     @case ("image") {

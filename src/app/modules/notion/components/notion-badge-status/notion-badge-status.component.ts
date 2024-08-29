@@ -1,6 +1,6 @@
+import { NotionDatabaseItem } from '@modules/notion/types/notion.interface';
 import { NgClass } from '@angular/common';
 import { Component, Input } from '@angular/core';
-import { NotionDatabaseItem } from "@modules/notion/services/notion.service";
 
 @Component({
   selector: 'bm-notion-badge-status',
@@ -17,11 +17,11 @@ export class NotionBadgeStatusComponent {
 
     switch (this.status) {
       case 'Finished':
-        return 'bg-green-500/30 text-green-800 dark:text-white'
+        return 'bg-green-500/30 text-green-800 dark:text-white text-xs'
       case 'In progress':
-        return 'bg-blue-500/30 text-blue-800 dark:text-white'
+        return 'bg-blue-500/30 text-blue-800 dark:text-white text-xs'
       case 'To do':
-        return 'bg-red-500/30 text-red-800 dark:text-white'
+        return 'bg-red-500/30 text-red-800 dark:text-white text-xs'
       default:
         return ''
     }

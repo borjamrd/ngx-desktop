@@ -1,9 +1,9 @@
 import { CommonModule, NgTemplateOutlet } from '@angular/common';
-import { ChangeDetectionStrategy, ChangeDetectorRef, Component, DestroyRef, inject, input, Input, OnChanges, SimpleChanges } from '@angular/core';
+import { ChangeDetectionStrategy, ChangeDetectorRef, Component, DestroyRef, inject, input, OnChanges, SimpleChanges } from '@angular/core';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
-import { NotionDatabaseItem, NotionService } from '@modules/notion/services/notion.service';
+import { NotionService } from '@modules/notion/services/notion.service';
 import { finalize } from 'rxjs';
-import { NotionBlock } from '../../types/notion.interface';
+import { NotionBlock, NotionDatabaseItem } from '../../types/notion.interface';
 import { NotionBadgeStatusComponent } from '../notion-badge-status/notion-badge-status.component';
 import { NotionBlockComponent } from '../notion-block/notion-block.component';
 import { NotionItemTagsComponent } from "../notion-item-tags/notion-item-tags.component";
