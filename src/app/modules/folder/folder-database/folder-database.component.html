@@ -1,8 +1,8 @@
-<div class="flex px-2 py-1 items-baseline"></div>
 @if (layout.length) {
   <div
+    #elementList
     cdkDropList
-    class="grid lg:grid-cols-6 grid-cols-3"
+    class="flex gap-x-10 gap-y-10 flex-wrap ms-5"
     (cdkDropListDropped)="drop($event)"
   >
     @for (element of layout; track $index) {
@@ -11,7 +11,7 @@
         element.type === "file" ||
         element.type === "application"
       ) {
-        <div cdkDrag class="col-span-1">
+        <div cdkDrag>
           <bm-cell-container [element]="element" />
         </div>
       }
