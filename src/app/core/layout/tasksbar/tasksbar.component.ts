@@ -6,6 +6,7 @@ import { ActiveFoldersComponent } from '@modules/folder/active-folders/active-fo
 import { FileExplorerService } from '@services/file-explorer.service';
 import { ThemeService } from '@services/theme.service';
 import { MainSearchInputComponent } from '@components/main-search-input/main-search-input.component';
+import { InputComponent } from 'app/shared/components/input/input.component';
 @Component({
   selector: 'bm-tasksbar',
   standalone: true,
@@ -16,7 +17,7 @@ import { MainSearchInputComponent } from '@components/main-search-input/main-sea
     AsyncPipe,
     MatIconModule,
     MatSlideToggleModule,
-    MainSearchInputComponent,
+    InputComponent,
   ],
   templateUrl: './tasksbar.component.html',
   styleUrl: './tasksbar.component.scss',
