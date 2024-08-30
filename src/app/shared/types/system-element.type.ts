@@ -123,6 +123,10 @@ export const defaultLayout: SystemElement[] = [
                             y: 0,
                             w: 1,
                             h: 1,
+                            fileData: {
+                                url: 'assets/icons/javascript.svg.svg',
+                                fileType: 'image/svg+xml',
+                            },
                             hasChildren: false,
                             children: []
                         },
@@ -131,6 +135,10 @@ export const defaultLayout: SystemElement[] = [
                             name: 'Typescript',
                             type: ElementType.FILE,
                             id: crypto.randomUUID(),
+                            fileData: {
+                                url: 'assets/icons/typescript.svg.svg',
+                                fileType: 'image/svg+xml',
+                            },
                             x: 1,
                             y: 1,
                             w: 1,
@@ -142,6 +150,10 @@ export const defaultLayout: SystemElement[] = [
                             name: 'angular',
                             type: ElementType.FILE,
                             id: crypto.randomUUID(),
+                            fileData: {
+                                url: 'assets/icons/angular.svg',
+                                fileType: 'image/svg+xml',
+                            },
                             x: 1,
                             y: 1,
                             w: 1,
