@@ -38,6 +38,16 @@ export const MEDIUM_DIALOG_CONFIG: MatDialogConfig = {
   autoFocus: true,
   restoreFocus: false,
 }
+export const FILE_DIALOG_CONFIG: MatDialogConfig = {
+  maxWidth: '100vw',
+  maxHeight: 'calc(100vh - 3rem)', //tasksbar height
+  width: '800px',
+  height: '600px',
+  panelClass: ['pdf-container', 'resizable-mat-dialog-panel'],
+  hasBackdrop: false,
+  autoFocus: true,
+  restoreFocus: false,
+}
 
 export const FOLDER_DIALOG_CONFIG: MatDialogConfig = {
   maxWidth: '100vw',

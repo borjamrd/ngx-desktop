@@ -1,6 +1,7 @@
 import { KtdGridLayoutItem } from "@katoid/angular-grid-layout";
 import { SpotifyWidgetComponent } from "@modules/desktop/spotify-widget/spotify-widget.component";
 
+
 export enum ElementType {
     FOLDER = 'folder',
     FILE = 'file',
@@ -10,11 +11,7 @@ export enum ElementType {
     SYSTEM_FOLDER = 'system-folder'
 }
 
-export interface FolderElement {
-    id: SystemElement['id'];
-    icon: SystemElement['icon'];
-    name: SystemElement['name'];
-}
+export interface FolderElement { id: string, name: string }
 
 
 export interface SystemElement extends KtdGridLayoutItem {
@@ -25,7 +22,11 @@ export interface SystemElement extends KtdGridLayoutItem {
     customClass?: string;
     children?: SystemElement[];
     component?: any; //I don't know what to put here
-    resizable?: boolean
+    resizable?: boolean,
+    fileData?: {
+        url: string,
+        fileType: string
+    }
 }
 
 
@@ -35,7 +36,7 @@ export const defaultLayout: SystemElement[] = [
         icon: 'desktop',
         name: 'Desktop',
         type: ElementType.SYSTEM_FOLDER,
-        id: '122',
+        id: crypto.randomUUID(),
         hasChildren: true,
         x: 0,
         y: 0,
@@ -45,7 +46,7 @@ export const defaultLayout: SystemElement[] = [
             icon: 'folder',
             name: 'My tech',
             type: ElementType.FOLDER,
-            id: '1',
+            id: crypto.randomUUID(),
             x: 0,
             y: 0,
             w: 1,
@@ -57,7 +58,7 @@ export const defaultLayout: SystemElement[] = [
                     icon: 'folder',
                     name: 'Backend',
                     type: ElementType.FOLDER,
-                    id: '2',
+                    id: crypto.randomUUID(),
                     x: 0,
                     y: 0,
                     w: 1,
@@ -68,7 +69,7 @@ export const defaultLayout: SystemElement[] = [
                             icon: 'folder',
                             name: 'Folder2',
                             type: ElementType.FOLDER,
-                            id: '3',
+                            id: crypto.randomUUID(),
                             x: 0,
                             y: 0,
                             w: 1,
@@ -80,7 +81,7 @@ export const defaultLayout: SystemElement[] = [
                             icon: 'folder',
                             name: 'Folder3',
                             type: ElementType.FOLDER,
-                            id: '4',
+                            id: crypto.randomUUID(),
                             x: 1,
                             y: 1,
                             w: 1,
@@ -94,7 +95,7 @@ export const defaultLayout: SystemElement[] = [
                     icon: 'folder',
                     name: 'Frontend',
                     type: ElementType.FOLDER,
-                    id: '5',
+                    id: crypto.randomUUID(),
                     x: 1,
                     y: 1,
                     w: 1,
@@ -106,7 +107,7 @@ export const defaultLayout: SystemElement[] = [
                     icon: 'folder',
                     name: 'Common',
                     type: ElementType.FOLDER,
-                    id: '9',
+                    id: crypto.randomUUID(),
                     x: 1,
                     y: 1,
                     w: 1,
@@ -117,7 +118,7 @@ export const defaultLayout: SystemElement[] = [
                             icon: 'javascript',
                             name: 'Folder2',
                             type: ElementType.FILE,
-                            id: '10',
+                            id: crypto.randomUUID(),
                             x: 0,
                             y: 0,
                             w: 1,
@@ -129,7 +130,7 @@ export const defaultLayout: SystemElement[] = [
                             icon: 'typescript',
                             name: 'Typescript',
                             type: ElementType.FILE,
-                            id: '11',
+                            id: crypto.randomUUID(),
                             x: 1,
                             y: 1,
                             w: 1,
@@ -140,7 +141,7 @@ export const defaultLayout: SystemElement[] = [
                             icon: 'angular',
                             name: 'angular',
                             type: ElementType.FILE,
-                            id: '11',
+                            id: crypto.randomUUID(),
                             x: 1,
                             y: 1,
                             w: 1,
@@ -157,7 +158,7 @@ export const defaultLayout: SystemElement[] = [
             'icon': 'folder',
             name: 'Spotify',
             type: ElementType.DESKTOP_WIDGET,
-            id: '6',
+            id: crypto.randomUUID(),
             x: 12,
             y: 0,
             w: 4,
@@ -168,7 +169,7 @@ export const defaultLayout: SystemElement[] = [
         }, {
             icon: 'notion',
             name: 'Notion',
-            id: '7',
+            id: crypto.randomUUID(),
             x: 1,
             y: 0,
             w: 1,
@@ -180,7 +181,7 @@ export const defaultLayout: SystemElement[] = [
         {
             icon: 'medium',
             name: 'Medium',
-            id: '8',
+            id: crypto.randomUUID(),
             x: 2,
             y: 0,
             w: 1,
@@ -192,7 +193,7 @@ export const defaultLayout: SystemElement[] = [
         {
             icon: 'gmail',
             name: 'Gmail',
-            id: '9',
+            id: crypto.randomUUID(),
             x: 0,
             y: 1,
             w: 1,
@@ -204,7 +205,7 @@ export const defaultLayout: SystemElement[] = [
         {
             icon: 'trash',
             name: 'Papelera de reciclaje',
-            id: '10',
+            id: crypto.randomUUID(),
             x: 0,
             y: 2,
             w: 1,
@@ -215,15 +216,34 @@ export const defaultLayout: SystemElement[] = [
         },
         {
             icon: 'pdf',
-            name: 'CV_Borja.pdf',
-            id: '11',
+            name: 'CV_Borja_ES.pdf',
+            id: crypto.randomUUID(),
             x: 0,
             y: 3,
             w: 1,
             h: 1,
             hasChildren: false,
-            type: ElementType.APPLICATION,
-            resizable: false
+            type: ElementType.FILE,
+            fileData: {
+                url: 'assets/files/ES_BorjaMunoz_FullStack_CV.pdf',
+                fileType: 'application/pdf',
+            },
+        },
+        {
+            icon: 'pdf',
+            name: 'CV_Borja_EN.pdf',
+            id: crypto.randomUUID(),
+            x: 0,
+            y: 4,
+            w: 1,
+            h: 1,
+            hasChildren: false,
+            type: ElementType.FILE,
+
+            fileData: {
+                url: 'assets/files/EN_BorjaMunoz_FullStack_CV_English.pdf',
+                fileType: 'application/pdf',
+            },
         },
         ]
     }

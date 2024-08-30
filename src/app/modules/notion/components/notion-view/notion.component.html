@@ -1,4 +1,4 @@
-<div [ngClass]="notionContainerClass()">
+<div class="mt-20 overflow-auto" [ngClass]="notionContainerClass()">
   <div class="flex gap-10 relative">
     @if (notionPageItems$ | async; as items) {
       <div
@@ -22,7 +22,7 @@
       >
         @if (selectedItem(); as selectedItemm) {
           <button
-            class="rounded-full p-1 sticky float-end top-10"
+            class="rounded-full p-1 sticky float-end top-0"
             (click)="selectedItem.set(undefined)"
           >
             <mat-icon>close</mat-icon>

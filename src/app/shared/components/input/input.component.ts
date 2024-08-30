@@ -31,7 +31,7 @@ export class InputComponent implements ControlValueAccessor {
 
   private destroyRef = inject(DestroyRef);
 
-  public placeholder = 'Placeholder';
+  public placeholder = input<string>('');
   public label = input<string>();
   public showLabel = input<false>(false)
   public prefixIcon = input<string>();

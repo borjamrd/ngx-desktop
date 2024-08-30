@@ -6,7 +6,8 @@ import { SystemElement } from '../types/system-element.type';
 import { FileExplorerService } from './file-explorer.service';
 import { MediumContainerComponent } from '@modules/medium/components/medium-container/medium-container.component';
 import { WindowContainerComponent } from '@modules/window-container/window-container.component';
-import { FOLDER_DIALOG_CONFIG, MEDIUM_DIALOG_CONFIG, NOTION_DIALOG_CONFIG } from '../utils/utils';
+import { FOLDER_DIALOG_CONFIG, MEDIUM_DIALOG_CONFIG, NOTION_DIALOG_CONFIG, FILE_DIALOG_CONFIG } from '../utils/utils';
+import { FileDialogComponent } from '@modules/file/file-dialog/file-dialog.component';
 
 
 export interface IDisplayElementWindowService {
@@ -23,22 +24,24 @@ export class DisplayElementWindowService implements IDisplayElementWindowService
   fileExplorer: FileExplorerService = inject(FileExplorerService);
   public open(element: SystemElement): void {
 
+
     const data = {
       id: element.id,
       icon: element.icon,
       name: element.name,
       component: this.lazzyLoadFolderDatabase$,
+      fileData: element?.fileData,
       inputs: {
         layout: element.children
       }
     }
-
     switch (element.type) {
       case 'folder':
         this.dialog.open(WindowContainerComponent, { ...FOLDER_DIALOG_CONFIG, data });
         break;
       case 'file':
-      // use
+        this.dialog.open(FileDialogComponent, { ...FILE_DIALOG_CONFIG, data, });
+        break
       case 'application':
         switch (element.name.toLocaleLowerCase()) {
           case 'medium':
