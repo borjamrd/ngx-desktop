@@ -11,8 +11,7 @@ import { Component, Input } from '@angular/core';
 })
 export class NotionBadgeStatusComponent {
   @Input() status!: NotionDatabaseItem['status']
-
-
+  @Input() justify: 'start' | 'center' | 'between' | 'end' | 'align' = 'end'
   get classByStatus(): string {
 
     switch (this.status) {

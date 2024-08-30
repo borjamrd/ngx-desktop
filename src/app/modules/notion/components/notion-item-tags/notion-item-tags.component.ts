@@ -13,7 +13,6 @@ import { BadgeDirective } from 'app/shared/directives/badge.directive';
 export class NotionItemTagsComponent {
 
   @Input() justify: 'start' | 'center' | 'between' | 'end' | 'align' = 'end'
-
   @Input() tags!: NotionDatabaseItem['tags']
 
 }

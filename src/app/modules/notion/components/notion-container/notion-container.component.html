@@ -1,6 +1,6 @@
 <div #dialogContainer class="h-full w-full flex flex-col">
   <div
-    class="flex py-2 px-2 justify-between"
+    class="flex py-2 px-2 justify-between fixed w-full backdrop-blur-sm"
     cdkDrag
     cdkDragRootElement=".cdk-overlay-pane"
     cdkDragHandle
@@ -32,7 +32,7 @@
       </button>
     </div>
   </div>
-  <div class="px-2 py-2 mt-2 border-slate-600 dark:border-neutral-600 h-[85%]">
+  <div class="px-2 py-2 border-slate-600 dark:border-neutral-600 h-[85%] mt-20">
     <bm-notion />
   </div>
 </div>
