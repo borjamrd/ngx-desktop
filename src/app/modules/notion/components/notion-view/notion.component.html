@@ -1,42 +1,42 @@
-@if (notionPageItems$ | async; as items) {
-  <div
-    class="transition-all duration-150 ease-in"
-    [ngClass]="selectedItem() ? 'hidden md:block md:w-2/5' : 'w-full'"
-  >
-    @for (item of items; track $index) {
-      <div class="notion-item">
-        <bm-notion-database-item
-          (itemSelected)="setItemSelected($event)"
-          [item]="item"
-        />
-      </div>
-    }
-  </div>
-  <div
-    class="transition-all duration-150 ease-in relative"
-    [ngClass]="
-      selectedItem() ? 'w-full md:w-3/5 h-full overflow-auto' : 'hidden'
-    "
-  >
-    @if (selectedItem(); as selectedItemm) {
-      <button
-        class="rounded-full p-1 sticky float-end top-0"
-        (click)="selectedItem.set(undefined)"
-      >
-        <mat-icon>close</mat-icon>
-      </button>
+<div class="flex gap-10 relative" [ngClass]="notionContainerClass()">
+  @if (notionPageItems$ | async; as items) {
+    <div
+      class="transition-all duration-150 ease-in"
+      [ngClass]="selectedItem() ? containeListClasses : 'w-full'"
+    >
+      @for (item of items; track $index) {
+        <div class="notion-item">
+          <bm-notion-database-item
+            (itemSelected)="setItemSelected($event)"
+            [item]="item"
+          />
+        </div>
+      }
+    </div>
+    <div
+      class="transition-all duration-150 ease-in relative"
+      [ngClass]="selectedItem() ? pageListCLasses : 'hidden'"
+    >
+      @if (selectedItem(); as selectedItemm) {
+        <button
+          class="rounded-full p-1 sticky float-end top-0"
+          (click)="selectedItem.set(undefined)"
+        >
+          <mat-icon>close</mat-icon>
+        </button>
 
-      <bm-notion-page
-        *ngIf="selectedItem() as selectedItem"
-        [item]="selectedItem"
-      />
-    }
-  </div>
-} @else {
-  <div class="w-full h-full flex">
-    <mat-icon
-      class="animate-bounce duration-200 m-auto"
-      svgIcon="notion"
-    ></mat-icon>
-  </div>
-}
+        <bm-notion-page
+          *ngIf="selectedItem() as selectedItem"
+          [item]="selectedItem"
+        />
+      }
+    </div>
+  } @else {
+    <div class="w-full h-full flex">
+      <mat-icon
+        class="animate-bounce duration-200 m-auto"
+        svgIcon="notion"
+      ></mat-icon>
+    </div>
+  }
+</div>
