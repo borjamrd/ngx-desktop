@@ -58,35 +58,35 @@ export class NotionComponent {
         this.containeListClasses = 'hidden'
 
         this.notionContainerClass.set('px-2 ')
-        this.pageListCLasses = 'w-full h-full overflow-auto'
+        this.pageListCLasses = 'w-full h-full'
         this.notionContainerClass.set('min-w-fit-content')
       } else if (entry.target.clientWidth < this.mediaQueries.XS) {
         this.containeListClasses = 'hidden'
-        this.pageListCLasses = 'w-full overflow-auto'
+        this.pageListCLasses = 'w-full'
         this.notionContainerClass.set('min-w-fit-content')
 
         this.notionContainerClass.set('px-5')
       } else if (entry.target.clientWidth < this.mediaQueries.SM) {
         this.containeListClasses = 'hidden'
-        this.pageListCLasses = 'w-full overflow-auto'
+        this.pageListCLasses = 'w-full'
         this.notionContainerClass.set('min-w-fit-content')
 
       }
       else if (entry.target.clientWidth < this.mediaQueries.MD) {
         this.containeListClasses = 'block w-2/5'
         this.notionContainerClass.set('min-w-[50rem]')
-        this.pageListCLasses = 'w-full hoverflow-auto'
+        this.pageListCLasses = 'w-full'
 
       }
       else if (entry.target.clientWidth < this.mediaQueries.LG) {
         this.containeListClasses = 'block w-2/5'
         this.notionContainerClass.set('min-w-[65rem]')
-        this.pageListCLasses = 'w-3/5 overflow-auto'
+        this.pageListCLasses = 'w-3/5'
 
       }
       else if (entry.target.clientWidth < this.mediaQueries.XL) {
         this.containeListClasses = 'block w-2/5'
-        this.pageListCLasses = 'w-3/5 overflow-auto'
+        this.pageListCLasses = 'w-3/5'
         this.notionContainerClass.set('min-w-[75rem]')
 
       }

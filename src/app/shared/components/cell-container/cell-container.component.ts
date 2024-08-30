@@ -1,5 +1,5 @@
-import { NgClass, NgComponentOutlet, NgTemplateOutlet } from '@angular/common';
-import { Component, inject, Injector, input, output } from '@angular/core';
+import { NgClass, NgComponentOutlet, NgTemplateOutlet, SlicePipe } from '@angular/common';
+import { Component, inject, Injector, input, output, signal } from '@angular/core';
 import { DisplayElementWindowService } from 'app/shared/services/display-element-window.service';
 import { SystemElement } from 'app/shared/types/system-element.type';
 import { SystemElementIconComponent } from '../system-element-icon/system-element-icon.component';
@@ -7,7 +7,7 @@ import { SystemElementIconComponent } from '../system-element-icon/system-elemen
 @Component({
   selector: 'bm-cell-container',
   standalone: true,
-  imports: [NgClass, NgComponentOutlet, NgTemplateOutlet, SystemElementIconComponent],
+  imports: [NgClass, NgComponentOutlet, NgTemplateOutlet, SystemElementIconComponent, SlicePipe],
   templateUrl: './cell-container.component.html',
   styleUrl: './cell-container.component.scss',
   host: {
@@ -21,6 +21,7 @@ export class CellContainerComponent {
   private readonly displayElementWindowService: DisplayElementWindowService = inject(DisplayElementWindowService);
   public element = input.required<SystemElement>();
 
+  public showFullName = signal<boolean>(false);
   public onDoubleClick = output<SystemElement['type']>();
   public onRightClick = output<SystemElement['type']>();
   public parentIsDesktop = input<boolean>(false);
@@ -41,5 +42,10 @@ export class CellContainerComponent {
   customInjector(element: SystemElement) {
     return Injector.create({ providers: [{ provide: 'layout', useValue: [], }], parent: this.injector });
   }
-
+  handleFullName() {
+    this.showFullName.set(true)
+    setTimeout(() => {
+      this.showFullName.set(false)
+    }, 4000);
+  }
 }

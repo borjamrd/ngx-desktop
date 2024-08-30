@@ -1,6 +1,7 @@
 @switch (element().type) {
   @case ("folder") {
     <div
+      (click)="handleFullName()"
       (contextmenu)="onRightClickGridItem($event)"
       (dblclick)="open(element())"
       class="active:backdrop-blur-md active:bg-slate-500/10 hover:backdrop-blur-md hover:bg-slate-500/10 rounded-md aspect-square h-full p-1 cursor-pointer flex flex-col gap-2 items-center"
@@ -12,6 +13,7 @@
   }
   @case ("file") {
     <div
+      (click)="handleFullName()"
       (contextmenu)="onRightClickGridItem($event)"
       (dblclick)="open(element())"
       class="active:backdrop-blur-md active:bg-slate-500/10 hover:backdrop-blur-md hover:bg-slate-500/10 rounded-md aspect-square h-full p-1 cursor-pointer flex flex-col gap-1 items-center"
@@ -23,6 +25,7 @@
   }
   @case ("desktop-widget") {
     <div
+      (click)="handleFullName()"
       [ngClass]="element"
       class="backdrop-blur-md rounded-xl hover:backdrop-blur-md hover:bg-slate-500/10 w-full h-full p-1 cursor-pointer flex flex-col gap-1 items-center"
     >
@@ -36,6 +39,7 @@
   }
   @default {
     <div
+      (click)="handleFullName()"
       (contextmenu)="onRightClickGridItem($event)"
       (dblclick)="open(element())"
       class="active:backdrop-blur-md active:bg-slate-500/10 hover:backdrop-blur-md hover:bg-slate-500/10 rounded-md aspect-square h-full p-1 cursor-pointer flex flex-col gap-1 items-center"
@@ -52,11 +56,17 @@
   <span
     [ngClass]="
       parentIsDesktop()
-        ? 'text-white text-shadow shadow-black'
-        : 'text-black dark:text-white'
+        ? 'text-white text-shadow shadow-black text-sm'
+        : 'text-black dark:text-white text-sm'
     "
     class="text-base font-normal text-center"
   >
-    {{ element().name }}
+    {{
+      element().name.length > 27
+        ? showFullName()
+          ? element().name
+          : (element().name | slice: 0 : 20) + "..."
+        : element().name
+    }}
   </span>
 </ng-template>

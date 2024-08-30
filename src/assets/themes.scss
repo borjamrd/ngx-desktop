@@ -181,6 +181,10 @@ $dark-text-color: #333;
 
 
 .mat-mdc-dialog-container .mdc-dialog__surface {
-  border-radius: 1rem;
+
   box-shadow: 0 0 0 1px rgba(0, 0, 0, 0.1), 0 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+.cdk-overlay-pane {
+  border-radius: 8px !important;
 }

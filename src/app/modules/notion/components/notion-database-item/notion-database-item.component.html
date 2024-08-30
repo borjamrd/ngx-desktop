@@ -1,5 +1,7 @@
 <div class="flex gap-2 items-baseline">
-  <span class="font-semibold">{{ item().name }}</span>
+  <p class="font-medium text-neutral-600 dark:text-neutral-100">
+    {{ item().name }}
+  </p>
   <bm-notion-badge-status [status]="item().status" />
 </div>
 <bm-notion-item-tags [tags]="item().tags" />
