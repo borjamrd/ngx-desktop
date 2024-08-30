@@ -136,7 +136,7 @@ export const defaultLayout: SystemElement[] = [
                             type: ElementType.FILE,
                             id: crypto.randomUUID(),
                             fileData: {
-                                url: 'assets/icons/typescript.svg.svg',
+                                url: 'assets/icons/typescript.svg',
                                 fileType: 'image/svg+xml',
                             },
                             x: 1,
@@ -255,6 +255,22 @@ export const defaultLayout: SystemElement[] = [
             fileData: {
                 url: 'assets/files/EN_BorjaMunoz_FullStack_CV_English.pdf',
                 fileType: 'application/pdf',
+            },
+        },
+        {
+            icon: 'markdown',
+            name: 'readme',
+            id: crypto.randomUUID(),
+            x: 0,
+            y: 5,
+            w: 1,
+            h: 1,
+            hasChildren: false,
+            type: ElementType.FILE,
+
+            fileData: {
+                url: 'assets/files/readme.md',
+                fileType: 'text/markdown',
             },
         },
         ]

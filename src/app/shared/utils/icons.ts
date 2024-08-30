@@ -46,6 +46,10 @@ export const customIcons: CustomIcon[] = [
     {
         svg: 'pdf',
         url: 'assets/icons/pdf.svg',
+    },
+    {
+        svg: 'markdown',
+        url: 'assets/icons/markdown.svg',
     }
 
 ]
