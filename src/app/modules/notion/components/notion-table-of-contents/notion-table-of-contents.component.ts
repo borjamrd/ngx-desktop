@@ -1,5 +1,5 @@
 import { CommonModule } from "@angular/common";
-import { ChangeDetectionStrategy, Component, input, SimpleChanges } from '@angular/core';
+import { ChangeDetectionStrategy, Component, input, output, SimpleChanges } from '@angular/core';
 import { NotionBlock, TableOfContentsEntry } from "../../types/notion.interface";
 
 @Component({
@@ -14,6 +14,7 @@ import { NotionBlock, TableOfContentsEntry } from "../../types/notion.interface"
 })
 export class NotionTableOfContentsComponent {
 
+  public scrollToBlock = output<string>();
   public blocks = input.required<NotionBlock[]>();
   public tableOfContents: TableOfContentsEntry[] = [];
 
@@ -80,5 +81,6 @@ export class NotionTableOfContentsComponent {
       }
     });
   }
+
 
 }

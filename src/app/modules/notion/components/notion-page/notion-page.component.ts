@@ -64,4 +64,10 @@ export class NotionPageComponent implements OnChanges {
     return this.notionBlocks().find(block => block.id === id) as NotionBlock;
 
   }
+  scrollToBlock(id: string) {
+    const element = document.getElementById(id);
+    if (element) {
+      element.scrollIntoView({ behavior: 'smooth' });
+    }
+  }
 }

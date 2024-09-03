@@ -2,7 +2,10 @@
   [iconPage]="iconPage()"
   [item]="item()"
 ></bm-notion-page-header>
-<bm-notion-table-of-contents [blocks]="notionBlocks()" />
+<bm-notion-table-of-contents
+  (scrollToBlock)="scrollToBlock($event)"
+  [blocks]="notionBlocks()"
+/>
 @if (!notionBlocks) {
   <div>loading</div>
 } @else {
