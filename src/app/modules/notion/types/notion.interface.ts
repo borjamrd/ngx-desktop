@@ -29,6 +29,7 @@ export interface Format {
     block_color: string;
     copied_from_pointer: CopiedFromPointer;
     block_width?: number
+    block_height?: number
 }
 
 export interface CopiedFromPointer {
@@ -44,6 +45,8 @@ export interface Properties {
     checked?: 'Yes' | 'No'[];
     size?: Array<string[]>;
     source?: Array<string[]>;
+    link?: Array<string[]>;
+    description?: Array<string[]>;
 }
 
 
@@ -65,6 +68,8 @@ export type NotionBlockType =
     | 'table_row'
     | 'table_of_contents'
     | 'video'
+    | 'embed'
+    | 'bookmark'
 
 export type MapImageUrl = (image: string, block?: NotionBlock['type']) => string;
 

@@ -8,8 +8,8 @@ import { ResizeObserverService } from 'app/shared/services/resize-observer.servi
 import { Observable } from 'rxjs';
 import { NotionDatabaseItem } from '../../types/notion.interface';
 import { NotionDatabaseItemComponent } from '../notion-database-item/notion-database-item.component';
-import { NotionPageComponent } from '../notion-page/notion-page.component';
 import { NotionDatabaseComponent } from "../notion-database/notion-database.component";
+import { NotionPageComponent } from '../notion-page/notion-page.component';
 
 @Component({
   selector: 'bm-notion',

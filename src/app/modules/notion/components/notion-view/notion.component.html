@@ -1,6 +1,6 @@
 <div class="mt-20 overflow-auto" [ngClass]="notionContainerClass()">
-  <div class="flex gap-10 relative">
-    @if (notionPageItems$ | async; as items) {
+  @if (notionPageItems$ | async; as items) {
+    <div class="flex gap-10 relative">
       <div
         class="transition-all duration-150 ease-in"
         [ngClass]="selectedItem() ? containeListClasses : 'w-full'"
@@ -28,13 +28,13 @@
           />
         }
       </div>
-    } @else {
-      <div class="w-full h-full flex">
-        <mat-icon
-          class="animate-bounce duration-200 m-auto"
-          svgIcon="notion"
-        ></mat-icon>
-      </div>
-    }
-  </div>
+    </div>
+  } @else {
+    <div class="w-full h-full flex">
+      <mat-icon
+        class="animate-bounce duration-200 m-auto"
+        svgIcon="notion"
+      ></mat-icon>
+    </div>
+  }
 </div>

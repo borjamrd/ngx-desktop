@@ -6,11 +6,21 @@ import { NotionBlockImageComponent } from "../notion-block-image/notion-block-im
 import { NotionBlockTextComponent } from '../notion-block-text/notion-block-text.component';
 import { Nl2brPipe } from 'app/shared/pipes/nl2br.pipe';
 import { NotionComponent } from "../notion-view/notion.component";
+import { SecureResourceUrlPipe } from 'app/shared/pipes/safe-resource-url.pipe';
+
 
 @Component({
   selector: 'bm-notion-block',
   standalone: true,
-  imports: [CommonModule, NotionBlockCodeComponent, NotionBlockImageComponent, NotionBlockTextComponent, Nl2brPipe, NotionComponent],
+  imports: [
+    CommonModule,
+    Nl2brPipe,
+    NotionBlockCodeComponent,
+    NotionBlockImageComponent,
+    NotionBlockTextComponent,
+    NotionComponent,
+    SecureResourceUrlPipe
+  ],
   templateUrl: './notion-block.component.html',
   styleUrl: './notion-block.component.scss',
   // changeDetection: ChangeDetectionStrategy.OnPush,
