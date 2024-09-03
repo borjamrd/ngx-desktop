@@ -1,9 +1,13 @@
-<bm-notion-page-header [item]="item()"></bm-notion-page-header>
+<bm-notion-page-header
+  [iconPage]="iconPage()"
+  [item]="item()"
+></bm-notion-page-header>
+<bm-notion-table-of-contents [blocks]="notionBlocks()" />
 @if (!notionBlocks) {
   <div>loading</div>
 } @else {
   <div class="flex flex-col gap-2 px-2">
-    @for (notionBlock of notionBlocks; track $index) {
+    @for (notionBlock of notionBlocks(); track $index) {
       @defer (on viewport) {
         @if (
           notionBlock.type !== "page" &&
@@ -13,7 +17,7 @@
             [ngTemplateOutlet]="treeBlock"
             [ngTemplateOutletContext]="{
               $implicit: notionBlock,
-              prevBlockType: notionBlocks[$index - 1].type
+              prevBlockType: notionBlocks()[$index - 1].type
             }"
           ></ng-container>
         }

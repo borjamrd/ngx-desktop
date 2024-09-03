@@ -8,6 +8,7 @@ import { NotionBadgeStatusComponent } from '../notion-badge-status/notion-badge-
 import { NotionBlockComponent } from '../notion-block/notion-block.component';
 import { NotionItemTagsComponent } from "../notion-item-tags/notion-item-tags.component";
 import { NotionPageHeaderComponent } from '../notion-page-header/notion-page-header.component';
+import { NotionTableOfContentsComponent } from "../notion-table-of-contents/notion-table-of-contents.component";
 
 @Component({
   selector: 'bm-notion-page',
@@ -16,7 +17,8 @@ import { NotionPageHeaderComponent } from '../notion-page-header/notion-page-hea
     NgTemplateOutlet,
     NotionBlockComponent,
     CommonModule,
-    NotionPageHeaderComponent
+    NotionPageHeaderComponent,
+    NotionTableOfContentsComponent,
   ],
   templateUrl: './notion-page.component.html',
   styleUrl: './notion-page.component.scss',
@@ -33,7 +35,7 @@ export class NotionPageComponent implements OnChanges {
   private cdr = inject(ChangeDetectorRef);
 
   public item = input.required<NotionDatabaseItem>();
-  public notionBlocks: NotionBlock[] = [];
+  public notionBlocks = signal<NotionBlock[]>([])
   public iconPage = signal<string | undefined>(undefined)
 
   ngOnChanges(changes: SimpleChanges): void {
@@ -49,9 +51,9 @@ export class NotionPageComponent implements OnChanges {
         takeUntilDestroyed(this.destroyRef),
       )
       .subscribe((blocks) => {
-        this.notionBlocks = blocks;
-        if (this.notionBlocks.find((block) => block.type === 'page')) {
-          const pageBlock = this.notionBlocks.find((block) => block.type === 'page') as NotionBlock;
+        this.notionBlocks.set(blocks);
+        if (this.notionBlocks().find((block) => block.type === 'page')) {
+          const pageBlock = this.notionBlocks().find((block) => block.type === 'page') as NotionBlock;
           this.iconPage.set(pageBlock.format?.page_icon);
         }
         this.cdr.markForCheck();
@@ -59,7 +61,7 @@ export class NotionPageComponent implements OnChanges {
   }
 
   getchildContent(id: string): NotionBlock {
-    return this.notionBlocks.find(block => block.id === id) as NotionBlock;
+    return this.notionBlocks().find(block => block.id === id) as NotionBlock;
 
   }
 }

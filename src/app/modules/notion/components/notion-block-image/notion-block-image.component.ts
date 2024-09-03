@@ -1,6 +1,6 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { NotionBlock } from '../../types/notion.interface';
-import { getBlockImageURL } from 'app/shared/utils/utils';
+import { getBlockImageURL } from '../../utils/notion.utils';
 
 @Component({
   selector: 'bm-notion-block-image',

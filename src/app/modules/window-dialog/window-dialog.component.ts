@@ -1,18 +1,16 @@
 import { DragDropModule } from '@angular/cdk/drag-drop';
 import { AsyncPipe, CommonModule } from '@angular/common';
-import { ChangeDetectionStrategy, Component, DestroyRef, ElementRef, HostListener, inject, Inject } from '@angular/core';
+import { ChangeDetectionStrategy, Component, inject } from '@angular/core';
 import {
   MAT_DIALOG_DATA,
   MatDialogModule,
   MatDialogRef
 } from '@angular/material/dialog';
 import { MatIconModule } from '@angular/material/icon';
+import { FocusDialogDirective } from 'app/shared/directives/focus-dialog.directive';
 import { FileExplorerService } from 'app/shared/services/file-explorer.service';
 import { SystemElement } from 'app/shared/types/system-element.type';
-import { maxZIndex } from 'app/shared/utils/utils';
 import { CellContainerComponent } from '../../shared/components/cell-container/cell-container.component';
-import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
-import { FocusDialogDirective } from 'app/shared/directives/focus-dialog.directive';
 
 
 //TODO type

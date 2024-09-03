@@ -62,6 +62,17 @@
     @case ("image") {
       <bm-notion-block-image [notionBlock]="notionBlock" />
     }
+    @case ("table_row") {}
+    @case ("video") {
+      <div>
+        <iframe
+          class="w-full h-96"
+          [src]="notionBlock.properties.source"
+          frameborder="0"
+          allowfullscreen
+        ></iframe>
+      </div>
+    }
     @default {
       <p>{{ notionBlock.type }}</p>
     }

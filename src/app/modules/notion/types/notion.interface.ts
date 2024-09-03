@@ -62,6 +62,15 @@ export type NotionBlockType =
     | 'to_do'
     | 'callout'
     | 'image'
-
+    | 'table_row'
+    | 'table_of_contents'
+    | 'video'
 
 export type MapImageUrl = (image: string, block?: NotionBlock['type']) => string;
+
+export interface TableOfContentsEntry {
+    id: string;
+    type: string;
+    text: string | string[][];
+    indentLevel: number;
+}

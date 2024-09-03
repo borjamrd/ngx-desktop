@@ -1,5 +1,4 @@
-import { MatDialogConfig } from "@angular/material/dialog";
-import { NotionBlock } from "@modules/notion/types/notion.interface"
+import { NotionBlock } from "@modules/notion/types/notion.interface";
 
 /**
  * Removes and item from an array. Returns a new array instance (it doesn't mutate the source array).
@@ -18,68 +17,3 @@ export function ktdArrayRemoveElement<T>(
   return arrayCopy;
 }
 
-
-
-export function maxZIndex(selectors: string = 'body *'): number {
-  return Array.from(document.querySelectorAll(selectors))
-    .map(a => parseFloat(window.getComputedStyle(a).zIndex))
-    .filter(a => !isNaN(a))
-    .sort((a, b) => a - b)
-    .pop() || 0;
-}
-
-export const MEDIUM_DIALOG_CONFIG: MatDialogConfig = {
-  maxWidth: '100vw',
-  maxHeight: 'calc(100vh - 3rem)', //tasksbar height
-  width: '800px',
-  height: '600px',
-  panelClass: ['medium-container', 'resizable-mat-dialog-panel'],
-  hasBackdrop: false,
-  autoFocus: true,
-  restoreFocus: false,
-}
-export const FILE_DIALOG_CONFIG: MatDialogConfig = {
-  maxWidth: '100vw',
-  maxHeight: 'calc(100vh - 3rem)', //tasksbar height
-  width: '800px',
-  height: '600px',
-  panelClass: ['file-container', 'resizable-mat-dialog-panel'],
-  hasBackdrop: false,
-  autoFocus: true,
-  restoreFocus: false,
-}
-
-export const FOLDER_DIALOG_CONFIG: MatDialogConfig = {
-  maxWidth: '100vw',
-  maxHeight: 'calc(100vh - 3rem)', //tasksbar height
-  width: '800px',
-  height: '600px',
-  panelClass: ['resizable-mat-dialog-panel', 'window-container'],
-  hasBackdrop: false,
-  autoFocus: true,
-  restoreFocus: false
-}
-
-export const NOTION_DIALOG_CONFIG: MatDialogConfig = {
-  maxWidth: '100vw',
-  maxHeight: 'calc(100vh - 3rem)', //tasksbar height
-  width: '1000px',
-  height: '600px',
-  panelClass: ['notion-container', 'resizable-mat-dialog-panel'],
-  hasBackdrop: false,
-  autoFocus: true,
-  restoreFocus: false
-}
-
-
-export const getBlockImageURL = (image: string, block: NotionBlock) => {
-  const url = new URL(`https://www.notion.so/image/${encodeURIComponent(image)}`);
-  if (block) {
-    const table =
-      block.parent_table === "space" ? "block" : block.parent_table;
-    url.searchParams.set("table", table);
-    url.searchParams.set("id", block.id);
-    url.searchParams.set("cache", "v2");
-  }
-  return url.toString();
-}

@@ -6,7 +6,7 @@ import { NotionDialogComponent } from 'app/modules/notion/components/notion-dial
 import { WindowDialogComponent } from 'app/modules/window-dialog/window-dialog.component';
 import { from } from 'rxjs';
 import { SystemElement } from '../types/system-element.type';
-import { FILE_DIALOG_CONFIG, FOLDER_DIALOG_CONFIG, MEDIUM_DIALOG_CONFIG, NOTION_DIALOG_CONFIG } from '../utils/utils';
+import { FILE_DIALOG_CONFIG, FOLDER_DIALOG_CONFIG, MEDIUM_DIALOG_CONFIG, NOTION_DIALOG_CONFIG } from '../utils';
 import { FileExplorerService } from './file-explorer.service';
 
 
