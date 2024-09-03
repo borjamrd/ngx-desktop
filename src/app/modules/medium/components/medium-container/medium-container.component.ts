@@ -41,7 +41,7 @@ export class MediumContainerComponent {
       this.dialogRef.removePanelClass('not-fullscreen');
       this.dialogRef.addPanelClass('fullscreen');
       this.dialogRef.updatePosition({ top: '0px', left: '0px' });
-      this.dialogRef.updateSize('100vw', '100vh');
+      this.dialogRef.updateSize('100vw', 'calc(100vh - 3rem)');
 
     } else {
 
