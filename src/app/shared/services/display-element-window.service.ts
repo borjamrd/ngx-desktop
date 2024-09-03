@@ -1,13 +1,13 @@
 import { inject, Injectable } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
-import { NotionContainerComponent } from '@modules/notion/components/notion-container/notion-container.component';
+import { FileDialogComponent } from '@modules/file/file-dialog/file-dialog.component';
+import { MediumContainerComponent } from '@modules/medium/components/medium-container/medium-container.component';
+import { NotionDialogComponent } from 'app/modules/notion/components/notion-dialog/notion-dialog.component';
+import { WindowDialogComponent } from 'app/modules/window-dialog/window-dialog.component';
 import { from } from 'rxjs';
 import { SystemElement } from '../types/system-element.type';
+import { FILE_DIALOG_CONFIG, FOLDER_DIALOG_CONFIG, MEDIUM_DIALOG_CONFIG, NOTION_DIALOG_CONFIG } from '../utils/utils';
 import { FileExplorerService } from './file-explorer.service';
-import { MediumContainerComponent } from '@modules/medium/components/medium-container/medium-container.component';
-import { WindowContainerComponent } from '@modules/window-container/window-container.component';
-import { FOLDER_DIALOG_CONFIG, MEDIUM_DIALOG_CONFIG, NOTION_DIALOG_CONFIG, FILE_DIALOG_CONFIG } from '../utils/utils';
-import { FileDialogComponent } from '@modules/file/file-dialog/file-dialog.component';
 
 
 export interface IDisplayElementWindowService {
@@ -37,7 +37,7 @@ export class DisplayElementWindowService implements IDisplayElementWindowService
     }
     switch (element.type) {
       case 'folder':
-        this.dialog.open(WindowContainerComponent, { ...FOLDER_DIALOG_CONFIG, data });
+        this.dialog.open(WindowDialogComponent, { ...FOLDER_DIALOG_CONFIG, data });
         break;
       case 'file':
         this.dialog.open(FileDialogComponent, { ...FILE_DIALOG_CONFIG, data, });
@@ -48,7 +48,7 @@ export class DisplayElementWindowService implements IDisplayElementWindowService
             this.dialog.open(MediumContainerComponent, { ...MEDIUM_DIALOG_CONFIG, data });
             break;
           case 'notion':
-            this.dialog.open(NotionContainerComponent, { ...NOTION_DIALOG_CONFIG, data });
+            this.dialog.open(NotionDialogComponent, { ...NOTION_DIALOG_CONFIG, data });
             break;
           default:
             break;

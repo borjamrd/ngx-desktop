@@ -38,15 +38,15 @@ export interface DialogData {
     FocusDialogDirective
   ],
 
-  templateUrl: './window-container.component.html',
-  styleUrl: './window-container.component.scss',
+  templateUrl: './window-dialog.component.html',
+  styleUrl: './window-dialog.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 
 
-export class WindowContainerComponent {
+export class WindowDialogComponent {
 
-  public dialogRef: MatDialogRef<WindowContainerComponent> = inject(MatDialogRef);
+  public dialogRef: MatDialogRef<WindowDialogComponent> = inject(MatDialogRef);
   private fileExplorerService: FileExplorerService = inject(FileExplorerService);
   public isFullScreen: boolean = false
 

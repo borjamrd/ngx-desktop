@@ -5,7 +5,7 @@ import { FileExplorerService } from 'app/shared/services/file-explorer.service';
 import { FolderElement } from 'app/shared/types/system-element.type';
 import { slideInOut } from 'app/shared/utils/transitions';
 import { from } from 'rxjs';
-import { WindowContainerComponent } from '../../window-container/window-container.component';
+import { WindowDialogComponent } from '../../window-dialog/window-dialog.component';
 
 
 @Component({
@@ -31,7 +31,7 @@ export class ActiveFoldersComponent {
     if (!element) {
       throw new Error('Element not found')
     }
-    this.dialog.open(WindowContainerComponent, {
+    this.dialog.open(WindowDialogComponent, {
       width: '650px',
       height: '450px',
       maxWidth: "100%",

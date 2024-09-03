@@ -6,7 +6,7 @@ import { MatIconModule } from '@angular/material/icon';
 import { FocusDialogDirective } from 'app/shared/directives/focus-dialog.directive';
 import { NotionComponent } from '../notion-view/notion.component';
 @Component({
-  selector: 'bm-notion-container',
+  selector: 'bm-notion-dialog',
   standalone: true,
   imports: [
     NotionComponent,
@@ -15,13 +15,13 @@ import { NotionComponent } from '../notion-view/notion.component';
     MatIconModule,
     FocusDialogDirective
   ],
-  templateUrl: './notion-container.component.html',
-  styleUrl: './notion-container.component.scss',
+  templateUrl: './notion-dialog.component.html',
+  styleUrl: './notion-dialog.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class NotionContainerComponent {
+export class NotionDialogComponent {
 
-  public dialogRef: MatDialogRef<NotionContainerComponent> = inject(MatDialogRef);
+  public dialogRef: MatDialogRef<NotionDialogComponent> = inject(MatDialogRef);
   public data = inject(MAT_DIALOG_DATA);
   public isFullScreen: boolean = false
 

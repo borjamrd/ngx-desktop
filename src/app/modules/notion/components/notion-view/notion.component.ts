@@ -14,7 +14,17 @@ import { NotionDatabaseComponent } from "../notion-database/notion-database.comp
 @Component({
   selector: 'bm-notion',
   standalone: true,
-  imports: [AsyncPipe, NgFor, NgClass, NgIf, JsonPipe, NotionDatabaseItemComponent, MatIconModule, NotionPageComponent, NotionDatabaseComponent],
+  imports: [
+    AsyncPipe,
+    JsonPipe,
+    MatIconModule,
+    NgClass,
+    NgFor,
+    NgIf,
+    NotionDatabaseComponent,
+    NotionDatabaseItemComponent,
+    NotionPageComponent,
+  ],
   templateUrl: './notion.component.html',
   providers: [ResizeObserverService],
   styleUrl: './notion.component.scss',
@@ -25,9 +35,9 @@ import { NotionDatabaseComponent } from "../notion-database/notion-database.comp
   encapsulation: ViewEncapsulation.None
 })
 export class NotionComponent {
-  notionContainerClass = signal<string>('p-5')
+  public notionContainerClass = signal<string>('p-5')
 
-  mediaQueries = {
+  public mediaQueries = {
     XXS: 250,
     XS: 599,
     SM: 959,
@@ -44,13 +54,13 @@ export class NotionComponent {
   private destroyRef = inject(DestroyRef)
 
 
+  private crd = inject(ChangeDetectorRef)
+  public containeListClasses: string = ''
+  public pageListCLasses: string = ''
+
   setItemSelected(item: NotionDatabaseItem) {
     this.selectedItem.set(item)
   }
-  private crd = inject(ChangeDetectorRef)
-  containeListClasses: string = ''
-  pageListCLasses: string = ''
-
   ngAfterViewInit() {
 
     const container = new ResizeObserverService(this.crd, this.elementRef);

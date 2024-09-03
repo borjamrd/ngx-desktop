@@ -1,6 +1,6 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { WindowContainerComponent } from './window-container.component';
+import { WindowContainerComponent } from './window-dialog.component';
 
 describe('WindowContainerComponent', () => {
   let component: WindowContainerComponent;
@@ -10,8 +10,8 @@ describe('WindowContainerComponent', () => {
     await TestBed.configureTestingModule({
       imports: [WindowContainerComponent]
     })
-    .compileComponents();
-    
+      .compileComponents();
+
     fixture = TestBed.createComponent(WindowContainerComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
