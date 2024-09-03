@@ -1,7 +1,7 @@
 import { NgClass } from '@angular/common';
 import { Component, inject } from '@angular/core';
 import { MatIconRegistry } from '@angular/material/icon';
-import { DomSanitizer } from '@angular/platform-browser';
+import { DomSanitizer, Meta } from '@angular/platform-browser';
 import { RouterOutlet } from '@angular/router';
 import { ThemeService } from './shared/services/theme.service';
 import { customIcons } from './shared/utils/icons';
@@ -16,11 +16,13 @@ import { customIcons } from './shared/utils/icons';
 })
 export class AppComponent {
   title = 'desktop-rocket';
-  themeService: ThemeService = inject(ThemeService);
 
-  constructor(private matIconRegistry: MatIconRegistry, private domSanitizer: DomSanitizer) {
+  private themeService: ThemeService = inject(ThemeService);
+  private matIconRegistry = inject(MatIconRegistry)
+  private domSanitizer = inject(DomSanitizer)
+
+  constructor() {
     this.themeService.setTheme('dark')
     customIcons.forEach(icon => this.matIconRegistry.addSvgIcon(icon.svg, this.domSanitizer.bypassSecurityTrustResourceUrl(icon.url)));
-
   }
 }

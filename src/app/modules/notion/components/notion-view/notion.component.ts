@@ -9,11 +9,12 @@ import { Observable } from 'rxjs';
 import { NotionDatabaseItem } from '../../types/notion.interface';
 import { NotionDatabaseItemComponent } from '../notion-database-item/notion-database-item.component';
 import { NotionPageComponent } from '../notion-page/notion-page.component';
+import { NotionDatabaseComponent } from "../notion-database/notion-database.component";
 
 @Component({
   selector: 'bm-notion',
   standalone: true,
-  imports: [AsyncPipe, NgFor, NgClass, NgIf, JsonPipe, NotionDatabaseItemComponent, MatIconModule, NotionPageComponent],
+  imports: [AsyncPipe, NgFor, NgClass, NgIf, JsonPipe, NotionDatabaseItemComponent, MatIconModule, NotionPageComponent, NotionDatabaseComponent],
   templateUrl: './notion.component.html',
   providers: [ResizeObserverService],
   styleUrl: './notion.component.scss',

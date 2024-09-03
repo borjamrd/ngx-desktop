@@ -1,62 +1,36 @@
 import { DragDropModule } from '@angular/cdk/drag-drop';
 import { NgComponentOutlet } from '@angular/common';
-import { ChangeDetectionStrategy, Component, ElementRef, HostListener, Inject } from '@angular/core';
+import { ChangeDetectionStrategy, Component, inject } from '@angular/core';
 import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
 import { MatIconModule } from '@angular/material/icon';
-import { maxZIndex } from 'app/shared/utils/utils';
-import { DialogData } from '@modules/window-container/window-container.component';
+import { FocusDialogDirective } from 'app/shared/directives/focus-dialog.directive';
 import { NotionComponent } from '../notion-view/notion.component';
 @Component({
   selector: 'bm-notion-container',
   standalone: true,
-  imports: [MatIconModule, DragDropModule, NgComponentOutlet, NotionComponent],
+  imports: [
+    NotionComponent,
+    NgComponentOutlet,
+    DragDropModule,
+    MatIconModule,
+    FocusDialogDirective
+  ],
   templateUrl: './notion-container.component.html',
   styleUrl: './notion-container.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,
-  host: {
-    '(click)': 'updateZIndex()'
-  }
 })
 export class NotionContainerComponent {
 
+  public dialogRef: MatDialogRef<NotionContainerComponent> = inject(MatDialogRef);
+  public data = inject(MAT_DIALOG_DATA);
+  public isFullScreen: boolean = false
 
-  private static maxZIndex = 1000;
-
-  isFullScreen: boolean = false
 
 
-  constructor(
-    public dialogRef: MatDialogRef<NotionContainerComponent>,
-
-    //TODO! data must be implemented here
-    @Inject(MAT_DIALOG_DATA) public data: DialogData,
-
-    private _elementRef: ElementRef) {
-    this.dialogRef.afterOpened().subscribe(() => {
-      this.updateZIndex();
-    });
-
-  }
-
-  @HostListener('click')
-  onClick(): void {
-    this.updateZIndex();
-
-  }
   handleHide(): void {
     this.dialogRef.close();
   }
 
-  private updateZIndex(): void {
-    const dialogElement = this._elementRef.nativeElement.closest('.cdk-global-overlay-wrapper');
-    if (dialogElement) {
-      dialogElement.style.zIndex = `${NotionContainerComponent.maxZIndex++}`;
-    }
-  }
-
-  getMaxModalIndex(): number {
-    return maxZIndex('.mdc-dialog');
-  }
   onResizeButtonClicked() {
 
     this.isFullScreen = !this.isFullScreen;
@@ -72,7 +46,7 @@ export class NotionContainerComponent {
 
       this.dialogRef.removePanelClass('fullscreen');
       this.dialogRef.addPanelClass('not-fullscreen');
-      this.dialogRef.updateSize('1250px', '600px');
+      this.dialogRef.updateSize('1000px', '600px');
 
     }
 

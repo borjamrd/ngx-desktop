@@ -12,6 +12,7 @@ import { SystemElement } from 'app/shared/types/system-element.type';
 import { maxZIndex } from 'app/shared/utils/utils';
 import { CellContainerComponent } from '../../shared/components/cell-container/cell-container.component';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
+import { FocusDialogDirective } from 'app/shared/directives/focus-dialog.directive';
 
 
 //TODO type
@@ -27,52 +28,35 @@ export interface DialogData {
 @Component({
   selector: 'bm-window-container',
   standalone: true,
-  imports: [MatDialogModule, CellContainerComponent, AsyncPipe, CommonModule, DragDropModule, MatIconModule],
+  imports: [
+    MatIconModule,
+    DragDropModule,
+    CommonModule,
+    AsyncPipe,
+    CellContainerComponent,
+    MatDialogModule,
+    FocusDialogDirective
+  ],
+
   templateUrl: './window-container.component.html',
   styleUrl: './window-container.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,
-  host: {
-    '(click)': 'updateZIndex()'
-  }
 })
 
 
 export class WindowContainerComponent {
 
-  private static maxZIndex = 1000;
+  public dialogRef: MatDialogRef<WindowContainerComponent> = inject(MatDialogRef);
+  private fileExplorerService: FileExplorerService = inject(FileExplorerService);
+  public isFullScreen: boolean = false
 
-  private destroyRef = inject(DestroyRef);
-  fileExplorerService: FileExplorerService = inject(FileExplorerService);
-  isFullScreen: boolean = false
+  public data = inject(MAT_DIALOG_DATA);
 
-
-  constructor(
-    public dialogRef: MatDialogRef<WindowContainerComponent>,
-    @Inject(MAT_DIALOG_DATA) public data: DialogData,
-
-    private _elementRef: ElementRef) {
-    this.dialogRef.afterOpened()
-      .pipe(takeUntilDestroyed(this.destroyRef))
-      .subscribe(() => {
-        this.updateZIndex();
-      });
-
-  }
 
   handleHide(): void {
     this.dialogRef.close();
   }
 
-  private updateZIndex(): void {
-    const dialogElement = this._elementRef.nativeElement.closest('.cdk-global-overlay-wrapper');
-    if (dialogElement) {
-      dialogElement.style.zIndex = `${WindowContainerComponent.maxZIndex++}`;
-    }
-  }
-
-  getMaxModalIndex(): number {
-    return maxZIndex('.mdc-dialog');
-  }
   onResizeButtonClicked() {
 
     this.isFullScreen = !this.isFullScreen;

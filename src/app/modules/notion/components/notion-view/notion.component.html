@@ -5,16 +5,10 @@
         class="transition-all duration-150 ease-in"
         [ngClass]="selectedItem() ? containeListClasses : 'w-full'"
       >
-        <div class="w-full overflow-auto sticky top-10">
-          @for (item of items; track $index) {
-            <div class="notion-item">
-              <bm-notion-database-item
-                (itemSelected)="setItemSelected($event)"
-                [item]="item"
-              />
-            </div>
-          }
-        </div>
+        <bm-notion-database
+          (itemSelected)="setItemSelected($event)"
+          [items]="items"
+        />
       </div>
       <div
         class="transition-all duration-150 ease-in relative"

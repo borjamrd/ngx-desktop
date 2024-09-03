@@ -1,0 +1,8 @@
+@for (item of items(); track $index) {
+  <div class="notion-item">
+    <bm-notion-database-item
+      (itemSelected)="itemSelected.emit($event)"
+      [item]="item"
+    />
+  </div>
+}

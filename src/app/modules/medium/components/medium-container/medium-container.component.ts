@@ -1,61 +1,37 @@
-import { ChangeDetectionStrategy, Component, ElementRef, HostListener, Inject } from '@angular/core';
-import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
-import { maxZIndex } from 'app/shared/utils/utils';
-import { DialogData } from '@modules/window-container/window-container.component';
-import { MatIconModule } from '@angular/material/icon';
-import { NgComponentOutlet } from '@angular/common';
 import { DragDropModule } from '@angular/cdk/drag-drop';
+import { NgComponentOutlet } from '@angular/common';
+import { ChangeDetectionStrategy, Component, inject } from '@angular/core';
+import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
+import { MatIconModule } from '@angular/material/icon';
+import { FocusDialogDirective } from 'app/shared/directives/focus-dialog.directive';
 import { MediumComponent } from '../medium-view/medium.component';
 @Component({
   selector: 'bm-medium-container',
   standalone: true,
-  imports: [MatIconModule, DragDropModule, NgComponentOutlet, MediumComponent],
+  imports: [
+    MediumComponent,
+    NgComponentOutlet,
+    DragDropModule,
+    FocusDialogDirective,
+    MatIconModule,
+  ],
   templateUrl: './medium-container.component.html',
   styleUrl: './medium-container.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,
-  host: {
-    '(click)': 'updateZIndex()'
-  }
 })
 export class MediumContainerComponent {
 
 
-  private static maxZIndex = 1000;
 
-  isFullScreen: boolean = false
+  public dialogRef: MatDialogRef<MediumContainerComponent> = inject(MatDialogRef);
+  public data = inject(MAT_DIALOG_DATA);
+  public isFullScreen: boolean = false
 
-  constructor(
-    public dialogRef: MatDialogRef<MediumContainerComponent>,
 
-    //TODO! data must be implemented here
-    @Inject(MAT_DIALOG_DATA) public data: DialogData,
-
-    private _elementRef: ElementRef) {
-    this.dialogRef.afterOpened().subscribe(() => {
-      this.updateZIndex();
-    });
-
-  }
-
-  @HostListener('click')
-  onClick(): void {
-    this.updateZIndex();
-
-  }
   handleHide(): void {
     this.dialogRef.close();
   }
 
-  private updateZIndex(): void {
-    const dialogElement = this._elementRef.nativeElement.closest('.cdk-global-overlay-wrapper');
-    if (dialogElement) {
-      dialogElement.style.zIndex = `${MediumContainerComponent.maxZIndex++}`;
-    }
-  }
-
-  getMaxModalIndex(): number {
-    return maxZIndex('.mdc-dialog');
-  }
   onResizeButtonClicked() {
 
     this.isFullScreen = !this.isFullScreen;
