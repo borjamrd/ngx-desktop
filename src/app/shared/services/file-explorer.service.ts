@@ -11,19 +11,13 @@ export interface DialogElement extends SystemElement {
 export class FileExplorerService {
 
   public defaultFolder: DialogElement[] = defaultLayout.map((element) => ({ ...element, minimized: false }))
-  private _systemFiles = signal<DialogElement[]>(this.defaultFolder)
+  private _systemFiles = signal<DialogElement[]>(this.defaultFolder || [])
   private _openedFolders = signal<DialogElement[]>([])
   private _openedFiles = signal<DialogElement[]>([])
 
   public folders = computed(this._openedFolders)
   public systemFiles = computed(this._systemFiles)
 
-
-  constructor() {
-    effect(() => {
-      console.log(this._openedFolders())
-    })
-  }
 
 
   setActiveElement(element: DialogElement) {

@@ -42,3 +42,14 @@ export const NOTION_DIALOG_CONFIG: MatDialogConfig = {
     autoFocus: true,
     restoreFocus: false
 }
+
+export const GLOBAL_SEARCH_DIALOG_CONFIG: MatDialogConfig = {
+    maxWidth: '100vw',
+    maxHeight: '100vh',
+    width: '600px',
+    height: '350px',
+    panelClass: ['global-search-container'],
+    hasBackdrop: true,
+    autoFocus: true,
+    restoreFocus: false
+}

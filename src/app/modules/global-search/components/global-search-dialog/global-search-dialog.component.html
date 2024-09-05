@@ -1,0 +1,36 @@
+<div focusDialog class="flex fixed z-50 w-full px-2 py-3 window-border">
+  <div class="flex gap-2 items-center">
+    <mat-icon>search</mat-icon>
+    <input
+      (keydown)="handleKeydown($event)"
+      (input)="handleSearch($event)"
+      class="border-none bg-transparent focus:outline-none"
+      type="text"
+      placeholder="Busca en el sistema"
+    />
+  </div>
+  <span
+    class="px-2 py-1 rounded-md ms-auto text-xs bg-slate-400 dark:bg-slate-600"
+    >ESC</span
+  >
+</div>
+
+<div class="overflow-auto mt-16 flex flex-col gap-1">
+  @for (element of filteredElements().slice(0, limitElements()); track $index) {
+    <div
+      (click)="open(element)"
+      [class.selected]="$index === selectedIndex"
+      class="flex px-4 items-center justify-between rounded-sm border-b dark:hover:bg-slate-800/50 hover:bg-slate-100/40 border-slate-400 dark:border-slate-600 py-2.5"
+    >
+      <div class="flex gap-2 items-center">
+        <mat-icon [svgIcon]="element.icon" />
+        <p class="text-base">{{ element.name }}</p>
+      </div>
+      <button
+        class="flex items-center justify-center border-none dark:hover:text-slate-100 hover:bg-slate-400/50 rounded-sm p-0.5"
+      >
+        <mat-icon>star_outline</mat-icon>
+      </button>
+    </div>
+  }
+</div>
