@@ -50,6 +50,18 @@ export const customIcons: CustomIcon[] = [
     {
         svg: 'markdown',
         url: 'assets/icons/markdown.svg',
+    },
+    {
+        svg: 'gif',
+        url: 'assets/icons/gif.svg',
+    },
+    {
+        svg: 'desktop',
+        url: 'assets/icons/desktop.svg',
+    },
+    {
+        svg: 'windows-angular',
+        url: 'assets/icons/windows_angular.svg',
     }
 
 ]
