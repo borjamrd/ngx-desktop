@@ -1,5 +1,9 @@
-<object
-  class="h-full w-full"
-  [data]="fileData()!.url | safeUrl"
-  [type]="fileData()!.fileType"
-></object>
+@if (fileData()!.fileType === "image/gif") {
+  <img class="w-full h-full" [src]="fileData()!.url | safeUrl" />
+} @else {
+  <object
+    class="h-full w-full"
+    [data]="fileData()!.url | safeUrl"
+    [type]="fileData()!.fileType"
+  ></object>
+}
