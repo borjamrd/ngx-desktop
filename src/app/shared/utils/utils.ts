@@ -1,4 +1,4 @@
-import { NotionBlock } from "@modules/notion/types/notion.interface";
+import { SystemElement } from "../types/system-element.type";
 
 /**
  * Removes and item from an array. Returns a new array instance (it doesn't mutate the source array).
@@ -17,3 +17,14 @@ export function ktdArrayRemoveElement<T>(
   return arrayCopy;
 }
 
+
+
+export function flattenElements(elements: SystemElement[]): SystemElement[] {
+  return elements.reduce((acc: SystemElement[], element: SystemElement) => {
+    acc.push(element);
+    if (element.hasChildren && element.children) {
+      acc.push(...flattenElements(element.children));
+    }
+    return acc;
+  }, []);
+}
