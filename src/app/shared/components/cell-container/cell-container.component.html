@@ -4,7 +4,7 @@
       (click)="handleFullName()"
       (contextmenu)="onRightClickGridItem($event)"
       (dblclick)="open(element())"
-      class="active:backdrop-blur-md active:bg-slate-500/10 hover:backdrop-blur-md hover:bg-slate-500/10 rounded-md aspect-square h-full p-1 cursor-pointer flex flex-col gap-2 items-center"
+      class="active:backdrop-blur-md active:bg-slate-500/10 hover:backdrop-blur-md hover:bg-slate-500/10 rounded-md aspect-square h-full p-1 cursor-pointer flex flex-col gap-2 items-center max-h-20 max-w-20"
     >
       <ng-container
         *ngTemplateOutlet="elementContent; context: { $implicit: element }"
@@ -16,7 +16,7 @@
       (click)="handleFullName()"
       (contextmenu)="onRightClickGridItem($event)"
       (dblclick)="open(element())"
-      class="active:backdrop-blur-md active:bg-slate-500/10 hover:backdrop-blur-md hover:bg-slate-500/10 rounded-md aspect-square h-full p-1 cursor-pointer flex flex-col gap-1 items-center"
+      class="active:backdrop-blur-md active:bg-slate-500/10 hover:backdrop-blur-md hover:bg-slate-500/10 rounded-md aspect-square h-full p-1 cursor-pointer flex flex-col gap-1 items-center max-h-20 max-w-20"
     >
       <ng-container
         *ngTemplateOutlet="elementContent; context: { $implicit: element }"
@@ -42,7 +42,7 @@
       (click)="handleFullName()"
       (contextmenu)="onRightClickGridItem($event)"
       (dblclick)="open(element())"
-      class="active:backdrop-blur-md active:bg-slate-500/10 hover:backdrop-blur-md hover:bg-slate-500/10 rounded-md aspect-square h-full p-1 cursor-pointer flex flex-col gap-1 items-center"
+      class="active:backdrop-blur-md active:bg-slate-500/10 hover:backdrop-blur-md hover:bg-slate-500/10 rounded-md aspect-square h-full p-1 cursor-pointer flex flex-col gap-1 items-center max-h-20 max-w-20"
     >
       <ng-container
         *ngTemplateOutlet="elementContent; context: { $implicit: element }"
@@ -59,10 +59,10 @@
         ? 'text-white text-shadow shadow-black text-sm'
         : 'text-black dark:text-white text-sm'
     "
-    class="text-base font-normal text-center"
+    class="text-base font-normal text-center text-wrap max-w-20"
   >
     {{
-      element().name.length > 27
+      element().name.length > 25
         ? showFullName()
           ? element().name
           : (element().name | slice: 0 : 20) + "..."

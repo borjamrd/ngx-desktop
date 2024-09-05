@@ -1,15 +1,11 @@
 @if (layout.length) {
-  <div
-    #elementList
-    cdkDropList
-    class="flex gap-x-10 gap-y-10 flex-wrap ms-5"
-    (cdkDropListDropped)="drop($event)"
-  >
+  <div #elementList cdkDropList class="flex gap-x-10 gap-y-10 flex-wrap ms-5">
     @for (element of layout; track $index) {
       @if (
         element.type === "folder" ||
         element.type === "file" ||
-        element.type === "application"
+        element.type === "application" ||
+        element.type === "system-folder"
       ) {
         <div cdkDrag>
           <bm-cell-container [element]="element" />

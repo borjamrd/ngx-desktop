@@ -8,6 +8,9 @@ import { ThemeService } from '@services/theme.service';
 import { InputComponent } from 'app/shared/components/input/input.component';
 import { SystemElement } from 'app/shared/types/system-element.type';
 import { ActiveFilesComponent } from "../../../modules/file/active-files/active-files.component";
+import { NavbarClockComponent } from 'app/shared/components/navbar-clock/navbar-clock.component';
+import { MatSnackBar } from '@angular/material/snack-bar';
+import { SnackBarComponent } from 'app/shared/components/snack-bar/snack-bar.component';
 @Component({
   selector: 'bm-tasksbar',
   standalone: true,
@@ -19,7 +22,8 @@ import { ActiveFilesComponent } from "../../../modules/file/active-files/active-
     MatIconModule,
     MatSlideToggleModule,
     InputComponent,
-    ActiveFilesComponent
+    ActiveFilesComponent,
+    NavbarClockComponent
   ],
   templateUrl: './tasksbar.component.html',
   styleUrl: './tasksbar.component.scss',
@@ -30,11 +34,18 @@ import { ActiveFilesComponent } from "../../../modules/file/active-files/active-
 })
 export class TasksbarComponent {
 
+  private _snackBar = inject(MatSnackBar);
   public themeService: ThemeService = inject(ThemeService);
 
 
   toggleTheme() {
     this.themeService.updateTheme();
+  }
+  showSnackBar() {
+    this._snackBar.openFromComponent(SnackBarComponent, {
+      verticalPosition: 'top',
+      duration: 4000,
+    });
   }
 
 }

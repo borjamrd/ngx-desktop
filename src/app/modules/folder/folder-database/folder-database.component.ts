@@ -18,12 +18,7 @@ import { CellContainerComponent } from '../../../shared/components/cell-containe
 export class FolderDatabaseComponent {
 
   @Input() layout: SystemElement[] = []
-
   @ViewChild('elementList') elementList!: ElementRef;
-
-  drop(event: CdkDragDrop<string[]>) {
-    moveItemInArray(this.layout, event.previousIndex, event.currentIndex);
-  }
 
 
 
