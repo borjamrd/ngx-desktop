@@ -1,4 +1,4 @@
-import { ChangeDetectionStrategy, Component } from '@angular/core';
+import { ChangeDetectionStrategy, Component, HostListener } from '@angular/core';
 import { InputComponent } from '@components/input/input.component';
 
 @Component({
@@ -7,7 +7,8 @@ import { InputComponent } from '@components/input/input.component';
   imports: [InputComponent],
   templateUrl: './main-search-input.component.html',
   styleUrl: './main-search-input.component.scss',
-  changeDetection: ChangeDetectionStrategy.OnPush
+  changeDetection: ChangeDetectionStrategy.OnPush,
+
 })
 export class MainSearchInputComponent {
 

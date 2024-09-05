@@ -1,3 +1,4 @@
+import { CommonModule } from '@angular/common';
 import { ChangeDetectionStrategy, Component, DestroyRef, forwardRef, inject, input, Input } from '@angular/core';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 import { ControlValueAccessor, FormBuilder, FormGroup, FormsModule, NG_VALUE_ACCESSOR, ReactiveFormsModule } from '@angular/forms';
@@ -10,7 +11,14 @@ import { MatInputModule } from '@angular/material/input';
 @Component({
   selector: 'bm-input',
   standalone: true,
-  imports: [MatFormFieldModule, MatInputModule, FormsModule, MatButtonModule, MatIconModule, ReactiveFormsModule],
+  imports: [
+    MatFormFieldModule,
+    CommonModule,
+    MatInputModule,
+    FormsModule,
+    MatButtonModule,
+    MatIconModule,
+    ReactiveFormsModule],
   providers: [
     {
       provide: NG_VALUE_ACCESSOR,
@@ -33,10 +41,10 @@ export class InputComponent implements ControlValueAccessor {
 
   public placeholder = input<string>('');
   public label = input<string>();
-  public showLabel = input<false>(false)
+  public showLabel = input<boolean>(false)
   public prefixIcon = input<string>();
-  public valueClearable = input<false>(false)
-
+  public valueClearable = input<boolean>(false)
+  public showButton = input<boolean>()
 
   form!: FormGroup;
   private onChange = (value: string) => { };

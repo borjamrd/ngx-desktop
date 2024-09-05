@@ -21,4 +21,8 @@
         margin-right: 0.5rem;
     }
 
+    .mat-mdc-form-field-infix {
+        @apply flex
+    }
+
 }
