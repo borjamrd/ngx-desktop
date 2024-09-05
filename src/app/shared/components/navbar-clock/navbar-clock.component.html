@@ -1,0 +1,13 @@
+@if (open()) {
+  <mat-calendar
+    class="w-96 absolute bottom-28 backdrop-blur-sm rounded-lg b right-3 bg-slate-100 dark:bg-gray-800/70"
+    [(selected)]="selected"
+  ></mat-calendar>
+}
+<div
+  (click)="open.set(!open())"
+  class="relative flex justify-center text-xs flex-col gap-0 items-end btn"
+>
+  <span>{{ date() | date: "HH:mm" }}</span>
+  <small class="font-light text-xs">{{ date() | date: "dd/MM/yyyy" }}</small>
+</div>
