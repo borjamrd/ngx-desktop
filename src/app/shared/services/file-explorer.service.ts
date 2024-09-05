@@ -1,40 +1,51 @@
-import { Injectable, signal } from '@angular/core';
-import { defaultLayout, FolderElement, SystemElement } from '../types/system-element.type';
-import { Observable } from 'rxjs';
-import { toObservable } from '@angular/core/rxjs-interop';
+import { computed, Injectable, signal } from '@angular/core';
+import { defaultLayout, SystemElement } from '../types/system-element.type';
 
 @Injectable({
   providedIn: 'root'
 })
 export class FileExplorerService {
 
+  public defaultFolder = defaultLayout[0]
+  private _systemFiles = signal<SystemElement[]>(defaultLayout)
+  private _openedFolders = signal<SystemElement[]>([])
+  private _openedFiles = signal<SystemElement[]>([])
 
-  defaultFolders = [defaultLayout[0]]
-  systemFiles = signal<SystemElement[]>(defaultLayout)
-  folders = signal<FolderElement[]>(this.defaultFolders)
-  folders$: Observable<FolderElement[]> = toObservable(this.folders)
-  constructor() {
-  }
+  public folders = computed(this._openedFolders)
+  public systemFiles = computed(this._systemFiles)
 
 
-  setActiveFolders(file: FolderElement) {
-    if (!this.folders().includes(file)) {
-      this.folders.set([...this.folders(), file])
+
+  setActiveElement(element: SystemElement) {
+    if (element.type === 'folder' || element.type === 'system-folder') {
+      this._openedFolders.update((folders) => [...folders, element])
+    } else {
+      this._openedFiles.update((files) => {
+        return [...new Set([...files, element])]
+      })
     }
 
   }
 
 
-  get activeFolders(): Observable<FolderElement[]> {
-    return toObservable(this.folders)
-  }
+  closeElement(id: SystemElement['id'], type: SystemElement['type']) {
 
-  closeFolder(id: FolderElement['id']) {
-
-    this.folders.set(this.folders().filter(folder => folder.id !== id))
-    if (this.folders().length <= 1) {
-      this.folders.set(this.defaultFolders)
+    if (type === 'folder' || type === 'system-folder') {
+      this._openedFolders.update((folders) => [
+        ...folders.filter((folder) => folder.id !== id)
+      ])
+    } else {
+      this._openedFiles.update((files) => [
+        ...files.filter((file) => file.id !== id)
+      ])
     }
 
+  }
+  public activeFolders() {
+    return this.folders
+  }
+
+  public activeFiles() {
+    return this._openedFiles
   }
 }
