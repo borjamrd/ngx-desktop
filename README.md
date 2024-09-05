@@ -1,5 +1,7 @@
 # DesktopRocket
 
+Please, give it a Github starm if you enjoyed it!
+
 ## welcome
 
 # Instalation
