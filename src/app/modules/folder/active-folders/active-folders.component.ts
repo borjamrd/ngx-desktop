@@ -25,7 +25,7 @@ export class ActiveFoldersComponent {
   private readonly displayElementWindowService = inject(DisplayElementWindowService);
 
 
-  handleOpenFolder(element: SystemElement = this.defaultFolder): void {
+  handleOpenFolder(element: SystemElement = this.defaultFolder[0]): void {
     this.displayElementWindowService.open(element)
   }
 

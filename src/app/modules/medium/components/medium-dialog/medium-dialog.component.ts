@@ -32,6 +32,7 @@ export class MediumDialogComponent {
 
   handleHide(): void {
     this.dialogRef.close();
+    this.fileExplorerService.minimizeElement(this.data.id, this.data.type)
   }
 
   onResizeButtonClicked() {

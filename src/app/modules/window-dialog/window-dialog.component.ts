@@ -53,6 +53,7 @@ export class WindowDialogComponent {
 
   handleHide(): void {
     this.dialogRef.close();
+    this.fileExplorerService.minimizeElement(this.data.id, this.data.type)
   }
 
   onResizeButtonClicked() {
@@ -78,8 +79,8 @@ export class WindowDialogComponent {
 
   }
   handleClose() {
-    this.dialogRef.close();
     this.fileExplorerService.closeElement(this.data.id, this.data.type)
+    this.dialogRef.close();
   }
 
 

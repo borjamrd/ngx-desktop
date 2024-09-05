@@ -7,7 +7,7 @@ import { WindowDialogComponent } from 'app/modules/window-dialog/window-dialog.c
 import { from } from 'rxjs';
 import { SystemElement } from '../types/system-element.type';
 import { FILE_DIALOG_CONFIG, FOLDER_DIALOG_CONFIG, MEDIUM_DIALOG_CONFIG, NOTION_DIALOG_CONFIG } from '../utils';
-import { FileExplorerService } from './file-explorer.service';
+import { DialogElement, FileExplorerService } from './file-explorer.service';
 
 
 export interface IDisplayElementWindowService {
@@ -23,7 +23,7 @@ export class DisplayElementWindowService implements IDisplayElementWindowService
   private lazzyLoadFolderDatabase$ = from(import('@modules/folder/folder-database/folder-database.component').then(component => component.FolderDatabaseComponent));
   private fileExplorer: FileExplorerService = inject(FileExplorerService);
 
-  public open(element: SystemElement): void {
+  public open(element: DialogElement): void {
 
 
     const data = {
@@ -38,41 +38,82 @@ export class DisplayElementWindowService implements IDisplayElementWindowService
       }
     }
 
-
-
-
+    const activeFolders = this.fileExplorer.activeFolders()().filter(af => af.id === element.id)
+    const currentFolder = this.fileExplorer.activeFolders()().find(f => f.id === element.id)
+    const activeFiles = this.fileExplorer.activeFiles()().filter(af => af.id === element.id)
+    const currentFile = this.fileExplorer.activeFiles()().find(f => f.id === element.id)
 
     switch (element.type) {
       case 'folder':
+
+        if (!currentFolder?.minimized) {
+          this.fileExplorer.setActiveElement(element)
+        }
         this.dialog.open(WindowDialogComponent, { ...FOLDER_DIALOG_CONFIG, data });
         break;
       case 'system-folder':
-        const activeFolders = this.fileExplorer.activeFolders()().filter(af => af.id === element.id)
-        if (activeFolders.length >= 1) return;
-        this.dialog.open(WindowDialogComponent, { ...FOLDER_DIALOG_CONFIG, data });
-
+        if (activeFolders.length < 1) {
+          this.dialog.open(WindowDialogComponent, { ...FOLDER_DIALOG_CONFIG, data });
+          this.fileExplorer.setActiveElement(element)
+        } else if (currentFolder?.minimized) {
+          this.dialog.open(WindowDialogComponent, { ...FOLDER_DIALOG_CONFIG, data });
+        }
         break;
       case 'file':
-        this.dialog.open(FileDialogComponent, { ...FILE_DIALOG_CONFIG, data, });
+
+        if (activeFiles.length > 1) {
+          return
+        } if (currentFile?.minimized === true && activeFiles.length === 1) {
+          this.dialog.open(FileDialogComponent, { ...FILE_DIALOG_CONFIG, data, });
+          currentFile.minimized = false
+        } else if (currentFile && activeFiles.includes(currentFile)) {
+          this.dialog.openDialogs.forEach(d => {
+            if (d.componentInstance.data.id === element.id) {
+              d.close()
+            }
+          })
+          this.fileExplorer.minimizeElement(element.id, element.type)
+        } else {
+          this.fileExplorer.setActiveElement(element)
+          this.dialog.open(FileDialogComponent, { ...FILE_DIALOG_CONFIG, data, });
+        }
+
         break
       case 'application':
-        switch (element.name.toLocaleLowerCase()) {
-          case 'medium':
-            this.dialog.open(MediumDialogComponent, { ...MEDIUM_DIALOG_CONFIG, data });
-            break;
-          case 'notion':
-            this.dialog.open(NotionDialogComponent, { ...NOTION_DIALOG_CONFIG, data });
-            break;
-          default:
-
-            //TODO show toast: incompatible file/folder
-            break;
+        if (activeFiles.length > 1) {
+          return
+        } if (currentFile?.minimized === true && activeFiles.length === 1) {
+          this.openAplication(element, data)
+          currentFile.minimized = false
+        } else if (currentFile && activeFiles.includes(currentFile)) {
+          this.dialog.openDialogs.forEach(d => {
+            if (d.componentInstance.data.id === element.id) {
+              d.close()
+            }
+          })
+          this.fileExplorer.minimizeElement(element.id, element.type)
+        } else {
+          this.fileExplorer.setActiveElement(element)
+          this.openAplication(element, data)
         }
         break;
       default:
+        //TODO show toast: incompatible file/folder
         break;
     }
-    this.fileExplorer.setActiveElement(element)
+
+  }
+
+  openAplication(element: SystemElement, data: any) {
+    switch (element.name.toLocaleLowerCase()) {
+      case 'medium':
+        this.dialog.open(MediumDialogComponent, { ...MEDIUM_DIALOG_CONFIG, data });
+        break;
+      case 'notion':
+        this.dialog.open(NotionDialogComponent, { ...NOTION_DIALOG_CONFIG, data });
+        break;
+
+    }
   }
 
 }

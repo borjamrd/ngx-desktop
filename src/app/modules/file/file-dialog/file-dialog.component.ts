@@ -32,6 +32,7 @@ export class FileDialogComponent {
 
   handleHide(): void {
     this.dialogRef.close();
+    this.fileExplorerService.minimizeElement(this.data.id, this.data.type)
   }
 
   onResizeButtonClicked() {
@@ -51,7 +52,6 @@ export class FileDialogComponent {
       this.dialogRef.updateSize('800px', '600px');
 
     }
-
 
 
   }
