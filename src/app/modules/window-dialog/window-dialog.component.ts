@@ -45,7 +45,7 @@ export interface DialogData {
 export class WindowDialogComponent {
 
   public dialogRef: MatDialogRef<WindowDialogComponent> = inject(MatDialogRef);
-  private fileExplorerService: FileExplorerService = inject(FileExplorerService);
+  private fileExplorerService = inject(FileExplorerService);
   public isFullScreen: boolean = false
 
   public data = inject(MAT_DIALOG_DATA);
@@ -79,7 +79,7 @@ export class WindowDialogComponent {
   }
   handleClose() {
     this.dialogRef.close();
-    this.fileExplorerService.closeFolder(this.data.id)
+    this.fileExplorerService.closeElement(this.data.id, this.data.type)
   }
 
 

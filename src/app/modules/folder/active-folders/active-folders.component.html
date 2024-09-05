@@ -1,5 +1,6 @@
 <div class="group">
-  @if (activeFolders) {
+  <!-- <pre class="text-xs"> {{ activeFolders() | json }}</pre> -->
+  @if (activeFolders(); as activeFolders) {
     @if (activeFolders.length > 1) {
       <div
         class="group duration-150 flex flex-col items-center gap-1 relative hover:bg-slate-100 dark:hover:bg-slate-400 p-1 rounded-lg hover:rounded-lg"
@@ -22,10 +23,10 @@
           </div>
         </div>
       </div>
-    } @else if (activeFolders.length === 1) {
+    } @else {
       <div
-        (click)="handleOpenFolder(activeFolders[0])"
-        class="group active:animate-button-pop duration-150 flex flex-col items-center gap-1 relative hover:bg-slate-100 dark:hover:bg-slate-400 p-1 rounded-lg hover:rounded-lg"
+        (click)="handleOpenFolder()"
+        class="group active:animate-button-pop duration-150 flex flex-col items-center gap-1 relative hover:bg-slate-100 dark:hover:bg-slate-600 hover:bg-opacity-20 p-1 rounded-md"
       >
         <mat-icon svgIcon="folder"></mat-icon>
         <div class="rounded bg-black w-2 h-0.5"></div>

@@ -5,6 +5,7 @@ import { MAT_DIALOG_DATA, MatDialogRef } from "@angular/material/dialog";
 import { MatIconModule } from "@angular/material/icon";
 import { FocusDialogDirective } from "app/shared/directives/focus-dialog.directive";
 import { FileViewComponent } from "../file-view/file-view.component";
+import { FileExplorerService } from "app/shared/services/file-explorer.service";
 
 @Component({
   selector: 'bm-file-dialog',
@@ -26,6 +27,8 @@ export class FileDialogComponent {
   public dialogRef: MatDialogRef<FileDialogComponent> = inject(MatDialogRef);
   public data = inject(MAT_DIALOG_DATA);
   public isFullScreen: boolean = false
+  private fileExplorerService = inject(FileExplorerService);
+
 
   handleHide(): void {
     this.dialogRef.close();
@@ -54,6 +57,7 @@ export class FileDialogComponent {
   }
   handleClose() {
     this.dialogRef.close();
+    this.fileExplorerService.closeElement(this.data.id, this.data.type)
   }
 
 

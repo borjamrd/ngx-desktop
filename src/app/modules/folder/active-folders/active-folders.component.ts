@@ -1,56 +1,32 @@
-import { Component, inject, Input } from '@angular/core';
-import { MatDialog } from '@angular/material/dialog';
+import { CommonModule } from '@angular/common';
+import { Component, effect, inject, input, signal } from '@angular/core';
 import { MatIconModule } from '@angular/material/icon';
+import { DisplayElementWindowService } from 'app/shared/services/display-element-window.service';
 import { FileExplorerService } from 'app/shared/services/file-explorer.service';
-import { FolderElement } from 'app/shared/types/system-element.type';
+import { SystemElement } from 'app/shared/types/system-element.type';
 import { slideInOut } from 'app/shared/utils/transitions';
-import { from } from 'rxjs';
-import { WindowDialogComponent } from '../../window-dialog/window-dialog.component';
 
 
 @Component({
   selector: 'bm-active-folders',
   standalone: true,
-  imports: [MatIconModule],
+  imports: [MatIconModule, CommonModule],
   templateUrl: './active-folders.component.html',
   styleUrl: './active-folders.component.scss',
   animations: [slideInOut]
 
 })
 export class ActiveFoldersComponent {
-  private lazzyLoadFolderDatabase$ = from(import('@modules/folder/folder-database/folder-database.component').then(component => component.FolderDatabaseComponent));
 
-  @Input() activeFolders!: FolderElement[]
+  private fileExplorer: FileExplorerService = inject(FileExplorerService);
+  public activeFolders = this.fileExplorer.activeFolders()
 
-  fileExplorerService: FileExplorerService = inject(FileExplorerService);
-  dialog: MatDialog = inject(MatDialog);
-  handleOpenFolder(folder: FolderElement): void {
+  public defaultFolder = this.fileExplorer.defaultFolder
+  private readonly displayElementWindowService = inject(DisplayElementWindowService);
 
-    const element = this.fileExplorerService.systemFiles().find((element) => element.id === folder.id);
 
-    if (!element) {
-      throw new Error('Element not found')
-    }
-    this.dialog.open(WindowDialogComponent, {
-      width: '650px',
-      height: '450px',
-      maxWidth: "100%",
-      maxHeight: "100%",
-      enterAnimationDuration: 150,
-      exitAnimationDuration: 150,
-      panelClass: 'window-container',
-      hasBackdrop: false,
-      data: {
-        id: element.id,
-        icon: element.icon,
-        name: 'Folder', component: this.lazzyLoadFolderDatabase$, inputs: {
-          layout: element.children
-        }
-      },
-
-    });
-
-    this.fileExplorerService.setActiveFolders(folder)
+  handleOpenFolder(element: SystemElement = this.defaultFolder): void {
+    this.displayElementWindowService.open(element)
   }
 
 }

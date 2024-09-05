@@ -5,6 +5,7 @@ import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
 import { MatIconModule } from '@angular/material/icon';
 import { FocusDialogDirective } from 'app/shared/directives/focus-dialog.directive';
 import { NotionComponent } from '../notion-view/notion.component';
+import { FileExplorerService } from 'app/shared/services/file-explorer.service';
 @Component({
   selector: 'bm-notion-dialog',
   standalone: true,
@@ -20,6 +21,7 @@ import { NotionComponent } from '../notion-view/notion.component';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class NotionDialogComponent {
+  private fileExplorerService = inject(FileExplorerService);
 
   public dialogRef: MatDialogRef<NotionDialogComponent> = inject(MatDialogRef);
   public data = inject(MAT_DIALOG_DATA);
@@ -50,11 +52,10 @@ export class NotionDialogComponent {
 
     }
 
-
-
   }
   handleClose() {
     this.dialogRef.close();
+    this.fileExplorerService.closeElement(this.data.id, this.data.type)
   }
 
 

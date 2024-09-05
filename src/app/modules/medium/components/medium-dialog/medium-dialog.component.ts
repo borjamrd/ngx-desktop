@@ -5,8 +5,9 @@ import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
 import { MatIconModule } from '@angular/material/icon';
 import { FocusDialogDirective } from 'app/shared/directives/focus-dialog.directive';
 import { MediumComponent } from '../medium-view/medium.component';
+import { FileExplorerService } from 'app/shared/services/file-explorer.service';
 @Component({
-  selector: 'bm-medium-container',
+  selector: 'bm-medium-dialog',
   standalone: true,
   imports: [
     MediumComponent,
@@ -15,17 +16,18 @@ import { MediumComponent } from '../medium-view/medium.component';
     FocusDialogDirective,
     MatIconModule,
   ],
-  templateUrl: './medium-container.component.html',
-  styleUrl: './medium-container.component.scss',
+  templateUrl: './medium-dialog.component.html',
+  styleUrl: './medium-dialog.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class MediumContainerComponent {
+export class MediumDialogComponent {
 
 
 
-  public dialogRef: MatDialogRef<MediumContainerComponent> = inject(MatDialogRef);
+  public dialogRef: MatDialogRef<MediumDialogComponent> = inject(MatDialogRef);
   public data = inject(MAT_DIALOG_DATA);
   public isFullScreen: boolean = false
+  private fileExplorerService = inject(FileExplorerService);
 
 
   handleHide(): void {
@@ -56,6 +58,8 @@ export class MediumContainerComponent {
   }
   handleClose() {
     this.dialogRef.close();
+    this.fileExplorerService.closeElement(this.data.id, this.data.type)
+
   }
 
 
