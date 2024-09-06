@@ -1,8 +1,5 @@
-import { computed, effect, inject, Injectable, signal } from '@angular/core';
+import { computed, Injectable, signal } from '@angular/core';
 import { defaultLayout, SystemElement } from '../types/system-element.type';
-import { ktdArrayRemoveElement } from '../utils';
-import { GridLayoutService } from './grid-layout.service';
-import { toObservable } from '@angular/core/rxjs-interop';
 
 export interface DialogElement extends SystemElement {
   minimized?: boolean
