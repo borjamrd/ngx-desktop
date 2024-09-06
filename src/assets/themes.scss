@@ -188,3 +188,31 @@ $dark-text-color: #333;
 .cdk-overlay-pane {
   border-radius: 8px !important;
 }
+
+
+
+//MAT-MENU
+
+// Dark theme mat-menu
+.dark {
+  .mat-mdc-menu-panel {
+    background-color: rgba(38, 38, 38, 0.85);
+    backdrop-filter: blur(5px);
+  }
+
+  .mat-mdc-menu-item:hover {
+    background-color: rgba(255, 255, 255, 0.1);
+  }
+}
+
+// Light theme mat-menu
+.light {
+  .mat-mdc-menu-panel {
+    background-color: rgba(255, 255, 255, 0.85);
+    backdrop-filter: blur(5px);
+  }
+
+  .mat-mdc-menu-item:hover {
+    background-color: rgba(0, 0, 0, 0.05);
+  }
+}

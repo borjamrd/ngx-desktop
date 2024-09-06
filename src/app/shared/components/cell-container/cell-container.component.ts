@@ -1,13 +1,23 @@
 import { NgClass, NgComponentOutlet, NgTemplateOutlet, SlicePipe } from '@angular/common';
-import { Component, inject, Injector, input, output, signal } from '@angular/core';
+import { Component, inject, Injector, input, output, signal, ViewChild, viewChild } from '@angular/core';
 import { DisplayElementWindowService } from 'app/shared/services/display-element-window.service';
 import { SystemElement } from 'app/shared/types/system-element.type';
 import { SystemElementIconComponent } from '../system-element-icon/system-element-icon.component';
+import { MatMenuModule, MatMenuTrigger } from '@angular/material/menu';
+import { ElementOptionsComponent } from '../element-options/element-options.component';
 
 @Component({
   selector: 'bm-cell-container',
   standalone: true,
-  imports: [NgClass, NgComponentOutlet, NgTemplateOutlet, SystemElementIconComponent, SlicePipe],
+  imports: [
+    SlicePipe,
+    SystemElementIconComponent,
+    NgTemplateOutlet,
+    NgComponentOutlet,
+    NgClass,
+    MatMenuModule,
+    ElementOptionsComponent,
+  ],
   templateUrl: './cell-container.component.html',
   styleUrl: './cell-container.component.scss',
   host: {
@@ -18,7 +28,7 @@ import { SystemElementIconComponent } from '../system-element-icon/system-elemen
 export class CellContainerComponent {
 
   private injector: Injector = inject(Injector);
-  private readonly displayElementWindowService: DisplayElementWindowService = inject(DisplayElementWindowService);
+  private readonly displayElementWindowService = inject(DisplayElementWindowService);
   public element = input.required<SystemElement>();
 
   public showFullName = signal<boolean>(false);
@@ -26,11 +36,17 @@ export class CellContainerComponent {
   public onRightClick = output<SystemElement['type']>();
   public parentIsDesktop = input<boolean>(false);
 
-  onRightClickGridItem(event: MouseEvent): void {
-    event.preventDefault();
-    event.stopPropagation();
+  @ViewChild(MatMenuTrigger) trigger!: MatMenuTrigger;
+  contextMenuPosition = { x: '3rem', y: '3rem' };
 
-    alert('alert child');
+
+  onRightClickGridItem(event: MouseEvent, element: SystemElement): void {
+    event.preventDefault();
+    //    event.stopPropagation();
+
+    this.trigger.menuData = { 'element': element };
+    this.trigger.menu!.focusFirstItem('mouse');
+    this.trigger.openMenu();
   }
 
 
