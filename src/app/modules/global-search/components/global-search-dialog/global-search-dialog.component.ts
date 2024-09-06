@@ -39,6 +39,7 @@ export class GlobalSearchDialogComponent {
 
   private dialog: MatDialog = inject(MatDialog);
   public limitElements = signal<number>(5);
+  public favoriteElements = computed(() => this.fileExplorerService.favorites())
 
   public filteredElements = computed(() => {
     return this.plainElements().filter((element) => {
@@ -76,7 +77,16 @@ export class GlobalSearchDialogComponent {
     this.dialog.getDialogById('global-search-dialog')?.close();
   }
 
-  addToFavorites(element: SystemElement) {
+  addToFavorites(event: Event, element: SystemElement) {
+    event.stopPropagation();
     this.fileExplorerService.addToFavorites(element);
+  }
+
+  removeFromFavorites(event: Event, element: SystemElement) {
+    event.stopPropagation();
+    this.fileExplorerService.removeFromFavorites(element);
+  }
+  isFavorite(element: SystemElement) {
+    return this.fileExplorerService.favorites().some((favorite) => favorite.id === element.id);
   }
 }

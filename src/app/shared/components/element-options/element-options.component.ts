@@ -33,4 +33,13 @@ export class ElementOptionsComponent {
   addToFavorites(element: SystemElement) {
     this.fileExplorerService.addToFavorites(element);
   }
+  removeFromFavorites(element: SystemElement) {
+    this.fileExplorerService.removeFromFavorites(element);
+  }
+  isFavorite(element: SystemElement) {
+    return this.fileExplorerService.favorites().some((favorite) => favorite.id === element.id);
+  }
+  removeElement(id: string) {
+    this.fileExplorerService.removeElement(id);
+  }
 }

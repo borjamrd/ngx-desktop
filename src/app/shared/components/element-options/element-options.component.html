@@ -3,7 +3,7 @@
   <button class="property-button">
     <mat-icon>edit</mat-icon>
   </button>
-  <button class="property-button">
+  <button (click)="removeElement(element().id)" class="property-button">
     <mat-icon>delete</mat-icon>
   </button>
 </div>
@@ -15,11 +15,21 @@
     <mat-icon [svgIcon]="element().icon"></mat-icon>
     Abrir
   </button>
-  <button
-    (click)="addToFavorites(element())"
-    class="w-full rounded-md flex items-center px-2 py-1.5 gap-2 hover:bg-slate-400/50"
-  >
-    <mat-icon>star_outline</mat-icon>
-    Agregar a favoritos
-  </button>
+  @if (isFavorite(element())) {
+    <button
+      (click)="removeFromFavorites(element())"
+      class="w-full rounded-md flex items-center px-2 py-1.5 gap-2 hover:bg-slate-400/50"
+    >
+      <mat-icon>star</mat-icon>
+      Remover de favoritos
+    </button>
+  } @else {
+    <button
+      (click)="addToFavorites(element())"
+      class="w-full rounded-md flex items-center px-2 py-1.5 gap-2 hover:bg-slate-400/50"
+    >
+      <mat-icon>star_outline</mat-icon>
+      Agregar a favoritos
+    </button>
+  }
 </div>

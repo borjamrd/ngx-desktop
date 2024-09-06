@@ -1,5 +1,8 @@
-import { computed, effect, Injectable, signal } from '@angular/core';
+import { computed, effect, inject, Injectable, signal } from '@angular/core';
 import { defaultLayout, SystemElement } from '../types/system-element.type';
+import { ktdArrayRemoveElement } from '../utils';
+import { GridLayoutService } from './grid-layout.service';
+import { toObservable } from '@angular/core/rxjs-interop';
 
 export interface DialogElement extends SystemElement {
   minimized?: boolean
@@ -17,6 +20,9 @@ export class FileExplorerService {
 
   public folders = computed(this._openedFolders)
   public systemFiles = computed(this._systemFiles)
+
+  private _favoriteElements = signal<DialogElement[]>([])
+  public favoriteElements = computed(this._favoriteElements)
 
 
 
@@ -66,6 +72,25 @@ export class FileExplorerService {
     }
 
   }
+
+
+  addToFavorites(element: SystemElement) {
+    this._favoriteElements.update((favorites) => [...favorites, element])
+  }
+
+  removeFromFavorites(element: SystemElement) {
+    this._favoriteElements.update((favorites) => favorites.filter((favorite) => favorite.id !== element.id))
+  }
+
+  removeElement(id: SystemElement['id']) {
+
+    console.log('removeElement', id)
+
+    this._systemFiles.update((files) => [])
+  }
+
+
+
   public activeFolders() {
     return this.folders
   }
@@ -73,8 +98,8 @@ export class FileExplorerService {
   public activeFiles() {
     return this._openedFiles
   }
-
-  addToFavorites(element: SystemElement) {
-    alert('Working on this')
+  get favorites() {
+    return this._favoriteElements
   }
+
 }
