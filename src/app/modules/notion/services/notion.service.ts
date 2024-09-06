@@ -25,7 +25,6 @@ export class NotionService {
           Object.values(data).forEach((key: { value: NotionBlock, role: string }) => {
             blocks.push(key.value)
           });
-          console.log(blocks)
           return blocks;
         })
 

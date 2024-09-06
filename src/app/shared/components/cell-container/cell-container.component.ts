@@ -1,10 +1,10 @@
 import { NgClass, NgComponentOutlet, NgTemplateOutlet, SlicePipe } from '@angular/common';
-import { Component, inject, Injector, input, output, signal, ViewChild, viewChild } from '@angular/core';
+import { Component, inject, Injector, input, output, signal, ViewChild } from '@angular/core';
+import { MatMenuModule, MatMenuTrigger } from '@angular/material/menu';
 import { DisplayElementWindowService } from 'app/shared/services/display-element-window.service';
 import { SystemElement } from 'app/shared/types/system-element.type';
-import { SystemElementIconComponent } from '../system-element-icon/system-element-icon.component';
-import { MatMenuModule, MatMenuTrigger } from '@angular/material/menu';
 import { ElementOptionsComponent } from '../element-options/element-options.component';
+import { SystemElementIconComponent } from '../system-element-icon/system-element-icon.component';
 
 @Component({
   selector: 'bm-cell-container',
@@ -41,14 +41,12 @@ export class CellContainerComponent {
 
 
   onRightClickGridItem(event: MouseEvent, element: SystemElement): void {
+    event.stopPropagation();
     event.preventDefault();
-    //    event.stopPropagation();
-
     this.trigger.menuData = { 'element': element };
     this.trigger.menu!.focusFirstItem('mouse');
     this.trigger.openMenu();
   }
-
 
   open(element: SystemElement) {
     this.displayElementWindowService.open(element)

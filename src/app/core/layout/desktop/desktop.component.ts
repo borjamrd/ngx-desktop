@@ -21,7 +21,7 @@ import { GlobalSearchDialogComponent } from 'app/modules/global-search/component
 export class DesktopComponent {
 
   private folderService: FileExplorerService = inject(FileExplorerService);
-  layout: SystemElement[] = this.folderService.systemFiles()[0].children![0].children || [];
+  layout = computed(() => this.folderService._systemFiles());
   private dialog: MatDialog = inject(MatDialog);
 
   private open = signal<boolean>(false)

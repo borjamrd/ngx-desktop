@@ -1,6 +1,9 @@
 <div
   class="font-bold text-2xl min-h-screen bg-mobileImageLight dark:bg-mobileImageDark md:bg-lightImage dark:md:bg-darkImage bg-cover"
 >
-  <bm-virtual-grid class="flex h-screen" [layout]="layout" />
+  <bm-virtual-grid
+    class="flex h-screen"
+    [layout]="layout()[0].children![0]!.children || []"
+  />
   <bm-tasksbar />
 </div>

@@ -87,6 +87,7 @@ export class VirtualGridComponent implements OnInit, AfterContentChecked, OnDest
 
 
   constructor() {
+
     fromEvent(window, 'resize')
       .pipe(takeUntilDestroyed(this.destroyRef), debounceTime(100)
       )

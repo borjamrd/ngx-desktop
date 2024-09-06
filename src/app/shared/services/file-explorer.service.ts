@@ -1,4 +1,4 @@
-import { computed, Injectable, signal } from '@angular/core';
+import { computed, effect, Injectable, signal } from '@angular/core';
 import { defaultLayout, SystemElement } from '../types/system-element.type';
 
 export interface DialogElement extends SystemElement {
@@ -11,16 +11,14 @@ export interface DialogElement extends SystemElement {
 export class FileExplorerService {
 
   public defaultFolder: DialogElement[] = defaultLayout.map((element) => ({ ...element, minimized: false }))
-  private _systemFiles = signal<DialogElement[]>(this.defaultFolder || [])
+  public _systemFiles = signal<DialogElement[]>(this.defaultFolder || [])
   private _openedFolders = signal<DialogElement[]>([])
   private _openedFiles = signal<DialogElement[]>([])
 
   public folders = computed(this._openedFolders)
-  public systemFiles = computed(this._systemFiles)
 
   private _favoriteElements = signal<DialogElement[]>([])
   public favoriteElements = computed(this._favoriteElements)
-
 
 
   setActiveElement(element: DialogElement) {
@@ -80,10 +78,24 @@ export class FileExplorerService {
   }
 
   removeElement(id: SystemElement['id']) {
+    this._systemFiles.update(files => this.removeElementRecursively(files, id));
+    this._openedFiles.update(files => this.removeElementRecursively(files, id));
+    this._openedFolders.update(files => this.removeElementRecursively(files, id));
+    this._favoriteElements.update(files => this.removeElementRecursively(files, id));
+  }
 
-    console.log('removeElement', id)
+  private removeElementRecursively(elements: SystemElement[], idToRemove: string): SystemElement[] {
+    return elements.filter(element => {
+      if (element.id === idToRemove) {
+        return false;
+      }
+      if (element.children) {
+        element.children = this.removeElementRecursively(element.children, idToRemove);
+      }
+      return true;
+    });
 
-    this._systemFiles.update((files) => [])
+
   }
 
 

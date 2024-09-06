@@ -28,7 +28,7 @@ export class GlobalSearchDialogComponent {
   public dialogRef: MatDialogRef<GlobalSearchDialogComponent> = inject(MatDialogRef);
 
   private fileExplorerService = inject(FileExplorerService);
-  private elements = this.fileExplorerService.systemFiles()[0].children![0].children || [];
+  private elements = this.fileExplorerService._systemFiles()[0].children![0].children || [];
 
   private plainElements = computed(() => flattenElements(this.elements));
   private searchText = signal<string>('');

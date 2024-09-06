@@ -216,3 +216,7 @@ $dark-text-color: #333;
     background-color: rgba(0, 0, 0, 0.05);
   }
 }
+
+.cdk-overlay-connected-position-bounding-box {
+  z-index: 10000 !important;
+}
