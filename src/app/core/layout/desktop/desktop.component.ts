@@ -1,6 +1,6 @@
 import { GLOBAL_SEARCH_DIALOG_CONFIG } from './../../../shared/utils/dialogs';
 import { AsyncPipe, NgClass } from '@angular/common';
-import { Component, inject, signal } from '@angular/core';
+import { Component, computed, inject, signal, effect, ChangeDetectorRef } from '@angular/core';
 import { VirtualGridComponent } from 'app/shared/components/virtual-grid/virtual-grid.component';
 import { FileExplorerService } from 'app/shared/services/file-explorer.service';
 import { SystemElement } from 'app/shared/types/system-element.type';
@@ -35,6 +35,7 @@ export class DesktopComponent {
       ).id = 'global-search-dialog';
     } else {
       this.dialog.getDialogById('global-search-dialog')?.close();
+      this.open.set(false)
     }
 
 

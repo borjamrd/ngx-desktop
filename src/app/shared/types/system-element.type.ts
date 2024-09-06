@@ -185,6 +185,10 @@ export const defaultLayout: SystemElement[] = [
                         y: 0,
                         w: 4,
                         h: 2,
+                        maxW: 5,
+                        maxH: 3,
+                        minW: 4,
+                        minH: 2,
                         customClass: 'bg-slate-500/40',
                         component: SpotifyWidgetComponent,
                         resizable: true

@@ -47,7 +47,7 @@ export const GLOBAL_SEARCH_DIALOG_CONFIG: MatDialogConfig = {
     maxWidth: '100vw',
     maxHeight: '100vh',
     width: '600px',
-    height: '350px',
+    height: '550px',
     panelClass: ['global-search-container'],
     hasBackdrop: true,
     autoFocus: true,

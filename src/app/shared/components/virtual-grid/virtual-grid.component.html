@@ -16,7 +16,14 @@
     (resizeEnded)="onResizeEnded($event)"
   >
     @for (element of layout(); track $index) {
-      <ktd-grid-item [resizable]="element.resizable" [id]="element.id">
+      <ktd-grid-item
+        [maxH]="element.maxH"
+        [maxW]="element.maxW"
+        [minH]="element.minH"
+        [minW]="element.minW"
+        [resizable]="element.resizable"
+        [id]="element.id"
+      >
         <bm-cell-container [parentIsDesktop]="true" [element]="element" />
         <ng-template ktdGridItemPlaceholder> </ng-template>
       </ktd-grid-item>
