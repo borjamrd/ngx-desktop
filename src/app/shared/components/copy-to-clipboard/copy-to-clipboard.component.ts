@@ -10,7 +10,7 @@ import { MatIconModule } from '@angular/material/icon';
   styleUrl: './copy-to-clipboard.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,
   host: {
-    class: 'flex gap-2 px-2 py-1 bg-green-100 dark:bg-green-100/20 dark:text-white text-green-800 items-center rounded-md cursor-pointer active:animate-button-pop',
+    class: 'flex gap-2 px-2 py-1 w-fit bg-slate-100 dark:bg-slate-100/20 dark:text-white text-slate-800 items-center rounded-md cursor-pointer active:animate-button-pop',
     '(click)': 'copyToClipboard()',
   }
 })
@@ -19,6 +19,7 @@ export class CopyToClipboardComponent {
   public copied = signal<boolean>(false)
   public displayText = input<string>();
   public value = input.required<string>()
+  public hideText = input<boolean>(false)
 
   private clipboard = inject(Clipboard)
 

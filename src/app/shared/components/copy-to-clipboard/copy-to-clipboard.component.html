@@ -3,4 +3,6 @@
 } @else {
   <mat-icon>content_copy</mat-icon>
 }
-<span>{{ displayText() || value() }}</span>
+@if (!hideText()) {
+  <span>{{ displayText() || value() }}</span>
+}
