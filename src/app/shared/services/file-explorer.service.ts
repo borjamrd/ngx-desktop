@@ -73,4 +73,8 @@ export class FileExplorerService {
   public activeFiles() {
     return this._openedFiles
   }
+
+  addToFavorites(element: SystemElement) {
+    alert('Working on this')
+  }
 }

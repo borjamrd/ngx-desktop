@@ -75,4 +75,8 @@ export class GlobalSearchDialogComponent {
     this.displayElementWindowService.open(element);
     this.dialog.getDialogById('global-search-dialog')?.close();
   }
+
+  addToFavorites(element: SystemElement) {
+    this.fileExplorerService.addToFavorites(element);
+  }
 }
