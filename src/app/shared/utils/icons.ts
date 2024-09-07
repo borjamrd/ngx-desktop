@@ -62,6 +62,10 @@ export const customIcons: CustomIcon[] = [
     {
         svg: 'windows-angular',
         url: 'assets/icons/windows_angular.svg',
+    },
+    {
+        svg: 'new-email',
+        url: 'assets/icons/new-email.svg',
     }
 
 ]

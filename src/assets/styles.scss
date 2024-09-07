@@ -22,6 +22,14 @@ ol {
 }
 
 .btn {
+  @apply flex items-center gap-2 rounded-lg bg-slate-100/40 dark:bg-slate-600/50 px-2 py-1.5 active:scale-95 transition-all duration-100
+}
+
+.btn-xs {
+  @apply flex items-center gap-2 rounded-lg bg-slate-100/40 dark:bg-slate-600/50 active:scale-95 transition-all duration-100 px-1 py-0.5
+}
+
+.btn-taskbar {
   @apply active:animate-button-pop duration-150 flex flex-col items-center gap-1 relative hover:bg-slate-100 dark:hover:bg-slate-600/40 hover:bg-opacity-10 p-1 rounded-md cursor-default
 }
 

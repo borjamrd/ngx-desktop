@@ -6,17 +6,18 @@ import { NotionDialogComponent } from 'app/modules/notion/components/notion-dial
 import { WindowDialogComponent } from 'app/modules/window-dialog/window-dialog.component';
 import { from } from 'rxjs';
 import { SystemElement } from '../types/system-element.type';
-import { FILE_DIALOG_CONFIG, FOLDER_DIALOG_CONFIG, MEDIUM_DIALOG_CONFIG, NOTION_DIALOG_CONFIG } from '../utils';
+import { EMAIL_DIALOG_CONFIG, FILE_DIALOG_CONFIG, FOLDER_DIALOG_CONFIG, MEDIUM_DIALOG_CONFIG, NOTION_DIALOG_CONFIG } from '../utils';
 import { DialogElement, FileExplorerService } from './file-explorer.service';
+import { EmailDialogComponent } from 'app/modules/email/components/email-dialog/email-dialog.component';
 
 
-export interface IDisplayElementWindowService {
+export interface IDisplayElementDialogService {
   open: (element: SystemElement) => void;
 }
 @Injectable({
   providedIn: 'root'
 })
-export class DisplayElementWindowService implements IDisplayElementWindowService {
+export class DisplayElementDialogService implements IDisplayElementDialogService {
 
 
   private dialog: MatDialog = inject(MatDialog);
@@ -111,6 +112,9 @@ export class DisplayElementWindowService implements IDisplayElementWindowService
         break;
       case 'notion':
         this.dialog.open(NotionDialogComponent, { ...NOTION_DIALOG_CONFIG, data });
+        break;
+      case 'gmail':
+        this.dialog.open(EmailDialogComponent, { ...EMAIL_DIALOG_CONFIG, data });
         break;
 
     }

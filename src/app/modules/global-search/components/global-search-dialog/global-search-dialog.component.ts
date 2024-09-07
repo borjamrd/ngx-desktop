@@ -4,7 +4,7 @@ import { MatDialog, MatDialogRef } from "@angular/material/dialog";
 import { MatIconModule } from "@angular/material/icon";
 import { SystemElementIconComponent } from "app/shared/components/system-element-icon/system-element-icon.component";
 import { FocusDialogDirective } from "app/shared/directives/focus-dialog.directive";
-import { DisplayElementWindowService } from "app/shared/services/display-element-window.service";
+import { DisplayElementDialogService } from "app/shared/services/display-element-dialog.service";
 import { FileExplorerService } from "app/shared/services/file-explorer.service";
 import { SystemElement } from "app/shared/types/system-element.type";
 import { flattenElements } from "app/shared/utils";
@@ -32,7 +32,7 @@ export class GlobalSearchDialogComponent {
 
   private plainElements = computed(() => flattenElements(this.elements));
   private searchText = signal<string>('');
-  private readonly displayElementWindowService = inject(DisplayElementWindowService);
+  private readonly displayElementWindowService = inject(DisplayElementDialogService);
 
 
   selectedIndex: number = -1;

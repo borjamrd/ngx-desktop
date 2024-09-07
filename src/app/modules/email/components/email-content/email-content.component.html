@@ -1,0 +1,14 @@
+@if (email(); as email) {
+  <div>
+    <div>
+      <span>
+        {{ email.from }}
+      </span>
+      <span>
+        {{ email.to }}
+      </span>
+    </div>
+  </div>
+} @else {
+  <div class="flex items-center justify-center h-full">no email</div>
+}

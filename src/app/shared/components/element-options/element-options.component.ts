@@ -4,7 +4,7 @@ import { MatIconModule } from "@angular/material/icon";
 import { MatMenuModule } from '@angular/material/menu';
 import { SystemElement } from "app/shared/types/system-element.type";
 import { CopyToClipboardComponent } from "../copy-to-clipboard/copy-to-clipboard.component";
-import { DisplayElementWindowService } from "app/shared/services/display-element-window.service";
+import { DisplayElementDialogService } from "app/shared/services/display-element-dialog.service";
 import { FileExplorerService } from "app/shared/services/file-explorer.service";
 
 @Component({
@@ -23,7 +23,7 @@ import { FileExplorerService } from "app/shared/services/file-explorer.service";
 })
 export class ElementOptionsComponent {
   public element = input.required<SystemElement>();
-  private readonly displayElementWindowService = inject(DisplayElementWindowService);
+  private readonly displayElementWindowService = inject(DisplayElementDialogService);
   private readonly fileExplorerService = inject(FileExplorerService);
 
   openElement() {

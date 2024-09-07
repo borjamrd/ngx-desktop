@@ -1,7 +1,7 @@
 import { CommonModule } from "@angular/common";
 import { ChangeDetectionStrategy, Component, inject } from '@angular/core';
 import { MatIconModule } from "@angular/material/icon";
-import { DisplayElementWindowService } from "app/shared/services/display-element-window.service";
+import { DisplayElementDialogService } from "app/shared/services/display-element-dialog.service";
 import { FileExplorerService } from "app/shared/services/file-explorer.service";
 import { SystemElement } from "app/shared/types/system-element.type";
 
@@ -20,7 +20,7 @@ export class ActiveFilesComponent {
 
   private fileExplorer = inject(FileExplorerService)
   public activeFiles = this.fileExplorer.activeFiles()
-  private readonly displayElementWindowService = inject(DisplayElementWindowService);
+  private readonly displayElementWindowService = inject(DisplayElementDialogService);
 
 
   handleClick(file: SystemElement) {
