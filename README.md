@@ -4,7 +4,7 @@
 
 ## Purpose
 
-I created this project with the intention of not creating a typical portfolio and to practice different Angular functionalities such as Custom Directives, Content Projection, Signals, etc.
+I created this project with the intention of creating an atypical portfolio and to practice various Angular functionalities such as Custom Directives, Content Projection, Signals, etc.
 
 Some of the main features are:
 
