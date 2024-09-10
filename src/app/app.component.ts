@@ -5,11 +5,12 @@ import { DomSanitizer, Meta } from '@angular/platform-browser';
 import { RouterOutlet } from '@angular/router';
 import { ThemeService } from './shared/services/theme.service';
 import { customIcons } from './shared/utils/icons';
+import { AngularQueryDevtools } from '@tanstack/angular-query-devtools-experimental';
 
 @Component({
   selector: 'app-root',
   standalone: true,
-  imports: [RouterOutlet, NgClass],
+  imports: [RouterOutlet, NgClass, AngularQueryDevtools],
   templateUrl: './app.component.html',
   styleUrl: './app.component.scss',
 

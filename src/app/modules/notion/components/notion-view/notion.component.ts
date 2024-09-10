@@ -32,7 +32,6 @@ import { NotionPageComponent } from '../notion-page/notion-page.component';
   host: {
     class: 'flex h-full w-full gap-20 relative justify-center',
   },
-  encapsulation: ViewEncapsulation.None
 })
 export class NotionComponent {
   public notionContainerClass = signal<string>('p-5')
@@ -47,8 +46,7 @@ export class NotionComponent {
   }
 
 
-  private notionService: NotionService = inject(NotionService);
-  public notionPageItems$: Observable<NotionDatabaseItem[]> = this.notionService.getTableItems();
+
   public selectedItem = signal<undefined | NotionDatabaseItem>(undefined)
   private elementRef = inject(ElementRef)
   private destroyRef = inject(DestroyRef)

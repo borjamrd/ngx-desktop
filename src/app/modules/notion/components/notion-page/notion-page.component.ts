@@ -30,44 +30,30 @@ import { NotionTableOfContentsComponent } from "../notion-table-of-contents/noti
 export class NotionPageComponent implements OnChanges {
 
 
-  private destroyRef = inject(DestroyRef);
   private notionService: NotionService = inject(NotionService);
-  private cdr = inject(ChangeDetectorRef);
 
   public item = input.required<NotionDatabaseItem>();
-  public notionBlocks = signal<NotionBlock[]>([])
   public iconPage = signal<string | undefined>(undefined)
+  public notionBlocksQuery = this.notionService.pageElementsQuery;
+  private cdr = inject(ChangeDetectorRef);
 
   ngOnChanges(changes: SimpleChanges): void {
     if (changes['item']) {
-      this.loadPageElements();
+      this.notionService.setId(this.item().id)
     }
-
   }
-  loadPageElements() {
 
-    this.notionService.getPageElements(this.item().id)
-      .pipe(
-        takeUntilDestroyed(this.destroyRef),
-      )
-      .subscribe((blocks) => {
-        this.notionBlocks.set(blocks);
-        if (this.notionBlocks().find((block) => block.type === 'page')) {
-          const pageBlock = this.notionBlocks().find((block) => block.type === 'page') as NotionBlock;
-          this.iconPage.set(pageBlock.format?.page_icon);
-        }
-        this.cdr.markForCheck();
-      });
-  }
+
 
   getchildContent(id: string): NotionBlock {
-    return this.notionBlocks().find(block => block.id === id) as NotionBlock;
+    return this.notionBlocksQuery.data()!.find(block => block.id === id) as NotionBlock;
 
   }
   scrollToBlock(id: string) {
     const element = document.getElementById(id);
     if (element) {
       element.scrollIntoView({ behavior: 'smooth' });
+      this.cdr.detectChanges();
     }
   }
 }
