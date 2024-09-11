@@ -10,6 +10,7 @@ import { NotionDatabaseItem } from '../../types/notion.interface';
 import { NotionDatabaseItemComponent } from '../notion-database-item/notion-database-item.component';
 import { NotionDatabaseComponent } from "../notion-database/notion-database.component";
 import { NotionPageComponent } from '../notion-page/notion-page.component';
+import { mediaQueries } from 'app/shared/utils';
 
 @Component({
   selector: 'bm-notion',
@@ -36,16 +37,6 @@ import { NotionPageComponent } from '../notion-page/notion-page.component';
 export class NotionComponent {
   public notionContainerClass = signal<string>('p-5')
 
-  public mediaQueries = {
-    XXS: 250,
-    XS: 599,
-    SM: 959,
-    MD: 1279,
-    LG: 1919,
-    XL: 1920
-  }
-
-
 
   public selectedItem = signal<undefined | NotionDatabaseItem>(undefined)
   private elementRef = inject(ElementRef)
@@ -63,37 +54,37 @@ export class NotionComponent {
 
     const container = new ResizeObserverService(this.crd, this.elementRef);
     container.onResize.pipe(takeUntilDestroyed(this.destroyRef)).subscribe((entry) => {
-      if (entry.target.clientWidth < this.mediaQueries.XXS) {
+      if (entry.target.clientWidth < mediaQueries.XXS) {
         this.containeListClasses = 'hidden'
 
         this.notionContainerClass.set('px-2 ')
         this.pageListCLasses = 'w-full h-full'
         this.notionContainerClass.set('min-w-fit-content')
-      } else if (entry.target.clientWidth < this.mediaQueries.XS) {
+      } else if (entry.target.clientWidth < mediaQueries.XS) {
         this.containeListClasses = 'hidden'
         this.pageListCLasses = 'w-full'
         this.notionContainerClass.set('min-w-fit-content')
 
         this.notionContainerClass.set('px-5')
-      } else if (entry.target.clientWidth < this.mediaQueries.SM) {
+      } else if (entry.target.clientWidth < mediaQueries.SM) {
         this.containeListClasses = 'hidden'
         this.pageListCLasses = 'w-full'
         this.notionContainerClass.set('min-w-fit-content')
 
       }
-      else if (entry.target.clientWidth < this.mediaQueries.MD) {
+      else if (entry.target.clientWidth < mediaQueries.MD) {
         this.containeListClasses = 'block w-2/5'
         this.notionContainerClass.set('min-w-[50rem]')
         this.pageListCLasses = 'w-full'
 
       }
-      else if (entry.target.clientWidth < this.mediaQueries.LG) {
+      else if (entry.target.clientWidth < mediaQueries.LG) {
         this.containeListClasses = 'block w-2/5'
         this.notionContainerClass.set('min-w-[65rem]')
         this.pageListCLasses = 'w-3/5'
 
       }
-      else if (entry.target.clientWidth < this.mediaQueries.XL) {
+      else if (entry.target.clientWidth < mediaQueries.XL) {
         this.containeListClasses = 'block w-2/5'
         this.pageListCLasses = 'w-3/5'
         this.notionContainerClass.set('min-w-[75rem]')

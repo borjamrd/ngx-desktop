@@ -28,3 +28,12 @@ export function flattenElements(elements: SystemElement[]): SystemElement[] {
     return acc;
   }, []);
 }
+
+export const mediaQueries = {
+  XXS: 250,
+  XS: 599,
+  SM: 959,
+  MD: 1279,
+  LG: 1919,
+  XL: 1920
+}
