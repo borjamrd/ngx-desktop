@@ -6,7 +6,7 @@ export interface Email {
   sendedAt: Date,
   subject: string,
   to: string
-  type: 'inbox' | 'sent' | 'draft' | 'trash',
+  folder: 'inbox' | 'sent' | 'draft' | 'trash' | 'spam'
   from: string
 }
 @Injectable({
@@ -15,13 +15,14 @@ export interface Email {
 export class EmailService {
 
   public emailSelected = signal<Email | null>(null);
+  public selectedFolder = signal<'inbox' | 'sent' | 'draft' | 'trash'>('inbox');
   public emailList = signal<Email[]>([
     {
       message: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam, quos.',
       sendedAt: new Date(),
       subject: 'Lorem ipsum dolor sit amet',
       to: 'alfredo@gmail.com',
-      type: 'inbox',
+      folder: 'inbox',
       from: 'borja@gmail.com'
     },
     {
@@ -29,7 +30,7 @@ export class EmailService {
       sendedAt: new Date(),
       subject: 'Lorem ipsum dolor sit amet',
       to: 'benedict@gmail.com',
-      type: 'sent',
+      folder: 'sent',
       from: 'borja@gmail.com'
     },
     {
@@ -37,7 +38,7 @@ export class EmailService {
       sendedAt: new Date(),
       subject: 'Lorem ipsum dolor sit amet',
       to: 'teresa@gmail.com',
-      type: 'draft',
+      folder: 'draft',
       from: 'borja@gmail.com'
     },
     {
@@ -45,7 +46,7 @@ export class EmailService {
       sendedAt: new Date(),
       subject: 'Lorem ipsum dolor sit amet',
       to: 'borja@gmail.com',
-      type: 'trash',
+      folder: 'trash',
       from: 'borja@gmail.com'
     },
     {
@@ -53,7 +54,7 @@ export class EmailService {
       sendedAt: new Date(),
       subject: 'Lorem ipsum dolor sit amet',
       to: 'borja@gmail.com',
-      type: 'sent',
+      folder: 'sent',
       from: 'borja@gmail.com'
     },
     {
@@ -61,7 +62,7 @@ export class EmailService {
       sendedAt: new Date(),
       subject: 'Lorem ipsum dolor sit amet',
       to: 'borja@gmail.com',
-      type: 'trash',
+      folder: 'trash',
       from: 'borja@gmail.com'
     },
     {
@@ -69,7 +70,7 @@ export class EmailService {
       sendedAt: new Date(),
       subject: 'Lorem ipsum dolor sit amet',
       to: 'alfredo@gmail.com',
-      type: 'inbox',
+      folder: 'inbox',
       from: 'borja@gmail.com'
     },
     {
@@ -77,7 +78,7 @@ export class EmailService {
       sendedAt: new Date(),
       subject: 'Lorem ipsum dolor sit amet',
       to: 'benedict@gmail.com',
-      type: 'sent',
+      folder: 'sent',
       from: 'borja@gmail.com'
     },
     {
@@ -85,7 +86,7 @@ export class EmailService {
       sendedAt: new Date(),
       subject: 'Lorem ipsum dolor sit amet',
       to: 'teresa@gmail.com',
-      type: 'draft',
+      folder: 'draft',
       from: 'borja@gmail.com'
     },
     {
@@ -93,7 +94,7 @@ export class EmailService {
       sendedAt: new Date(),
       subject: 'Lorem ipsum dolor sit amet',
       to: 'borja@gmail.com',
-      type: 'trash',
+      folder: 'trash',
       from: 'borja@gmail.com'
     },
     {
@@ -101,7 +102,7 @@ export class EmailService {
       sendedAt: new Date(),
       subject: 'Lorem ipsum dolor sit amet',
       to: 'borja@gmail.com',
-      type: 'sent',
+      folder: 'sent',
       from: 'borja@gmail.com'
     },
     {
@@ -109,7 +110,7 @@ export class EmailService {
       sendedAt: new Date(),
       subject: 'Lorem ipsum dolor sit amet',
       to: 'borja@gmail.com',
-      type: 'trash',
+      folder: 'trash',
       from: 'borja@gmail.com'
     },
     {
@@ -117,7 +118,7 @@ export class EmailService {
       sendedAt: new Date(),
       subject: 'Lorem ipsum dolor sit amet',
       to: 'alfredo@gmail.com',
-      type: 'inbox',
+      folder: 'inbox',
       from: 'borja@gmail.com'
     },
     {
@@ -125,7 +126,7 @@ export class EmailService {
       sendedAt: new Date(),
       subject: 'Lorem ipsum dolor sit amet',
       to: 'benedict@gmail.com',
-      type: 'sent',
+      folder: 'sent',
       from: 'borja@gmail.com'
     },
     {
@@ -133,7 +134,7 @@ export class EmailService {
       sendedAt: new Date(),
       subject: 'Lorem ipsum dolor sit amet',
       to: 'teresa@gmail.com',
-      type: 'draft',
+      folder: 'draft',
       from: 'borja@gmail.com'
     },
     {
@@ -141,7 +142,7 @@ export class EmailService {
       sendedAt: new Date(),
       subject: 'Lorem ipsum dolor sit amet',
       to: 'borja@gmail.com',
-      type: 'trash',
+      folder: 'trash',
       from: 'borja@gmail.com'
     },
     {
@@ -149,7 +150,7 @@ export class EmailService {
       sendedAt: new Date(),
       subject: 'Lorem ipsum dolor sit amet',
       to: 'borja@gmail.com',
-      type: 'sent',
+      folder: 'sent',
       from: 'borja@gmail.com'
     },
     {
@@ -157,7 +158,7 @@ export class EmailService {
       sendedAt: new Date(),
       subject: 'Lorem ipsum dolor sit amet',
       to: 'borja@gmail.com',
-      type: 'trash',
+      folder: 'trash',
       from: 'borja@gmail.com'
     }
   ])

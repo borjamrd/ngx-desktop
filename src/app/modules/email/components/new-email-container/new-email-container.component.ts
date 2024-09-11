@@ -37,7 +37,7 @@ export class NewEmailContainerComponent {
         sendedAt: new Date(),
         subject: this.form.value.subject as string,
         to: this.form.value.to as string,
-        type: 'sent',
+        folder: 'sent',
         from: 'borja@gmail.com'
       })
     } else {

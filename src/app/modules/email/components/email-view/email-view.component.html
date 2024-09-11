@@ -1,27 +1,37 @@
-<div class="mt-16 overflow-auto flex w-full">
-  <div class="w-2/12 p-4 relative">
+<div
+  [ngClass]="containerClasses()['container']"
+  class="mt-16 overflow-auto flex w-full"
+>
+  <div [ngClass]="containerClasses()['categories']" class="py-4 pe-4 relative">
     <div class="flex flex-col gap-2 sticky top-0">
-      <button (click)="newEmail.set(true)" class="mb-40/40 btn">
+      <button (click)="newEmail.set(true)" class="mb-40/40 btn-send ms-4 mb-4">
         <mat-icon>edit</mat-icon>
         Redactar
       </button>
 
       <div class="flex flex-col gap-3">
-        @for (folder of emailFolders; track folder.name) {
-          <div
-            class="flex items-center gap-4 rounded-md px-2 py-1.5 hover:bg-slate-100/40 dark:hover:bg-slate-600/50 cursor-pointer"
+        @for (folder of emailFolders; track folder.name; let i = $index) {
+          <button
+            [ngClass]="{
+              'btn-active': selectedEmail()?.folder === folder.name
+            }"
+            class="btn-email"
           >
+            <div
+              [style.backgroundColor]="folder.color"
+              class="w-2 h-2 rounded-full"
+            ></div>
             <mat-icon>{{ folder.icon }}</mat-icon>
             <span>{{ folder.name }}</span>
-          </div>
+          </button>
         }
       </div>
     </div>
   </div>
-  <div class="w-5/12">
+  <div [ngClass]="containerClasses()['list']">
     <bm-email-list />
   </div>
-  <div class="w-5/12">
+  <div [ngClass]="containerClasses()['content']">
     <bm-email-content />
   </div>
   @if (newEmail()) {
