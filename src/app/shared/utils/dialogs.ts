@@ -57,7 +57,7 @@ export const GLOBAL_SEARCH_DIALOG_CONFIG: MatDialogConfig = {
 export const EMAIL_DIALOG_CONFIG: MatDialogConfig = {
     maxWidth: '100vw',
     maxHeight: 'calc(100vh - 3rem)', //tasksbar height
-    width: '800px',
+    width: '1200px',
     height: '600px',
     panelClass: ['email-container', 'resizable-mat-dialog-panel'],
     hasBackdrop: false,

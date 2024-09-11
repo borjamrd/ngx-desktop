@@ -136,6 +136,7 @@ $dark-text-color: #333;
 .dark .mat-mdc-dialog-container {
   --mdc-dialog-container-color: rgb(38 38 38 / 0.80);
   backdrop-filter: blur(20px);
+  max-width: 100vw !important;
 
   :active {
 
@@ -146,6 +147,7 @@ $dark-text-color: #333;
 }
 
 .light .mat-mdc-dialog-container {
+  max-width: 100vw !important;
   backdrop-filter: blur(5px);
   --mdc-dialog-container-color: rgba(255, 255, 255, 0.6);
 
