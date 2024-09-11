@@ -2,9 +2,8 @@ import { CommonModule } from "@angular/common";
 import { ChangeDetectionStrategy, Component, computed, inject, signal } from '@angular/core';
 import { MatDialog, MatDialogRef } from "@angular/material/dialog";
 import { MatIconModule } from "@angular/material/icon";
-import { SystemElementIconComponent } from "app/shared/components/system-element-icon/system-element-icon.component";
 import { FocusDialogDirective } from "app/shared/directives/focus-dialog.directive";
-import { DisplayElementDialogService } from "app/shared/services/display-element-dialog.service";
+import { DisplayDialogService } from "app/shared/services/display-dialog.service";
 import { FileExplorerService } from "app/shared/services/file-explorer.service";
 import { SystemElement } from "app/shared/types/system-element.type";
 import { flattenElements } from "app/shared/utils";
@@ -32,7 +31,7 @@ export class GlobalSearchDialogComponent {
 
   private plainElements = computed(() => flattenElements(this.elements));
   private searchText = signal<string>('');
-  private readonly displayElementWindowService = inject(DisplayElementDialogService);
+  private readonly displayDialogService = inject(DisplayDialogService);
 
 
   selectedIndex: number = -1;
@@ -73,7 +72,7 @@ export class GlobalSearchDialogComponent {
   }
   open(element: SystemElement) {
 
-    this.displayElementWindowService.open(element);
+    this.displayDialogService.open(element);
     this.dialog.getDialogById('global-search-dialog')?.close();
   }
 

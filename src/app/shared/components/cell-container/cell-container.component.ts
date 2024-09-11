@@ -1,7 +1,7 @@
 import { NgClass, NgComponentOutlet, NgTemplateOutlet, SlicePipe } from '@angular/common';
 import { Component, inject, Injector, input, output, signal, ViewChild } from '@angular/core';
 import { MatMenuModule, MatMenuTrigger } from '@angular/material/menu';
-import { DisplayElementDialogService } from 'app/shared/services/display-element-dialog.service';
+import { DisplayDialogService } from 'app/shared/services/display-dialog.service';
 import { SystemElement } from 'app/shared/types/system-element.type';
 import { ElementOptionsComponent } from '../element-options/element-options.component';
 import { SystemElementIconComponent } from '../system-element-icon/system-element-icon.component';
@@ -28,7 +28,7 @@ import { SystemElementIconComponent } from '../system-element-icon/system-elemen
 export class CellContainerComponent {
 
   private injector: Injector = inject(Injector);
-  private readonly displayElementWindowService = inject(DisplayElementDialogService);
+  private readonly displayDialogService = inject(DisplayDialogService);
   public element = input.required<SystemElement>();
 
   public showFullName = signal<boolean>(false);
@@ -49,7 +49,7 @@ export class CellContainerComponent {
   }
 
   open(element: SystemElement) {
-    this.displayElementWindowService.open(element)
+    this.displayDialogService.open(element)
   }
 
 

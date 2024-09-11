@@ -1,7 +1,7 @@
 import { CommonModule } from '@angular/common';
-import { Component, effect, inject, input, signal } from '@angular/core';
+import { Component, inject } from '@angular/core';
 import { MatIconModule } from '@angular/material/icon';
-import { DisplayElementDialogService } from 'app/shared/services/display-element-dialog.service';
+import { DisplayDialogService } from 'app/shared/services/display-dialog.service';
 import { FileExplorerService } from 'app/shared/services/file-explorer.service';
 import { SystemElement } from 'app/shared/types/system-element.type';
 import { slideInOut } from 'app/shared/utils/transitions';
@@ -22,11 +22,11 @@ export class ActiveFoldersComponent {
   public activeFolders = this.fileExplorer.activeFolders()
 
   public defaultFolder = this.fileExplorer.defaultFolder
-  private readonly displayElementWindowService = inject(DisplayElementDialogService);
+  private readonly displayDialogService = inject(DisplayDialogService);
 
 
   handleOpenFolder(element: SystemElement = this.defaultFolder[0]): void {
-    this.displayElementWindowService.open(element)
+    this.displayDialogService.open(element)
   }
 
 }
