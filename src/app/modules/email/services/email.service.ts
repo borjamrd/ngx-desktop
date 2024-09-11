@@ -2,6 +2,7 @@ import { Injectable, signal } from '@angular/core';
 
 
 export interface Email {
+  id: string,
   message: string,
   sendedAt: Date,
   subject: string,
@@ -18,6 +19,7 @@ export class EmailService {
   public selectedFolder = signal<'inbox' | 'sent' | 'draft' | 'trash'>('inbox');
   public emailList = signal<Email[]>([
     {
+      id: crypto.randomUUID(),
       message: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam, quos.',
       sendedAt: new Date(),
       subject: 'Lorem ipsum dolor sit amet',
@@ -26,6 +28,7 @@ export class EmailService {
       from: 'borja@gmail.com'
     },
     {
+      id: crypto.randomUUID(),
       message: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam, quos.',
       sendedAt: new Date(),
       subject: 'Lorem ipsum dolor sit amet',
@@ -34,6 +37,7 @@ export class EmailService {
       from: 'borja@gmail.com'
     },
     {
+      id: crypto.randomUUID(),
       message: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam, quos.',
       sendedAt: new Date(),
       subject: 'Lorem ipsum dolor sit amet',
@@ -42,6 +46,7 @@ export class EmailService {
       from: 'borja@gmail.com'
     },
     {
+      id: crypto.randomUUID(),
       message: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam, quos.',
       sendedAt: new Date(),
       subject: 'Lorem ipsum dolor sit amet',
@@ -50,6 +55,7 @@ export class EmailService {
       from: 'borja@gmail.com'
     },
     {
+      id: crypto.randomUUID(),
       message: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam, quos.',
       sendedAt: new Date(),
       subject: 'Lorem ipsum dolor sit amet',
@@ -58,6 +64,7 @@ export class EmailService {
       from: 'borja@gmail.com'
     },
     {
+      id: crypto.randomUUID(),
       message: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam, quos.',
       sendedAt: new Date(),
       subject: 'Lorem ipsum dolor sit amet',
@@ -66,6 +73,7 @@ export class EmailService {
       from: 'borja@gmail.com'
     },
     {
+      id: crypto.randomUUID(),
       message: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam, quos.',
       sendedAt: new Date(),
       subject: 'Lorem ipsum dolor sit amet',
@@ -74,6 +82,7 @@ export class EmailService {
       from: 'borja@gmail.com'
     },
     {
+      id: crypto.randomUUID(),
       message: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam, quos.',
       sendedAt: new Date(),
       subject: 'Lorem ipsum dolor sit amet',
@@ -82,6 +91,7 @@ export class EmailService {
       from: 'borja@gmail.com'
     },
     {
+      id: crypto.randomUUID(),
       message: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam, quos.',
       sendedAt: new Date(),
       subject: 'Lorem ipsum dolor sit amet',
@@ -90,6 +100,7 @@ export class EmailService {
       from: 'borja@gmail.com'
     },
     {
+      id: crypto.randomUUID(),
       message: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam, quos.',
       sendedAt: new Date(),
       subject: 'Lorem ipsum dolor sit amet',
@@ -98,6 +109,7 @@ export class EmailService {
       from: 'borja@gmail.com'
     },
     {
+      id: crypto.randomUUID(),
       message: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam, quos.',
       sendedAt: new Date(),
       subject: 'Lorem ipsum dolor sit amet',
@@ -106,6 +118,7 @@ export class EmailService {
       from: 'borja@gmail.com'
     },
     {
+      id: crypto.randomUUID(),
       message: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam, quos.',
       sendedAt: new Date(),
       subject: 'Lorem ipsum dolor sit amet',
@@ -114,6 +127,7 @@ export class EmailService {
       from: 'borja@gmail.com'
     },
     {
+      id: crypto.randomUUID(),
       message: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam, quos.',
       sendedAt: new Date(),
       subject: 'Lorem ipsum dolor sit amet',
@@ -122,6 +136,7 @@ export class EmailService {
       from: 'borja@gmail.com'
     },
     {
+      id: crypto.randomUUID(),
       message: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam, quos.',
       sendedAt: new Date(),
       subject: 'Lorem ipsum dolor sit amet',
@@ -130,6 +145,7 @@ export class EmailService {
       from: 'borja@gmail.com'
     },
     {
+      id: crypto.randomUUID(),
       message: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam, quos.',
       sendedAt: new Date(),
       subject: 'Lorem ipsum dolor sit amet',
@@ -138,6 +154,7 @@ export class EmailService {
       from: 'borja@gmail.com'
     },
     {
+      id: crypto.randomUUID(),
       message: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam, quos.',
       sendedAt: new Date(),
       subject: 'Lorem ipsum dolor sit amet',
@@ -146,6 +163,7 @@ export class EmailService {
       from: 'borja@gmail.com'
     },
     {
+      id: crypto.randomUUID(),
       message: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam, quos.',
       sendedAt: new Date(),
       subject: 'Lorem ipsum dolor sit amet',
@@ -154,6 +172,7 @@ export class EmailService {
       from: 'borja@gmail.com'
     },
     {
+      id: crypto.randomUUID(),
       message: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam, quos.',
       sendedAt: new Date(),
       subject: 'Lorem ipsum dolor sit amet',
@@ -166,7 +185,7 @@ export class EmailService {
 
   sendEmail(email: Email) {
     console.log(email)
-    this.emailList.update(list => [...list, email])
+    this.emailList.update(list => [email, ...list])
   }
 
   selectEmail(email: Email) {

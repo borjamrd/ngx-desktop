@@ -33,6 +33,7 @@ export class NewEmailContainerComponent {
   send() {
     if (this.form.valid) {
       this.emailService.sendEmail({
+        id: crypto.randomUUID(),
         message: this.form.value.content as string,
         sendedAt: new Date(),
         subject: this.form.value.subject as string,

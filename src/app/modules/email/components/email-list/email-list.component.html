@@ -1,8 +1,25 @@
-@for (email of emails().reverse(); track $index) {
-  <div (click)="selectEmail(email)" class="flex items-center gap-2">
-    <div class="flex flex-col">
-      <span class="text-sm font-medium">{{ email.subject }}</span>
-      <span class="text-sm text-gray-500">{{ email.from }}</span>
+@for (email of emails(); track $index) {
+  <div
+    class="border-b border-gray-200 dark:border-gray-600 hover:border-gray-300 dark:hover:border-gray-500 hover:box-shadow-md dark:hover:box-shadow-md"
+  >
+    <div
+      (click)="selectEmail(email)"
+      [class.active]="email.id === selectedEmail()?.id"
+      class="flex items-center gap-2 cursor-pointer px-2 py-1.5 rounded-md"
+    >
+      <div class="flex items-center gap-2 w-12">
+        <mat-checkbox></mat-checkbox>
+      </div>
+      <div class="flex flex-col w-11/12">
+        <span class="text-sm font-medium">{{
+          email.subject.substring(0, 60) +
+            (email.subject.length > 60 ? "..." : "")
+        }}</span>
+        <span class="text-sm text-gray-500">{{
+          email.message.substring(0, 60) +
+            (email.message.length > 60 ? "..." : "")
+        }}</span>
+      </div>
     </div>
   </div>
 }
