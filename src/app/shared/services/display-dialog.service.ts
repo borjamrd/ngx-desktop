@@ -11,13 +11,13 @@ import { DialogElement, FileExplorerService } from './file-explorer.service';
 import { EmailDialogComponent } from 'app/modules/email/components/email-dialog/email-dialog.component';
 
 
-export interface IDisplayElementDialogService {
+export interface IDisplayDialogService {
   open: (element: SystemElement) => void;
 }
 @Injectable({
   providedIn: 'root'
 })
-export class DisplayElementDialogService implements IDisplayElementDialogService {
+export class DisplayDialogService implements IDisplayDialogService {
 
 
   private dialog: MatDialog = inject(MatDialog);
