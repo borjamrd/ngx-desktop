@@ -39,7 +39,10 @@ export class NewEmailContainerComponent {
         subject: this.form.value.subject as string,
         to: this.form.value.to as string,
         folder: 'sent',
-        from: 'borja@gmail.com'
+        from: {
+          name: 'Borja',
+          email: 'borja@gmail.com'
+        }
       })
     } else {
       this.form.markAllAsTouched();
