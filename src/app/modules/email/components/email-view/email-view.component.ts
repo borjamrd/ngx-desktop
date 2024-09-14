@@ -46,6 +46,12 @@ export class EmailViewComponent implements AfterViewInit {
       type: 'inbox'
     },
     {
+      name: 'Destacados',
+      icon: 'star',
+      color: '#F2BE42',
+      type: 'favorite'
+    },
+    {
       name: 'Sent',
       icon: 'send',
       color: '#5186EC',

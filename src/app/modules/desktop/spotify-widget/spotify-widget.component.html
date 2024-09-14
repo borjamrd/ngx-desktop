@@ -24,15 +24,15 @@
       </div>
       <div class="flex items-center gap-2 mt-4 w-full justify-center">
         <button mat-icon-button (click)="previousTrack()" [disabled]="!track">
-          <mat-icon>skip_previous</mat-icon>
+          <mat-icon fontSet="material-symbols-outlined">skip_previous</mat-icon>
         </button>
         <button mat-icon-button (click)="togglePlay()" [disabled]="!track">
-          <mat-icon>{{
+          <mat-icon fontSet="material-symbols-outlined">{{
             isPlaying ? "pause_circle_filled" : "play_circle_filled"
           }}</mat-icon>
         </button>
         <button mat-icon-button (click)="nextTrack()" [disabled]="!track">
-          <mat-icon>skip_next</mat-icon>
+          <mat-icon fontSet="material-symbols-outlined">skip_next</mat-icon>
         </button>
       </div>
     </div>

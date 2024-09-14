@@ -3,7 +3,7 @@
 >
   <span>Redactar correo</span>
   <button (click)="close.emit()" class="btn-xs">
-    <mat-icon>close</mat-icon>
+    <mat-icon fontSet="material-symbols-outlined">close</mat-icon>
   </button>
 </div>
 <form [formGroup]="form" class="flex flex-col p-2 gap-2">
@@ -27,9 +27,13 @@
 </form>
 <div class="flex items-center justify-between gap-3 mt-auto h-10 p-1.5">
   <button [disabled]="form.invalid" (click)="send()" class="btn">
-    <mat-icon>send</mat-icon>
+    <mat-icon fontSet="material-symbols-outlined">send</mat-icon>
   </button>
-  <button (click)="close.emit()" class="btn">
-    <mat-icon>close</mat-icon>
+  <button
+    (click)="close.emit()"
+    mat-icon-button
+    aria-label="Example icon button with a home icon"
+  >
+    <mat-icon fontSet="material-symbols-outlined">delete</mat-icon>
   </button>
 </div>

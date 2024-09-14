@@ -5,7 +5,7 @@
   <div [ngClass]="containerClasses()['categories']" class="py-4 pe-4 relative">
     <div class="flex flex-col gap-2 sticky top-0">
       <button (click)="newEmail.set(true)" class="mb-40/40 btn-send ms-4 mb-4">
-        <mat-icon>edit</mat-icon>
+        <mat-icon fontSet="material-symbols-outlined">edit</mat-icon>
         Redactar
       </button>
 
@@ -21,7 +21,9 @@
               [style.backgroundColor]="folder.color"
               class="w-2 h-2 rounded-full"
             ></div>
-            <mat-icon>{{ folder.icon }}</mat-icon>
+            <mat-icon fontSet="material-symbols-outlined">{{
+              folder.icon
+            }}</mat-icon>
             <span>{{ folder.name }}</span>
           </button>
         }

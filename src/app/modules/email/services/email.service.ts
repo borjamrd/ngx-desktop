@@ -10,7 +10,7 @@ export interface Email {
   sendedAt: Date,
   subject: string,
   to: string
-  folder: 'inbox' | 'sent' | 'draft' | 'trash' | 'spam'
+  folder: 'inbox' | 'sent' | 'draft' | 'trash' | 'spam' | 'important' | 'favorite'
   from: Sender
 }
 @Injectable({
@@ -241,7 +241,6 @@ export class EmailService {
 
 
   sendEmail(email: Email) {
-    console.log(email)
     this.emailList.update(list => [email, ...list])
   }
 

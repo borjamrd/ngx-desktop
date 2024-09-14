@@ -1,10 +1,10 @@
 <div class="px-2 pb-2 window-border flex gap-2">
   <bm-copy-to-clipboard [hideText]="true" [value]="element() | json" />
   <button class="property-button">
-    <mat-icon>edit</mat-icon>
+    <mat-icon fontSet="material-symbols-outlined">edit</mat-icon>
   </button>
   <button (click)="removeElement(element().id)" class="property-button">
-    <mat-icon>delete</mat-icon>
+    <mat-icon fontSet="material-symbols-outlined">delete</mat-icon>
   </button>
 </div>
 <div class="flex flex-col gap-1 px-2 pb-2 mt-4">
@@ -20,7 +20,7 @@
       (click)="removeFromFavorites(element())"
       class="w-full rounded-md flex items-center px-2 py-1.5 gap-2 hover:bg-slate-400/50"
     >
-      <mat-icon>star</mat-icon>
+      <mat-icon fontSet="material-symbols-outlined">star</mat-icon>
       Remover de favoritos
     </button>
   } @else {
@@ -28,7 +28,7 @@
       (click)="addToFavorites(element())"
       class="w-full rounded-md flex items-center px-2 py-1.5 gap-2 hover:bg-slate-400/50"
     >
-      <mat-icon>star_outline</mat-icon>
+      <mat-icon fontSet="material-symbols-outlined">star_outline</mat-icon>
       Agregar a favoritos
     </button>
   }

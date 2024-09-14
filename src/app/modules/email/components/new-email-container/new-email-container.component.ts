@@ -1,8 +1,9 @@
 import { CommonModule } from "@angular/common";
 import { ChangeDetectionStrategy, Component, inject, input, model, output } from '@angular/core';
-import { FormControl, FormGroup, ReactiveFormsModule } from "@angular/forms";
+import { FormControl, FormGroup, ReactiveFormsModule, Validators } from "@angular/forms";
 import { MatIconModule } from "@angular/material/icon";
 import { Email, EmailService } from "../../services/email.service";
+import { MatButtonModule } from "@angular/material/button";
 
 @Component({
   selector: 'bm-new-email-container',
@@ -10,7 +11,8 @@ import { Email, EmailService } from "../../services/email.service";
   imports: [
     CommonModule,
     MatIconModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    MatButtonModule
   ],
   templateUrl: './new-email-container.component.html',
   styleUrl: './new-email-container.component.css',
@@ -24,9 +26,9 @@ export class NewEmailContainerComponent {
   private emailService = inject(EmailService);
 
   public form = new FormGroup({
-    subject: new FormControl(''),
-    to: new FormControl(''),
-    content: new FormControl('')
+    subject: new FormControl('', Validators.required),
+    to: new FormControl('', Validators.required),
+    content: new FormControl('', Validators.required)
   });
 
 

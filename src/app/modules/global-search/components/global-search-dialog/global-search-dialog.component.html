@@ -1,6 +1,6 @@
 <div focusDialog class="flex fixed z-50 w-full px-2 py-3 window-border">
   <div class="flex gap-2 items-center">
-    <mat-icon>search</mat-icon>
+    <mat-icon fontSet="material-symbols-outlined">search</mat-icon>
     <input
       (keydown)="handleKeydown($event)"
       (input)="handleSearch($event)"
@@ -31,7 +31,7 @@
           (click)="addToFavorites($event, element)"
           class="flex items-center justify-center border-none dark:hover:text-slate-100 hover:bg-slate-400/50 rounded-sm p-0.5"
         >
-          <mat-icon>star_outline</mat-icon>
+          <mat-icon fontSet="material-symbols-outlined">star_outline</mat-icon>
         </button>
       </div>
     }
@@ -56,7 +56,7 @@
         (click)="removeFromFavorites($event, element)"
         class="flex items-center justify-center border-none dark:hover:text-slate-100 hover:bg-slate-400/50 rounded-sm p-0.5"
       >
-        <mat-icon>star</mat-icon>
+        <mat-icon fontSet="material-symbols-outlined">star</mat-icon>
       </button>
     </div>
   } @empty {

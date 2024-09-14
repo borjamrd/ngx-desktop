@@ -12,9 +12,9 @@
     <mat-slide-toggle checked (click)="toggleTheme()"></mat-slide-toggle>
     <button class="flex items-center justify-center" mat-icon-button>
       @if (themeService.themeSignal() === "dark") {
-        <mat-icon>bedtime</mat-icon>
+        <mat-icon fontSet="material-symbols-outlined">bedtime</mat-icon>
       } @else {
-        <mat-icon>brightness_7</mat-icon>
+        <mat-icon fontSet="material-symbols-outlined">brightness_7</mat-icon>
       }
     </button>
     <bm-navbar-clock />
