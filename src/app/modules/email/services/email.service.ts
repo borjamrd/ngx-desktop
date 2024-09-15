@@ -1,4 +1,4 @@
-import { Injectable, signal } from '@angular/core';
+import { computed, Injectable, signal } from '@angular/core';
 
 export interface Sender {
   name: string,
@@ -20,7 +20,7 @@ export class EmailService {
 
   public emailSelected = signal<Email | null>(null);
   public selectedFolder = signal<'inbox' | 'sent' | 'draft' | 'trash'>('inbox');
-  public emailList = signal<Email[]>([
+  private emailList = signal<Email[]>([
     {
       id: crypto.randomUUID(),
       message: 'Hey there! I hope this email finds you well. I wanted to touch base about the project we discussed last week. Also, have you heard about the new coffee shop that opened downtown? We should check it out sometime!',
@@ -238,7 +238,14 @@ export class EmailService {
       }
     }
   ])
+  private emailsByFolder = computed(() => {
+    return this.emailList().filter(email => email.folder === this.selectedFolder())
+  })
 
+
+  public getEmailList() {
+    return this.emailsByFolder()
+  }
 
   sendEmail(email: Email) {
     this.emailList.update(list => [email, ...list])

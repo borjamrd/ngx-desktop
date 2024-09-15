@@ -20,7 +20,7 @@ import { MatCheckboxModule } from '@angular/material/checkbox';
 export class EmailListComponent {
 
   private emailService = inject(EmailService);
-  public emails = this.emailService.emailList;
+  public emails = this.emailService.getEmailList();
   public selectedEmail = this.emailService.emailSelected;
 
   public selectEmail(email: Email) {

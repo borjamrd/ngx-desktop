@@ -81,7 +81,7 @@ export class EmailViewComponent implements AfterViewInit {
 
   selectedEmail = signal<Email | null>(null);
   private emailService = inject(EmailService);
-  public emails = this.emailService.emailList();
+  public emails = this.emailService.getEmailList();
 
   private elementRef = inject(ElementRef)
   private destroyRef = inject(DestroyRef)
