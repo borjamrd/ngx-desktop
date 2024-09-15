@@ -1,4 +1,5 @@
 import { computed, Injectable, signal } from '@angular/core';
+import { EmailFolder } from '../components/email-view/email-view.component';
 
 export interface Sender {
   name: string,
@@ -10,7 +11,7 @@ export interface Email {
   sendedAt: Date,
   subject: string,
   to: string
-  folder: 'inbox' | 'sent' | 'draft' | 'trash' | 'spam' | 'important' | 'favorite'
+  folderType: 'inbox' | 'sent' | 'draft' | 'trash' | 'spam' | 'important' | 'favorite'
   from: Sender
 }
 @Injectable({
@@ -19,7 +20,12 @@ export interface Email {
 export class EmailService {
 
   public emailSelected = signal<Email | null>(null);
-  public selectedFolder = signal<'inbox' | 'sent' | 'draft' | 'trash'>('inbox');
+  public selectedFolder = signal<EmailFolder>({
+    name: 'Inbox',
+    icon: 'inbox',
+    color: 'blue',
+    folderType: 'inbox'
+  });
   private emailList = signal<Email[]>([
     {
       id: crypto.randomUUID(),
@@ -27,7 +33,7 @@ export class EmailService {
       sendedAt: new Date(),
       subject: 'Project Update and Coffee Shop',
       to: 'alfredo@gmail.com',
-      folder: 'inbox',
+      folderType: 'inbox',
       from: {
         name: 'Borja',
         email: 'borja@gmail.com'
@@ -39,7 +45,7 @@ export class EmailService {
       sendedAt: new Date(),
       subject: 'Presentation Follow-up and Wedding Invitation',
       to: 'benedict@gmail.com',
-      folder: 'sent',
+      folderType: 'sent',
       from: {
         name: 'Felipe Neri',
         email: 'felipe@gmail.com'
@@ -51,7 +57,7 @@ export class EmailService {
       sendedAt: new Date(),
       subject: 'Japan Trip and Sustainable Living',
       to: 'teresa@gmail.com',
-      folder: 'draft',
+      folderType: 'draft',
       from: {
         name: 'Jimena Alvarez',
         email: 'jimena@gmail.com'
@@ -63,7 +69,7 @@ export class EmailService {
       sendedAt: new Date(),
       subject: 'Apologies and Book Discussion',
       to: 'borja@gmail.com',
-      folder: 'trash',
+      folderType: 'trash',
       from: {
         name: 'Penélope Sierra',
         email: 'penelope@gmail.com'
@@ -75,7 +81,7 @@ export class EmailService {
       sendedAt: new Date(),
       subject: 'Meeting Confirmation and AI Article',
       to: 'borja@gmail.com',
-      folder: 'sent',
+      folderType: 'sent',
       from: {
         name: 'Alberto González',
         email: 'alberto@gmail.com'
@@ -87,7 +93,7 @@ export class EmailService {
       sendedAt: new Date(),
       subject: 'Charity Event and Tech Conference',
       to: 'borja@gmail.com',
-      folder: 'trash',
+      folderType: 'trash',
       from: {
         name: 'Tejeringo El Hoyo',
         email: 'tejeringo@gmail.com'
@@ -99,7 +105,7 @@ export class EmailService {
       sendedAt: new Date(),
       subject: 'Project Timeline and Art Exhibition',
       to: 'alfredo@gmail.com',
-      folder: 'inbox',
+      folderType: 'inbox',
       from: {
         name: 'Manolo Puertas',
         email: 'manolo@gmail.com'
@@ -111,7 +117,7 @@ export class EmailService {
       sendedAt: new Date(),
       subject: 'Quarterly Report and Hiking Adventure',
       to: 'benedict@gmail.com',
-      folder: 'sent',
+      folderType: 'sent',
       from: {
         name: 'Esperanza Aguerra',
         email: 'esperanza@gmail.com'
@@ -123,7 +129,7 @@ export class EmailService {
       sendedAt: new Date(),
       subject: 'Team Building and Photography Project',
       to: 'teresa@gmail.com',
-      folder: 'draft',
+      folderType: 'draft',
       from: {
         name: 'Podencos S.A',
         email: 'podencos@gmail.com'
@@ -135,7 +141,7 @@ export class EmailService {
       sendedAt: new Date(),
       subject: 'Meeting Reschedule and Movie Discussion',
       to: 'borja@gmail.com',
-      folder: 'trash',
+      folderType: 'trash',
       from: {
         name: 'Pablo Iglesias',
         email: 'pablo@gmail.com'
@@ -147,7 +153,7 @@ export class EmailService {
       sendedAt: new Date(),
       subject: 'Project Approval and Mindfulness Workshop',
       to: 'borja@gmail.com',
-      folder: 'sent',
+      folderType: 'sent',
       from: {
         name: 'Pablo Iglesias',
         email: 'pablo@gmail.com'
@@ -159,7 +165,7 @@ export class EmailService {
       sendedAt: new Date(),
       subject: 'Client Presentation and Marathon Training',
       to: 'borja@gmail.com',
-      folder: 'trash',
+      folderType: 'trash',
       from: {
         name: 'Federico Jiménez',
         email: 'federico@gmail.com'
@@ -171,7 +177,7 @@ export class EmailService {
       sendedAt: new Date(),
       subject: 'Marketing Strategy and Piano Recital',
       to: 'alfredo@gmail.com',
-      folder: 'inbox',
+      folderType: 'inbox',
       from: {
         name: 'Alberto Jiménez',
         email: 'borja@gmail.com'
@@ -183,7 +189,7 @@ export class EmailService {
       sendedAt: new Date(),
       subject: 'Project Update and Art Exhibition',
       to: 'benedict@gmail.com',
-      folder: 'sent',
+      folderType: 'sent',
       from: {
         name: 'Alberto Pérez',
         email: 'alberto@gmail.com'
@@ -195,7 +201,7 @@ export class EmailService {
       sendedAt: new Date(),
       subject: 'Team Retreat and Book Discussion',
       to: 'teresa@gmail.com',
-      folder: 'draft',
+      folderType: 'draft',
       from: {
         name: 'Marta Freire',
         email: 'marta@gmail.com'
@@ -207,7 +213,7 @@ export class EmailService {
       sendedAt: new Date(),
       subject: 'Project Deadline and Weekend Plans',
       to: 'borja@gmail.com',
-      folder: 'trash',
+      folderType: 'trash',
       from: {
         name: 'Ricardo García',
         email: 'ricardo@gmail.com'
@@ -219,7 +225,7 @@ export class EmailService {
       sendedAt: new Date(),
       subject: 'Quarterly Report and Science Fair',
       to: 'borja@gmail.com',
-      folder: 'sent',
+      folderType: 'sent',
       from: {
         name: 'Ninel Pardo',
         email: 'ninel@gmail.com'
@@ -231,21 +237,19 @@ export class EmailService {
       sendedAt: new Date(),
       subject: 'Client Meeting and Photography Hobby',
       to: 'borja@gmail.com',
-      folder: 'trash',
+      folderType: 'trash',
       from: {
         name: 'Pancho Iglesias',
         email: 'pancho@gmail.com'
       }
     }
   ])
-  private emailsByFolder = computed(() => {
-    return this.emailList().filter(email => email.folder === this.selectedFolder())
+  public emailsByFolder = computed(() => {
+
+    return this.emailList().filter(email => email.folderType === this.selectedFolder().folderType)
   })
 
 
-  public getEmailList() {
-    return this.emailsByFolder()
-  }
 
   sendEmail(email: Email) {
     this.emailList.update(list => [email, ...list])
@@ -254,4 +258,13 @@ export class EmailService {
   selectEmail(email: Email) {
     this.emailSelected.set(email)
   }
+
+  selectFolder(folder: EmailFolder) {
+    this.selectedFolder.set(folder)
+  }
+
+  filterEmails(search: string) {
+    this.emailList.set(this.emailList().filter(email => email.subject.includes(search) && email.folderType === this.selectedFolder().folderType))
+  }
 }
+

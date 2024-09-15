@@ -9,25 +9,7 @@
         Redactar
       </button>
 
-      <div class="flex flex-col gap-3">
-        @for (folder of emailFolders; track folder.name; let i = $index) {
-          <button
-            [ngClass]="{
-              'btn-active': selectedEmail()?.folder === folder.name
-            }"
-            class="btn-email"
-          >
-            <div
-              [style.backgroundColor]="folder.color"
-              class="w-2 h-2 rounded-full"
-            ></div>
-            <mat-icon fontSet="material-symbols-outlined">{{
-              folder.icon
-            }}</mat-icon>
-            <span>{{ folder.name }}</span>
-          </button>
-        }
-      </div>
+      <bm-email-folders [selectedEmail]="selectedEmail()" />
     </div>
   </div>
   <div [ngClass]="containerClasses()['list']">

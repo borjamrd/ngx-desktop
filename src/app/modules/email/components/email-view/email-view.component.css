@@ -9,12 +9,3 @@
 .btn-send:active {
     @apply bg-cyan-400/50 dark:bg-blue-600/50;
 }
-
-.btn-email {
-    @apply flex items-center gap-2 bg-blue-300/40 dark:bg-blue-600/30 rounded-r-full px-2 py-1.5 cursor-pointer hover:bg-blue-300/60 hover:dark:bg-blue-600/50;
-}
-
-
-.btn-email:active {
-    @apply bg-blue-300/40 dark:bg-blue-600/50;
-}

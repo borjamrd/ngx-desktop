@@ -1,8 +1,8 @@
 import { HttpClient } from '@angular/common/http';
 import { inject, Injectable, signal } from '@angular/core';
-import { NotionBlock, NotionDatabaseItem } from '../types/notion.interface';
-import { lastValueFrom, map, tap } from 'rxjs';
 import { injectQuery, injectQueryClient } from '@tanstack/angular-query-experimental';
+import { lastValueFrom } from 'rxjs';
+import { NotionBlock, NotionDatabaseItem } from '../types/notion.interface';
 
 
 

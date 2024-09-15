@@ -9,13 +9,14 @@ import { Email, EmailService } from "../../services/email.service";
 import { ResizeObserverService } from "app/shared/services/resize-observer.service";
 import { takeUntilDestroyed } from "@angular/core/rxjs-interop";
 import { mediaQueries } from "app/shared/utils";
+import { EmailFoldersComponent } from "../email-folders/email-folders.component";
 
 
 export interface EmailFolder {
   name: string;
   icon: string;
   color: string;
-  type: Email['folder']
+  folderType: Email['folderType']
 }
 @Component({
   selector: 'bm-email-view',
@@ -26,7 +27,8 @@ export interface EmailFolder {
     NewEmailContainerComponent,
     EmailContentComponent,
     MatIconModule,
-    MatButtonModule
+    MatButtonModule,
+    EmailFoldersComponent
   ],
   templateUrl: './email-view.component.html',
   styleUrl: './email-view.component.css',
@@ -38,57 +40,15 @@ export interface EmailFolder {
 })
 export class EmailViewComponent implements AfterViewInit {
 
-  emailFolders: EmailFolder[] = [
-    {
-      name: 'Inbox',
-      icon: 'inbox',
-      color: '#58A55C',
-      type: 'inbox'
-    },
-    {
-      name: 'Destacados',
-      icon: 'star',
-      color: '#F2BE42',
-      type: 'favorite'
-    },
-    {
-      name: 'Sent',
-      icon: 'send',
-      color: '#5186EC',
-      type: 'sent'
-    },
-    {
-      name: 'Draft',
-      icon: 'edit_document',
-      color: '#F2BE42',
-      type: 'draft'
-    },
-    {
-      name: 'Spam',
-      icon: 'warning',
-      color: '#D95140',
-      type: 'spam'
-    },
-    {
-      name: 'Trash',
-      icon: 'delete_outline',
-      color: '#D95140',
-      type: 'trash'
-    }
-  ]
-
-  newEmail = signal(false);
-
-  selectedEmail = signal<Email | null>(null);
-  private emailService = inject(EmailService);
-  public emails = this.emailService.getEmailList();
-
-  private elementRef = inject(ElementRef)
-  private destroyRef = inject(DestroyRef)
   private crd = inject(ChangeDetectorRef)
+  private destroyRef = inject(DestroyRef)
+  private elementRef = inject(ElementRef)
+  private emailService = inject(EmailService);
 
-
-  containerClasses = signal<Record<string, string>>({
+  public emails = this.emailService.emailsByFolder;
+  public newEmail = signal(false);
+  public selectedEmail = signal<Email | null>(null);
+  public containerClasses = signal<Record<string, string>>({
     container: 'flex-row',
     categories: 'w-2/12',
     list: 'w-5/12',

@@ -40,14 +40,13 @@ export class NewEmailContainerComponent {
         sendedAt: new Date(),
         subject: this.form.value.subject as string,
         to: this.form.value.to as string,
-        folder: 'sent',
+        folderType: 'sent',
         from: {
           name: 'Borja',
           email: 'borja@gmail.com'
         }
       })
-    } else {
-      this.form.markAllAsTouched();
+
     }
   }
 
