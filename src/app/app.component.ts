@@ -38,6 +38,16 @@ export class AppComponent {
     this.meta.addTag({ name: 'keywords', content: 'angular, defer, typescript, desktop-rocket' });
     this.meta.addTag({ name: 'author', content: 'Borja Muñoz' });
     this.meta.addTag({ property: 'og:image', content: 'assets/images/artic_monkeys.jpg' });
+    this.meta.addTag({ property: 'og:url', content: 'https://ngx-desktop.vercel.app/' });
+    this.meta.addTag({ property: 'og:type', content: 'website' });
+    this.meta.addTag({ property: 'og:title', content: 'Ngx-desktop - Angular' });
+    this.meta.addTag({ property: 'og:description', content: 'Ngx desktop is an Angular desktop client' });
+    this.meta.addTag({ property: 'og:image', content: 'assets/images/artic_monkeys.jpg' });
+    this.meta.addTag({ property: 'og:image:width', content: '1200' });
+    this.meta.addTag({ property: 'og:image:height', content: '630' });
+    this.meta.addTag({ property: 'og:image:alt', content: 'Ngx-desktop - Angular' });
+    this.meta.addTag({ property: 'og:image:type', content: 'image/jpeg' });
+    this.meta.addTag({ property: 'og:image:width', content: '1200' });
     // this.meta.addTag({ name: 'twitter:image', content: 'https://your-domain.com/assets/preview-image.jpg' });
   }
 }
