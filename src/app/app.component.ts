@@ -27,10 +27,11 @@ export class AppComponent {
 
     this.themeService.setTheme('dark')
     this.meta.addTag({ name: 'description', content: 'Ngx desktop is an Angular desktop client' });
-    this.meta.addTag({ name: 'title', content: 'Ngx Desktop' });
+    this.meta.addTag({ name: 'title', content: 'Ngx-desktop - Angular' });
     this.meta.addTag({ name: 'keywords', content: 'angular, defer, typescript, desktop-rocket' });
     this.meta.addTag({ name: 'author', content: 'Borja Muñoz' });
-    this.meta.addTag({ name: 'image', content: 'assets/images/artic_monkeys.jpg' })
+    this.meta.addTag({ property: 'og:image', content: 'assets/images/artic_monkeys.jpg' });
+    // this.meta.addTag({ name: 'twitter:image', content: 'https://your-domain.com/assets/preview-image.jpg' });
 
 
 
