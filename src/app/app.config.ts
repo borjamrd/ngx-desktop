@@ -1,7 +1,7 @@
 import { ApplicationConfig, importProvidersFrom, ɵprovideZonelessChangeDetection } from '@angular/core';
 import { provideRouter } from '@angular/router';
 
-import { HttpClientModule } from '@angular/common/http';
+import {} from '@angular/common/http';
 import { provideAnimationsAsync } from '@angular/platform-browser/animations/async';
 import { routes } from './app.routes';
 import { provideHighlightOptions } from 'ngx-highlightjs';
