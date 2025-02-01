@@ -1,4 +1,4 @@
-import { CdkDragDrop, DragDropModule, moveItemInArray } from '@angular/cdk/drag-drop';
+import { DragDropModule } from '@angular/cdk/drag-drop';
 import { NgClass, NgFor } from '@angular/common';
 import { Component, ElementRef, Input, ViewChild } from '@angular/core';
 import { SystemElement } from 'app/shared/types/system-element.type';
