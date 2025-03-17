@@ -3,14 +3,13 @@ import { ChangeDetectionStrategy, Component, input, output, SimpleChanges } from
 import { NotionBlock, TableOfContentsEntry } from "../../types/notion.interface";
 
 @Component({
-  selector: 'bm-notion-table-of-contents',
-  standalone: true,
-  imports: [
-    CommonModule,
-  ],
-  templateUrl: './notion-table-of-contents.component.html',
-  styleUrl: './notion-table-of-contents.component.css',
-  changeDetection: ChangeDetectionStrategy.OnPush,
+    selector: 'bm-notion-table-of-contents',
+    imports: [
+        CommonModule,
+    ],
+    templateUrl: './notion-table-of-contents.component.html',
+    styleUrl: './notion-table-of-contents.component.css',
+    changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class NotionTableOfContentsComponent {
 

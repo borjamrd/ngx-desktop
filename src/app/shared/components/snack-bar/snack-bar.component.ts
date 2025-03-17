@@ -8,12 +8,11 @@ import {
 } from '@angular/material/snack-bar';
 
 @Component({
-  selector: 'bm-snack-bar',
-  standalone: true,
-  imports: [MatFormFieldModule, FormsModule, MatInputModule, MatButtonModule],
-  templateUrl: './snack-bar.component.html',
-  styleUrl: './snack-bar.component.css',
-  changeDetection: ChangeDetectionStrategy.OnPush,
+    selector: 'bm-snack-bar',
+    imports: [MatFormFieldModule, FormsModule, MatInputModule, MatButtonModule],
+    templateUrl: './snack-bar.component.html',
+    styleUrl: './snack-bar.component.css',
+    changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class SnackBarComponent {
   snackBarRef = inject(MatSnackBarRef);

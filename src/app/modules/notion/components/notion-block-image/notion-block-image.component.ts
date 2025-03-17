@@ -3,11 +3,10 @@ import { NotionBlock } from '../../types/notion.interface';
 import { getBlockImageURL } from '../../utils/notion.utils';
 
 @Component({
-  selector: 'bm-notion-block-image',
-  standalone: true,
-  imports: [],
-  templateUrl: './notion-block-image.component.html',
-  styleUrl: './notion-block-image.component.scss'
+    selector: 'bm-notion-block-image',
+    imports: [],
+    templateUrl: './notion-block-image.component.html',
+    styleUrl: './notion-block-image.component.scss'
 })
 export class NotionBlockImageComponent implements OnInit {
 

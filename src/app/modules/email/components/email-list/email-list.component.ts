@@ -7,20 +7,19 @@ import { FormControl, FormGroup, ReactiveFormsModule } from "@angular/forms";
 import { takeUntilDestroyed } from "@angular/core/rxjs-interop";
 
 @Component({
-  selector: 'bm-email-list',
-  standalone: true,
-  imports: [
-    CommonModule,
-    MatCheckboxModule,
-    InputComponent,
-    ReactiveFormsModule
-  ],
-  templateUrl: './email-list.component.html',
-  styleUrl: './email-list.component.css',
-  changeDetection: ChangeDetectionStrategy.OnPush,
-  host: {
-    class: 'flex flex-col gap-2 max-h-[91%] overflow-auto'
-  }
+    selector: 'bm-email-list',
+    imports: [
+        CommonModule,
+        MatCheckboxModule,
+        InputComponent,
+        ReactiveFormsModule
+    ],
+    templateUrl: './email-list.component.html',
+    styleUrl: './email-list.component.css',
+    changeDetection: ChangeDetectionStrategy.OnPush,
+    host: {
+        class: 'flex flex-col gap-2 max-h-[91%] overflow-auto'
+    }
 })
 export class EmailListComponent {
 

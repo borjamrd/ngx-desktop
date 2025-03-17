@@ -9,31 +9,30 @@ import { MatInputModule } from '@angular/material/input';
 
 
 @Component({
-  selector: 'bm-input',
-  standalone: true,
-  imports: [
-    MatFormFieldModule,
-    CommonModule,
-    MatInputModule,
-    FormsModule,
-    MatButtonModule,
-    MatIconModule,
-    ReactiveFormsModule],
-  providers: [
-    {
-      provide: NG_VALUE_ACCESSOR,
-      useExisting: forwardRef(() => InputComponent),
-      multi: true
-    },
-    {
-      provide: MAT_FORM_FIELD_DEFAULT_OPTIONS,
-      useValue: { appearance: 'fill' }
-    },
-
-  ],
-  templateUrl: './input.component.html',
-  styleUrl: './input.component.scss',
-  changeDetection: ChangeDetectionStrategy.OnPush
+    selector: 'bm-input',
+    imports: [
+        MatFormFieldModule,
+        CommonModule,
+        MatInputModule,
+        FormsModule,
+        MatButtonModule,
+        MatIconModule,
+        ReactiveFormsModule
+    ],
+    providers: [
+        {
+            provide: NG_VALUE_ACCESSOR,
+            useExisting: forwardRef(() => InputComponent),
+            multi: true
+        },
+        {
+            provide: MAT_FORM_FIELD_DEFAULT_OPTIONS,
+            useValue: { appearance: 'fill' }
+        },
+    ],
+    templateUrl: './input.component.html',
+    styleUrl: './input.component.scss',
+    changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class InputComponent implements ControlValueAccessor {
 

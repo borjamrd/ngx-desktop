@@ -3,14 +3,13 @@ import { ChangeDetectionStrategy, Component, Input } from '@angular/core';
 import { NotionBlock } from "../../types/notion.interface";
 
 @Component({
-  selector: 'bm-notion-block-text',
-  standalone: true,
-  imports: [
-    CommonModule,
-  ],
-  templateUrl: './notion-block-text.component.html',
-  styleUrl: './notion-block-text.component.css',
-  changeDetection: ChangeDetectionStrategy.OnPush,
+    selector: 'bm-notion-block-text',
+    imports: [
+        CommonModule,
+    ],
+    templateUrl: './notion-block-text.component.html',
+    styleUrl: './notion-block-text.component.css',
+    changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class NotionBlockTextComponent {
 

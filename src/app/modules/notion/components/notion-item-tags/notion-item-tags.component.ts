@@ -4,11 +4,10 @@ import { NotionDatabaseItem } from '@modules/notion/types/notion.interface';
 import { BadgeDirective } from 'app/shared/directives/badge.directive';
 
 @Component({
-  selector: 'bm-notion-item-tags',
-  standalone: true,
-  imports: [NgClass, BadgeDirective],
-  templateUrl: './notion-item-tags.component.html',
-  styleUrl: './notion-item-tags.component.scss'
+    selector: 'bm-notion-item-tags',
+    imports: [NgClass, BadgeDirective],
+    templateUrl: './notion-item-tags.component.html',
+    styleUrl: './notion-item-tags.component.scss'
 })
 export class NotionItemTagsComponent {
 

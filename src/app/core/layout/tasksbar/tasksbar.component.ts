@@ -12,25 +12,24 @@ import { NavbarClockComponent } from 'app/shared/components/navbar-clock/navbar-
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { SnackBarComponent } from 'app/shared/components/snack-bar/snack-bar.component';
 @Component({
-  selector: 'bm-tasksbar',
-  standalone: true,
-  imports: [
-    ActiveFoldersComponent,
-    NgFor,
-    NgIf,
-    AsyncPipe,
-    MatIconModule,
-    MatSlideToggleModule,
-    InputComponent,
-    ActiveFilesComponent,
-    NavbarClockComponent
-  ],
-  templateUrl: './tasksbar.component.html',
-  styleUrl: './tasksbar.component.scss',
-  changeDetection: ChangeDetectionStrategy.OnPush,
-  host: {
-    class: 'z-[99999] absolute h-12 backdrop-blur-lg bottom-0 w-full px-3 py-1 hidden sm:flex border-t-[1px] border-slate-200 shadow-teal-300 dark:border-t-gray-600 bg-slate-100/60 dark:bg-neutral-600/40 shadow-sm items-center'
-  }
+    selector: 'bm-tasksbar',
+    imports: [
+        ActiveFoldersComponent,
+        NgFor,
+        NgIf,
+        AsyncPipe,
+        MatIconModule,
+        MatSlideToggleModule,
+        InputComponent,
+        ActiveFilesComponent,
+        NavbarClockComponent
+    ],
+    templateUrl: './tasksbar.component.html',
+    styleUrl: './tasksbar.component.scss',
+    changeDetection: ChangeDetectionStrategy.OnPush,
+    host: {
+        class: 'z-[99999] absolute h-12 backdrop-blur-lg bottom-0 w-full px-3 py-1 hidden sm:flex border-t-[1px] border-slate-200 shadow-teal-300 dark:border-t-gray-600 bg-slate-100/60 dark:bg-neutral-600/40 shadow-sm items-center'
+    }
 })
 export class TasksbarComponent {
 

@@ -5,16 +5,15 @@ import { NotionBadgeStatusComponent } from "../notion-badge-status/notion-badge-
 import { NotionItemTagsComponent } from "../notion-item-tags/notion-item-tags.component";
 
 @Component({
-  selector: 'bm-notion-page-header',
-  standalone: true,
-  imports: [
-    CommonModule,
-    NotionBadgeStatusComponent,
-    NotionItemTagsComponent
-  ],
-  templateUrl: './notion-page-header.component.html',
-  styleUrl: './notion-page-header.component.css',
-  changeDetection: ChangeDetectionStrategy.OnPush,
+    selector: 'bm-notion-page-header',
+    imports: [
+        CommonModule,
+        NotionBadgeStatusComponent,
+        NotionItemTagsComponent
+    ],
+    templateUrl: './notion-page-header.component.html',
+    styleUrl: './notion-page-header.component.css',
+    changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class NotionPageHeaderComponent {
 

@@ -18,25 +18,24 @@ import { NotionDatabaseComponent } from '../notion-database/notion-database.comp
 import { NotionPageComponent } from '../notion-page/notion-page.component';
 
 @Component({
-  selector: 'bm-notion',
-  standalone: true,
-  imports: [
-    AsyncPipe,
-    JsonPipe,
-    MatIconModule,
-    NgClass,
-    NgFor,
-    NgIf,
-    NotionDatabaseComponent,
-    NotionDatabaseItemComponent,
-    NotionPageComponent,
-  ],
-  templateUrl: './notion.component.html',
-  providers: [ResizeObserverService],
-  styleUrl: './notion.component.scss',
-  host: {
-    class: 'flex h-full w-full gap-20 relative justify-center',
-  },
+    selector: 'bm-notion',
+    imports: [
+        AsyncPipe,
+        JsonPipe,
+        MatIconModule,
+        NgClass,
+        NgFor,
+        NgIf,
+        NotionDatabaseComponent,
+        NotionDatabaseItemComponent,
+        NotionPageComponent,
+    ],
+    templateUrl: './notion.component.html',
+    providers: [ResizeObserverService],
+    styleUrl: './notion.component.scss',
+    host: {
+        class: 'flex h-full w-full gap-20 relative justify-center',
+    }
 })
 export class NotionComponent {
   public notionContainerClass = signal<string>('p-5');

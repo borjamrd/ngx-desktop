@@ -8,13 +8,11 @@ import { slideInOut } from 'app/shared/utils/transitions';
 
 
 @Component({
-  selector: 'bm-active-folders',
-  standalone: true,
-  imports: [MatIconModule, CommonModule],
-  templateUrl: './active-folders.component.html',
-  styleUrl: './active-folders.component.scss',
-  animations: [slideInOut]
-
+    selector: 'bm-active-folders',
+    imports: [MatIconModule, CommonModule],
+    templateUrl: './active-folders.component.html',
+    styleUrl: './active-folders.component.scss',
+    animations: [slideInOut]
 })
 export class ActiveFoldersComponent {
 

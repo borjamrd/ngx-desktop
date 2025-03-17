@@ -6,19 +6,18 @@ import { MatIconModule } from "@angular/material/icon";
 import { NotionService } from "../../services/notion.service";
 
 @Component({
-  selector: 'bm-notion-database',
-  standalone: true,
-  imports: [
-    CommonModule,
-    NotionDatabaseItemComponent,
-    MatIconModule
-  ],
-  templateUrl: './notion-database.component.html',
-  styleUrl: './notion-database.component.css',
-  changeDetection: ChangeDetectionStrategy.OnPush,
-  host: {
-    class: 'w-full overflow-auto sticky top-0'
-  }
+    selector: 'bm-notion-database',
+    imports: [
+        CommonModule,
+        NotionDatabaseItemComponent,
+        MatIconModule
+    ],
+    templateUrl: './notion-database.component.html',
+    styleUrl: './notion-database.component.css',
+    changeDetection: ChangeDetectionStrategy.OnPush,
+    host: {
+        class: 'w-full overflow-auto sticky top-0'
+    }
 })
 export class NotionDatabaseComponent {
 

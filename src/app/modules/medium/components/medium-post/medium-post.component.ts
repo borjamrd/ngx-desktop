@@ -3,11 +3,10 @@ import { MatIconModule } from '@angular/material/icon';
 import { MediumPost } from 'app/modules/medium/services/medium.service';
 
 @Component({
-  selector: 'bm-medium-post',
-  standalone: true,
-  imports: [MatIconModule],
-  templateUrl: './medium-post.component.html',
-  styleUrl: './medium-post.component.scss'
+    selector: 'bm-medium-post',
+    imports: [MatIconModule],
+    templateUrl: './medium-post.component.html',
+    styleUrl: './medium-post.component.scss'
 })
 export class MediumPostComponent {
 

@@ -7,18 +7,17 @@ import { FocusDialogDirective } from 'app/shared/directives/focus-dialog.directi
 import { MediumComponent } from '../medium-view/medium.component';
 import { FileExplorerService } from 'app/shared/services/file-explorer.service';
 @Component({
-  selector: 'bm-medium-dialog',
-  standalone: true,
-  imports: [
-    MediumComponent,
-    NgComponentOutlet,
-    DragDropModule,
-    FocusDialogDirective,
-    MatIconModule,
-  ],
-  templateUrl: './medium-dialog.component.html',
-  styleUrl: './medium-dialog.component.scss',
-  changeDetection: ChangeDetectionStrategy.OnPush,
+    selector: 'bm-medium-dialog',
+    imports: [
+        MediumComponent,
+        NgComponentOutlet,
+        DragDropModule,
+        FocusDialogDirective,
+        MatIconModule,
+    ],
+    templateUrl: './medium-dialog.component.html',
+    styleUrl: './medium-dialog.component.scss',
+    changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class MediumDialogComponent {
 

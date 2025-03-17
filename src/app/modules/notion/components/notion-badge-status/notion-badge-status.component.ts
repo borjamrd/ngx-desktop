@@ -3,11 +3,10 @@ import { NgClass } from '@angular/common';
 import { Component, Input } from '@angular/core';
 
 @Component({
-  selector: 'bm-notion-badge-status',
-  standalone: true,
-  imports: [NgClass],
-  templateUrl: './notion-badge-status.component.html',
-  styleUrl: './notion-badge-status.component.scss'
+    selector: 'bm-notion-badge-status',
+    imports: [NgClass],
+    templateUrl: './notion-badge-status.component.html',
+    styleUrl: './notion-badge-status.component.scss'
 })
 export class NotionBadgeStatusComponent {
   @Input() status!: NotionDatabaseItem['status']

@@ -7,22 +7,21 @@ import { ElementOptionsComponent } from '../element-options/element-options.comp
 import { SystemElementIconComponent } from '../system-element-icon/system-element-icon.component';
 
 @Component({
-  selector: 'bm-cell-container',
-  standalone: true,
-  imports: [
-    SlicePipe,
-    SystemElementIconComponent,
-    NgTemplateOutlet,
-    NgComponentOutlet,
-    NgClass,
-    MatMenuModule,
-    ElementOptionsComponent,
-  ],
-  templateUrl: './cell-container.component.html',
-  styleUrl: './cell-container.component.scss',
-  host: {
-    class: 'w-full h-full flex items-baseline justify-center'
-  }
+    selector: 'bm-cell-container',
+    imports: [
+        SlicePipe,
+        SystemElementIconComponent,
+        NgTemplateOutlet,
+        NgComponentOutlet,
+        NgClass,
+        MatMenuModule,
+        ElementOptionsComponent,
+    ],
+    templateUrl: './cell-container.component.html',
+    styleUrl: './cell-container.component.scss',
+    host: {
+        class: 'w-full h-full flex items-baseline justify-center'
+    }
 })
 
 export class CellContainerComponent {

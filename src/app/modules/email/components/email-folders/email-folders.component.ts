@@ -5,18 +5,17 @@ import { EmailFolder } from "../email-view/email-view.component";
 import { Email, EmailService } from "../../services/email.service";
 
 @Component({
-  selector: 'bm-email-folders',
-  standalone: true,
-  imports: [
-    CommonModule,
-    MatIconModule
-  ],
-  templateUrl: './email-folders.component.html',
-  styleUrl: './email-folders.component.css',
-  changeDetection: ChangeDetectionStrategy.OnPush,
-  host: {
-    class: 'flex flex-col gap-3'
-  }
+    selector: 'bm-email-folders',
+    imports: [
+        CommonModule,
+        MatIconModule
+    ],
+    templateUrl: './email-folders.component.html',
+    styleUrl: './email-folders.component.css',
+    changeDetection: ChangeDetectionStrategy.OnPush,
+    host: {
+        class: 'flex flex-col gap-3'
+    }
 })
 export class EmailFoldersComponent {
 

@@ -6,11 +6,10 @@ import { HighlightAuto } from 'ngx-highlightjs';
 import { NotionBlock } from '../../types/notion.interface';
 
 @Component({
-  selector: 'bm-notion-block-code',
-  standalone: true,
-  imports: [HighlightAuto, CopyToClipboardComponent, BadgeDirective],
-  templateUrl: './notion-block-code.component.html',
-  styleUrl: './notion-block-code.component.scss'
+    selector: 'bm-notion-block-code',
+    imports: [HighlightAuto, CopyToClipboardComponent, BadgeDirective],
+    templateUrl: './notion-block-code.component.html',
+    styleUrl: './notion-block-code.component.scss'
 })
 export class NotionBlockCodeComponent implements OnInit {
 

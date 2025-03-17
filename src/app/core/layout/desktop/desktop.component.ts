@@ -9,14 +9,13 @@ import { MatDialog } from '@angular/material/dialog';
 import { GlobalSearchDialogComponent } from 'app/modules/global-search/components/global-search-dialog/global-search-dialog.component';
 
 @Component({
-  selector: 'bm-desktop',
-  standalone: true,
-  imports: [TasksbarComponent, VirtualGridComponent, NgClass, AsyncPipe],
-  templateUrl: './desktop.component.html',
-  styleUrl: './desktop.component.scss',
-  host: {
-    '(window:keydown.control.k)': 'onKeydown($event)',
-  }
+    selector: 'bm-desktop',
+    imports: [TasksbarComponent, VirtualGridComponent, NgClass, AsyncPipe],
+    templateUrl: './desktop.component.html',
+    styleUrl: './desktop.component.scss',
+    host: {
+        '(window:keydown.control.k)': 'onKeydown($event)',
+    }
 })
 export class DesktopComponent {
 

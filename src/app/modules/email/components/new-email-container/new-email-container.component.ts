@@ -6,20 +6,19 @@ import { Email, EmailService } from "../../services/email.service";
 import { MatButtonModule } from "@angular/material/button";
 
 @Component({
-  selector: 'bm-new-email-container',
-  standalone: true,
-  imports: [
-    CommonModule,
-    MatIconModule,
-    ReactiveFormsModule,
-    MatButtonModule
-  ],
-  templateUrl: './new-email-container.component.html',
-  styleUrl: './new-email-container.component.css',
-  changeDetection: ChangeDetectionStrategy.OnPush,
-  host: {
-    class: 'absolute rounded-t-2xl bottom-0 right-0 min-w-96 w-4/6 shadow-2xl h-4/6 bg-slate-100 dark:bg-slate-800 flex flex-col'
-  }
+    selector: 'bm-new-email-container',
+    imports: [
+        CommonModule,
+        MatIconModule,
+        ReactiveFormsModule,
+        MatButtonModule
+    ],
+    templateUrl: './new-email-container.component.html',
+    styleUrl: './new-email-container.component.css',
+    changeDetection: ChangeDetectionStrategy.OnPush,
+    host: {
+        class: 'absolute rounded-t-2xl bottom-0 right-0 min-w-96 w-4/6 shadow-2xl h-4/6 bg-slate-100 dark:bg-slate-800 flex flex-col'
+    }
 })
 export class NewEmailContainerComponent {
   public close = output<void>();

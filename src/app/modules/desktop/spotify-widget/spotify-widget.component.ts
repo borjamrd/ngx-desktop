@@ -14,14 +14,13 @@ interface Track {
   image: string;
 }
 @Component({
-  selector: 'bm-spotify-widget',
-  standalone: true,
-  imports: [MatIconModule],
-  templateUrl: './spotify-widget.component.html',
-  styleUrl: './spotify-widget.component.scss',
-  host: {
-    class: 'h-full w-full relative bg-gradient-to-bl from-slate-900 to-[#1db954] rounded-2xl p-2 lg:p-4 bg-opacity-90 backdrop:blur-sm text-white'
-  },
+    selector: 'bm-spotify-widget',
+    imports: [MatIconModule],
+    templateUrl: './spotify-widget.component.html',
+    styleUrl: './spotify-widget.component.scss',
+    host: {
+        class: 'h-full w-full relative bg-gradient-to-bl from-slate-900 to-[#1db954] rounded-2xl p-2 lg:p-4 bg-opacity-90 backdrop:blur-sm text-white'
+    }
 })
 export class SpotifyWidgetComponent extends DesktopWidgetComponent {
 

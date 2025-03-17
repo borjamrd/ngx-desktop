@@ -24,21 +24,19 @@ export interface DialogData {
 
 
 @Component({
-  selector: 'bm-window-container',
-  standalone: true,
-  imports: [
-    MatIconModule,
-    DragDropModule,
-    CommonModule,
-    AsyncPipe,
-    CellContainerComponent,
-    MatDialogModule,
-    FocusDialogDirective
-  ],
-
-  templateUrl: './window-dialog.component.html',
-  styleUrl: './window-dialog.component.scss',
-  changeDetection: ChangeDetectionStrategy.OnPush,
+    selector: 'bm-window-container',
+    imports: [
+        MatIconModule,
+        DragDropModule,
+        CommonModule,
+        AsyncPipe,
+        CellContainerComponent,
+        MatDialogModule,
+        FocusDialogDirective
+    ],
+    templateUrl: './window-dialog.component.html',
+    styleUrl: './window-dialog.component.scss',
+    changeDetection: ChangeDetectionStrategy.OnPush
 })
 
 

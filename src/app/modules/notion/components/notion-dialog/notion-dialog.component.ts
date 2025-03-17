@@ -7,18 +7,17 @@ import { FocusDialogDirective } from 'app/shared/directives/focus-dialog.directi
 import { NotionComponent } from '../notion-view/notion.component';
 import { FileExplorerService } from 'app/shared/services/file-explorer.service';
 @Component({
-  selector: 'bm-notion-dialog',
-  standalone: true,
-  imports: [
-    NotionComponent,
-    NgComponentOutlet,
-    DragDropModule,
-    MatIconModule,
-    FocusDialogDirective
-  ],
-  templateUrl: './notion-dialog.component.html',
-  styleUrl: './notion-dialog.component.scss',
-  changeDetection: ChangeDetectionStrategy.OnPush,
+    selector: 'bm-notion-dialog',
+    imports: [
+        NotionComponent,
+        NgComponentOutlet,
+        DragDropModule,
+        MatIconModule,
+        FocusDialogDirective
+    ],
+    templateUrl: './notion-dialog.component.html',
+    styleUrl: './notion-dialog.component.scss',
+    changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class NotionDialogComponent {
   private fileExplorerService = inject(FileExplorerService);

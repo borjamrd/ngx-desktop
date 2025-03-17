@@ -9,19 +9,18 @@ import { SystemElement } from "app/shared/types/system-element.type";
 import { flattenElements } from "app/shared/utils";
 
 @Component({
-  selector: 'bm-global-search-dialog',
-  standalone: true,
-  imports: [
-    CommonModule,
-    MatIconModule,
-    FocusDialogDirective
-  ],
-  templateUrl: './global-search-dialog.component.html',
-  styleUrl: './global-search-dialog.component.css',
-  changeDetection: ChangeDetectionStrategy.OnPush,
-  host: {
-    class: 'w-full h-full flex flex-col p-4',
-  }
+    selector: 'bm-global-search-dialog',
+    imports: [
+        CommonModule,
+        MatIconModule,
+        FocusDialogDirective
+    ],
+    templateUrl: './global-search-dialog.component.html',
+    styleUrl: './global-search-dialog.component.css',
+    changeDetection: ChangeDetectionStrategy.OnPush,
+    host: {
+        class: 'w-full h-full flex flex-col p-4',
+    }
 })
 export class GlobalSearchDialogComponent {
   public dialogRef: MatDialogRef<GlobalSearchDialogComponent> = inject(MatDialogRef);

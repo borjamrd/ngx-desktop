@@ -11,21 +11,20 @@ import { NotionPageHeaderComponent } from '../notion-page-header/notion-page-hea
 import { NotionTableOfContentsComponent } from "../notion-table-of-contents/notion-table-of-contents.component";
 
 @Component({
-  selector: 'bm-notion-page',
-  standalone: true,
-  imports: [
-    NgTemplateOutlet,
-    NotionBlockComponent,
-    CommonModule,
-    NotionPageHeaderComponent,
-    NotionTableOfContentsComponent,
-  ],
-  templateUrl: './notion-page.component.html',
-  styleUrl: './notion-page.component.scss',
-  changeDetection: ChangeDetectionStrategy.OnPush,
-  host: {
-    class: 'flex flex-col max-w-5xl'
-  }
+    selector: 'bm-notion-page',
+    imports: [
+        NgTemplateOutlet,
+        NotionBlockComponent,
+        CommonModule,
+        NotionPageHeaderComponent,
+        NotionTableOfContentsComponent,
+    ],
+    templateUrl: './notion-page.component.html',
+    styleUrl: './notion-page.component.scss',
+    changeDetection: ChangeDetectionStrategy.OnPush,
+    host: {
+        class: 'flex flex-col max-w-5xl'
+    }
 })
 export class NotionPageComponent implements OnChanges {
 

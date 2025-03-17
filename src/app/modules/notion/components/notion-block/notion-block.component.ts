@@ -10,19 +10,18 @@ import { SecureResourceUrlPipe } from 'app/shared/pipes/safe-resource-url.pipe';
 
 
 @Component({
-  selector: 'bm-notion-block',
-  standalone: true,
-  imports: [
-    CommonModule,
-    Nl2brPipe,
-    NotionBlockCodeComponent,
-    NotionBlockImageComponent,
-    NotionBlockTextComponent,
-    NotionComponent,
-    SecureResourceUrlPipe
-  ],
-  templateUrl: './notion-block.component.html',
-  styleUrl: './notion-block.component.scss',
+    selector: 'bm-notion-block',
+    imports: [
+        CommonModule,
+        Nl2brPipe,
+        NotionBlockCodeComponent,
+        NotionBlockImageComponent,
+        NotionBlockTextComponent,
+        NotionComponent,
+        SecureResourceUrlPipe
+    ],
+    templateUrl: './notion-block.component.html',
+    styleUrl: './notion-block.component.scss'
 })
 export class NotionBlockComponent implements OnInit {
 

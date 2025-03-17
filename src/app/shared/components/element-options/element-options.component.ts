@@ -8,18 +8,16 @@ import { DisplayDialogService } from "app/shared/services/display-dialog.service
 import { FileExplorerService } from "app/shared/services/file-explorer.service";
 
 @Component({
-  selector: 'bm-element-options',
-  standalone: true,
-  imports: [
-    CommonModule,
-    MatMenuModule,
-    MatIconModule,
-    CopyToClipboardComponent
-  ],
-  templateUrl: './element-options.component.html',
-  styleUrl: './element-options.component.css',
-  changeDetection: ChangeDetectionStrategy.OnPush,
-
+    selector: 'bm-element-options',
+    imports: [
+        CommonModule,
+        MatMenuModule,
+        MatIconModule,
+        CopyToClipboardComponent
+    ],
+    templateUrl: './element-options.component.html',
+    styleUrl: './element-options.component.css',
+    changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class ElementOptionsComponent {
   public element = input.required<SystemElement>();

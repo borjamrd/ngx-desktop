@@ -9,11 +9,10 @@ import { CopyToClipboardComponent } from '@components/copy-to-clipboard/copy-to-
 import { InputComponent } from '@components/input/input.component';
 
 @Component({
-  selector: 'bm-medium',
-  standalone: true,
-  imports: [JsonPipe, AsyncPipe, MediumPostComponent, MatIconModule, InputComponent, ReactiveFormsModule, CopyToClipboardComponent],
-  templateUrl: './medium.component.html',
-  styleUrl: './medium.component.scss'
+    selector: 'bm-medium',
+    imports: [JsonPipe, AsyncPipe, MediumPostComponent, MatIconModule, InputComponent, ReactiveFormsModule, CopyToClipboardComponent],
+    templateUrl: './medium.component.html',
+    styleUrl: './medium.component.scss'
 })
 export class MediumComponent {
 

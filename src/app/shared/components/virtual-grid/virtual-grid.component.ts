@@ -34,12 +34,11 @@ import { CellContainerComponent } from '../cell-container/cell-container.compone
 
 
 @Component({
-  selector: 'bm-virtual-grid',
-  standalone: true,
-  imports: [CellContainerComponent, DragDropModule, NgClass, KtdGridModule],
-  templateUrl: './virtual-grid.component.html',
-  styleUrl: './virtual-grid.component.scss',
-  changeDetection: ChangeDetectionStrategy.OnPush
+    selector: 'bm-virtual-grid',
+    imports: [CellContainerComponent, DragDropModule, NgClass, KtdGridModule],
+    templateUrl: './virtual-grid.component.html',
+    styleUrl: './virtual-grid.component.scss',
+    changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class VirtualGridComponent implements OnInit, AfterContentChecked, OnDestroy {
 

@@ -6,15 +6,14 @@ import { FileExplorerService } from "app/shared/services/file-explorer.service";
 import { SystemElement } from "app/shared/types/system-element.type";
 
 @Component({
-  selector: 'bm-active-files',
-  standalone: true,
-  imports: [
-    CommonModule,
-    MatIconModule
-  ],
-  templateUrl: './active-files.component.html',
-  styleUrl: './active-files.component.css',
-  changeDetection: ChangeDetectionStrategy.OnPush,
+    selector: 'bm-active-files',
+    imports: [
+        CommonModule,
+        MatIconModule
+    ],
+    templateUrl: './active-files.component.html',
+    styleUrl: './active-files.component.css',
+    changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class ActiveFilesComponent {
 

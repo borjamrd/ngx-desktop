@@ -19,24 +19,23 @@ export interface EmailFolder {
   folderType: Email['folderType']
 }
 @Component({
-  selector: 'bm-email-view',
-  standalone: true,
-  imports: [
-    EmailListComponent,
-    NgClass,
-    NewEmailContainerComponent,
-    EmailContentComponent,
-    MatIconModule,
-    MatButtonModule,
-    EmailFoldersComponent
-  ],
-  templateUrl: './email-view.component.html',
-  styleUrl: './email-view.component.css',
-  changeDetection: ChangeDetectionStrategy.OnPush,
-  providers: [ResizeObserverService],
-  host: {
-    class: 'flex relative w-full h-full relative'
-  }
+    selector: 'bm-email-view',
+    imports: [
+        EmailListComponent,
+        NgClass,
+        NewEmailContainerComponent,
+        EmailContentComponent,
+        MatIconModule,
+        MatButtonModule,
+        EmailFoldersComponent
+    ],
+    templateUrl: './email-view.component.html',
+    styleUrl: './email-view.component.css',
+    changeDetection: ChangeDetectionStrategy.OnPush,
+    providers: [ResizeObserverService],
+    host: {
+        class: 'flex relative w-full h-full relative'
+    }
 })
 export class EmailViewComponent implements AfterViewInit {
 

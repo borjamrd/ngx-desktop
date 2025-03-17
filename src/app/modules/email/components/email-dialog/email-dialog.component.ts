@@ -8,19 +8,17 @@ import { FileExplorerService } from 'app/shared/services/file-explorer.service';
 import { EmailViewComponent } from '../email-view/email-view.component';
 
 @Component({
-  selector: 'bm-email-dialog',
-  standalone: true,
-  imports: [
-    NgComponentOutlet,
-    DragDropModule,
-    MatIconModule,
-    FocusDialogDirective,
-    EmailViewComponent,
-  ],
-  templateUrl: './email-dialog.component.html',
-  styleUrl: './email-dialog.component.css',
-  changeDetection: ChangeDetectionStrategy.OnPush,
-
+    selector: 'bm-email-dialog',
+    imports: [
+        NgComponentOutlet,
+        DragDropModule,
+        MatIconModule,
+        FocusDialogDirective,
+        EmailViewComponent,
+    ],
+    templateUrl: './email-dialog.component.html',
+    styleUrl: './email-dialog.component.css',
+    changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class EmailDialogComponent {
   private fileExplorerService = inject(FileExplorerService);

@@ -8,19 +8,17 @@ import { FileViewComponent } from "../file-view/file-view.component";
 import { FileExplorerService } from "app/shared/services/file-explorer.service";
 
 @Component({
-  selector: 'bm-file-dialog',
-  standalone: true,
-  imports: [
-    CommonModule,
-    DragDropModule,
-    MatIconModule,
-    FileViewComponent,
-    FocusDialogDirective
-  ],
-  templateUrl: './file-dialog.component.html',
-  styleUrl: './file-dialog.component.css',
-  changeDetection: ChangeDetectionStrategy.OnPush,
-
+    selector: 'bm-file-dialog',
+    imports: [
+        CommonModule,
+        DragDropModule,
+        MatIconModule,
+        FileViewComponent,
+        FocusDialogDirective
+    ],
+    templateUrl: './file-dialog.component.html',
+    styleUrl: './file-dialog.component.css',
+    changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class FileDialogComponent {
 

@@ -6,20 +6,18 @@ import { MatDatepickerModule } from '@angular/material/datepicker';
 
 
 @Component({
-  selector: 'bm-navbar-clock',
-  standalone: true,
-  imports: [
-    CommonModule,
-    MatDatepickerModule
-  ],
-  providers: [provideNativeDateAdapter()],
-  templateUrl: './navbar-clock.component.html',
-  styleUrl: './navbar-clock.component.css',
-  changeDetection: ChangeDetectionStrategy.OnPush,
-  host: {
-    class: '',
-
-  }
+    selector: 'bm-navbar-clock',
+    imports: [
+        CommonModule,
+        MatDatepickerModule
+    ],
+    providers: [provideNativeDateAdapter()],
+    templateUrl: './navbar-clock.component.html',
+    styleUrl: './navbar-clock.component.css',
+    changeDetection: ChangeDetectionStrategy.OnPush,
+    host: {
+        class: '',
+    }
 })
 export class NavbarClockComponent {
 
