@@ -1,16 +1,14 @@
 import { DragDropModule } from '@angular/cdk/drag-drop';
-import { NgComponentOutlet } from '@angular/common';
 import { ChangeDetectionStrategy, Component, inject } from '@angular/core';
 import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
 import { MatIconModule } from '@angular/material/icon';
 import { FocusDialogDirective } from 'app/shared/directives/focus-dialog.directive';
-import { NotionComponent } from '../notion-view/notion.component';
 import { FileExplorerService } from 'app/shared/services/file-explorer.service';
+import { NotionComponent } from '../notion-view/notion.component';
 @Component({
     selector: 'bm-notion-dialog',
     imports: [
         NotionComponent,
-        NgComponentOutlet,
         DragDropModule,
         MatIconModule,
         FocusDialogDirective

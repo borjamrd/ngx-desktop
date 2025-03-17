@@ -1,16 +1,16 @@
-import { AsyncPipe, JsonPipe } from '@angular/common';
+import { AsyncPipe } from '@angular/common';
 import { Component, inject } from '@angular/core';
 import { FormControl, ReactiveFormsModule } from '@angular/forms';
 import { MatIconModule } from '@angular/material/icon';
+import { CopyToClipboardComponent } from '@components/copy-to-clipboard/copy-to-clipboard.component';
+import { InputComponent } from '@components/input/input.component';
 import { MediumService } from 'app/modules/medium/services/medium.service';
 import { catchError, debounceTime, ignoreElements, of, throttleTime } from 'rxjs';
 import { MediumPostComponent } from '../medium-post/medium-post.component';
-import { CopyToClipboardComponent } from '@components/copy-to-clipboard/copy-to-clipboard.component';
-import { InputComponent } from '@components/input/input.component';
 
 @Component({
     selector: 'bm-medium',
-    imports: [JsonPipe, AsyncPipe, MediumPostComponent, MatIconModule, InputComponent, ReactiveFormsModule, CopyToClipboardComponent],
+    imports: [ AsyncPipe, MediumPostComponent, MatIconModule, InputComponent, ReactiveFormsModule, CopyToClipboardComponent],
     templateUrl: './medium.component.html',
     styleUrl: './medium.component.scss'
 })

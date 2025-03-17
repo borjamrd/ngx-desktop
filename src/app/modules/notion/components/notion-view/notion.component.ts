@@ -1,6 +1,5 @@
-import { AsyncPipe, JsonPipe, NgClass, NgFor, NgIf } from '@angular/common';
+import { NgClass } from '@angular/common';
 import {
-  ChangeDetectionStrategy,
   ChangeDetectorRef,
   Component,
   DestroyRef,
@@ -13,29 +12,23 @@ import { MatIconModule } from '@angular/material/icon';
 import { ResizeObserverService } from 'app/shared/services/resize-observer.service';
 import { mediaQueries } from 'app/shared/utils';
 import { NotionDatabaseItem } from '../../types/notion.interface';
-import { NotionDatabaseItemComponent } from '../notion-database-item/notion-database-item.component';
 import { NotionDatabaseComponent } from '../notion-database/notion-database.component';
 import { NotionPageComponent } from '../notion-page/notion-page.component';
 
 @Component({
-    selector: 'bm-notion',
-    imports: [
-        AsyncPipe,
-        JsonPipe,
-        MatIconModule,
-        NgClass,
-        NgFor,
-        NgIf,
-        NotionDatabaseComponent,
-        NotionDatabaseItemComponent,
-        NotionPageComponent,
-    ],
-    templateUrl: './notion.component.html',
-    providers: [ResizeObserverService],
-    styleUrl: './notion.component.scss',
-    host: {
-        class: 'flex h-full w-full gap-20 relative justify-center',
-    }
+  selector: 'bm-notion',
+  imports: [
+    MatIconModule,
+    NgClass,
+    NotionDatabaseComponent,
+    NotionPageComponent,
+  ],
+  templateUrl: './notion.component.html',
+  providers: [ResizeObserverService],
+  styleUrl: './notion.component.scss',
+  host: {
+    class: 'flex h-full w-full gap-20 relative justify-center',
+  },
 })
 export class NotionComponent {
   public notionContainerClass = signal<string>('p-5');

@@ -1,4 +1,3 @@
-import { NgClass } from '@angular/common';
 import { Component, input, output } from '@angular/core';
 import { NotionDatabaseItem } from "@modules/notion/types/notion.interface";
 import { NotionBadgeStatusComponent } from '../notion-badge-status/notion-badge-status.component';
@@ -6,7 +5,7 @@ import { NotionItemTagsComponent } from '../notion-item-tags/notion-item-tags.co
 
 @Component({
     selector: 'bm-notion-database-item',
-    imports: [NgClass, NotionBadgeStatusComponent, NotionItemTagsComponent],
+    imports: [ NotionBadgeStatusComponent, NotionItemTagsComponent],
     templateUrl: './notion-database-item.component.html',
     styleUrl: './notion-database-item.component.scss',
     host: {

@@ -1,5 +1,4 @@
 import { DragDropModule } from '@angular/cdk/drag-drop';
-import { NgComponentOutlet } from '@angular/common';
 import { ChangeDetectionStrategy, Component, inject } from '@angular/core';
 import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
 import { MatIconModule } from '@angular/material/icon';
@@ -10,7 +9,6 @@ import { EmailViewComponent } from '../email-view/email-view.component';
 @Component({
     selector: 'bm-email-dialog',
     imports: [
-        NgComponentOutlet,
         DragDropModule,
         MatIconModule,
         FocusDialogDirective,

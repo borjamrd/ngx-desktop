@@ -12,7 +12,7 @@ import {
   model,
   OnDestroy,
   OnInit,
-  viewChild
+  viewChild,
 } from '@angular/core';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 import { MatSelectChange } from '@angular/material/select';
@@ -23,7 +23,7 @@ import {
   KtdGridModule,
   KtdResizeEnd,
   KtdResizeStart,
-  ktdTrackById
+  ktdTrackById,
 } from '@katoid/angular-grid-layout';
 import { SystemElement } from 'app/shared/types/system-element.type';
 import { transitions } from 'app/shared/utils/transitions';
@@ -31,17 +31,16 @@ import { ktdArrayRemoveElement } from 'app/shared/utils/utils';
 import { debounceTime, filter, fromEvent, merge, Subscription } from 'rxjs';
 import { CellContainerComponent } from '../cell-container/cell-container.component';
 
-
-
 @Component({
-    selector: 'bm-virtual-grid',
-    imports: [CellContainerComponent, DragDropModule, NgClass, KtdGridModule],
-    templateUrl: './virtual-grid.component.html',
-    styleUrl: './virtual-grid.component.scss',
-    changeDetection: ChangeDetectionStrategy.OnPush
+  selector: 'bm-virtual-grid',
+  imports: [CellContainerComponent, DragDropModule, KtdGridModule],
+  templateUrl: './virtual-grid.component.html',
+  styleUrl: './virtual-grid.component.scss',
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class VirtualGridComponent implements OnInit, AfterContentChecked, OnDestroy {
-
+export class VirtualGridComponent
+  implements OnInit, AfterContentChecked, OnDestroy
+{
   trackById = ktdTrackById;
 
   private cdr = inject(ChangeDetectorRef);
@@ -49,10 +48,9 @@ export class VirtualGridComponent implements OnInit, AfterContentChecked, OnDest
 
   public document: Document = inject(DOCUMENT);
   public elementRef: ElementRef = inject(ElementRef);
-  public grid = viewChild<KtdGridComponent>(KtdGridComponent)
-  public gridContainer = viewChild<ElementRef>('gridContainer')
-  public layout = model<SystemElement[]>([])
-
+  public grid = viewChild<KtdGridComponent>(KtdGridComponent);
+  public gridContainer = viewChild<ElementRef>('gridContainer');
+  public layout = model<SystemElement[]>([]);
 
   BREAK_POINT_X_SMALL_COLS = 3;
   BREAK_POINT_SMALL_COLS = 6;
@@ -84,17 +82,13 @@ export class VirtualGridComponent implements OnInit, AfterContentChecked, OnDest
   containerWidth: number = 0;
   containerHeight: number = 0;
 
-
   constructor() {
-
     fromEvent(window, 'resize')
-      .pipe(takeUntilDestroyed(this.destroyRef), debounceTime(100)
-      )
+      .pipe(takeUntilDestroyed(this.destroyRef), debounceTime(100))
       .subscribe(() => this.setColumnsAndRowHeight());
   }
 
   ngOnInit() {
-
     this.resizeSubscription = merge(
       fromEvent(window, 'resize'),
       fromEvent(window, 'orientationchange'),
@@ -107,14 +101,12 @@ export class VirtualGridComponent implements OnInit, AfterContentChecked, OnDest
       .subscribe(() => {
         this.grid()!.resize();
       });
-
-
   }
 
   ngAfterContentChecked(): void {
     this.containerWidth = this.gridContainer()!.nativeElement.clientWidth;
     this.containerHeight = this.gridContainer()!.nativeElement.clientHeight;
-    this.setColumnsAndRowHeight()
+    this.setColumnsAndRowHeight();
   }
 
   ngOnDestroy() {
@@ -199,38 +191,34 @@ export class VirtualGridComponent implements OnInit, AfterContentChecked, OnDest
   removeElement(id: string) {
     // Important: Don't mutate the array. Let Angular know that the layout has changed creating a new reference.
 
-    const updatedLayout = ktdArrayRemoveElement(this.layout(), (element) => element.id === id);
+    const updatedLayout = ktdArrayRemoveElement(
+      this.layout(),
+      (element) => element.id === id,
+    );
     this.layout.update(() => updatedLayout);
   }
 
   setColumnsAndRowHeight() {
-
     if (this.containerWidth < 600) {
       this.cols = this.BREAK_POINT_X_SMALL_COLS;
-    }
-    else if (this.containerWidth < 960) {
+    } else if (this.containerWidth < 960) {
       this.cols = this.BREAK_POINT_SMALL_COLS;
-    }
-    else if (this.containerWidth < 1280) {
+    } else if (this.containerWidth < 1280) {
       this.cols = this.BREAK_POINT_MEDIUM_COLS;
-    }
-    else if (this.containerWidth < 1920) {
+    } else if (this.containerWidth < 1920) {
       this.cols = this.BREACK_POINT_LARGE_COLS;
     } else {
       this.cols = this.BREACK_POINT_EXTRA_LARGE_COLS;
     }
     const sizeItem = this.containerWidth / this.cols;
     this.rowHeight = Math.floor(sizeItem);
-    this.cdr.detectChanges()
-
-
+    this.cdr.detectChanges();
   }
 
   onRightClickGridContainer(event: MouseEvent): void {
     // event.preventDefault();
     // alert('alert');
   }
-
 
   // get wallPaperClass(): string {
 
@@ -243,5 +231,4 @@ export class VirtualGridComponent implements OnInit, AfterContentChecked, OnDest
   //   }
   //   return 'wallpaper-desktop';
   // }
-
 }

@@ -1,16 +1,14 @@
 import { DragDropModule } from '@angular/cdk/drag-drop';
-import { NgComponentOutlet } from '@angular/common';
 import { ChangeDetectionStrategy, Component, inject } from '@angular/core';
 import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
 import { MatIconModule } from '@angular/material/icon';
 import { FocusDialogDirective } from 'app/shared/directives/focus-dialog.directive';
-import { MediumComponent } from '../medium-view/medium.component';
 import { FileExplorerService } from 'app/shared/services/file-explorer.service';
+import { MediumComponent } from '../medium-view/medium.component';
 @Component({
     selector: 'bm-medium-dialog',
     imports: [
         MediumComponent,
-        NgComponentOutlet,
         DragDropModule,
         FocusDialogDirective,
         MatIconModule,

@@ -1,16 +1,14 @@
-import { GLOBAL_SEARCH_DIALOG_CONFIG } from './../../../shared/utils/dialogs';
-import { AsyncPipe, NgClass } from '@angular/common';
-import { Component, computed, inject, signal, effect, ChangeDetectorRef } from '@angular/core';
-import { VirtualGridComponent } from 'app/shared/components/virtual-grid/virtual-grid.component';
-import { FileExplorerService } from 'app/shared/services/file-explorer.service';
-import { SystemElement } from 'app/shared/types/system-element.type';
-import { TasksbarComponent } from '../tasksbar/tasksbar.component';
+import { Component, computed, inject, signal } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { GlobalSearchDialogComponent } from 'app/modules/global-search/components/global-search-dialog/global-search-dialog.component';
+import { VirtualGridComponent } from 'app/shared/components/virtual-grid/virtual-grid.component';
+import { FileExplorerService } from 'app/shared/services/file-explorer.service';
+import { TasksbarComponent } from '../tasksbar/tasksbar.component';
+import { GLOBAL_SEARCH_DIALOG_CONFIG } from './../../../shared/utils/dialogs';
 
 @Component({
     selector: 'bm-desktop',
-    imports: [TasksbarComponent, VirtualGridComponent, NgClass, AsyncPipe],
+    imports: [TasksbarComponent, VirtualGridComponent],
     templateUrl: './desktop.component.html',
     styleUrl: './desktop.component.scss',
     host: {

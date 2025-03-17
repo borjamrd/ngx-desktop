@@ -1,12 +1,11 @@
 import { CommonModule } from '@angular/common';
-import { ChangeDetectionStrategy, Component, input, Input, OnChanges, OnInit, SimpleChanges } from '@angular/core';
+import { Component, input, OnInit } from '@angular/core';
+import { Nl2brPipe } from 'app/shared/pipes/nl2br.pipe';
+import { SecureResourceUrlPipe } from 'app/shared/pipes/safe-resource-url.pipe';
 import { NotionBlock } from '../../types/notion.interface';
 import { NotionBlockCodeComponent } from "../notion-block-code/notion-block-code.component";
 import { NotionBlockImageComponent } from "../notion-block-image/notion-block-image.component";
 import { NotionBlockTextComponent } from '../notion-block-text/notion-block-text.component';
-import { Nl2brPipe } from 'app/shared/pipes/nl2br.pipe';
-import { NotionComponent } from "../notion-view/notion.component";
-import { SecureResourceUrlPipe } from 'app/shared/pipes/safe-resource-url.pipe';
 
 
 @Component({
@@ -17,7 +16,6 @@ import { SecureResourceUrlPipe } from 'app/shared/pipes/safe-resource-url.pipe';
         NotionBlockCodeComponent,
         NotionBlockImageComponent,
         NotionBlockTextComponent,
-        NotionComponent,
         SecureResourceUrlPipe
     ],
     templateUrl: './notion-block.component.html',

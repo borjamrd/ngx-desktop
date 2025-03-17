@@ -10,7 +10,6 @@ import { MatIconModule } from '@angular/material/icon';
 import { FocusDialogDirective } from 'app/shared/directives/focus-dialog.directive';
 import { FileExplorerService } from 'app/shared/services/file-explorer.service';
 import { SystemElement } from 'app/shared/types/system-element.type';
-import { CellContainerComponent } from '../../shared/components/cell-container/cell-container.component';
 
 
 //TODO type
@@ -30,7 +29,6 @@ export interface DialogData {
         DragDropModule,
         CommonModule,
         AsyncPipe,
-        CellContainerComponent,
         MatDialogModule,
         FocusDialogDirective
     ],

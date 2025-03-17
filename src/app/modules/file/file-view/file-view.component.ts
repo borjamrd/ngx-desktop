@@ -1,12 +1,10 @@
-import { AsyncPipe } from "@angular/common";
-import { AfterViewInit, ChangeDetectionStrategy, Component, ElementRef, input, viewChild } from '@angular/core';
+import { ChangeDetectionStrategy, Component, input } from '@angular/core';
 import { SecureResourceUrlPipe } from 'app/shared/pipes/safe-resource-url.pipe';
 import { SystemElement } from "app/shared/types/system-element.type";
 
 @Component({
     selector: 'bm-file-view',
     imports: [
-        AsyncPipe,
         SecureResourceUrlPipe
     ],
     templateUrl: './file-view.component.html',

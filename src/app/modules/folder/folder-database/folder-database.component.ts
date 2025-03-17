@@ -1,12 +1,11 @@
 import { DragDropModule } from '@angular/cdk/drag-drop';
-import { NgClass, NgFor } from '@angular/common';
 import { Component, ElementRef, Input, ViewChild } from '@angular/core';
 import { SystemElement } from 'app/shared/types/system-element.type';
 import { CellContainerComponent } from '../../../shared/components/cell-container/cell-container.component';
 
 @Component({
     selector: 'bm-folder-database',
-    imports: [CellContainerComponent, NgFor, DragDropModule, NgClass],
+    imports: [CellContainerComponent, DragDropModule],
     templateUrl: './folder-database.component.html',
     styleUrl: './folder-database.component.scss',
     host: {
