@@ -8,12 +8,11 @@ I created this project with the intention of creating an atypical portfolio and 
 
 Some of the main features are:
 
-- OnPush Strategy for most of the components.
-- Styles in host components.
-- Tailwind and CSS for styling.
-- Angular Material for UI components (dialogs)
-- Angular Grid Layout for desktop grid: https://github.com/katoid/angular-grid-layout
-- Tanstack for data fetching and cache.
+-   OnPush Strategy for most of the components.
+-   Styles in host components.
+-   Tailwind and CSS for styling.
+-   Angular Material for UI components (dialogs)
+-   Tanstack for data fetching and cache.
 
 ## Installation
 
@@ -21,27 +20,27 @@ To get started with NgxDesktop, follow these steps:
 
 1. Clone the repository:
 
-   ```
-   git clone https://github.com/borjamrd/desktop-rocket.git
-   ```
+    ```
+    git clone https://github.com/borjamrd/desktop-rocket.git
+    ```
 
 2. Navigate to the project directory:
 
-   ```
-   cd desktop-rocket
-   ```
+    ```
+    cd desktop-rocket
+    ```
 
 3. Install dependencies:
 
-   ```
-   npm install
-   ```
+    ```
+    npm install
+    ```
 
 4. Start the development server:
 
-   ```
-   ng serve
-   ```
+    ```
+    ng serve
+    ```
 
 5. Open your browser and visit `http://localhost:4200` to view the application.
 
@@ -49,10 +48,10 @@ To get started with NgxDesktop, follow these steps:
 
 ### Folders, dialogs and system files.
 
-- Draggable folders
-- Draggable and resizable desktop widgets
-- CRUD actions with folders
-- Draggable and resizable dialog-modals
+-   Draggable folders
+-   Draggable and resizable desktop widgets
+-   CRUD actions with folders
+-   Draggable and resizable dialog-modals
 
 ### Notion data API
 
@@ -72,25 +71,25 @@ Funny component that renders posts from demanded Medium profile
 
 ### Global search bar
 
-- Global search of system files/folders
+-   Global search of system files/folders
 
 ### Email
 
-- Right now it's only visual 😥
+-   Right now it's only visual 😥
 
 ## Next steps
 
-- [x] Implement global search functionality
-- [x] Enhance Notion API integration
-- [x] Implement dark mode toggle
-- [x] Develop email component
-- [x] Improve folder and file management system
-- [ ] Desktop widgets: notes, calendar...
-- [ ] Allow send emails.
-- [ ] More system-elements: calculator
-- [ ] Multilanguage
-- [ ] Optimize performance for large datasets
-- [ ] Implement user authentication and authorization only for demo purposes
-- [ ] Add unit tests
+-   [x] Implement global search functionality
+-   [x] Enhance Notion API integration
+-   [x] Implement dark mode toggle
+-   [x] Develop email component
+-   [x] Improve folder and file management system
+-   [ ] Desktop widgets: notes, calendar...
+-   [ ] Allow send emails.
+-   [ ] More system-elements: calculator
+-   [ ] Multilanguage
+-   [ ] Optimize performance for large datasets
+-   [ ] Implement user authentication and authorization only for demo purposes
+-   [ ] Add unit tests
 
 Please, give it a Github starm if you enjoyed it!🚀

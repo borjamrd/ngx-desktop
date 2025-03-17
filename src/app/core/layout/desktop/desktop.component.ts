@@ -13,29 +13,26 @@ import { GLOBAL_SEARCH_DIALOG_CONFIG } from './../../../shared/utils/dialogs';
     styleUrl: './desktop.component.scss',
     host: {
         '(window:keydown.control.k)': 'onKeydown($event)',
-    }
+    },
 })
 export class DesktopComponent {
+    private folderService: FileExplorerService = inject(FileExplorerService);
+    layout = computed(() => this.folderService._systemFiles());
+    private dialog: MatDialog = inject(MatDialog);
 
-  private folderService: FileExplorerService = inject(FileExplorerService);
-  layout = computed(() => this.folderService._systemFiles());
-  private dialog: MatDialog = inject(MatDialog);
+    private open = signal<boolean>(false);
 
-  private open = signal<boolean>(false)
-
-  onKeydown(event: KeyboardEvent) {
-    event.preventDefault();
-    this.open.set(!this.open())
-    if (this.open()) {
-      this.dialog.open(GlobalSearchDialogComponent,
-        GLOBAL_SEARCH_DIALOG_CONFIG
-      ).id = 'global-search-dialog';
-    } else {
-      this.dialog.getDialogById('global-search-dialog')?.close();
-      this.open.set(false)
+    onKeydown(event: KeyboardEvent) {
+        event.preventDefault();
+        this.open.set(!this.open());
+        if (this.open()) {
+            this.dialog.open(
+                GlobalSearchDialogComponent,
+                GLOBAL_SEARCH_DIALOG_CONFIG
+            ).id = 'global-search-dialog';
+        } else {
+            this.dialog.getDialogById('global-search-dialog')?.close();
+            this.open.set(false);
+        }
     }
-
-
-  }
-
 }

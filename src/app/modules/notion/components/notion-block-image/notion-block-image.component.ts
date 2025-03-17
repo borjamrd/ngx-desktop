@@ -6,16 +6,17 @@ import { getBlockImageURL } from '../../utils/notion.utils';
     selector: 'bm-notion-block-image',
     imports: [],
     templateUrl: './notion-block-image.component.html',
-    styleUrl: './notion-block-image.component.scss'
+    styleUrl: './notion-block-image.component.scss',
 })
 export class NotionBlockImageComponent implements OnInit {
-
-  @Input() notionBlock!: NotionBlock
-  imgSrc!: string;
-  ngOnInit(): void {
-    if (this.notionBlock.properties && this.notionBlock.properties.source) {
-      this.imgSrc = getBlockImageURL(this.notionBlock.properties.source[0][0], this.notionBlock)
+    @Input() notionBlock!: NotionBlock;
+    imgSrc!: string;
+    ngOnInit(): void {
+        if (this.notionBlock.properties && this.notionBlock.properties.source) {
+            this.imgSrc = getBlockImageURL(
+                this.notionBlock.properties.source[0][0],
+                this.notionBlock
+            );
+        }
     }
-  }
-
 }

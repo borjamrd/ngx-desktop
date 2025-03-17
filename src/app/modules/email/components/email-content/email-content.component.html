@@ -1,52 +1,60 @@
 @if (email(); as email) {
-  <div class="flex flex-col gap-2 px-2">
-    <div class="flex gap-2 items-center flex-wrap">
-      <h3 class="text-xl font-semibold">{{ email.subject }}</h3>
-      <span badge>{{ email.folderType }}</span>
+    <div class="flex flex-col gap-2 px-2">
+        <div class="flex gap-2 items-center flex-wrap">
+            <h3 class="text-xl font-semibold">{{ email.subject }}</h3>
+            <span badge>{{ email.folderType }}</span>
+        </div>
+        <div class="flex gap-1 items-center">
+            <span class="text-sm font-semibold">
+                {{ email.from.name }}
+            </span>
+            <span class="text-xs">
+                {{ '<' + email.from.email + '>' }}
+            </span>
+            <div class="flex gap-2 items-center justify-end ms-auto">
+                <button mat-icon-button aria-label="Favorite email">
+                    <mat-icon fontSet="material-symbols-outlined"
+                        >star_outline</mat-icon
+                    >
+                </button>
+                <button mat-icon-button aria-label="Reply email">
+                    <mat-icon fontSet="material-symbols-outlined"
+                        >reply</mat-icon
+                    >
+                </button>
+                <button
+                    mat-icon-button
+                    [matMenuTriggerFor]="menu"
+                    aria-label="Example icon-button with a menu"
+                >
+                    <mat-icon fontSet="material-symbols-outlined"
+                        >more_vert</mat-icon
+                    >
+                </button>
+                <mat-menu #menu="matMenu">
+                    <button mat-menu-item>
+                        <mat-icon fontSet="material-symbols-outlined"
+                            >report</mat-icon
+                        >
+                        <span>Marcar como spam</span>
+                    </button>
+                    <button mat-menu-item disabled>
+                        <mat-icon fontSet="material-symbols-outlined"
+                            >mark_as_unread</mat-icon
+                        >
+                        <span>Marcar como no leído</span>
+                    </button>
+                    <button mat-menu-item>
+                        <mat-icon fontSet="material-symbols-outlined"
+                            >notifications_off</mat-icon
+                        >
+                        <span>Descargar mensaje</span>
+                    </button>
+                </mat-menu>
+            </div>
+        </div>
+        <div>{{ email.message }}</div>
     </div>
-    <div class="flex gap-1 items-center">
-      <span class="text-sm font-semibold">
-        {{ email.from.name }}
-      </span>
-      <span class="text-xs">
-        {{ "<" + email.from.email + ">" }}
-      </span>
-      <div class="flex gap-2 items-center justify-end ms-auto">
-        <button mat-icon-button aria-label="Favorite email">
-          <mat-icon fontSet="material-symbols-outlined">star_outline</mat-icon>
-        </button>
-        <button mat-icon-button aria-label="Reply email">
-          <mat-icon fontSet="material-symbols-outlined">reply</mat-icon>
-        </button>
-        <button
-          mat-icon-button
-          [matMenuTriggerFor]="menu"
-          aria-label="Example icon-button with a menu"
-        >
-          <mat-icon fontSet="material-symbols-outlined">more_vert</mat-icon>
-        </button>
-        <mat-menu #menu="matMenu">
-          <button mat-menu-item>
-            <mat-icon fontSet="material-symbols-outlined">report</mat-icon>
-            <span>Marcar como spam</span>
-          </button>
-          <button mat-menu-item disabled>
-            <mat-icon fontSet="material-symbols-outlined"
-              >mark_as_unread</mat-icon
-            >
-            <span>Marcar como no leído</span>
-          </button>
-          <button mat-menu-item>
-            <mat-icon fontSet="material-symbols-outlined"
-              >notifications_off</mat-icon
-            >
-            <span>Descargar mensaje</span>
-          </button>
-        </mat-menu>
-      </div>
-    </div>
-    <div>{{ email.message }}</div>
-  </div>
 } @else {
-  <div class="flex justify-center h-full">{{ noEmailText }}</div>
+    <div class="flex justify-center h-full">{{ noEmailText }}</div>
 }

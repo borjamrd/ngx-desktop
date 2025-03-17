@@ -1,7 +1,7 @@
 <div class="flex gap-2 items-center">
-  @for (file of activeFiles(); track $index) {
-    <div (click)="handleClick(file)" class="btn-taskbar">
-      <mat-icon [svgIcon]="file.icon"></mat-icon>
-    </div>
-  }
+    @for (file of activeFiles(); track $index) {
+        <div (click)="handleClick(file)" class="btn-taskbar">
+            <mat-icon [svgIcon]="file.icon"></mat-icon>
+        </div>
+    }
 </div>

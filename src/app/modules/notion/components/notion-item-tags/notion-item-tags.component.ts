@@ -4,13 +4,11 @@ import { BadgeDirective } from 'app/shared/directives/badge.directive';
 
 @Component({
     selector: 'bm-notion-item-tags',
-    imports: [ BadgeDirective],
+    imports: [BadgeDirective],
     templateUrl: './notion-item-tags.component.html',
-    styleUrl: './notion-item-tags.component.scss'
+    styleUrl: './notion-item-tags.component.scss',
 })
 export class NotionItemTagsComponent {
-
-  @Input() justify: 'start' | 'center' | 'between' | 'end' | 'align' = 'end'
-  @Input() tags!: NotionDatabaseItem['tags']
-
+    @Input() justify: 'start' | 'center' | 'between' | 'end' | 'align' = 'end';
+    @Input() tags!: NotionDatabaseItem['tags'];
 }

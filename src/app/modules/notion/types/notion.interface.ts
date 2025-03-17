@@ -1,4 +1,3 @@
-
 export interface NotionDatabaseItem {
     id: string;
     name: string;
@@ -6,7 +5,7 @@ export interface NotionDatabaseItem {
     date: string;
     description: string;
     status: string;
-    related: string[]
+    related: string[];
 }
 
 export interface NotionBlock {
@@ -28,8 +27,8 @@ export interface Format {
     page_icon: string;
     block_color: string;
     copied_from_pointer: CopiedFromPointer;
-    block_width?: number
-    block_height?: number
+    block_width?: number;
+    block_height?: number;
 }
 
 export interface CopiedFromPointer {
@@ -37,7 +36,6 @@ export interface CopiedFromPointer {
     table: string;
     spaceId: string;
 }
-
 
 export interface Properties {
     title: Array<string[]>;
@@ -49,9 +47,8 @@ export interface Properties {
     description?: Array<string[]>;
 }
 
-
 export type NotionBlockType =
-    'page'
+    | 'page'
     | 'collection_view_page'
     | 'header'
     | 'sub_header'
@@ -69,9 +66,12 @@ export type NotionBlockType =
     | 'table_of_contents'
     | 'video'
     | 'embed'
-    | 'bookmark'
+    | 'bookmark';
 
-export type MapImageUrl = (image: string, block?: NotionBlock['type']) => string;
+export type MapImageUrl = (
+    image: string,
+    block?: NotionBlock['type']
+) => string;
 
 export interface TableOfContentsEntry {
     id: string;

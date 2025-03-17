@@ -1,33 +1,33 @@
-import { KtdGridLayoutItem } from "@katoid/angular-grid-layout";
-import { SpotifyWidgetComponent } from "@modules/desktop/spotify-widget/spotify-widget.component";
-
-
 export enum ElementType {
     FOLDER = 'folder',
     FILE = 'file',
     APPLICATION = 'application',
     SYSTEM_FILE = 'system-file',
     DESKTOP_WIDGET = 'desktop-widget',
-    SYSTEM_FOLDER = 'system-folder'
+    SYSTEM_FOLDER = 'system-folder',
 }
 
 // export interface FolderElement { id: string, name: string }
 
-export interface SystemElement extends KtdGridLayoutItem {
+export interface SystemElement {
+    id: string;
     icon: string;
     name: string;
     type: ElementType;
     hasChildren?: boolean;
     customClass?: string;
     children?: SystemElement[];
-    component?: any; //I don't know what to put here
-    resizable?: boolean,
+    component?: any;
+    resizable?: boolean;
+    x: number;
+    y: number;
+    h: number;
+    w: number;
     fileData?: {
-        url: string,
-        fileType: string
-    }
+        url: string;
+        fileType: string;
+    };
 }
-
 
 export const defaultLayout: SystemElement[] = [
     {
@@ -85,7 +85,7 @@ export const defaultLayout: SystemElement[] = [
                                         w: 1,
                                         h: 1,
                                         hasChildren: false,
-                                        children: []
+                                        children: [],
                                     },
                                     {
                                         icon: 'folder',
@@ -97,9 +97,9 @@ export const defaultLayout: SystemElement[] = [
                                         w: 1,
                                         h: 1,
                                         hasChildren: false,
-                                        children: []
-                                    }
-                                ]
+                                        children: [],
+                                    },
+                                ],
                             },
                             {
                                 icon: 'folder',
@@ -111,7 +111,7 @@ export const defaultLayout: SystemElement[] = [
                                 w: 1,
                                 h: 1,
                                 hasChildren: false,
-                                children: []
+                                children: [],
                             },
                             {
                                 icon: 'folder',
@@ -138,7 +138,7 @@ export const defaultLayout: SystemElement[] = [
                                             fileType: 'image/svg+xml',
                                         },
                                         hasChildren: false,
-                                        children: []
+                                        children: [],
                                     },
                                     {
                                         icon: 'typescript',
@@ -153,7 +153,6 @@ export const defaultLayout: SystemElement[] = [
                                         y: 1,
                                         w: 1,
                                         h: 1,
-
                                     },
                                     {
                                         icon: 'angular',
@@ -168,31 +167,28 @@ export const defaultLayout: SystemElement[] = [
                                         y: 1,
                                         w: 1,
                                         h: 1,
-
-                                    }
-                                ]
+                                    },
+                                ],
                             },
-
-
                         ],
                     },
-                    {
-                        'icon': 'folder',
-                        name: 'Spotify',
-                        type: ElementType.DESKTOP_WIDGET,
-                        id: crypto.randomUUID(),
-                        x: 12,
-                        y: 0,
-                        w: 4,
-                        h: 2,
-                        maxW: 5,
-                        maxH: 3,
-                        minW: 4,
-                        minH: 2,
-                        customClass: 'bg-slate-500/40',
-                        component: SpotifyWidgetComponent,
-                        resizable: true
-                    },
+                    // {
+                    //     'icon': 'folder',
+                    //     name: 'Spotify',
+                    //     type: ElementType.DESKTOP_WIDGET,
+                    //     id: crypto.randomUUID(),
+                    //     x: 12,
+                    //     y: 0,
+                    //     w: 4,
+                    //     h: 2,
+                    //     maxW: 5,
+                    //     maxH: 3,
+                    //     minW: 4,
+                    //     minH: 2,
+                    //     customClass: 'bg-slate-500/40',
+                    //     component: SpotifyWidgetComponent,
+                    //     resizable: true
+                    // },
                     {
                         icon: 'notion',
                         name: 'Notion',
@@ -203,7 +199,7 @@ export const defaultLayout: SystemElement[] = [
                         h: 1,
                         hasChildren: false,
                         type: ElementType.APPLICATION,
-                        resizable: false
+                        resizable: false,
                     },
                     {
                         icon: 'medium',
@@ -215,7 +211,7 @@ export const defaultLayout: SystemElement[] = [
                         h: 1,
                         hasChildren: false,
                         type: ElementType.APPLICATION,
-                        resizable: false
+                        resizable: false,
                     },
                     {
                         icon: 'gmail',
@@ -227,7 +223,7 @@ export const defaultLayout: SystemElement[] = [
                         h: 1,
                         hasChildren: false,
                         type: ElementType.APPLICATION,
-                        resizable: false
+                        resizable: false,
                     },
                     {
                         icon: 'trash',
@@ -305,7 +301,7 @@ export const defaultLayout: SystemElement[] = [
                             fileType: 'text/markdown',
                         },
                     },
-                ]
+                ],
             },
             {
                 icon: 'folder',
@@ -331,7 +327,8 @@ export const defaultLayout: SystemElement[] = [
                         y: 0,
                         w: 1,
                         h: 1,
-                    }, {
+                    },
+                    {
                         icon: 'pdf',
                         type: ElementType.FILE,
                         name: 'Nestjs_csheet',
@@ -344,11 +341,9 @@ export const defaultLayout: SystemElement[] = [
                         y: 0,
                         w: 1,
                         h: 1,
-                    }
-                ]
-            }
-        ]
-
+                    },
+                ],
+            },
+        ],
     },
-
-]
+];

@@ -1,81 +1,90 @@
 @switch (element().type) {
-  @case ("folder") {
-    <div
-      (click)="handleFullName()"
-      (contextmenu)="onRightClickGridItem($event, element())"
-      (dblclick)="open(element())"
-      class="active:backdrop-blur-md active:bg-slate-500/10 hover:backdrop-blur-md hover:bg-slate-500/10 rounded-md aspect-square h-full p-1 cursor-pointer flex flex-col gap-2 items-center max-h-20 max-w-20"
-    >
-      <ng-container
-        *ngTemplateOutlet="elementContent; context: { $implicit: element }"
-      ></ng-container>
-    </div>
-  }
-  @case ("file") {
-    <div
-      (click)="handleFullName()"
-      (contextmenu)="onRightClickGridItem($event, element())"
-      (dblclick)="open(element())"
-      class="active:backdrop-blur-md active:bg-slate-500/10 hover:backdrop-blur-md hover:bg-slate-500/10 rounded-md aspect-square h-full p-1 cursor-pointer flex flex-col gap-1 items-center max-h-20 max-w-20"
-    >
-      <ng-container
-        *ngTemplateOutlet="elementContent; context: { $implicit: element }"
-      ></ng-container>
-    </div>
-  }
-  @case ("desktop-widget") {
-    <div
-      (click)="handleFullName()"
-      [ngClass]="element"
-      class="backdrop-blur-md rounded-xl hover:backdrop-blur-md hover:bg-slate-500/10 w-full h-full p-1 cursor-pointer flex flex-col gap-1 items-center"
-    >
-      <ng-container
-        *ngComponentOutlet="
-          element().component;
-          injector: customInjector(element())
-        "
-      ></ng-container>
-    </div>
-  }
-  @default {
-    <div
-      (click)="handleFullName()"
-      (contextmenu)="onRightClickGridItem($event, element())"
-      (dblclick)="open(element())"
-      class="active:backdrop-blur-md active:bg-slate-500/10 hover:backdrop-blur-md hover:bg-slate-500/10 rounded-md aspect-square h-full p-1 cursor-pointer flex flex-col gap-1 items-center max-h-20 max-w-20"
-    >
-      <ng-container
-        *ngTemplateOutlet="elementContent; context: { $implicit: element }"
-      ></ng-container>
-    </div>
-  }
+    @case ('folder') {
+        <div
+            (click)="handleFullName()"
+            (contextmenu)="onRightClickGridItem($event, element())"
+            (dblclick)="open(element())"
+            class="active:backdrop-blur-md active:bg-slate-500/10 hover:backdrop-blur-md hover:bg-slate-500/10 rounded-md aspect-square h-full p-1 cursor-pointer flex flex-col gap-2 items-center max-h-20 max-w-20"
+        >
+            <ng-container
+                *ngTemplateOutlet="
+                    elementContent;
+                    context: { $implicit: element }
+                "
+            ></ng-container>
+        </div>
+    }
+    @case ('file') {
+        <div
+            (click)="handleFullName()"
+            (contextmenu)="onRightClickGridItem($event, element())"
+            (dblclick)="open(element())"
+            class="active:backdrop-blur-md active:bg-slate-500/10 hover:backdrop-blur-md hover:bg-slate-500/10 rounded-md aspect-square h-full p-1 cursor-pointer flex flex-col gap-1 items-center max-h-20 max-w-20"
+        >
+            <ng-container
+                *ngTemplateOutlet="
+                    elementContent;
+                    context: { $implicit: element }
+                "
+            ></ng-container>
+        </div>
+    }
+    @case ('desktop-widget') {
+        <div
+            (click)="handleFullName()"
+            [ngClass]="element"
+            class="backdrop-blur-md rounded-xl hover:backdrop-blur-md hover:bg-slate-500/10 w-full h-full p-1 cursor-pointer flex flex-col gap-1 items-center"
+        >
+            <ng-container
+                *ngComponentOutlet="
+                    element().component;
+                    injector: customInjector(element())
+                "
+            ></ng-container>
+        </div>
+    }
+    @default {
+        <div
+            (click)="handleFullName()"
+            (contextmenu)="onRightClickGridItem($event, element())"
+            (dblclick)="open(element())"
+            class="active:backdrop-blur-md active:bg-slate-500/10 hover:backdrop-blur-md hover:bg-slate-500/10 rounded-md aspect-square h-full p-1 cursor-pointer flex flex-col gap-1 items-center max-h-20 max-w-20"
+        >
+            <ng-container
+                *ngTemplateOutlet="
+                    elementContent;
+                    context: { $implicit: element }
+                "
+            ></ng-container>
+        </div>
+    }
 }
 
 <ng-template #elementContent let-element>
-  <bm-system-element-icon [icon]="element().icon" />
-  <span
-    [ngClass]="
-      parentIsDesktop()
-        ? 'text-white text-shadow shadow-black text-sm'
-        : 'text-black dark:text-white text-sm'
-    "
-    class="text-base font-normal text-center text-wrap max-w-20"
-  >
-    {{
-      element().name.length > 25
-        ? showFullName()
-          ? element().name
-          : (element().name | slice: 0 : 20) + "..."
-        : element().name
-    }}
-  </span>
+    <bm-system-element-icon [icon]="element().icon" />
+    <span
+        [ngClass]="
+            parentIsDesktop()
+                ? 'text-white text-shadow shadow-black text-sm'
+                : 'text-black dark:text-white text-sm'
+        "
+        class="text-base font-normal text-center text-wrap max-w-20"
+    >
+        {{
+            element().name.length > 25
+                ? showFullName()
+                    ? element().name
+                    : (element().name | slice: 0 : 20) + '...'
+                : element().name
+        }}
+    </span>
 </ng-template>
 <div
-  style="visibility: hidden"
-  [style.left]="contextMenuPosition.x"
-  [style.top]="contextMenuPosition.y"
-  [matMenuTriggerFor]="contextMenu"
+    style="visibility: hidden"
+    [style.left]="contextMenuPosition.x"
+    [style.top]="contextMenuPosition.y"
+    [matMenuTriggerFor]="contextMenu"
 ></div>
 <mat-menu style="z-index: 10000" #contextMenu="matMenu">
-  <bm-element-options [element]="element()"></bm-element-options>
+    <bm-element-options [element]="element()"></bm-element-options>
 </mat-menu>

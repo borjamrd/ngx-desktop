@@ -1,30 +1,45 @@
 /* You can add global styles to this file, and also import other style files */
-@use "@angular/material" as mat;
+@use '@angular/material' as mat;
 
 // Light Theme
 $light-theme-primary: mat.m2-define-palette(mat.$m2-indigo-palette);
-$light-theme-accent: mat.m2-define-palette(mat.$m2-purple-palette, A200, A100, A400);
+$light-theme-accent: mat.m2-define-palette(
+    mat.$m2-purple-palette,
+    A200,
+    A100,
+    A400
+);
 $light-theme-warn: mat.m2-define-palette(mat.$m2-red-palette);
 
-$light-theme: mat.m2-define-light-theme((color: (primary: $light-theme-primary,
+$light-theme: mat.m2-define-light-theme(
+    (
+        primary: $light-theme-primary,
         accent: $light-theme-accent,
         warn: $light-theme-warn,
-      ),
-      typography: mat.m2-define-typography-config(),
-    ));
+        typography: mat.m2-define-typography-config(),
+    )
+);
 
 // Dark Theme
 $dark-theme-primary: mat.m2-define-palette(mat.$m2-indigo-palette);
-$dark-theme-accent: mat.m2-define-palette(mat.$m2-indigo-palette, A200, A100, A400);
+$dark-theme-accent: mat.m2-define-palette(
+    mat.$m2-indigo-palette,
+    A200,
+    A100,
+    A400
+);
 $dark-theme-warn: mat.m2-define-palette(mat.$m2-red-palette);
 
-
-$dark-theme: mat.m2-define-dark-theme((color: (primary: $dark-theme-primary,
-        accent: $dark-theme-accent,
-        warn: $dark-theme-warn,
-      ),
-      typography: mat.m2-define-typography-config(),
-    ));
+$dark-theme: mat.m2-define-dark-theme(
+    (
+        color: (
+            primary: $dark-theme-primary,
+            accent: $dark-theme-accent,
+            warn: $dark-theme-warn,
+        ),
+        typography: mat.m2-define-typography-config(),
+    )
+);
 
 // Dark theme variables
 $dark-bg-color: #222;
@@ -39,213 +54,213 @@ $dark-text-color: #333;
 
 // Dark mode
 .dark {
-  @include mat.all-component-colors($dark-theme);
-  background-color: $semi-dark-bg-color;
-  color: $light-text-color;
+    @include mat.all-component-colors($dark-theme);
+    background-color: $semi-dark-bg-color;
+    color: $light-text-color;
+    border-radius: 12px;
 
-  .mat-mdc-text-field-wrapper {
-    border-bottom: 1px solid #6e6e71;
-    border-top: 2px solid #727073;
-  }
+    .mat-mdc-text-field-wrapper {
+        border: none;
+        border-radius: 12px;
+    }
 
+    /* Handle */
+    ::-webkit-scrollbar-thumb {
+        background: #888;
+        border-radius: 12px;
+    }
 
-  /* Handle */
-  ::-webkit-scrollbar-thumb {
-    background: #888;
-  }
-
-  /* Handle on hover */
-  ::-webkit-scrollbar-thumb:hover {
-    background: #555;
-  }
-
-
-
+    /* Handle on hover */
+    ::-webkit-scrollbar-thumb:hover {
+        background: #555;
+    }
 }
 
 // Light mode
 .light {
-  @include mat.all-component-themes($light-theme);
-  color: #231f1f;
+    @include mat.all-component-themes($light-theme);
+    color: #231f1f;
+    border-radius: 12px;
 
-  .mat-mdc-text-field-wrapper {
-    border-bottom: 1px solid #64748b;
-  }
+    .mat-mdc-text-field-wrapper {
+        border: none;
+        border-radius: 12px;
+    }
 
-  /* Track */
-  ::-webkit-scrollbar-track {
-    background: #f1f1f1;
-  }
+    /* Track */
+    ::-webkit-scrollbar-track {
+        background: #f1f1f1;
+    }
 
-  /* Handle */
-  ::-webkit-scrollbar-thumb {
-    background: #888;
-  }
+    /* Handle */
+    ::-webkit-scrollbar-thumb {
+        background: #888;
+        border-radius: 12px;
+    }
 
-  /* Handle on hover */
-  ::-webkit-scrollbar-thumb:hover {
-    background: #555;
-  }
-
-
-
-
+    /* Handle on hover */
+    ::-webkit-scrollbar-thumb:hover {
+        background: #555;
+    }
 }
 
-
 ::-webkit-scrollbar {
-  width: 10px;
+    width: 10px;
 }
 
 /* Handle */
 ::-webkit-scrollbar-thumb {
-  border-radius: 5px;
+    border-radius: 12px;
 }
 
-
-
 .mat-mdc-form-field-infix {
-  min-height: 2rem !important;
+    min-height: 2rem !important;
 }
 
 .mdc-text-field--no-label .mat-mdc-form-field-infix {
-  padding-top: 0.3rem !important;
-  padding-bottom: 0.3rem !important;
+    padding-top: 0.3rem !important;
+    padding-bottom: 0.3rem !important;
 }
 
 .mat-mdc-icon-button.mat-mdc-button-base {
-  padding: 0.3rem !important
+    padding: 0.3rem !important;
 }
 
 .mat-mdc-form-field-subscript-wrapper {
-  height: 10px !important;
+    height: 10px !important;
 }
-
 
 //-------Modal dialog
 
 .resizable-mat-dialog-panel {
-  resize: both;
-  overflow: auto;
-  max-width: unset !important;
-  max-height: unset !important;
-  position: absolute !important;
+    resize: both;
+    overflow: auto;
+    max-width: unset !important;
+    max-height: unset !important;
+    position: absolute !important;
+    border-radius: 12px;
 }
 
-
 .dark .mat-mdc-dialog-container {
-  --mdc-dialog-container-color: rgb(38 38 38 / 0.80);
-  backdrop-filter: blur(20px);
-  max-width: 100vw !important;
+    --mdc-dialog-container-color: rgb(38 38 38 / 0.8);
+    backdrop-filter: blur(20px);
+    max-width: 100vw !important;
+    border-radius: 12px;
 
-  :active {
-
-    .mdc-dialog__surface {
-      box-shadow: 0 0 0 1px rgba(56, 56, 56, 0.1), 0 2px 4px rgba(56, 56, 56, 0.1);
+    :active {
+        .mdc-dialog__surface {
+            box-shadow:
+                0 0 0 1px rgba(56, 56, 56, 0.1),
+                0 2px 4px rgba(56, 56, 56, 0.1);
+        }
     }
-  }
 }
 
 .light .mat-mdc-dialog-container {
-  max-width: 100vw !important;
-  backdrop-filter: blur(20px);
-  --mdc-dialog-container-color: rgba(255, 255, 255, 0.6);
+    max-width: 100vw !important;
+    backdrop-filter: blur(20px);
+    --mdc-dialog-container-color: rgba(255, 255, 255, 0.6);
+    border-radius: 12px;
 
-  :active {
-    .mdc-dialog__surface {
-      box-shadow: 0 0 0 1px rgba(0, 0, 0, 0.1), 0 2px 4px rgba(0, 0, 0, 0.2);
+    :active {
+        .mdc-dialog__surface {
+            box-shadow:
+                0 0 0 1px rgba(0, 0, 0, 0.1),
+                0 2px 4px rgba(0, 0, 0, 0.2);
+        }
     }
-  }
 }
-
 
 .cdk-global-overlay-wrapper {
-  justify-content: center !important;
+    justify-content: center !important;
 }
 
 .cdk-overlay-pane {
-  &.not-fullscreen {
-    transition-duration: 0.10s !important;
-    margin-top: calc(50vh - 256px) !important
-  }
-
-  &.fullscreen {
-    transform: none !important;
-    margin: 0;
-    transition-duration: 0.10s !important;
-
-    .mdc-dialog__surface {
-      box-shadow: none !important;
-      border-radius: 0 !important;
+    &.not-fullscreen {
+        transition-duration: 0.1s !important;
+        margin-top: calc(50vh - 256px) !important;
+        border-radius: 12px;
     }
-  }
-}
 
+    &.fullscreen {
+        transform: none !important;
+        margin: 0;
+        transition-duration: 0.1s !important;
+
+        .mdc-dialog__surface {
+            box-shadow: none !important;
+            border-radius: 0 !important;
+        }
+    }
+}
 
 .mat-mdc-dialog-container .mdc-dialog__surface {
-
-  box-shadow: 0 0 0 1px rgba(0, 0, 0, 0.1), 0 2px 4px rgba(0, 0, 0, 0.2);
+    box-shadow:
+        0 0 0 1px rgba(0, 0, 0, 0.1),
+        0 2px 4px rgba(0, 0, 0, 0.2);
+    border-radius: 12px;
 }
 
 .cdk-overlay-pane {
-  border-radius: 8px !important;
+    border-radius: 12px !important;
 }
-
-
 
 //MAT-MENU
 
 // Dark theme mat-menu
 .dark {
-  .mat-mdc-menu-panel {
-    background-color: rgba(38, 38, 38, 0.85);
-    backdrop-filter: blur(5px);
-  }
+    .mat-mdc-menu-panel {
+        background-color: rgba(38, 38, 38, 0.85);
+        backdrop-filter: blur(5px);
+        border-radius: 12px;
+    }
 
-  .mat-mdc-menu-item:hover {
-    background-color: rgba(255, 255, 255, 0.1);
-  }
+    .mat-mdc-menu-item:hover {
+        background-color: rgba(255, 255, 255, 0.1);
+    }
 }
 
 // Light theme mat-menu
 .light {
-  .mat-mdc-menu-panel {
-    background-color: rgba(255, 255, 255, 0.85);
-    backdrop-filter: blur(5px);
-  }
+    .mat-mdc-menu-panel {
+        background-color: rgba(255, 255, 255, 0.85);
+        backdrop-filter: blur(5px);
+        border-radius: 12px;
+    }
 
-  .mat-mdc-menu-item:hover {
-    background-color: rgba(0, 0, 0, 0.05);
-  }
+    .mat-mdc-menu-item:hover {
+        background-color: rgba(0, 0, 0, 0.05);
+    }
 }
 
 .cdk-overlay-connected-position-bounding-box {
-  z-index: 10000 !important;
+    z-index: 10000 !important;
 }
 
 //input
 .md-rounded .mat-mdc-text-field-wrapper {
-  border-radius: 50px !important;
+    border-radius: 50px !important;
 }
 
 .mat-mdc-text-field-wrapper {
-  border-radius: 8px !important;
+    border-radius: 12px !important;
+    border: none;
 }
 
 .mat-mdc-form-field-subscript-wrapper {
-  display: none;
+    display: none;
 }
 
 .mat-mdc-form-field-flex {
-  align-items: center !important;
+    align-items: center !important;
 }
 
 .mat-mdc-form-field-text-prefix .mat-icon {
-  height: 20px !important;
-  width: 20px !important;
-  margin-right: 0.5rem;
+    height: 20px !important;
+    width: 20px !important;
+    margin-right: 0.5rem;
 }
 
 .mat-mdc-form-field-infix {
-  @apply flex
+    @apply flex;
 }

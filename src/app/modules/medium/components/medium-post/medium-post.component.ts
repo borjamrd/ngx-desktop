@@ -6,12 +6,8 @@ import { MediumPost } from 'app/modules/medium/services/medium.service';
     selector: 'bm-medium-post',
     imports: [MatIconModule],
     templateUrl: './medium-post.component.html',
-    styleUrl: './medium-post.component.scss'
+    styleUrl: './medium-post.component.scss',
 })
 export class MediumPostComponent {
-
-
-  @Input() post!: MediumPost
-
-
+    @Input() post!: MediumPost;
 }

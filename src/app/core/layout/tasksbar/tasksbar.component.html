@@ -1,22 +1,28 @@
 <div class="flex gap-2 items-center justify-between w-full">
-  <div class="w-1/5"></div>
-  <div class="w-3/5 flex justify-center gap-2">
-    <div (click)="showSnackBar()" class="btn-taskbar flex">
-      <mat-icon class="m-auto" svgIcon="windows-angular"></mat-icon>
+    <div class="w-1/5"></div>
+    <div class="w-3/5 flex justify-center gap-2">
+        <div (click)="showSnackBar()" class="btn-taskbar flex">
+            <mat-icon class="m-auto" svgIcon="windows-angular"></mat-icon>
+        </div>
+        <bm-input
+            prefixIcon="search"
+            [showButton]="true"
+            placeholder="Búsqueda"
+        />
+        <bm-active-folders />
+        <bm-active-files />
     </div>
-    <bm-input prefixIcon="search" [showButton]="true" placeholder="Búsqueda" />
-    <bm-active-folders />
-    <bm-active-files />
-  </div>
-  <div class="flex w-1/5 justify-end gap-2">
-    <mat-slide-toggle checked (click)="toggleTheme()"></mat-slide-toggle>
-    <button class="flex items-center justify-center" mat-icon-button>
-      @if (themeService.themeSignal() === "dark") {
-        <mat-icon fontSet="material-symbols-outlined">bedtime</mat-icon>
-      } @else {
-        <mat-icon fontSet="material-symbols-outlined">brightness_7</mat-icon>
-      }
-    </button>
-    <bm-navbar-clock />
-  </div>
+    <div class="flex w-1/5 justify-end gap-2">
+        <mat-slide-toggle checked (click)="toggleTheme()"></mat-slide-toggle>
+        <button class="flex items-center justify-center" mat-icon-button>
+            @if (themeService.themeSignal() === 'dark') {
+                <mat-icon fontSet="material-symbols-outlined">bedtime</mat-icon>
+            } @else {
+                <mat-icon fontSet="material-symbols-outlined"
+                    >brightness_7</mat-icon
+                >
+            }
+        </button>
+        <bm-navbar-clock />
+    </div>
 </div>

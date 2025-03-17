@@ -1,35 +1,37 @@
 <div class="px-2 pb-2 window-border flex gap-2">
-  <bm-copy-to-clipboard [hideText]="true" [value]="element() | json" />
-  <button class="property-button">
-    <mat-icon fontSet="material-symbols-outlined">edit</mat-icon>
-  </button>
-  <button (click)="removeElement(element().id)" class="property-button">
-    <mat-icon fontSet="material-symbols-outlined">delete</mat-icon>
-  </button>
+    <bm-copy-to-clipboard [hideText]="true" [value]="element() | json" />
+    <button class="property-button">
+        <mat-icon fontSet="material-symbols-outlined">edit</mat-icon>
+    </button>
+    <button (click)="removeElement(element().id)" class="property-button">
+        <mat-icon fontSet="material-symbols-outlined">delete</mat-icon>
+    </button>
 </div>
 <div class="flex flex-col gap-1 px-2 pb-2 mt-4">
-  <button
-    (click)="openElement()"
-    class="w-full rounded-md flex items-center px-2 py-1.5 gap-2 hover:bg-slate-400/50"
-  >
-    <mat-icon [svgIcon]="element().icon"></mat-icon>
-    Abrir
-  </button>
-  @if (isFavorite(element())) {
     <button
-      (click)="removeFromFavorites(element())"
-      class="w-full rounded-md flex items-center px-2 py-1.5 gap-2 hover:bg-slate-400/50"
+        (click)="openElement()"
+        class="w-full rounded-md flex items-center px-2 py-1.5 gap-2 hover:bg-slate-400/50"
     >
-      <mat-icon fontSet="material-symbols-outlined">star</mat-icon>
-      Remover de favoritos
+        <mat-icon [svgIcon]="element().icon"></mat-icon>
+        Abrir
     </button>
-  } @else {
-    <button
-      (click)="addToFavorites(element())"
-      class="w-full rounded-md flex items-center px-2 py-1.5 gap-2 hover:bg-slate-400/50"
-    >
-      <mat-icon fontSet="material-symbols-outlined">star_outline</mat-icon>
-      Agregar a favoritos
-    </button>
-  }
+    @if (isFavorite(element())) {
+        <button
+            (click)="removeFromFavorites(element())"
+            class="w-full rounded-md flex items-center px-2 py-1.5 gap-2 hover:bg-slate-400/50"
+        >
+            <mat-icon fontSet="material-symbols-outlined">star</mat-icon>
+            Remover de favoritos
+        </button>
+    } @else {
+        <button
+            (click)="addToFavorites(element())"
+            class="w-full rounded-md flex items-center px-2 py-1.5 gap-2 hover:bg-slate-400/50"
+        >
+            <mat-icon fontSet="material-symbols-outlined"
+                >star_outline</mat-icon
+            >
+            Agregar a favoritos
+        </button>
+    }
 </div>

@@ -9,14 +9,10 @@ import { CellContainerComponent } from '../../../shared/components/cell-containe
     templateUrl: './folder-database.component.html',
     styleUrl: './folder-database.component.scss',
     host: {
-        class: 'block px-2'
-    }
+        class: 'block px-2',
+    },
 })
 export class FolderDatabaseComponent {
-
-  @Input() layout: SystemElement[] = []
-  @ViewChild('elementList') elementList!: ElementRef;
-
-
-
+    @Input() layout: SystemElement[] = [];
+    @ViewChild('elementList') elementList!: ElementRef;
 }

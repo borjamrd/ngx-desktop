@@ -6,35 +6,33 @@ import { Component, Input } from '@angular/core';
     selector: 'bm-notion-badge-status',
     imports: [NgClass],
     templateUrl: './notion-badge-status.component.html',
-    styleUrl: './notion-badge-status.component.scss'
+    styleUrl: './notion-badge-status.component.scss',
 })
 export class NotionBadgeStatusComponent {
-  @Input() status!: NotionDatabaseItem['status']
-  @Input() justify: 'start' | 'center' | 'between' | 'end' | 'align' = 'end'
-  get classByStatus(): string {
-
-    switch (this.status) {
-      case 'Finished':
-        return 'bg-green-500/30 text-green-800 dark:text-white text-xs'
-      case 'In progress':
-        return 'bg-blue-500/30 text-blue-800 dark:text-white text-xs'
-      case 'To do':
-        return 'bg-red-500/30 text-red-800 dark:text-white text-xs'
-      default:
-        return ''
+    @Input() status!: NotionDatabaseItem['status'];
+    @Input() justify: 'start' | 'center' | 'between' | 'end' | 'align' = 'end';
+    get classByStatus(): string {
+        switch (this.status) {
+            case 'Finished':
+                return 'bg-green-500/30 text-green-800 dark:text-white text-xs';
+            case 'In progress':
+                return 'bg-blue-500/30 text-blue-800 dark:text-white text-xs';
+            case 'To do':
+                return 'bg-red-500/30 text-red-800 dark:text-white text-xs';
+            default:
+                return '';
+        }
     }
-
-  }
-  get nameByStatus(): string {
-    switch (this.status) {
-      case 'Finished':
-        return 'Finished'
-      case 'In progress':
-        return 'In progress'
-      case 'To do':
-        return 'To do'
-      default:
-        return ''
+    get nameByStatus(): string {
+        switch (this.status) {
+            case 'Finished':
+                return 'Finished';
+            case 'In progress':
+                return 'In progress';
+            case 'To do':
+                return 'To do';
+            default:
+                return '';
+        }
     }
-  }
 }

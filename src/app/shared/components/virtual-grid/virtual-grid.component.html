@@ -1,32 +1,14 @@
-<div #gridContainer class="w-full p-2 overflow-hidden">
-  <ktd-grid
-    class="h-full w-full p-2"
-    (contextmenu)="onRightClickGridContainer($event)"
-    [cols]="cols"
-    [rowHeight]="rowHeight"
-    [layout]="layout()"
-    [compactType]="compactType"
-    [preventCollision]="preventCollision"
-    [scrollableParent]="autoScroll ? document : null"
-    scrollSpeed="4"
-    (dragStarted)="onDragStarted($event)"
-    (resizeStarted)="onResizeStarted($event)"
-    (dragEnded)="onDragEnded($event)"
-    [gap]="20"
-    (resizeEnded)="onResizeEnded($event)"
-  >
-    @for (element of layout(); track $index) {
-      <ktd-grid-item
-        [maxH]="element.maxH"
-        [maxW]="element.maxW"
-        [minH]="element.minH"
-        [minW]="element.minW"
-        [resizable]="element.resizable"
-        [id]="element.id"
-      >
-        <bm-cell-container [parentIsDesktop]="true" [element]="element" />
-        <ng-template ktdGridItemPlaceholder> </ng-template>
-      </ktd-grid-item>
-    }
-  </ktd-grid>
+<div #desktopContainer class="desktop-container">
+    <div
+        *ngFor="let item of layout(); trackBy: trackById"
+        class="desktop-item"
+        cdkDrag
+        [cdkDragFreeDragPosition]="{ x: item.x, y: item.y }"
+        (cdkDragEnded)="onDragEnded($event, item)"
+    >
+        <bm-cell-container
+            [parentIsDesktop]="true"
+            [element]="item"
+        ></bm-cell-container>
+    </div>
 </div>

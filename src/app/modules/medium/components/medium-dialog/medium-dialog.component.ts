@@ -15,51 +15,36 @@ import { MediumComponent } from '../medium-view/medium.component';
     ],
     templateUrl: './medium-dialog.component.html',
     styleUrl: './medium-dialog.component.scss',
-    changeDetection: ChangeDetectionStrategy.OnPush
+    changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class MediumDialogComponent {
+    public dialogRef: MatDialogRef<MediumDialogComponent> =
+        inject(MatDialogRef);
+    public data = inject(MAT_DIALOG_DATA);
+    public isFullScreen: boolean = false;
+    private fileExplorerService = inject(FileExplorerService);
 
-
-
-  public dialogRef: MatDialogRef<MediumDialogComponent> = inject(MatDialogRef);
-  public data = inject(MAT_DIALOG_DATA);
-  public isFullScreen: boolean = false
-  private fileExplorerService = inject(FileExplorerService);
-
-
-  handleHide(): void {
-    this.dialogRef.close();
-    this.fileExplorerService.minimizeElement(this.data.id, this.data.type)
-  }
-
-  onResizeButtonClicked() {
-
-    this.isFullScreen = !this.isFullScreen;
-
-    if (this.isFullScreen) {
-
-      this.dialogRef.removePanelClass('not-fullscreen');
-      this.dialogRef.addPanelClass('fullscreen');
-      this.dialogRef.updatePosition({ top: '0px', left: '0px' });
-      this.dialogRef.updateSize('100vw', 'calc(100vh - 3rem)');
-
-    } else {
-
-      this.dialogRef.removePanelClass('fullscreen');
-      this.dialogRef.addPanelClass('not-fullscreen');
-      this.dialogRef.updateSize('800px', '600px');
-
+    handleHide(): void {
+        this.dialogRef.close();
+        this.fileExplorerService.minimizeElement(this.data.id, this.data.type);
     }
 
+    onResizeButtonClicked() {
+        this.isFullScreen = !this.isFullScreen;
 
-
-  }
-  handleClose() {
-    this.dialogRef.close();
-    this.fileExplorerService.closeElement(this.data.id, this.data.type)
-
-  }
-
-
-
+        if (this.isFullScreen) {
+            this.dialogRef.removePanelClass('not-fullscreen');
+            this.dialogRef.addPanelClass('fullscreen');
+            this.dialogRef.updatePosition({ top: '0px', left: '0px' });
+            this.dialogRef.updateSize('100vw', 'calc(100vh - 3rem)');
+        } else {
+            this.dialogRef.removePanelClass('fullscreen');
+            this.dialogRef.addPanelClass('not-fullscreen');
+            this.dialogRef.updateSize('800px', '600px');
+        }
+    }
+    handleClose() {
+        this.dialogRef.close();
+        this.fileExplorerService.closeElement(this.data.id, this.data.type);
+    }
 }

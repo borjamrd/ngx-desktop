@@ -1,40 +1,43 @@
 <div>
-  <form [formGroup]="form" class="flex items-center gap-3 mb-3">
-    <bm-input
-      prefixIcon="search"
-      formControlName="search"
-      [placeholder]="searchEmailPlaceholder"
-    />
-    <span
-      class="text-sm font-medium text-gray-500 dark:text-gray-400"
-      [ngClass]="['underline', 'decoration-[' + emailFolder().color + ']']"
-      >{{ emailFolder().name }}</span
-    >
-  </form>
+    <form [formGroup]="form" class="flex items-center gap-3 mb-3">
+        <bm-input
+            prefixIcon="search"
+            formControlName="search"
+            [placeholder]="searchEmailPlaceholder"
+        />
+        <span
+            class="text-sm font-medium text-gray-500 dark:text-gray-400"
+            [ngClass]="[
+                'underline',
+                'decoration-[' + emailFolder().color + ']'
+            ]"
+            >{{ emailFolder().name }}</span
+        >
+    </form>
 
-  @for (email of emails(); track $index) {
-    <div
-      class="border-b border-gray-200 dark:border-gray-600 hover:border-gray-300 dark:hover:border-gray-500 hover:box-shadow-md dark:hover:box-shadow-md"
-    >
-      <div
-        (click)="selectEmail(email)"
-        [class.active]="email.id === selectedEmail()?.id"
-        class="flex items-center gap-2 cursor-pointer px-2 py-1.5 rounded-md"
-      >
-        <div class="flex items-center gap-2 w-12">
-          <mat-checkbox></mat-checkbox>
+    @for (email of emails(); track $index) {
+        <div
+            class="border-b border-gray-200 dark:border-gray-600 hover:border-gray-300 dark:hover:border-gray-500 hover:box-shadow-md dark:hover:box-shadow-md"
+        >
+            <div
+                (click)="selectEmail(email)"
+                [class.active]="email.id === selectedEmail()?.id"
+                class="flex items-center gap-2 cursor-pointer px-2 py-1.5 rounded-md"
+            >
+                <div class="flex items-center gap-2 w-12">
+                    <mat-checkbox></mat-checkbox>
+                </div>
+                <div class="flex flex-col w-11/12">
+                    <span class="text-sm font-medium">{{
+                        email.subject.substring(0, 60) +
+                            (email.subject.length > 60 ? '...' : '')
+                    }}</span>
+                    <span class="text-sm text-gray-500">{{
+                        email.message.substring(0, 60) +
+                            (email.message.length > 60 ? '...' : '')
+                    }}</span>
+                </div>
+            </div>
         </div>
-        <div class="flex flex-col w-11/12">
-          <span class="text-sm font-medium">{{
-            email.subject.substring(0, 60) +
-              (email.subject.length > 60 ? "..." : "")
-          }}</span>
-          <span class="text-sm text-gray-500">{{
-            email.message.substring(0, 60) +
-              (email.message.length > 60 ? "..." : "")
-          }}</span>
-        </div>
-      </div>
-    </div>
-  }
+    }
 </div>

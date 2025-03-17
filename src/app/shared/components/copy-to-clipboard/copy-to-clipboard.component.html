@@ -1,8 +1,8 @@
 @if (copied()) {
-  <mat-icon fontSet="material-symbols-outlined">check</mat-icon>
+    <mat-icon fontSet="material-symbols-outlined">check</mat-icon>
 } @else {
-  <mat-icon fontSet="material-symbols-outlined">content_copy</mat-icon>
+    <mat-icon fontSet="material-symbols-outlined">content_copy</mat-icon>
 }
 @if (!hideText()) {
-  <span>{{ displayText() || value() }}</span>
+    <span>{{ displayText() || value() }}</span>
 }

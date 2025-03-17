@@ -1,4 +1,9 @@
-import { ChangeDetectionStrategy, Component, input, Input } from '@angular/core';
+import {
+    ChangeDetectionStrategy,
+    Component,
+    input,
+    Input,
+} from '@angular/core';
 import { MatIconModule } from '@angular/material/icon';
 
 @Component({
@@ -6,9 +11,8 @@ import { MatIconModule } from '@angular/material/icon';
     imports: [MatIconModule],
     templateUrl: './system-element-icon.component.html',
     styleUrl: './system-element-icon.component.scss',
-    changeDetection: ChangeDetectionStrategy.OnPush
+    changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class SystemElementIconComponent {
-
-  public icon = input.required<string>();
+    public icon = input.required<string>();
 }

@@ -1,40 +1,56 @@
 <!-- <div class="text-3xl text-white"> -->
 <img
-  src="assets/icons/spotify.svg"
-  alt="Spotify Logo"
-  class="h-9 w-9 absolute top-4 right-4"
+    src="assets/icons/spotify.svg"
+    alt="Spotify Logo"
+    class="h-9 w-9 absolute top-4 right-4"
 />
 
 <div class="flex flex-col items-center justify-center h-full w-full">
-  <div class="flex items-center gap-2 w-full">
-    <img
-      src="{{ track.image }}"
-      alt="Album Artwork"
-      class="h-32 w-32 rounded-md"
-    />
-    <div
-      class="flex flex-col justify-center items-center font-normal p-3 w-full"
-    >
-      <div class="flex flex-col items-center">
-        <p class="text-lg font-semibold uppercase tracking-normal">
-          {{ track.name }}
-        </p>
-        <span class="text-base">{{ track.artists[0].name }}</span>
-        <span class="text-base">{{ track.album }}</span>
-      </div>
-      <div class="flex items-center gap-2 mt-4 w-full justify-center">
-        <button mat-icon-button (click)="previousTrack()" [disabled]="!track">
-          <mat-icon fontSet="material-symbols-outlined">skip_previous</mat-icon>
-        </button>
-        <button mat-icon-button (click)="togglePlay()" [disabled]="!track">
-          <mat-icon fontSet="material-symbols-outlined">{{
-            isPlaying ? "pause_circle_filled" : "play_circle_filled"
-          }}</mat-icon>
-        </button>
-        <button mat-icon-button (click)="nextTrack()" [disabled]="!track">
-          <mat-icon fontSet="material-symbols-outlined">skip_next</mat-icon>
-        </button>
-      </div>
+    <div class="flex items-center gap-2 w-full">
+        <img
+            src="{{ track.image }}"
+            alt="Album Artwork"
+            class="h-32 w-32 rounded-md"
+        />
+        <div
+            class="flex flex-col justify-center items-center font-normal p-3 w-full"
+        >
+            <div class="flex flex-col items-center">
+                <p class="text-lg font-semibold uppercase tracking-normal">
+                    {{ track.name }}
+                </p>
+                <span class="text-base">{{ track.artists[0].name }}</span>
+                <span class="text-base">{{ track.album }}</span>
+            </div>
+            <div class="flex items-center gap-2 mt-4 w-full justify-center">
+                <button
+                    mat-icon-button
+                    (click)="previousTrack()"
+                    [disabled]="!track"
+                >
+                    <mat-icon fontSet="material-symbols-outlined"
+                        >skip_previous</mat-icon
+                    >
+                </button>
+                <button
+                    mat-icon-button
+                    (click)="togglePlay()"
+                    [disabled]="!track"
+                >
+                    <mat-icon fontSet="material-symbols-outlined">{{
+                        isPlaying ? 'pause_circle_filled' : 'play_circle_filled'
+                    }}</mat-icon>
+                </button>
+                <button
+                    mat-icon-button
+                    (click)="nextTrack()"
+                    [disabled]="!track"
+                >
+                    <mat-icon fontSet="material-symbols-outlined"
+                        >skip_next</mat-icon
+                    >
+                </button>
+            </div>
+        </div>
     </div>
-  </div>
 </div>

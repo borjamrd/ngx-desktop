@@ -1,8 +1,8 @@
 @if (notionBlock.properties && notionBlock.properties.source) {
-  <img
-    [src]="imgSrc"
-    [alt]="notionBlock.properties.title[0][0]"
-    height="auto"
-    [width]="notionBlock.format?.block_width?.toString() || '100%'"
-  />
+    <img
+        [src]="imgSrc"
+        [alt]="notionBlock.properties.title[0][0]"
+        height="auto"
+        [width]="notionBlock.format?.block_width?.toString() || '100%'"
+    />
 }

@@ -1,58 +1,66 @@
 <bm-notion-page-header
-  [iconPage]="iconPage()"
-  [item]="item()"
+    [iconPage]="iconPage()"
+    [item]="item()"
 ></bm-notion-page-header>
 
 @if (notionBlocksQuery.isLoading()) {
-  <div>loading</div>
+    <div>loading</div>
 }
 
-@if (notionBlocksQuery.data()) {
-  <bm-notion-table-of-contents
-    (scrollToBlock)="scrollToBlock($event)"
-    [blocks]="notionBlocksQuery.data()!"
-  />
+@if (notionBlocksQuery.value()) {
+    <bm-notion-table-of-contents
+        (scrollToBlock)="scrollToBlock($event)"
+        [blocks]="notionBlocksQuery.value()!"
+    />
 
-  <div class="flex flex-col gap-2 px-2">
-    @for (notionBlock of notionBlocksQuery.data()!; track $index) {
-      @defer (on viewport) {
-        @if (
-          notionBlock.type !== "page" &&
-          notionBlock.type !== "collection_view_page"
-        ) {
-          <ng-container
-            [ngTemplateOutlet]="treeBlock"
-            [ngTemplateOutletContext]="{
-              $implicit: notionBlock,
-              prevBlockType: notionBlocksQuery.data()![$index - 1].type
-            }"
-          ></ng-container>
+    <div class="flex flex-col gap-2 px-2">
+        @for (notionBlock of notionBlocksQuery.value()!; track $index) {
+            @defer (on viewport) {
+                @if (
+                    notionBlock?.type !== 'page' &&
+                    notionBlock?.type !== 'collection_view_page'
+                ) {
+                    <ng-container
+                        [ngTemplateOutlet]="treeBlock"
+                        [ngTemplateOutletContext]="{
+                            $implicit: notionBlock,
+                            prevBlockType:
+                                notionBlocksQuery.value()![$index - 1].type
+                        }"
+                    ></ng-container>
+                }
+            } @placeholder {
+                <div class="flex gap-3 h-10 w-full b-4">
+                    <div
+                        class="w-1/5 dark:bg-gray-600/20 bg-opacity-10 rounded-xl"
+                    ></div>
+                    <div
+                        class="w-4/5 dark:bg-gray-600/20 bg-opacity-10 rounded-xl"
+                    ></div>
+                </div>
+            } @loading {
+                <div>Loading...</div>
+            }
         }
-      } @placeholder {
-        <div class="flex gap-3 h-10 w-full b-4">
-          <div class="w-1/5 dark:bg-gray-600/20 bg-opacity-10 rounded-xl"></div>
-          <div class="w-4/5 dark:bg-gray-600/20 bg-opacity-10 rounded-xl"></div>
-        </div>
-      } @loading {
-        <div>Loading...</div>
-      }
-    }
-  </div>
+    </div>
 
-  <ng-template #treeBlock let-data let-prevBlockType="prevBlockType">
-    <bm-notion-block [previousBlockType]="prevBlockType" [notionBlock]="data" />
-    @if (data?.content; as childBlocks) {
-      @for (child of childBlocks; track $index) {
-        <div class="ms-10">
-          <ng-container
-            [ngTemplateOutlet]="treeBlock"
-            [ngTemplateOutletContext]="{
-              $implicit: getchildContent(child),
-              prevBlockType: childBlocks[$index - 1]?.type
-            }"
-          ></ng-container>
-        </div>
-      }
-    }
-  </ng-template>
+    <ng-template #treeBlock let-data let-prevBlockType="prevBlockType">
+        <bm-notion-block
+            [previousBlockType]="prevBlockType"
+            [notionBlock]="data"
+        />
+        @if (data?.content; as childBlocks) {
+            @for (child of childBlocks; track $index) {
+                <div class="ms-10">
+                    <ng-container
+                        [ngTemplateOutlet]="treeBlock"
+                        [ngTemplateOutletContext]="{
+                            $implicit: getchildContent(child),
+                            prevBlockType: childBlocks[$index - 1]?.type
+                        }"
+                    ></ng-container>
+                </div>
+            }
+        }
+    </ng-template>
 }

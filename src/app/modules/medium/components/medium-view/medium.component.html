@@ -1,29 +1,29 @@
 <div class="flex h-full flex-col w-full">
-  <div class="mx-auto p-4 flex flex-col gap-1 items-center">
-    <bm-input placeholder="borjamrd1" [formControl]="account" />
-    <bm-copy-to-clipboard
-      value="https://medium.com/&#64;{{ account.value }}"
-      displayText="https://medium.com/&#64;{{ account.value }}"
-    />
-  </div>
+    <div class="mx-auto p-4 flex flex-col gap-1 items-center">
+        <bm-input placeholder="borjamrd1" [formControl]="account" />
+        <bm-copy-to-clipboard
+            value="https://medium.com/&#64;{{ account.value }}"
+            displayText="https://medium.com/&#64;{{ account.value }}"
+        />
+    </div>
 
-  @if ({ posts: posts$ | async, error: postsError$ | async }; as data) {
-    @if (data.posts) {
-      <div class="overflow-auto h-96">
-        @for (post of data.posts; track $index) {
-          <bm-medium-post [post]="post" />
+    @if ({ posts: posts$ | async, error: postsError$ | async }; as data) {
+        @if (data.posts) {
+            <div class="overflow-auto h-96">
+                @for (post of data.posts; track $index) {
+                    <bm-medium-post [post]="post" />
+                }
+            </div>
+        } @else {
+            @if (data.error) {
+                <p class="text-center m-auto">
+                    Error al recibir los datos, revisa el nombre de usuario
+                </p>
+            } @else {
+                <span class="animate-spin duration-100 m-auto">
+                    <mat-icon svgIcon="medium" />
+                </span>
+            }
         }
-      </div>
-    } @else {
-      @if (data.error) {
-        <p class="text-center m-auto">
-          Error al recibir los datos, revisa el nombre de usuario
-        </p>
-      } @else {
-        <span class="animate-spin duration-100 m-auto">
-          <mat-icon svgIcon="medium" />
-        </span>
-      }
     }
-  }
 </div>

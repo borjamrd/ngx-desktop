@@ -1,24 +1,30 @@
 <div
-  [ngClass]="containerClasses()['container']"
-  class="mt-16 overflow-auto flex w-full"
+    [ngClass]="containerClasses()['container']"
+    class="mt-16 overflow-auto flex w-full"
 >
-  <div [ngClass]="containerClasses()['categories']" class="py-4 pe-4 relative">
-    <div class="flex flex-col gap-2 sticky top-0">
-      <button (click)="newEmail.set(true)" class="mb-40/40 btn-send ms-4 mb-4">
-        <mat-icon fontSet="material-symbols-outlined">edit</mat-icon>
-        Redactar
-      </button>
+    <div
+        [ngClass]="containerClasses()['categories']"
+        class="py-4 pe-4 relative"
+    >
+        <div class="flex flex-col gap-2 sticky top-0">
+            <button
+                (click)="newEmail.set(true)"
+                class="mb-40/40 btn-send ms-4 mb-4"
+            >
+                <mat-icon fontSet="material-symbols-outlined">edit</mat-icon>
+                Redactar
+            </button>
 
-      <bm-email-folders [selectedEmail]="selectedEmail()" />
+            <bm-email-folders [selectedEmail]="selectedEmail()" />
+        </div>
     </div>
-  </div>
-  <div [ngClass]="containerClasses()['list']">
-    <bm-email-list />
-  </div>
-  <div [ngClass]="containerClasses()['content']">
-    <bm-email-content />
-  </div>
-  @if (newEmail()) {
-    <bm-new-email-container (close)="newEmail.set(false)" />
-  }
+    <div [ngClass]="containerClasses()['list']">
+        <bm-email-list />
+    </div>
+    <div [ngClass]="containerClasses()['content']">
+        <bm-email-content />
+    </div>
+    @if (newEmail()) {
+        <bm-new-email-container (close)="newEmail.set(false)" />
+    }
 </div>

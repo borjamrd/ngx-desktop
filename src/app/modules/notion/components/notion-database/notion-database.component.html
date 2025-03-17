@@ -1,20 +1,20 @@
-@for (item of tableItemsQuery.data() ?? []; track $index) {
-  <div class="notion-item">
-    <bm-notion-database-item
-      (prefetchPageElements)="prefetchPageElements($event)"
-      (itemSelected)="itemSelected.emit($event)"
-      [item]="item"
-    />
-  </div>
-} @empty {
-  @if (tableItemsQuery.isLoading()) {
-    <div class="w-full h-full flex">
-      <mat-icon
-        class="animate-bounce duration-200 m-auto"
-        svgIcon="notion"
-      ></mat-icon>
+@for (item of tableItemsQuery.value(); track $index) {
+    <div class="notion-item">
+        <bm-notion-database-item
+            (prefetchPageElements)="prefetchPageElements($event)"
+            (itemSelected)="itemSelected.emit($event)"
+            [item]="item"
+        />
     </div>
-  } @else {
-    <p>No elements</p>
-  }
+} @empty {
+    @if (tableItemsQuery.isLoading()) {
+        <div class="w-full h-full flex">
+            <mat-icon
+                class="animate-bounce duration-200 m-auto"
+                svgIcon="notion"
+            ></mat-icon>
+        </div>
+    } @else {
+        <p>No elements</p>
+    }
 }

@@ -1,4 +1,10 @@
-import { animate, state, style, transition, trigger } from "@angular/animations";
+import {
+    animate,
+    state,
+    style,
+    transition,
+    trigger,
+} from '@angular/animations';
 
 export const transitions: { name: string; value: string }[] = [
     {
@@ -7,8 +13,7 @@ export const transitions: { name: string; value: string }[] = [
     },
     {
         name: 'ease-out',
-        value:
-            'transform 500ms ease-out, width 500ms ease-out, height 500ms ease-out',
+        value: 'transform 500ms ease-out, width 500ms ease-out, height 500ms ease-out',
     },
     {
         name: 'linear',
@@ -16,8 +21,7 @@ export const transitions: { name: string; value: string }[] = [
     },
     {
         name: 'overflowing',
-        value:
-            'transform 500ms cubic-bezier(.28,.49,.79,1.35), width 500ms cubic-bezier(.28,.49,.79,1.35), height 500ms cubic-bezier(.28,.49,.79,1.35)',
+        value: 'transform 500ms cubic-bezier(.28,.49,.79,1.35), width 500ms cubic-bezier(.28,.49,.79,1.35), height 500ms cubic-bezier(.28,.49,.79,1.35)',
     },
     {
         name: 'fast',
@@ -25,28 +29,25 @@ export const transitions: { name: string; value: string }[] = [
     },
     {
         name: 'slow-motion',
-        value:
-            'transform 1000ms linear, width 1000ms linear, height 1000ms linear',
+        value: 'transform 1000ms linear, width 1000ms linear, height 1000ms linear',
     },
     { name: 'transform-only', value: 'transform 500ms ease' },
 ];
 
-
 export const slideInOut = [
     trigger('slideInOut', [
-        state('in', style({
-            transform: 'translateY(0)'
-        })),
+        state(
+            'in',
+            style({
+                transform: 'translateY(0)',
+            })
+        ),
         transition(':enter', [
             style({ transform: 'translateY(100%)' }),
-            animate('0.3s ease-in')
+            animate('0.3s ease-in'),
         ]),
         transition(':leave', [
-            animate('0.3s ease-in', style({ transform: 'translateY(100%)' }))
-        ])
-    ])
-]
-
-
-
-
+            animate('0.3s ease-in', style({ transform: 'translateY(100%)' })),
+        ]),
+    ]),
+];

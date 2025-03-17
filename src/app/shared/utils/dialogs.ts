@@ -1,4 +1,4 @@
-import { MatDialogConfig } from "@angular/material/dialog"
+import { MatDialogConfig } from '@angular/material/dialog';
 
 export const MEDIUM_DIALOG_CONFIG: MatDialogConfig = {
     maxWidth: '100vw',
@@ -9,7 +9,7 @@ export const MEDIUM_DIALOG_CONFIG: MatDialogConfig = {
     hasBackdrop: false,
     autoFocus: true,
     restoreFocus: false,
-}
+};
 export const FILE_DIALOG_CONFIG: MatDialogConfig = {
     maxWidth: '100vw',
     maxHeight: 'calc(100vh - 3rem)', //tasksbar height
@@ -19,7 +19,7 @@ export const FILE_DIALOG_CONFIG: MatDialogConfig = {
     hasBackdrop: false,
     autoFocus: true,
     restoreFocus: false,
-}
+};
 
 export const FOLDER_DIALOG_CONFIG: MatDialogConfig = {
     maxWidth: '100vw',
@@ -29,8 +29,8 @@ export const FOLDER_DIALOG_CONFIG: MatDialogConfig = {
     panelClass: ['resizable-mat-dialog-panel', 'window-container'],
     hasBackdrop: false,
     autoFocus: true,
-    restoreFocus: false
-}
+    restoreFocus: false,
+};
 
 export const NOTION_DIALOG_CONFIG: MatDialogConfig = {
     maxWidth: '100vw',
@@ -40,8 +40,8 @@ export const NOTION_DIALOG_CONFIG: MatDialogConfig = {
     panelClass: ['notion-container', 'resizable-mat-dialog-panel'],
     hasBackdrop: false,
     autoFocus: true,
-    restoreFocus: false
-}
+    restoreFocus: false,
+};
 
 export const GLOBAL_SEARCH_DIALOG_CONFIG: MatDialogConfig = {
     maxWidth: '100vw',
@@ -51,8 +51,8 @@ export const GLOBAL_SEARCH_DIALOG_CONFIG: MatDialogConfig = {
     panelClass: ['global-search-container'],
     hasBackdrop: true,
     autoFocus: true,
-    restoreFocus: false
-}
+    restoreFocus: false,
+};
 
 export const EMAIL_DIALOG_CONFIG: MatDialogConfig = {
     maxWidth: '100vw',
@@ -62,5 +62,5 @@ export const EMAIL_DIALOG_CONFIG: MatDialogConfig = {
     panelClass: ['email-container', 'resizable-mat-dialog-panel'],
     hasBackdrop: false,
     autoFocus: true,
-    restoreFocus: false
-}
+    restoreFocus: false,
+};

@@ -1,6 +1,6 @@
 export interface CustomIcon {
     svg: string;
-    url: string
+    url: string;
 }
 
 export const customIcons: CustomIcon[] = [
@@ -23,7 +23,8 @@ export const customIcons: CustomIcon[] = [
     {
         svg: 'new-window',
         url: 'assets/icons/new-window.svg',
-    }, {
+    },
+    {
         svg: 'angular',
         url: 'assets/icons/angular.svg',
     },
@@ -66,6 +67,5 @@ export const customIcons: CustomIcon[] = [
     {
         svg: 'new-email',
         url: 'assets/icons/new-email.svg',
-    }
-
-]
+    },
+];

@@ -1,53 +1,56 @@
 <div class="border-b pb-6 mb-6 border-slate-400 dark:border-slate-300">
-  <h1 class="text-3xl font-bold mb-0">
-    @if (iconPage()) {
-      {{ iconPage() }}
-    }
-    {{ item().name }}
-  </h1>
-  <table class="table-fixed w-full mt-5 border-separate border-spacing-y-3">
-    <tbody>
-      @for (itemKv of item() | keyvalue; track $index) {
-        @if (
-          itemKv.key !== "id" &&
-          itemKv.key !== "related" &&
-          itemKv.key !== "name"
-        ) {
-          <tr class="text-left table-row">
-            @if (itemKv.key == "status") {
-              <td
-                class="w-1/4 align-top capitalize dark:text-slate-300 text-slate-600 font-medium"
-              >
-                {{ itemKv.key }}
-              </td>
-              <td class="align-top pl-2.5 w-4/5">
-                <bm-notion-badge-status
-                  justify="start"
-                  [status]="item().status"
-                />
-              </td>
-            } @else if (itemKv.key == "tags") {
-              <td
-                class="align-top capitalize dark:text-slate-300 text-slate-600 font-medium w-1/4"
-              >
-                {{ itemKv.key }}
-              </td>
-              <td class="align-top pl-2.5 w-4/5">
-                <bm-notion-item-tags justify="start" [tags]="item().tags" />
-              </td>
-            } @else {
-              <td
-                class="align-top capitalize dark:text-slate-300 text-slate-600 font-medium w-1/4"
-              >
-                {{ itemKv.key }}
-              </td>
-              <td class="align-top pl-2.5 w-4/5">
-                <p class="text-wrap">{{ itemKv.value }}</p>
-              </td>
-            }
-          </tr>
+    <h1 class="text-3xl font-bold mb-0">
+        @if (iconPage()) {
+            {{ iconPage() }}
         }
-      }
-    </tbody>
-  </table>
+        {{ item().name }}
+    </h1>
+    <table class="table-fixed w-full mt-5 border-separate border-spacing-y-3">
+        <tbody>
+            @for (itemKv of item() | keyvalue; track $index) {
+                @if (
+                    itemKv.key !== 'id' &&
+                    itemKv.key !== 'related' &&
+                    itemKv.key !== 'name'
+                ) {
+                    <tr class="text-left table-row">
+                        @if (itemKv.key == 'status') {
+                            <td
+                                class="w-1/4 align-top capitalize dark:text-slate-300 text-slate-600 font-medium"
+                            >
+                                {{ itemKv.key }}
+                            </td>
+                            <td class="align-top pl-2.5 w-4/5">
+                                <bm-notion-badge-status
+                                    justify="start"
+                                    [status]="item().status"
+                                />
+                            </td>
+                        } @else if (itemKv.key == 'tags') {
+                            <td
+                                class="align-top capitalize dark:text-slate-300 text-slate-600 font-medium w-1/4"
+                            >
+                                {{ itemKv.key }}
+                            </td>
+                            <td class="align-top pl-2.5 w-4/5">
+                                <bm-notion-item-tags
+                                    justify="start"
+                                    [tags]="item().tags"
+                                />
+                            </td>
+                        } @else {
+                            <td
+                                class="align-top capitalize dark:text-slate-300 text-slate-600 font-medium w-1/4"
+                            >
+                                {{ itemKv.key }}
+                            </td>
+                            <td class="align-top pl-2.5 w-4/5">
+                                <p class="text-wrap">{{ itemKv.value }}</p>
+                            </td>
+                        }
+                    </tr>
+                }
+            }
+        </tbody>
+    </table>
 </div>

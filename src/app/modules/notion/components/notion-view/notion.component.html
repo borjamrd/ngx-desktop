@@ -1,25 +1,27 @@
 <div class="mt-20 overflow-auto" [ngClass]="notionContainerClass()">
-  <div class="flex gap-10 relative">
-    <div
-      class="transition-all duration-150 ease-in"
-      [ngClass]="selectedItem() ? containeListClasses : 'w-full'"
-    >
-      <bm-notion-database (itemSelected)="setItemSelected($event)" />
-    </div>
-    <div
-      class="transition-all duration-150 ease-in relative"
-      [ngClass]="selectedItem() ? pageListCLasses : 'hidden'"
-    >
-      @if (selectedItem(); as selectedItemm) {
-        <button
-          class="rounded-full p-1 sticky float-end top-0"
-          (click)="selectedItem.set(undefined)"
+    <div class="flex gap-10 relative">
+        <div
+            class="transition-all duration-150 ease-in"
+            [ngClass]="selectedItem() ? containeListClasses : 'w-full'"
         >
-          <mat-icon fontSet="material-symbols-outlined">close</mat-icon>
-        </button>
+            <bm-notion-database (itemSelected)="setItemSelected($event)" />
+        </div>
+        <div
+            class="transition-all duration-150 ease-in relative"
+            [ngClass]="selectedItem() ? pageListCLasses : 'hidden'"
+        >
+            @if (selectedItem(); as selectedItemm) {
+                <button
+                    class="rounded-full p-1 sticky float-end top-0"
+                    (click)="selectedItem.set(undefined)"
+                >
+                    <mat-icon fontSet="material-symbols-outlined"
+                        >close</mat-icon
+                    >
+                </button>
 
-        <bm-notion-page [item]="selectedItem()!" />
-      }
+                <bm-notion-page [item]="selectedItem()!" />
+            }
+        </div>
     </div>
-  </div>
 </div>
